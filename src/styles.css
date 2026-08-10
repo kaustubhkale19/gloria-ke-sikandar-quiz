@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { @apply m-0 min-h-screen bg-ink font-sans text-slate-100; }
+button { @apply rounded-lg px-4 py-3 font-bold transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50; }
+.host { @apply mx-auto min-h-screen max-w-6xl p-8; }
+.landing { background: radial-gradient(circle at top, #263b62 0%, #101522 58%, #080b12 100%); }
+@keyframes questionReveal { from { opacity: 0; transform: translateY(28px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes optionReveal { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
+.question-reveal { animation: questionReveal .45s ease-out both; }
+.option-reveal { animation: optionReveal .38s ease-out both; }
+@keyframes selectedTile { 0% { opacity: 0; transform: scale(.45) rotateY(0deg); } 55% { opacity: 1; transform: scale(1.12) rotateY(180deg); } 100% { opacity: 1; transform: scale(1) rotateY(360deg); } }
+.selected-tile { animation: selectedTile 1.1s cubic-bezier(.2,.8,.2,1) both; }

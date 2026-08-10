@@ -1,0 +1,37 @@
+{
+  "name": "quiz-show-host",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "node --watch server/index.js",
+    "dev:client": "parcel src/index.html --port 1234",
+    "start": "node server/index.js",
+    "build": "parcel build src/index.html --dist-dir dist",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@parcel/transformer-postcss": "^2.13.3",
+    "better-sqlite3": "^11.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-typescript-tsc": "^2.13.3",
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.3",
+    "@types/react-dom": "^19.0.2",
+    "concurrently": "^9.1.2",
+    "parcel": "^2.13.3",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
+  }
+}

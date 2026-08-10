@@ -1,0 +1,36 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - heading "Gloria Ke Sikandar" [level=1] [ref=e5]
+    - paragraph [ref=e6]: "Season 2: Dhurandhar"
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e9]: 🕵️ RAW
+      - generic [ref=e10]: "0"
+    - generic [ref=e11]:
+      - generic [ref=e12]: ♟️ KGB
+      - generic [ref=e13]: "0"
+    - generic [ref=e14]:
+      - generic [ref=e15]: 🛰️ CIA
+      - generic [ref=e16]: "0"
+    - generic [ref=e17]:
+      - generic [ref=e18]: 🦉 Mossad
+      - generic [ref=e19]: "0"
+  - generic [ref=e20]:
+    - heading "Select the next team" [level=2] [ref=e21]
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]: 🕵️
+        - heading "RAW" [level=3] [ref=e25]
+        - paragraph [ref=e26]: India's silent intelligence network
+      - generic [ref=e27]:
+        - generic [ref=e28]: ♟️
+        - heading "KGB" [level=3] [ref=e29]
+        - paragraph [ref=e30]: The masters of covert strategy
+      - generic [ref=e31]:
+        - generic [ref=e32]: 🛰️
+        - heading "CIA" [level=3] [ref=e33]
+        - paragraph [ref=e34]: Global intelligence, precision and resolve
+      - generic [ref=e35]:
+        - generic [ref=e36]: 🦉
+        - heading "Mossad" [level=3] [ref=e37]
+        - paragraph [ref=e38]: Expert intelligence from the shadows

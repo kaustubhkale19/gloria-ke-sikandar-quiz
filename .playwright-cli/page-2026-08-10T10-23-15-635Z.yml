@@ -1,0 +1,37 @@
+- main [ref=e3]:
+  - heading "Gloria Ke Sikandar" [level=1] [ref=e5]
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: 🦅 RAW
+      - generic [ref=e9]: "0"
+    - generic [ref=e10]:
+      - generic [ref=e11]: 🛡️ KGB
+      - generic [ref=e12]: "0"
+    - generic [ref=e13]:
+      - generic [ref=e14]: 🦁 CIA
+      - generic [ref=e15]: "0"
+    - generic [ref=e16]:
+      - generic [ref=e17]: ✦ Mossad
+      - generic [ref=e18]: "0"
+  - generic [ref=e19]:
+    - paragraph [ref=e20]:
+      - text: "Now playing:"
+      - strong [ref=e21]: RAW
+    - heading "Choose a category" [level=2] [ref=e22]
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: 🎬
+        - heading "Bollywood" [level=3] [ref=e26]
+        - paragraph [ref=e27]: Films, music, stars and iconic moments
+      - generic [ref=e28]:
+        - generic [ref=e29]: 🏆
+        - heading "Sports" [level=3] [ref=e30]
+        - paragraph [ref=e31]: Champions, records and sporting legends
+      - generic [ref=e32]:
+        - generic [ref=e33]: 🏛️
+        - heading "History" [level=3] [ref=e34]
+        - paragraph [ref=e35]: Civilisations, events and great leaders
+      - generic [ref=e36]:
+        - generic [ref=e37]: 🌍
+        - heading "Geography" [level=3] [ref=e38]
+        - paragraph [ref=e39]: Places, landmarks and the natural world
