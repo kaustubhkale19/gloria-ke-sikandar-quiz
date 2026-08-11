@@ -17,11 +17,11 @@ The Express/Socket.IO server runs at port 3000 and saves its data locally in `da
 Rules belong in one game configuration and should be settled before a round begins:
 
 - The host opens on a title landing screen, then selects the first team.
-- The active team chooses a category, followed by Easy, Medium, or Hard. A level is disabled once that team has attempted it.
+- The active team chooses a category, followed by Easy, Medium, or Hard. It may choose the same difficulty more than once.
 - Fifteen numbered tiles are shown without revealing their questions. A tile becomes unavailable globally after it is selected.
 - The question and four options are shown on the projector with a 30-second countdown. The host records the team's spoken selection.
 - The application calculates the outcome from the saved correct option: Easy is **+10**, Medium **+20**, Hard **+30**, and any incorrect answer is **-10**.
-- The team returns to category selection after each answer. Once it has attempted all 4 × 3 category/difficulty combinations, the host is returned to team selection.
+- Each team answers two questions from every category. Those two questions can be at any difficulty; after completing all categories, the host returns to team selection.
 
 The seeded question set provides the required 15 tiles for every category and level, but has neutral placeholder question text. The next feature is a question-pack editor/import so those placeholders can be replaced with your real quiz questions.
 

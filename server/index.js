@@ -16,6 +16,20 @@ const categoryDetails = [
   { name: "History", logo: "🏛️", description: "Civilisations, events and great leaders" },
   { name: "Geography", logo: "🌍", description: "Places, landmarks and the natural world" }
 ];
+categoryDetails.splice(0, categoryDetails.length,
+  { name: "Sports", logo: "🏆", description: "" },
+  { name: "History", logo: "🏛️", description: "" },
+  { name: "Geography", logo: "🌍", description: "" },
+  { name: "Politics", logo: "🗳️", description: "" },
+  { name: "Literature", logo: "📚", description: "" },
+  { name: "Music", logo: "🎵", description: "" },
+  { name: "Bollywood", logo: "🎬", description: "" },
+  { name: "Science and Technology", logo: "🔬", description: "" },
+  { name: "Mythology", logo: "🪔", description: "" },
+  { name: "Current affairs", logo: "📰", description: "" },
+  { name: "Art & Culture", logo: "🎨", description: "" },
+  { name: "Business & Economy", logo: "📈", description: "" }
+);
 const difficultyDetails = [
   { id: "easy", logo: "⭐", name: "Easy", description: "A great way to get started" },
   { id: "medium", logo: "⭐⭐", name: "Medium", description: "A satisfying challenge" },
@@ -24,6 +38,7 @@ const difficultyDetails = [
 const categories = categoryDetails.map((item) => item.name);
 const difficulties = difficultyDetails.map((item) => item.id);
 const pointsByDifficulty = { easy: 10, medium: 20, hard: 30 };
+const questionsPerCategory = 2;
 const questionBank = {
   Bollywood: {
     easy: [["Which actor played Veeru in the film Sholay?", ["Amitabh Bachchan", "Dharmendra", "Rajesh Khanna", "Rishi Kapoor"], 1], ["Which Indian film industry is commonly called Bollywood?", ["Hindi cinema", "Tamil cinema", "Bengali cinema", "Marathi cinema"], 0], ["Which actor is known as the King of Bollywood?", ["Aamir Khan", "Shah Rukh Khan", "Salman Khan", "Akshay Kumar"], 1]],
@@ -46,6 +61,48 @@ const questionBank = {
     hard: [["Which strait separates Asia and North America?", ["Gibraltar Strait", "Bering Strait", "Malacca Strait", "Bosporus"], 1], ["What is the deepest known point in the world's oceans?", ["Tonga Trench", "Mariana Trench", "Java Trench", "Puerto Rico Trench"], 1], ["Which country contains the region of Transylvania?", ["Romania", "Hungary", "Bulgaria", "Serbia"], 0]]
   }
 };
+const supplementalQuestionBank = {
+  Politics: {
+    easy: [["Which document is the supreme law of India?", ["The Constitution", "The Penal Code", "The Gazette", "The Preamble"], 0]],
+    medium: [["Which house of Parliament is also called the Council of States?", ["Lok Sabha", "Rajya Sabha", "Vidhan Sabha", "Legislative Council"], 1]],
+    hard: [["Which constitutional article provides for the Election Commission of India?", ["Article 324", "Article 280", "Article 356", "Article 370"], 0]]
+  },
+  Literature: {
+    easy: [["Who wrote the novel The Guide?", ["R. K. Narayan", "Mulk Raj Anand", "Ruskin Bond", "Vikram Seth"], 0]],
+    medium: [["Who wrote India's national anthem, Jana Gana Mana?", ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Sarojini Naidu", "Subramania Bharati"], 0]],
+    hard: [["Which Indian poet wrote the epic Savitri?", ["Sri Aurobindo", "Kalidasa", "Tulsidas", "Harivansh Rai Bachchan"], 0]]
+  },
+  Music: {
+    easy: [["Which instrument is Pandit Ravi Shankar famous for playing?", ["Sitar", "Tabla", "Flute", "Sarod"], 0]],
+    medium: [["Which form of Indian classical music is associated mainly with northern India?", ["Hindustani", "Carnatic", "Qawwali", "Baul"], 0]],
+    hard: [["Which musician is known for popularising the bansuri globally?", ["Hariprasad Chaurasia", "Zakir Hussain", "Bismillah Khan", "Shivkumar Sharma"], 0]]
+  },
+  "Science and Technology": {
+    easy: [["What does CPU stand for?", ["Central Processing Unit", "Computer Power Utility", "Central Program User", "Control Processing Unit"], 0]],
+    medium: [["Which planet has the largest number of known moons?", ["Saturn", "Earth", "Mars", "Venus"], 0]],
+    hard: [["What is the name of the first image captured by the Event Horizon Telescope in 2019?", ["A black hole", "A comet", "An exoplanet", "A neutron star"], 0]]
+  },
+  Mythology: {
+    easy: [["Who is the author traditionally credited with the Mahabharata?", ["Vyasa", "Valmiki", "Kalidasa", "Tulsidas"], 0]],
+    medium: [["Which weapon is associated with Lord Vishnu?", ["Sudarshana Chakra", "Trishula", "Vajra", "Gandiva"], 0]],
+    hard: [["In the Ramayana, who was the king of Kishkindha before Sugriva?", ["Vali", "Jambavan", "Angada", "Nala"], 0]]
+  },
+  "Current affairs": {
+    easy: [["Which city hosted the 2024 Summer Olympic Games?", ["Paris", "Tokyo", "Los Angeles", "Rome"], 0]],
+    medium: [["Which organisation received the 2024 Nobel Peace Prize?", ["Nihon Hidankyo", "UNICEF", "Doctors Without Borders", "Amnesty International"], 0]],
+    hard: [["Which country became NATO's 32nd member in 2024?", ["Sweden", "Finland", "Ukraine", "Austria"], 0]]
+  },
+  "Art & Culture": {
+    easy: [["Which Indian classical dance form originated in Tamil Nadu?", ["Bharatanatyam", "Kathak", "Manipuri", "Sattriya"], 0]],
+    medium: [["The Ajanta Caves are especially known for their ancient paintings and are located in which state?", ["Maharashtra", "Rajasthan", "Gujarat", "Madhya Pradesh"], 0]],
+    hard: [["Which Mughal emperor commissioned the construction of the Red Fort in Delhi?", ["Shah Jahan", "Akbar", "Jahangir", "Aurangzeb"], 0]]
+  },
+  "Business & Economy": {
+    easy: [["What is the currency of India?", ["Rupee", "Taka", "Riyal", "Yen"], 0]],
+    medium: [["Which institution is India's central bank?", ["Reserve Bank of India", "State Bank of India", "SEBI", "NABARD"], 0]],
+    hard: [["What does GDP stand for in economics?", ["Gross Domestic Product", "General Development Plan", "Global Demand Price", "Gross Debt Percentage"], 0]]
+  }
+};
 const questionBankPath = "data/question-bank.csv";
 const csvEscape = (value) => `"${String(value).replaceAll('"', '""')}"`;
 function ensureStarterQuestionBank() {
@@ -53,7 +110,7 @@ function ensureStarterQuestionBank() {
   const header = "category,difficulty,question,option_a,option_b,option_c,option_d,correct_option";
   const rows = [header];
   for (const category of categories) for (const difficulty of difficulties) {
-    const source = questionBank[category][difficulty];
+    const source = questionBank[category]?.[difficulty] ?? supplementalQuestionBank[category][difficulty];
     for (let index = 0; index < 15; index += 1) {
       const [question, options, correctOption] = source[index % source.length];
       const wording = question;
@@ -63,10 +120,12 @@ function ensureStarterQuestionBank() {
   writeFileSync(questionBankPath, rows.join("\n"));
 }
 function parseCsvLine(line) { const values = []; let value = ""; let quoted = false; for (let i = 0; i < line.length; i += 1) { const char = line[i]; if (char === '"' && line[i + 1] === '"') { value += '"'; i += 1; } else if (char === '"') quoted = !quoted; else if (char === "," && !quoted) { values.push(value); value = ""; } else value += char; } values.push(value); return values; }
+function questionHint(category, answer) { return `Hint: This is a ${category} question. The answer starts with “${answer.charAt(0)}” and has ${answer.length} letters.`; }
 function loadQuestionSets() {
   ensureStarterQuestionBank(); const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
   const sets = Object.fromEntries(categories.map((category) => [category, Object.fromEntries(difficulties.map((difficulty) => [difficulty, []]))]));
-  rows.forEach(([category, difficulty, text, a, b, c, d, correct]) => { if (sets[category]?.[difficulty]) { const list = sets[category][difficulty]; list.push({ id: `${category}-${difficulty}-${list.length + 1}`, number: list.length + 1, category, difficulty, text, options: [a, b, c, d], correctOption: Number(correct) }); } });
+  rows.forEach(([category, difficulty, text, a, b, c, d, correct]) => { if (sets[category]?.[difficulty]) { const list = sets[category][difficulty]; const options = [a, b, c, d]; const correctOption = Number(correct); list.push({ id: `${category}-${difficulty}-${list.length + 1}`, number: list.length + 1, category, difficulty, text, options, correctOption, hint: questionHint(category, options[correctOption]) }); } });
+  for (const category of categories) for (const difficulty of difficulties) if (!sets[category][difficulty].length) { const source = supplementalQuestionBank[category]?.[difficulty] ?? questionBank[category][difficulty]; for (let index = 0; index < 15; index += 1) { const [text, options, correctOption] = source[index % source.length]; sets[category][difficulty].push({ id: `${category}-${difficulty}-${index + 1}`, number: index + 1, category, difficulty, text, options, correctOption, hint: questionHint(category, options[correctOption]) }); } }
   return sets;
 }
 const questionSets = loadQuestionSets();
@@ -78,20 +137,21 @@ function createState() {
     { id: "cia", name: "CIA", logo: "🛰️", description: "Global intelligence, precision and resolve", theme: "radial-gradient(circle at top right, #2b73bd 0%, #163d71 43%, #07152b 86%)", score: 0 },
     { id: "mossad", name: "Mossad", logo: "🦉", description: "Expert intelligence from the shadows", theme: "radial-gradient(circle at top right, #2f9a9b 0%, #155154 43%, #071e25 86%)", score: 0 }
   ];
+  teams.forEach((team) => { team.lifelines = { removeTwo: true, flip: true, hint: true }; });
   return {
     rules: { gameTitle: "Gloria Ke Sikandar", seasonTitle: "Season 2: Dhurandhar", backgroundTheme: "Spy Thriller", teams: teams.map((team) => team.name), categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty, incorrectPenalty: 10, timerSeconds: 30 },
     teams, questionSets, phase: "landing", activeTeamId: null, selectedCategory: null, selectedDifficulty: null,
-    currentQuestion: null, selectedOption: null, answerRevealed: false, usedQuestionIds: [], attempts: [], timerEndsAt: null
+    currentQuestion: null, selectedOption: null, answerRevealed: false, usedQuestionIds: [], attempts: [], timerEndsAt: null, timerPaused: false, timerRemainingSeconds: null, removedOptionIndexes: [], hintVisible: false
   };
 }
 function getState() {
   const record = db.prepare("SELECT state_json FROM game_state WHERE id = 1").get();
-  if (record) return JSON.parse(record.state_json);
+  if (record) { const state = JSON.parse(record.state_json); state.rules = { ...state.rules, categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty }; state.questionSets = questionSets; state.teams.forEach((team) => { team.lifelines ??= { removeTwo: true, flip: true, hint: true }; }); state.timerPaused ??= false; state.timerRemainingSeconds ??= null; state.removedOptionIndexes ??= []; state.hintVisible ??= false; return state; }
   const state = createState(); saveState(state); return state;
 }
 function saveState(state) { db.prepare("INSERT INTO game_state (id, state_json) VALUES (1, ?) ON CONFLICT(id) DO UPDATE SET state_json = excluded.state_json").run(JSON.stringify(state)); }
-function teamComplete(state, teamId) { return state.attempts.filter((attempt) => attempt.teamId === teamId).length >= categories.length * difficulties.length; }
-function categoryComplete(state, teamId, category) { return difficulties.every((difficulty) => state.attempts.some((attempt) => attempt.teamId === teamId && attempt.category === category && attempt.difficulty === difficulty)); }
+function teamComplete(state, teamId) { return state.attempts.filter((attempt) => attempt.teamId === teamId).length >= categories.length * questionsPerCategory; }
+function categoryComplete(state, teamId, category) { return state.attempts.filter((attempt) => attempt.teamId === teamId && attempt.category === category).length >= questionsPerCategory; }
 function publish() { io.emit("game-state", getState()); }
 function update(mutator, res) { const state = getState(); const error = mutator(state); if (error) return res.status(400).json({ error }); saveState(state); publish(); res.json(state); }
 
@@ -105,23 +165,38 @@ app.post("/api/game/select-team", (req, res) => update((state) => {
 }, res));
 app.post("/api/game/select-category", (req, res) => update((state) => {
   if (!categories.includes(req.body.category)) return "Select a valid category.";
-  if (categoryComplete(state, state.activeTeamId, req.body.category)) return "This team has already completed every sub-category in this category.";
+  if (categoryComplete(state, state.activeTeamId, req.body.category)) return "This team has already played both questions in this category.";
   state.selectedCategory = req.body.category; state.phase = "difficulty-selection";
 }, res));
 app.post("/api/game/select-difficulty", (req, res) => update((state) => {
   if (!difficulties.includes(req.body.difficulty)) return "Select a valid difficulty.";
-  const alreadyAttempted = state.attempts.some((item) => item.teamId === state.activeTeamId && item.category === state.selectedCategory && item.difficulty === req.body.difficulty);
-  if (alreadyAttempted) return "This team has already attempted this sub-category.";
   state.selectedDifficulty = req.body.difficulty; state.phase = "question-selection";
 }, res));
 app.post("/api/game/select-question", (req, res) => update((state) => {
   const question = state.questionSets[state.selectedCategory]?.[state.selectedDifficulty]?.find((item) => item.number === Number(req.body.number));
   if (!question || state.usedQuestionIds.includes(question.id)) return "That question is unavailable.";
-  state.currentQuestion = question; state.usedQuestionIds.push(question.id); state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.phase = "question-transition";
-  setTimeout(() => { const latest = getState(); if (latest.phase === "question-transition" && latest.currentQuestion?.id === question.id) { latest.phase = "question"; latest.timerEndsAt = Date.now() + latest.rules.timerSeconds * 1000; saveState(latest); publish(); } }, 1200);
+  state.currentQuestion = question; state.usedQuestionIds.push(question.id); state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.removedOptionIndexes = []; state.hintVisible = false; state.phase = "question-prompt";
+}, res));
+app.post("/api/game/reveal-options", (_req, res) => update((state) => {
+  if (!state.currentQuestion || state.phase !== "question-prompt") return "Select a question before revealing its options.";
+  state.phase = "question"; state.timerPaused = false; state.timerRemainingSeconds = null; state.timerEndsAt = Date.now() + state.rules.timerSeconds * 1000;
+}, res));
+function pauseClock(state) { if (state.timerEndsAt) state.timerRemainingSeconds = Math.max(0, Math.ceil((state.timerEndsAt - Date.now()) / 1000)); state.timerEndsAt = null; state.timerPaused = true; }
+app.post("/api/game/toggle-clock", (_req, res) => update((state) => {
+  if (!state.currentQuestion || !["question", "answer-review"].includes(state.phase)) return "The clock is unavailable right now.";
+  if (state.timerPaused) { state.timerEndsAt = Date.now() + (state.timerRemainingSeconds ?? state.rules.timerSeconds) * 1000; state.timerRemainingSeconds = null; state.timerPaused = false; } else pauseClock(state);
+}, res));
+app.post("/api/game/use-lifeline", (req, res) => update((state) => {
+  const type = req.body.type; const team = state.teams.find((item) => item.id === state.activeTeamId);
+  if (!team || !state.currentQuestion || state.phase !== "question" || !["removeTwo", "flip", "hint"].includes(type)) return "That lifeline is unavailable right now.";
+  if (!team.lifelines?.[type]) return "This lifeline has already been used by this team.";
+  team.lifelines[type] = false; pauseClock(state);
+  if (type === "removeTwo") state.removedOptionIndexes = state.currentQuestion.options.map((_, index) => index).filter((index) => index !== state.currentQuestion.correctOption).slice(0, 2);
+  if (type === "hint") state.hintVisible = true;
+  if (type === "flip") { state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.removedOptionIndexes = []; state.hintVisible = false; state.phase = "question-selection"; }
 }, res));
 app.post("/api/game/select-option", (req, res) => update((state) => {
-  const optionIndex = Number(req.body.optionIndex); if (!state.currentQuestion || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex > 3) return "Select a valid option.";
+  const optionIndex = Number(req.body.optionIndex); if (!state.currentQuestion || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex > 3 || state.removedOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
   state.selectedOption = optionIndex; state.timerEndsAt = null; state.phase = "answer-review";
 }, res));
 app.post("/api/game/mark-answer", (req, res) => update((state) => {
@@ -132,7 +207,7 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
 }, res));
 app.post("/api/game/continue", (_req, res) => update((state) => {
   if (!state.activeTeamId) return "No active team.";
-  state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.selectedDifficulty = null;
+  state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.removedOptionIndexes = []; state.hintVisible = false; state.selectedDifficulty = null;
   if (teamComplete(state, state.activeTeamId)) { state.phase = "team-selection"; state.activeTeamId = null; state.selectedCategory = null; }
   else {
     const categoryFinished = categoryComplete(state, state.activeTeamId, state.selectedCategory);
