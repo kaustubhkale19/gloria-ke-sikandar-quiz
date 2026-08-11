@@ -31,3 +31,45 @@ Show the points of all the teams on top right corner but highlight the playing t
 
 Timer is overlapping with team points. 
 The title of the gameshow is "Gloria Ke Sikandar" and this is Season-2 called "Dhurandhar" which is the famous latest bollywood movie based on Indian spy story. The participating team names are also based on the same spy theme - RAW, KGB, CIA and Mossad. Make the logo and backgrounds for the teams accordingly.
+
+
+Make below styling updates:
+1. For the team points in top right corner, make box width equal for all.
+2. Shift 'Now Paying team name' to header. Header should consist of Title on left, now playing team name in the middle and team points on the right side. Make sure these sections are not ovelapping with each other.
+3. Remove the timer from header and shift it above the question. Add clock icon as well.
+4. For both Host console and Projector console, arrange grids for Teams and Categories in such a way that it looks like a matrix e.g. if there are 4 teams, arrange them in 2x2 matrix. If there are 12 categories, arrange them in 4x3 grid. Decide the grid sizing based on count.
+
+
+Make below changes in the rules for difficulty level:
+1. Team attempting a category need not attempt one question from each difficulty level. Rather it can opt for any difficulty level.
+2. Every team should play 2 questions from each category. 2 questions can be of any difficulty.
+3. Do not disable the difficulty level tile once a question is attempted from that difficulty.
+
+
+Below is the list of categories. Add missing categories and sample questions across all 3 difficulties.
+1. Sports
+2. History
+3. Geography 
+4. Politics
+5. Literature 
+6. Music
+7. Bollywood 
+8. Science and Technology
+9. Mythology 
+10. Current affairs
+Add relevant icons and description per category. 
+Questions for these categories should be relevant to India -> History, Politics, Literature, Music, Bollywood, Mythology
+Questions for rest of the categories can be global.
+
+
+Add lifeline feature.
+1. Each team has 3 lifelines:
+- Remove 2: This will remove 2 incorrect answers
+- Flip: This will allow the team to change the question. If a team uses this lifeline, go back to question number selection page. Old question can not be attempted by other teams so block it for selection.
+- Hint: This will show a hint for the question. Generate relevant hints for all questions.
+2. Each team can use a lifeline only once during the game show.
+3. Show available lifelines for a team on the question page just below the answers.
+4. If a team has utilized a lifeline, disable it for that team.
+5. Once a team decides to use a lifeline, pause the clock.
+6. Allow pausing the clock from host console as well.
+7. Assign appropriate icons for each lifeline. Show them in a circle.
