@@ -155,12 +155,12 @@ function createState() {
   return {
     rules: { gameTitle: "Gloria Ke Sikandar", seasonTitle: "Season 2: Dhurandhar", backgroundTheme: "Spy Thriller", teams: teams.map((team) => team.name), categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty, incorrectPenalty: 10, timerSeconds: 30 },
     teams, questionSets, phase: "landing", activeTeamId: null, selectedCategory: null, selectedDifficulty: null,
-    currentQuestion: null, selectedOption: null, answerRevealed: false, usedQuestionIds: [], attempts: [], timerEndsAt: null, timerPaused: false, timerRemainingSeconds: null, removedOptionIndexes: [], hintVisible: false
+    currentQuestion: null, selectedOption: null, answerRevealed: false, usedQuestionIds: [], attempts: [], timerEndsAt: null, timerPaused: false, timerRemainingSeconds: null, removedOptionIndexes: [], disabledOptionIndexes: [], answerAttempt: 1, questionNotice: null, hintVisible: false
   };
 }
 function getState() {
   const record = db.prepare("SELECT state_json FROM game_state WHERE id = 1").get();
-  if (record) { const state = JSON.parse(record.state_json); state.rules = { ...state.rules, categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty }; state.questionSets = questionSets; if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion; state.teams.forEach((team) => { team.lifelines ??= { removeTwo: true, flip: true, hint: true }; }); state.timerPaused ??= false; state.timerRemainingSeconds ??= null; state.removedOptionIndexes ??= []; state.hintVisible ??= false; return state; }
+  if (record) { const state = JSON.parse(record.state_json); state.rules = { ...state.rules, categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty }; state.questionSets = questionSets; if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion; state.teams.forEach((team) => { team.lifelines ??= { removeTwo: true, flip: true, hint: true }; }); state.timerPaused ??= false; state.timerRemainingSeconds ??= null; state.removedOptionIndexes ??= []; state.disabledOptionIndexes ??= []; state.answerAttempt ??= 1; state.questionNotice ??= null; state.hintVisible ??= false; return state; }
   const state = createState(); saveState(state); return state;
 }
 function saveState(state) { db.prepare("INSERT INTO game_state (id, state_json) VALUES (1, ?) ON CONFLICT(id) DO UPDATE SET state_json = excluded.state_json").run(JSON.stringify(state)); }
@@ -189,7 +189,7 @@ app.post("/api/game/select-difficulty", (req, res) => update((state) => {
 app.post("/api/game/select-question", (req, res) => update((state) => {
   const question = state.questionSets[state.selectedCategory]?.[state.selectedDifficulty]?.find((item) => item.number === Number(req.body.number));
   if (!question || state.usedQuestionIds.includes(question.id)) return "That question is unavailable.";
-  state.currentQuestion = question; state.usedQuestionIds.push(question.id); state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.removedOptionIndexes = []; state.hintVisible = false; state.phase = "question-prompt";
+  state.currentQuestion = question; state.usedQuestionIds.push(question.id); state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.removedOptionIndexes = []; state.disabledOptionIndexes = []; state.answerAttempt = 1; state.questionNotice = null; state.hintVisible = false; state.phase = "question-prompt";
 }, res));
 app.post("/api/game/reveal-options", (_req, res) => update((state) => {
   if (!state.currentQuestion || state.phase !== "question-prompt") return "Select a question before revealing its options.";
@@ -202,26 +202,35 @@ app.post("/api/game/toggle-clock", (_req, res) => update((state) => {
 }, res));
 app.post("/api/game/use-lifeline", (req, res) => update((state) => {
   const type = req.body.type; const team = state.teams.find((item) => item.id === state.activeTeamId);
-  if (!team || !state.currentQuestion || state.phase !== "question" || !["removeTwo", "flip", "hint"].includes(type)) return "That lifeline is unavailable right now.";
+  if (!team || !state.currentQuestion || !["question", "answer-review"].includes(state.phase) || !["removeTwo", "flip", "hint"].includes(type)) return "That lifeline is unavailable right now.";
   if (!team.lifelines?.[type]) return "This lifeline has already been used by this team.";
-  team.lifelines[type] = false; pauseClock(state);
-  if (type === "removeTwo") state.removedOptionIndexes = state.currentQuestion.options.map((_, index) => index).filter((index) => index !== state.currentQuestion.correctOption).slice(0, 2);
+  team.lifelines[type] = false; pauseClock(state); state.selectedOption = null; state.phase = "question";
+  if (type === "removeTwo") state.removedOptionIndexes = state.currentQuestion.options.map((_, index) => index).filter((index) => index !== state.currentQuestion.correctOption && !state.disabledOptionIndexes.includes(index)).slice(0, 2);
   if (type === "hint") state.hintVisible = true;
-  if (type === "flip") { state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.removedOptionIndexes = []; state.hintVisible = false; state.phase = "question-selection"; }
+  if (type === "flip") { state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.removedOptionIndexes = []; state.disabledOptionIndexes = []; state.answerAttempt = 1; state.questionNotice = null; state.hintVisible = false; state.phase = "question-selection"; }
 }, res));
 app.post("/api/game/select-option", (req, res) => update((state) => {
-  const optionIndex = Number(req.body.optionIndex); if (!state.currentQuestion || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
+  const optionIndex = Number(req.body.optionIndex); if (!state.currentQuestion || state.phase !== "question" || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex) || state.disabledOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
   state.selectedOption = optionIndex; state.timerEndsAt = null; state.phase = "answer-review";
 }, res));
 app.post("/api/game/mark-answer", (req, res) => update((state) => {
   if (!state.currentQuestion || state.selectedOption === null) return "Select an answer before marking it.";
   const team = state.teams.find((item) => item.id === state.activeTeamId); if (!team) return "No active team.";
-  const correct = state.selectedOption === state.currentQuestion.correctOption; const points = correct ? state.rules.pointsByDifficulty[state.currentQuestion.difficulty] : -state.rules.incorrectPenalty;
-  team.score += points; state.attempts.push({ teamId: team.id, category: state.selectedCategory, difficulty: state.selectedDifficulty, questionId: state.currentQuestion.id, correct, points }); state.answerRevealed = true; state.phase = "answer-result";
+  const correct = state.selectedOption === state.currentQuestion.correctOption;
+  if (!correct && state.answerAttempt === 1) {
+    state.disabledOptionIndexes = [...new Set([...state.disabledOptionIndexes, state.selectedOption])]; state.selectedOption = null; state.answerAttempt = 2; state.questionNotice = "First attempt was incorrect. That option is now disabled — choose from the remaining answers."; state.timerPaused = false; state.timerRemainingSeconds = null; state.timerEndsAt = Date.now() + state.rules.timerSeconds * 1000; state.phase = "question"; return;
+  }
+  const points = correct ? state.rules.pointsByDifficulty[state.currentQuestion.difficulty] / (state.answerAttempt === 2 ? 2 : 1) : -state.rules.incorrectPenalty;
+  team.score += points; state.attempts.push({ teamId: team.id, category: state.selectedCategory, difficulty: state.selectedDifficulty, questionId: state.currentQuestion.id, correct, points, answerAttempt: state.answerAttempt }); state.answerRevealed = true; state.questionNotice = correct ? null : "Second attempt was incorrect. A 10 point penalty has been applied."; state.phase = "answer-result";
+}, res));
+app.post("/api/game/skip-question", (_req, res) => update((state) => {
+  if (!state.currentQuestion || !["question", "answer-review"].includes(state.phase)) return "A question can only be skipped while it is in play.";
+  const team = state.teams.find((item) => item.id === state.activeTeamId); if (!team) return "No active team.";
+  state.attempts.push({ teamId: team.id, category: state.selectedCategory, difficulty: state.selectedDifficulty, questionId: state.currentQuestion.id, correct: false, points: 0, skipped: true, answerAttempt: state.answerAttempt }); state.selectedOption = null; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.answerRevealed = true; state.questionNotice = "Question skipped. No points awarded or deducted."; state.phase = "answer-result";
 }, res));
 app.post("/api/game/continue", (_req, res) => update((state) => {
   if (!state.activeTeamId) return "No active team.";
-  state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.removedOptionIndexes = []; state.hintVisible = false; state.selectedDifficulty = null;
+  state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.timerEndsAt = null; state.timerPaused = false; state.timerRemainingSeconds = null; state.removedOptionIndexes = []; state.disabledOptionIndexes = []; state.answerAttempt = 1; state.questionNotice = null; state.hintVisible = false; state.selectedDifficulty = null;
   if (teamComplete(state, state.activeTeamId)) { state.phase = "team-selection"; state.activeTeamId = null; state.selectedCategory = null; }
   else {
     const categoryFinished = categoryComplete(state, state.activeTeamId, state.selectedCategory);
