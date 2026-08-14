@@ -73,3 +73,12 @@ Add lifeline feature.
 5. Once a team decides to use a lifeline, pause the clock.
 6. Allow pausing the clock from host console as well.
 7. Assign appropriate icons for each lifeline. Show them in a circle.
+
+
+Make below changes to the flow when a question is being answered:
+1. Out of 5 possible answers, team finalizes an answer.
+2. If the answer is correct, allot the points and proceed as usual.
+3. If the answer is incorrect, disable that option and display rest 4 options. Allow team to attempt the question one more time. Do not apply negative marking on first incorrect answer.
+4. if the team answers the question correctly on second attempt, award half the points for that difficulty. But if team fails to answer it correctly, apply penalty of 10 points.
+5. Provide a team with option to skip the question if team does not want to risk it. Skipping a question will not earn any points or penalty.
+6. Team can use one or more lifelines at any point of time until lifelines exhaust. 
