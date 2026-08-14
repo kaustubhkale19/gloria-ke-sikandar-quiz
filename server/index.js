@@ -106,26 +106,40 @@ const supplementalQuestionBank = {
 const questionBankPath = "data/question-bank.csv";
 const csvEscape = (value) => `"${String(value).replaceAll('"', '""')}"`;
 function ensureStarterQuestionBank() {
-  if (existsSync(questionBankPath)) return;
-  const header = "category,difficulty,question,option_a,option_b,option_c,option_d,correct_option";
+  const header = "category,difficulty,question,option_a,option_b,option_c,option_d,option_e,correct_option";
+  if (existsSync(questionBankPath)) {
+    const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).map(parseCsvLine);
+    if (rows[0]?.length === 8) writeFileSync(questionBankPath, [header, ...rows.slice(1).map(([category, difficulty, question, a, b, c, d, correct]) => [category, difficulty, question, a, b, c, d, "None of the above", correct].map(csvEscape).join(","))].join("\n"));
+    return;
+  }
   const rows = [header];
   for (const category of categories) for (const difficulty of difficulties) {
     const source = questionBank[category]?.[difficulty] ?? supplementalQuestionBank[category][difficulty];
     for (let index = 0; index < 15; index += 1) {
       const [question, options, correctOption] = source[index % source.length];
       const wording = question;
-      rows.push([category, difficulty, wording, ...options, correctOption].map(csvEscape).join(","));
+      rows.push([category, difficulty, wording, ...options, "None of the above", correctOption].map(csvEscape).join(","));
     }
   }
   writeFileSync(questionBankPath, rows.join("\n"));
 }
 function parseCsvLine(line) { const values = []; let value = ""; let quoted = false; for (let i = 0; i < line.length; i += 1) { const char = line[i]; if (char === '"' && line[i + 1] === '"') { value += '"'; i += 1; } else if (char === '"') quoted = !quoted; else if (char === "," && !quoted) { values.push(value); value = ""; } else value += char; } values.push(value); return values; }
 function questionHint(category, answer) { return `Hint: This is a ${category} question. The answer starts with “${answer.charAt(0)}” and has ${answer.length} letters.`; }
+const fallbackExtraOptions = {
+  "Which document is the supreme law of India?": "The Representation of the People Act", "Which house of Parliament is also called the Council of States?": "Legislative Assembly", "Which constitutional article provides for the Election Commission of India?": "Article 326",
+  "Who wrote the novel The Guide?": "Khushwant Singh", "Who wrote India's national anthem, Jana Gana Mana?": "Premchand", "Which Indian poet wrote the epic Savitri?": "Rabindranath Tagore",
+  "Which instrument is Pandit Ravi Shankar famous for playing?": "Veena", "Which form of Indian classical music is associated mainly with northern India?": "Dhrupad", "Which musician is known for popularising the bansuri globally?": "Ravi Shankar",
+  "What does CPU stand for?": "Computer Processing Unit", "Which planet has the largest number of known moons?": "Jupiter", "What is the name of the first image captured by the Event Horizon Telescope in 2019?": "The M87 galaxy",
+  "Who is the author traditionally credited with the Mahabharata?": "Banabhatta", "Which weapon is associated with Lord Vishnu?": "Pashupatastra", "In the Ramayana, who was the king of Kishkindha before Sugriva?": "Ravana",
+  "Which city hosted the 2024 Summer Olympic Games?": "Athens", "Which organisation received the 2024 Nobel Peace Prize?": "World Food Programme", "Which country became NATO's 32nd member in 2024?": "Norway",
+  "Which Indian classical dance form originated in Tamil Nadu?": "Odissi", "The Ajanta Caves are especially known for their ancient paintings and are located in which state?": "Karnataka", "Which Mughal emperor commissioned the construction of the Red Fort in Delhi?": "Bahadur Shah Zafar",
+  "What is the currency of India?": "Peso", "Which institution is India's central bank?": "Ministry of Finance", "What does GDP stand for in economics?": "Gross National Product"
+};
 function loadQuestionSets() {
   ensureStarterQuestionBank(); const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
   const sets = Object.fromEntries(categories.map((category) => [category, Object.fromEntries(difficulties.map((difficulty) => [difficulty, []]))]));
-  rows.forEach(([category, difficulty, text, a, b, c, d, correct]) => { if (sets[category]?.[difficulty]) { const list = sets[category][difficulty]; const options = [a, b, c, d]; const correctOption = Number(correct); list.push({ id: `${category}-${difficulty}-${list.length + 1}`, number: list.length + 1, category, difficulty, text, options, correctOption, hint: questionHint(category, options[correctOption]) }); } });
-  for (const category of categories) for (const difficulty of difficulties) if (!sets[category][difficulty].length) { const source = supplementalQuestionBank[category]?.[difficulty] ?? questionBank[category][difficulty]; for (let index = 0; index < 15; index += 1) { const [text, options, correctOption] = source[index % source.length]; sets[category][difficulty].push({ id: `${category}-${difficulty}-${index + 1}`, number: index + 1, category, difficulty, text, options, correctOption, hint: questionHint(category, options[correctOption]) }); } }
+  rows.forEach(([category, difficulty, text, a, b, c, d, e, correct]) => { if (sets[category]?.[difficulty]) { const list = sets[category][difficulty]; const options = [a, b, c, d, e]; const correctOption = Number(correct); list.push({ id: `${category}-${difficulty}-${list.length + 1}`, number: list.length + 1, category, difficulty, text, options, correctOption, hint: questionHint(category, options[correctOption]) }); } });
+  for (const category of categories) for (const difficulty of difficulties) if (!sets[category][difficulty].length) { const source = supplementalQuestionBank[category]?.[difficulty] ?? questionBank[category][difficulty]; for (let index = 0; index < 15; index += 1) { const [text, options, correctOption] = source[index % source.length]; const questionOptions = [...options, fallbackExtraOptions[text]]; sets[category][difficulty].push({ id: `${category}-${difficulty}-${index + 1}`, number: index + 1, category, difficulty, text, options: questionOptions, correctOption, hint: questionHint(category, questionOptions[correctOption]) }); } }
   return sets;
 }
 const questionSets = loadQuestionSets();
@@ -146,7 +160,7 @@ function createState() {
 }
 function getState() {
   const record = db.prepare("SELECT state_json FROM game_state WHERE id = 1").get();
-  if (record) { const state = JSON.parse(record.state_json); state.rules = { ...state.rules, categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty }; state.questionSets = questionSets; state.teams.forEach((team) => { team.lifelines ??= { removeTwo: true, flip: true, hint: true }; }); state.timerPaused ??= false; state.timerRemainingSeconds ??= null; state.removedOptionIndexes ??= []; state.hintVisible ??= false; return state; }
+  if (record) { const state = JSON.parse(record.state_json); state.rules = { ...state.rules, categories, categoryDetails, difficulties, difficultyDetails, pointsByDifficulty }; state.questionSets = questionSets; if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion; state.teams.forEach((team) => { team.lifelines ??= { removeTwo: true, flip: true, hint: true }; }); state.timerPaused ??= false; state.timerRemainingSeconds ??= null; state.removedOptionIndexes ??= []; state.hintVisible ??= false; return state; }
   const state = createState(); saveState(state); return state;
 }
 function saveState(state) { db.prepare("INSERT INTO game_state (id, state_json) VALUES (1, ?) ON CONFLICT(id) DO UPDATE SET state_json = excluded.state_json").run(JSON.stringify(state)); }
@@ -196,7 +210,7 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
   if (type === "flip") { state.currentQuestion = null; state.selectedOption = null; state.answerRevealed = false; state.removedOptionIndexes = []; state.hintVisible = false; state.phase = "question-selection"; }
 }, res));
 app.post("/api/game/select-option", (req, res) => update((state) => {
-  const optionIndex = Number(req.body.optionIndex); if (!state.currentQuestion || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex > 3 || state.removedOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
+  const optionIndex = Number(req.body.optionIndex); if (!state.currentQuestion || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
   state.selectedOption = optionIndex; state.timerEndsAt = null; state.phase = "answer-review";
 }, res));
 app.post("/api/game/mark-answer", (req, res) => update((state) => {

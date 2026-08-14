@@ -18,5 +18,6 @@ button { @apply rounded-lg px-4 py-3 font-bold transition hover:brightness-110 d
 @keyframes optionReveal { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
 .question-reveal { animation: questionReveal .45s ease-out both; }
 .option-reveal { animation: optionReveal .38s ease-out both; }
+.question-reveal .grid.grid-cols-2 > :nth-child(5) { grid-column: 1 / -1; width: calc((100% - 1.25rem) / 2); justify-self: center; text-align: center; }
 @keyframes selectedTile { 0% { opacity: 0; transform: scale(.45) rotateY(0deg); } 55% { opacity: 1; transform: scale(1.12) rotateY(180deg); } 100% { opacity: 1; transform: scale(1) rotateY(360deg); } }
 .selected-tile { animation: selectedTile 1.1s cubic-bezier(.2,.8,.2,1) both; }
