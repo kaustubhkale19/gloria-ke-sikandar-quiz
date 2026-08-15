@@ -33,8 +33,8 @@ For this first runnable step, the rules and sample questions are seeded in `serv
 Notes on projector console.
 1. Welcome screen - Remove Welcome to text.
 Gloria Ke Sikandar should be a half rounded on top, Season 2 - small in the center and below that Dhurandar should be bigger in size as branding. Font should be same as Dhurandar movie title.
-
 2. Top Left - ARCH Logo and Center - Gloria Ke Sikandar and Top Right - Dhurandhar  
+
 3. Team Name and points can be arranged vertically on right side of screen in a bigger boxes
 4. Team Logo and name should be inline.
 5. Once team is selected, the lifelines should be displayed on left side in a vertical manner
