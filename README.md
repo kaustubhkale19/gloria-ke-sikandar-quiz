@@ -34,10 +34,10 @@ Notes on projector console.
 1. Welcome screen - Remove Welcome to text.
 Gloria Ke Sikandar should be a half rounded on top, Season 2 - small in the center and below that Dhurandar should be bigger in size as branding. Font should be same as Dhurandar movie title.
 2. Top Left - ARCH Logo and Center - Gloria Ke Sikandar and Top Right - Dhurandhar  
-
-3. Team Name and points can be arranged vertically on right side of screen in a bigger boxes
+3. Team Name and points should be arranged vertically on right side of screen in a bigger boxes
 4. Team Logo and name should be inline.
 5. Once team is selected, the lifelines should be displayed on left side in a vertical manner
+
 6. Science and Technology to be renamed as Sci-Tech
 7. Business and Economy to be renamed as Economics.
 8. Art and Culture to be renamed as Arts.
