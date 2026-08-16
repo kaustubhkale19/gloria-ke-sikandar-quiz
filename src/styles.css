@@ -206,7 +206,7 @@ button {
 
 .display-lifelines {
     position: fixed;
-    top: 13rem;
+    top: 18rem;
     left: 1.5rem;
     z-index: 12;
     display: flex;
@@ -345,4 +345,10 @@ button {
 
 .selected-tile {
     animation: selectedTile 1.1s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+  display: inline-block;
+  white-space: nowrap;
 }
