@@ -79,12 +79,18 @@ const ASSETS = "http://localhost:3000/assets";
 const gameshowStage = `${ASSETS}/gameshow-stage.png`;
 const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const dhurandharTitle = `${ASSETS}/dhurandhar-title-transparent.png`;
+const rewardCoin = `${ASSETS}/reward-coin.png`;
 const letters = ["A", "B", "C", "D", "E"];
 const teamBackdrops: Record<string, string> = {
   raw: `${ASSETS}/team-raw.png`,
   kgb: `${ASSETS}/team-kgb.png`,
   cia: `${ASSETS}/team-cia.png`,
   mossad: `${ASSETS}/team-mossad.png`,
+};
+const difficultyThemes: Record<Difficulty, { overlay: string; cardBackground: string; border: string }> = {
+  easy: { overlay: "rgba(21, 128, 61, .42)", cardBackground: "linear-gradient(145deg, rgba(22, 163, 74, .42), rgba(5, 46, 22, .88))", border: "#4ade80" },
+  medium: { overlay: "rgba(21, 94, 117, .44)", cardBackground: "linear-gradient(145deg, rgba(14, 116, 144, .48), rgba(8, 47, 73, .9))", border: "#22d3ee" },
+  hard: { overlay: "rgba(153, 27, 27, .46)", cardBackground: "linear-gradient(145deg, rgba(185, 28, 28, .5), rgba(69, 10, 10, .9))", border: "#fb7185" },
 };
 const sounds = {
   setMuted(value: boolean) {
@@ -137,6 +143,14 @@ function backgroundStyle(team?: Team) {
       backgroundSize: "cover",
     }
     : undefined;
+}
+
+function questionBackgroundStyle(team: Team | undefined, difficulty: Difficulty) {
+  const base = backgroundStyle(team);
+  return {
+    ...base,
+    backgroundImage: `linear-gradient(135deg, ${difficultyThemes[difficulty].overlay}, rgba(5, 11, 18, .36)), ${base?.backgroundImage ?? "none"}`,
+  };
 }
 
 function hostBackgroundStyle(team?: Team) {
@@ -269,20 +283,16 @@ function Scoreboard({ game }: { game: Game }) {
       {game.teams.map((team) => (
         <div
           key={team.id}
-          className={`score-card rounded-xl border px-3 py-2 text-center shadow-xl ${team.id === game.activeTeamId
+          className={`score-card rounded-xl border shadow-xl ${team.id === game.activeTeamId
               ? "border-gold bg-ink/95 ring-2 ring-gold/50"
               : "border-slate-600 bg-ink/80"
             }`}
         >
-          <div className="truncate text-xs text-slate-300" title={team.name}>
-            {team.logo} {team.name}
-          </div>
-          <div
-            className={`text-xl font-black ${team.id === game.activeTeamId ? "text-gold" : "text-slate-200"
-              }`}
-          >
+          <span className="score-team-icon" aria-hidden="true">{team.logo}</span>
+          <span className="score-team-name" title={team.name}>{team.name}</span>
+          <span className={`score-team-points ${team.id === game.activeTeamId ? "text-gold" : "text-slate-200"}`}>
             {team.score}
-          </div>
+          </span>
         </div>
       ))}
     </div>
@@ -294,6 +304,24 @@ function DisplayHeader({ game }: { game: Game; team?: Team }) {
     <header className="display-header mb-8">
       <Scoreboard game={game} />
     </header>
+  );
+}
+
+function DisplayCategoryHeading({
+  category,
+  detail,
+}: {
+  category: string | null | undefined;
+  detail: string;
+}) {
+  return (
+    <div className="mb-8 text-center">
+      <p className="mb-2 text-lg font-bold uppercase tracking-[.3em] text-slate-300">
+        Your chosen category
+      </p>
+      <h2 className="text-6xl font-black text-gold">{category}</h2>
+      <p className="mt-3 text-2xl font-bold">{detail}</p>
+    </div>
   );
 }
 
@@ -385,6 +413,9 @@ function BrandBanner({
 function Display({ game }: { game: Game }) {
   const team = activeTeam(game);
   const question = game.currentQuestion!;
+  const difficultyIcon = game.rules.difficultyDetails.find(
+    (item) => item.id === question?.difficulty
+  )?.logo ?? question?.difficulty;
   if (game.phase === "landing")
     return (
       <main
@@ -413,7 +444,7 @@ function Display({ game }: { game: Game }) {
     );
   if (game.phase === "question-transition" && question)
     return (
-      <main className="min-h-screen p-12" style={backgroundStyle(team)}>
+      <main className="min-h-screen p-12" style={questionBackgroundStyle(team, question.difficulty)}>
         <Scoreboard game={game} />
         <div className="grid min-h-[80vh] place-items-center text-center">
           <div>
@@ -440,7 +471,7 @@ function Display({ game }: { game: Game }) {
       game.phase === "team-selection"
         ? "Select the next team"
         : game.phase === "category-selection"
-          ? "Choose a category"
+          ? "Pick your challenge"
           : game.phase === "difficulty-selection"
             ? `${game.selectedCategory}: choose a difficulty`
             : "Choose a hidden question number";
@@ -459,7 +490,13 @@ function Display({ game }: { game: Game }) {
       >
         <DisplayHeader game={game} team={team} />
         <section className="mx-auto max-w-6xl text-center">
-          <h2 className="mb-10 text-5xl font-black">{heading}</h2>
+          {game.phase === "difficulty-selection" ? (
+            <DisplayCategoryHeading category={game.selectedCategory} detail="Pick a difficulty" />
+          ) : game.phase === "question-selection" ? (
+            <DisplayCategoryHeading category={game.selectedCategory} detail="Choose a hidden question number" />
+          ) : (
+            <h2 className="mb-10 text-5xl font-black">{heading}</h2>
+          )}
           {game.phase === "question-selection" ? (
             <div className="mx-auto grid max-w-3xl grid-cols-5 gap-4">
               {game.questionSets[game.selectedCategory!][
@@ -482,6 +519,10 @@ function Display({ game }: { game: Game }) {
                 const locked =
                   game.phase === "category-selection" &&
                   categoryComplete(game, card.name);
+                const difficultyTheme =
+                  game.phase === "difficulty-selection" && card.id
+                    ? difficultyThemes[card.id as Difficulty]
+                    : undefined;
                 const image =
                   game.phase === "team-selection" && card.id
                     ? teamBackdrops[card.id]
@@ -496,23 +537,31 @@ function Display({ game }: { game: Game }) {
                           backgroundPosition: "center",
                           backgroundSize: "cover",
                         }
-                        : undefined
+                        : difficultyTheme
+                          ? {
+                            backgroundImage: difficultyTheme.cardBackground,
+                            borderColor: difficultyTheme.border,
+                          }
+                          : undefined
                     }
                     className={`rounded-2xl border p-7 ${locked
                         ? "border-slate-800 bg-slate-950 text-slate-600"
                         : "border-slate-600 bg-panel"
-                      }`}
+                      } ${game.phase === "team-selection" ? "projector-team-card" : ""}`}
                   >
-                    <div className="mb-3 text-5xl">{card.logo}</div>
-                    <h3 className="text-2xl font-black">{card.name}</h3>
-                    <p className="mt-2 text-slate-300">
+                    <div className={`mb-3 ${game.phase === "team-selection" ? "text-7xl" : "text-5xl"}`}>{card.logo}</div>
+                    <h3 className={game.phase === "team-selection" ? "text-4xl font-black" : "text-2xl font-black"}>{card.name}</h3>
+                    <p className={`mt-2 text-slate-300 ${game.phase === "team-selection" ? "text-xl" : ""}`}>
                       {locked ? "Completed by this team" : card.description}
                     </p>
                     {game.phase === "difficulty-selection" && card.id && (
-                      <p className="mt-4 text-gold font-bold">
-                        {game.rules.pointsByDifficulty[card.id as Difficulty]}{" "}
-                        points
-                      </p>
+                      <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold/70 bg-amber-400/15 px-4 py-1 text-gold shadow-lg">
+                        <span className="reward-coin" aria-label={`${game.rules.pointsByDifficulty[card.id as Difficulty]} points`}>
+                          <img src={rewardCoin} alt="" />
+                          <span>{game.rules.pointsByDifficulty[card.id as Difficulty]}</span>
+                        </span>
+                        <span className="text-xs font-black uppercase tracking-wider">points</span>
+                      </div>
                     )}
                   </div>
                 );
@@ -526,13 +575,11 @@ function Display({ game }: { game: Game }) {
   if (!question) return null;
   if (game.phase === "question-prompt")
     return (
-      <main className="min-h-screen p-10" style={backgroundStyle(team)}>
+      <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
         <DisplayHeader game={game} team={team} />
         <section className="question-reveal mx-auto grid min-h-[65vh] max-w-6xl place-items-center text-center">
           <div>
-            <p className="mb-5 text-sm font-bold uppercase tracking-[.25em] text-slate-300">
-              {question.category} / {question.difficulty}
-            </p>
+            <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
             <h2 className="text-5xl font-black leading-tight">
               {question.text}
             </h2>
@@ -544,12 +591,10 @@ function Display({ game }: { game: Game }) {
   const selected = game.selectedOption;
   if (game.removedOptionIndexes.length || game.disabledOptionIndexes.length)
     return (
-      <main className="min-h-screen p-10" style={backgroundStyle(team)}>
+      <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
         <DisplayHeader game={game} team={team} />
         <section className="question-reveal mx-auto max-w-6xl">
-          <div className="mb-4 text-center text-sm font-bold uppercase tracking-[.25em] text-slate-300">
-            {question.category} / {question.difficulty}
-          </div>
+          <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
           <div className="mb-8 flex justify-center">
             <Timer
               until={game.timerEndsAt}
@@ -577,7 +622,7 @@ function Display({ game }: { game: Game }) {
                   key={option}
                   aria-disabled={removed}
                   className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${removed
-                      ? "border-slate-800 bg-slate-950"
+                      ? "border-slate-700 bg-slate-950 text-slate-500"
                       : correct
                         ? "border-emerald-400 bg-emerald-500/20"
                         : wrong
@@ -587,8 +632,8 @@ function Display({ game }: { game: Game }) {
                             : "border-slate-700 bg-panel"
                     }`}
                 >
-                  <span className="mr-4 text-gold">{letters[index]}</span>
-                  {!removed && option}
+                  <span className={`mr-4 ${removed ? "text-slate-600" : "text-gold"}`}>{letters[index]}</span>
+                  {option}
                 </div>
               );
             })}
@@ -603,12 +648,10 @@ function Display({ game }: { game: Game }) {
       </main>
     );
   return (
-    <main className="min-h-screen p-10" style={backgroundStyle(team)}>
+    <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
       <DisplayHeader game={game} team={team} />
       <section className="question-reveal mx-auto max-w-6xl">
-        <div className="mb-4 text-center text-sm font-bold uppercase tracking-[.25em] text-slate-300">
-          {question.category} / {question.difficulty}
-        </div>
+        <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
         <div className="mb-8 flex justify-center">
           <Timer
             until={game.timerEndsAt}
@@ -663,12 +706,10 @@ function Display({ game }: { game: Game }) {
     </main>
   );
   return (
-    <main className="min-h-screen p-10" style={backgroundStyle(team)}>
+    <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
       <DisplayHeader game={game} team={team} />
       <section className="question-reveal mx-auto max-w-6xl">
-        <div className="mb-4 text-center text-sm font-bold uppercase tracking-[.25em] text-slate-300">
-          {question.category} / {question.difficulty}
-        </div>
+        <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
         <div className="mb-8 flex justify-center">
           <Timer until={game.timerEndsAt} />
         </div>
@@ -709,7 +750,7 @@ function Display({ game }: { game: Game }) {
     </main>
   );
   return (
-    <main className="min-h-screen p-10" style={backgroundStyle(team)}>
+    <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
       <Scoreboard game={game} />
       <header className="mb-10 flex items-start gap-8">
         <div>
@@ -858,16 +899,16 @@ function Host({ game }: { game: Game }) {
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}
-                  className="min-h-32 text-left"
+                  className="flex min-h-40 items-center gap-4 text-left"
                 >
-                  <span className="mr-3 text-3xl">{item.logo}</span>
-                  <span>
+                  <span className="shrink-0 text-5xl">{item.logo}</span>
+                  <span className="min-w-0 flex-1 text-3xl font-black">
                     {item.name}
-                    <small className="block pl-10 text-slate-200">
+                    <small className="mt-2 block text-lg font-medium text-slate-200">
                       {item.description}
                     </small>
                   </span>
-                  <span className="float-right text-gold">
+                  <span className="shrink-0 text-xl font-black text-gold">
                     {done ? "Complete" : `${item.score} pts`}
                   </span>
                 </button>
@@ -926,7 +967,11 @@ function Host({ game }: { game: Game }) {
                 onClick={() =>
                   action("select-difficulty", { difficulty: difficulty.id })
                 }
-                className="bg-slate-700 text-left"
+                style={{
+                  backgroundImage: difficultyThemes[difficulty.id as Difficulty].cardBackground,
+                  borderColor: difficultyThemes[difficulty.id as Difficulty].border,
+                }}
+                className="border text-left"
               >
                 <span className="mr-3 text-2xl">{difficulty.logo}</span>
                 <strong className="text-xl">{difficulty.name}</strong>
@@ -1037,23 +1082,26 @@ function Host({ game }: { game: Game }) {
             </p>
           )}
           <div className="grid gap-3">
-            {q.options.map((option, index) =>
-              game.removedOptionIndexes.includes(index) ||
-                game.disabledOptionIndexes.includes(index) ? null : (
+            {q.options.map((option, index) => {
+              const removed =
+                game.removedOptionIndexes.includes(index) ||
+                game.disabledOptionIndexes.includes(index);
+              return (
                 <button
                   key={option}
+                  disabled={removed}
                   onClick={() => {
                     sounds.stopSuspense();
                     sounds.playSelection();
                     action("select-option", { optionIndex: index });
                   }}
-                  className="bg-slate-700 text-left"
+                  className={`text-left ${removed ? "bg-slate-950 text-slate-500" : "bg-slate-700"}`}
                 >
-                  <span className="mr-3 text-gold">{letters[index]}</span>
+                  <span className={`mr-3 ${removed ? "text-slate-600" : "text-gold"}`}>{letters[index]}</span>
                   {option}
                 </button>
-              )
-            )}
+              );
+            })}
           </div>
           {game.hintVisible && (
             <p className="mt-5 rounded-xl border border-gold p-4 text-gold">

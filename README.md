@@ -30,14 +30,13 @@ For this first runnable step, the rules and sample questions are seeded in `serv
 
 
 
-Notes on projector console.
+Notes on projector console  15-Aug-2026
 1. Welcome screen - Remove Welcome to text.
 Gloria Ke Sikandar should be a half rounded on top, Season 2 - small in the center and below that Dhurandar should be bigger in size as branding. Font should be same as Dhurandar movie title.
 2. Top Left - ARCH Logo and Center - Gloria Ke Sikandar and Top Right - Dhurandhar  
 3. Team Name and points should be arranged vertically on right side of screen in a bigger boxes
 4. Team Logo and name should be inline.
 5. Once team is selected, the lifelines should be displayed on left side in a vertical manner
-
 6. Science and Technology to be renamed as Sci-Tech
 7. Business and Economy to be renamed as Economics.
 8. Art and Culture to be renamed as Arts.
@@ -45,6 +44,10 @@ Gloria Ke Sikandar should be a half rounded on top, Season 2 - small in the cent
 10. Choose a dificulty screen - Sports in center and title should be - 
 The points details should be displayed in a separate section with points as coins.
 11. Choose a question screen - Category should be displayed on top along with selected difficulty level
+
+
+
+
 12. 15 Questions should contain the icon like mystery box with number on it.
 13. Once the question is selected, animate the selected number as unboxing the mystery box.
 14. while displaying selected Diffulty level only display in terms of star icon and no text.

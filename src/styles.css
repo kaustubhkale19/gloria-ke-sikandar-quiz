@@ -53,19 +53,26 @@ button {
 .brand-dhurandhar {
     height: 5rem;
     width: auto;
-    filter: drop-shadow(0 .18rem .22rem rgba(0, 0, 0, .8));
+    padding: .45rem .7rem;
+    border: 1px solid rgba(243, 204, 114, .65);
+    border-radius: 9999px;
+    background: radial-gradient(ellipse at center, rgba(91, 62, 43, .98), rgba(27, 36, 53, .97) 72%);
+    box-shadow: 0 .3rem .9rem rgba(0, 0, 0, .82), inset 0 0 .7rem rgba(243, 204, 114, .18);
+    filter: drop-shadow(0 .12rem .18rem rgba(0, 0, 0, .9));
 }
 
 .screen-content>main {
     padding: 10rem 10rem 0 10rem!important;
 }
 
-.screen-content.has-scoreboard>main {
-    padding-right: 10rem !important;
+.screen-content.has-scoreboard.has-lifelines>main {
+    /* Reserve 10% left and 20% right, leaving 70% for main content. */
+    padding-left: 10vw !important;
+    padding-right: 20vw !important;
 }
 
-.screen-content.has-lifelines>main {
-    padding-left: 10rem !important;
+.screen-content.has-scoreboard:not(.has-lifelines)>main {
+    padding-right: 20vw !important;
 }
 
 .host {
@@ -161,26 +168,69 @@ button {
     right: 1.5rem;
     z-index: 12;
     display: flex;
-    width: 8rem;
+    width: calc(20vw - 3rem);
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .score-card {
     width: 100%;
-    /* min-height: 5.9rem; */
-    padding: 2rem 1rem !important;
+    display: grid;
+    min-height: 5.5rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .8rem;
+    padding: 1rem 1.1rem !important;
+    text-align: left;
+    transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
-.score-card>div:first-child {
-    font-size: 1.45rem;
-    line-height: 1.2;
-}
-
-.score-card>div:last-child {
-    margin-top: .2rem;
-    font-size: 2.15rem;
+.score-team-icon {
+    font-size: 2rem;
     line-height: 1;
+}
+
+.score-team-name {
+    overflow: hidden;
+    color: #e2e8f0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.15;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.score-team-points {
+    font-size: 2.35rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.reward-coin {
+    position: relative;
+    display: inline-grid;
+    width: 4.25rem;
+    height: 4.25rem;
+    place-items: center;
+    filter: drop-shadow(0 .14rem .18rem rgba(0, 0, 0, .5));
+}
+
+.reward-coin img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.reward-coin span {
+    position: relative;
+    z-index: 1;
+    color: #552900;
+    font-size: 1.35rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 .06rem 0 rgba(255, 239, 174, .7);
 }
 
 .timer {
@@ -210,8 +260,27 @@ button {
     left: 1.5rem;
     z-index: 12;
     display: flex;
+    /* The 1.5rem inset plus this width stays inside the reserved 10% lane. */
+    width: calc(10vw - 2.25rem);
     flex-direction: column;
+    align-items: center;
     gap: 2rem;
+}
+
+.display-lifelines .lifeline-circle {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1;
+}
+
+.display-lifelines .lifeline-circle>span:last-child {
+    max-width: 100%;
+    font-size: 1.3rem !important;
+    font-weight: 700;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    text-align: center;
 }
 
 .display-lifelines .lifeline-circle[aria-disabled="true"] {
@@ -226,21 +295,15 @@ button {
     .scoreboard {
         top: 10.5rem;
         right: 1rem;
-        width: clamp(11rem, 23vw, 14rem);
+        width: calc(20vw - 2rem);
     }
 
     .display-lifelines {
         top: 10rem;
         left: 1rem;
+        width: calc(10vw - 1.5rem);
     }
 
-    .screen-content.has-scoreboard>main {
-        padding-right: clamp(12rem, 27vw, 16rem) !important;
-    }
-
-    .screen-content.has-lifelines>main {
-        padding-left: 8rem !important;
-    }
 }
 
 @media (max-width: 620px) {
@@ -260,22 +323,32 @@ button {
 
     .display-lifelines {
         position: static;
+        width: auto;
         margin: 0 auto 1.5rem;
         flex-direction: row;
         justify-content: center;
     }
 
+    .display-lifelines .lifeline-circle {
+        width: 7rem;
+        height: 7rem;
+    }
+
     .score-card {
-        width: 8.5rem;
+        width: min(100%, 18rem);
         min-height: auto;
     }
 
-    .score-card>div:first-child {
-        font-size: .85rem;
+    .score-team-icon {
+        font-size: 1.35rem;
     }
 
-    .score-card>div:last-child {
-        font-size: 1.5rem;
+    .score-team-name {
+        font-size: 1rem;
+    }
+
+    .score-team-points {
+        font-size: 1.6rem;
     }
 
     .screen-content.has-scoreboard>main {
