@@ -638,6 +638,8 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
   if (type === "removeTwo") state.removedOptionIndexes = state.currentQuestion.options.map((_, index) => index).filter((index) => index !== state.currentQuestion.correctOption && !state.disabledOptionIndexes.includes(index)).slice(0, 2);
   if (type === "hint") state.hintVisible = true;
   if (type === "flip") {
+    const flippedQuestionId = state.currentQuestion.id;
+    state.usedQuestionIds = [...new Set([...state.usedQuestionIds, flippedQuestionId])];
     state.currentQuestion = null;
     state.selectedOption = null;
     state.answerRevealed = false;
