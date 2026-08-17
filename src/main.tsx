@@ -80,6 +80,7 @@ const gameshowStage = `${ASSETS}/gameshow-stage.png`;
 const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const dhurandharTitle = `${ASSETS}/dhurandhar-title-transparent.png`;
 const rewardCoin = `${ASSETS}/reward-coin.png`;
+const mysteryBox = `${ASSETS}/mystery-box.png`;
 const letters = ["A", "B", "C", "D", "E"];
 const teamBackdrops: Record<string, string> = {
   raw: `${ASSETS}/team-raw.png`,
@@ -451,8 +452,9 @@ function Display({ game }: { game: Game }) {
             <p className="text-2xl font-bold uppercase tracking-[.25em] text-gold">
               Question selected
             </p>
-            <div className="selected-tile mx-auto my-8 grid h-52 w-52 place-items-center rounded-3xl border-4 border-gold bg-ink/80 text-8xl font-black text-gold shadow-2xl">
-              {question.number}
+            <div className="mystery-unbox mx-auto my-8" aria-label={`Question ${question.number} selected`}>
+              <img src={mysteryBox} alt="" aria-hidden="true" />
+              <span>{question.number}</span>
             </div>
             <p className="text-3xl font-black">Get ready for the question…</p>
           </div>
@@ -504,12 +506,10 @@ function Display({ game }: { game: Game }) {
               ].map((question) => (
                 <div
                   key={question.id}
-                  className={`rounded-2xl border-2 p-6 text-3xl font-black ${game.usedQuestionIds.includes(question.id)
-                      ? "border-slate-700 bg-slate-900 text-slate-600"
-                      : "border-gold bg-panel text-gold"
-                    }`}
+                  className={`mystery-question-tile ${game.usedQuestionIds.includes(question.id) ? "is-used" : ""}`}
                 >
-                  {question.number}
+                  <img src={mysteryBox} alt="" aria-hidden="true" />
+                  <span>{question.number}</span>
                 </div>
               ))}
             </div>
@@ -1008,9 +1008,10 @@ function Host({ game }: { game: Game }) {
                   sounds.startSuspense();
                   action("select-question", { number: question.number });
                 }}
-                className="bg-slate-700 text-2xl"
+                className="mystery-question-button"
               >
-                {question.number}
+                <img src={mysteryBox} alt="" aria-hidden="true" />
+                <span>{question.number}</span>
               </button>
             ))}
           </div>

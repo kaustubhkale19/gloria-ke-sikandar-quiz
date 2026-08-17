@@ -233,6 +233,109 @@ button {
     text-shadow: 0 .06rem 0 rgba(255, 239, 174, .7);
 }
 
+.mystery-question-tile,
+.mystery-question-button {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    aspect-ratio: 1;
+    place-items: center;
+    overflow: hidden;
+    background: transparent;
+}
+
+.mystery-question-tile img,
+.mystery-question-button img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mystery-question-tile span,
+.mystery-question-button span {
+    position: relative;
+    z-index: 1;
+    margin-top: .6em;
+    color: #fff3bd;
+    font-size: clamp(1.25rem, 3vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 .12rem .2rem rgba(0, 0, 0, .95), 0 0 .4rem #996315;
+}
+
+.mystery-question-button {
+    width: 100%;
+    padding: 0;
+}
+
+.mystery-question-tile.is-used,
+.mystery-question-button:disabled {
+    filter: grayscale(1) brightness(.52);
+}
+
+.mystery-unbox {
+    position: relative;
+    width: 18rem;
+    height: 18rem;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+}
+
+.mystery-unbox::before {
+    position: absolute;
+    inset: 12%;
+    z-index: -1;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(255, 219, 107, .95), rgba(216, 148, 48, .3) 40%, transparent 70%);
+    content: "";
+    filter: blur(.6rem);
+    animation: unboxGlow 1.7s ease-out both;
+}
+
+.mystery-unbox img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: mysteryBoxOpen 1.7s cubic-bezier(.2, .75, .25, 1) both;
+    transform-origin: center 75%;
+}
+
+.mystery-unbox span {
+    position: relative;
+    z-index: 1;
+    margin-top: .6em;
+    color: #fff7cf;
+    font-size: 7rem;
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0;
+    text-shadow: 0 .2rem .25rem rgba(0, 0, 0, .9), 0 0 1.6rem #f7c95c;
+    animation: unboxedNumber 1.7s cubic-bezier(.2, .85, .3, 1) both;
+}
+
+@keyframes mysteryBoxOpen {
+    0%, 38% { opacity: 1; transform: translateY(0) scale(1); }
+    60% { opacity: 1; transform: translateY(.35rem) scale(1.06, .82); }
+    100% { opacity: 0; transform: translateY(4.5rem) scale(.72, .3); }
+}
+
+@keyframes unboxedNumber {
+    0%, 38% { opacity: 0; transform: translateY(3rem) scale(.35); }
+    65% { opacity: 1; transform: translateY(-.25rem) scale(1.16); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes unboxGlow {
+    0%, 32% { opacity: .15; transform: scale(.5); }
+    65% { opacity: 1; transform: scale(1.25); }
+    100% { opacity: .55; transform: scale(1); }
+}
+
 .timer {
     display: inline-flex;
     align-items: center;

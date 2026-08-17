@@ -560,23 +560,35 @@ app.post("/api/game/select-difficulty", (req, res) => update((state) => {
   state.selectedDifficulty = req.body.difficulty;
   state.phase = "question-selection";
 }, res));
-app.post("/api/game/select-question", (req, res) => update((state) => {
-  const question = state.questionSets[state.selectedCategory]?.[state.selectedDifficulty]?.find((item) => item.number === Number(req.body.number));
-  if (!question || state.usedQuestionIds.includes(question.id)) return "That question is unavailable.";
-  state.currentQuestion = question;
-  state.usedQuestionIds.push(question.id);
-  state.selectedOption = null;
-  state.answerRevealed = false;
-  state.timerEndsAt = null;
-  state.timerPaused = false;
-  state.timerRemainingSeconds = null;
-  state.removedOptionIndexes = [];
-  state.disabledOptionIndexes = [];
-  state.answerAttempt = 1;
-  state.questionNotice = null;
-  state.hintVisible = false;
-  state.phase = "question-prompt";
-}, res));
+app.post("/api/game/select-question", (req, res) => {
+  let selectedQuestionId = null;
+  update((state) => {
+    const question = state.questionSets[state.selectedCategory]?.[state.selectedDifficulty]?.find((item) => item.number === Number(req.body.number));
+    if (!question || state.usedQuestionIds.includes(question.id)) return "That question is unavailable.";
+    selectedQuestionId = question.id;
+    state.currentQuestion = question;
+    state.usedQuestionIds.push(question.id);
+    state.selectedOption = null;
+    state.answerRevealed = false;
+    state.timerEndsAt = null;
+    state.timerPaused = false;
+    state.timerRemainingSeconds = null;
+    state.removedOptionIndexes = [];
+    state.disabledOptionIndexes = [];
+    state.answerAttempt = 1;
+    state.questionNotice = null;
+    state.hintVisible = false;
+    state.phase = "question-transition";
+  }, res);
+  if (!selectedQuestionId) return;
+  setTimeout(() => {
+    const state = getState();
+    if (state.phase !== "question-transition" || state.currentQuestion?.id !== selectedQuestionId) return;
+    state.phase = "question-prompt";
+    saveState(state);
+    publish();
+  }, 2200);
+});
 app.post("/api/game/reveal-options", (_req, res) => update((state) => {
   if (!state.currentQuestion || state.phase !== "question-prompt") return "Select a question before revealing its options.";
   state.phase = "question";
