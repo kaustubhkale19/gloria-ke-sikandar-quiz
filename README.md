@@ -47,9 +47,6 @@ The points details should be displayed in a separate section with points as coin
 12. 15 Questions should contain the icon like mystery box with number on it.
 13. Once the question is selected, animate the selected question number as unboxing the mystery box.
 14. while displaying selected Diffulty level only display in terms of star icon and no text.
-
-
-
 15. when all the options are displayed, then Start the clock. 
 16. When the timer is up, the options should be greyed out.
 17. replace the timer as progress bar in green color in 2 phases. 

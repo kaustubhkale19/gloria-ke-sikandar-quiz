@@ -70,6 +70,7 @@ type Game = {
   removedOptionIndexes: number[];
   disabledOptionIndexes: number[];
   answerAttempt: number;
+  fullPointsOverride: boolean;
   questionNotice: string | null;
   hintVisible: boolean;
 };
@@ -251,10 +252,12 @@ function Timer({
   until,
   paused = false,
   remainingSeconds = null,
+  totalSeconds = 60,
 }: {
   until: number | null;
   paused?: boolean;
   remainingSeconds?: number | null;
+  totalSeconds?: number;
 }) {
   const [remaining, setRemaining] = useState(0);
   useEffect(() => {
@@ -270,12 +273,48 @@ function Timer({
     const id = window.setInterval(update, 250);
     return () => clearInterval(id);
   }, [until, paused, remainingSeconds]);
+  if (!until && !paused && remainingSeconds === null)
+    return (
+      <div className="timer-progress timer-ready" aria-label="Timer will start after options are revealed">
+        Get ready
+      </div>
+    );
+  const elapsed = Math.min(totalSeconds, Math.max(0, totalSeconds - remaining));
+  const progress = (elapsed / totalSeconds) * 100;
+  const lateHalf = elapsed >= totalSeconds / 2;
+  return (
+    <div
+      className={`timer-progress ${lateHalf ? "timer-late" : "timer-early"} ${!paused && remaining > 0 && remaining <= 10 ? "timer-critical" : ""}`}
+      role="progressbar"
+      aria-label="Question time elapsed"
+      aria-valuemin={0}
+      aria-valuemax={totalSeconds}
+      aria-valuenow={elapsed}
+    >
+      <div className="timer-progress-track">
+        <div className="timer-progress-fill" style={{ width: `${progress}%` }} />
+        <span className="timer-progress-elapsed">{elapsed}s</span>
+      </div>
+      {paused && <span className="timer-progress-status">Paused</span>}
+    </div>
+  );
   return (
     <div className="timer rounded-full border-2 border-gold bg-panel px-7 py-3 text-2xl font-black text-gold">
       <span aria-hidden="true">🕒</span>
       {remaining}s{paused && <span className="text-sm uppercase">Paused</span>}
     </div>
   );
+}
+
+function useTimerExpired(until: number | null) {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    setNow(Date.now());
+    if (!until) return;
+    const timeout = window.setTimeout(() => setNow(Date.now()), Math.max(0, until - Date.now()) + 50);
+    return () => clearTimeout(timeout);
+  }, [until]);
+  return Boolean(until && now >= until);
 }
 
 function Scoreboard({ game }: { game: Game }) {
@@ -378,8 +417,7 @@ function resultMessage(game: Game) {
   if (attempt?.skipped)
     return "Question skipped. No points awarded or deducted.";
   if (attempt?.correct)
-    return `Correct! +${attempt.points} points${attempt.answerAttempt === 2 ? " (half points for the second attempt)" : ""
-      }`;
+    return `Correct! +${attempt.points} points`;
   return `Incorrect. -${game.rules.incorrectPenalty} points`;
 }
 
@@ -414,6 +452,7 @@ function BrandBanner({
 function Display({ game }: { game: Game }) {
   const team = activeTeam(game);
   const question = game.currentQuestion!;
+  const timerExpired = useTimerExpired(game.timerEndsAt);
   const difficultyIcon = game.rules.difficultyDetails.find(
     (item) => item.id === question?.difficulty
   )?.logo ?? question?.difficulty;
@@ -620,8 +659,8 @@ function Display({ game }: { game: Game }) {
               return (
                 <div
                   key={option}
-                  aria-disabled={removed}
-                  className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${removed
+                  aria-disabled={removed || (timerExpired && !game.fullPointsOverride)}
+                  className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${(timerExpired && !game.fullPointsOverride) || removed
                       ? "border-slate-700 bg-slate-950 text-slate-500"
                       : correct
                         ? "border-emerald-400 bg-emerald-500/20"
@@ -670,7 +709,10 @@ function Display({ game }: { game: Game }) {
             return (
               <div
                 key={option}
-                className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${correct
+                aria-disabled={timerExpired && !game.fullPointsOverride}
+                className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${timerExpired && !game.fullPointsOverride
+                    ? "border-slate-700 bg-slate-950 text-slate-500"
+                    : correct
                     ? "border-emerald-400 bg-emerald-500/20"
                     : wrong
                       ? "border-rose-400 bg-rose-500/20"
@@ -810,6 +852,7 @@ function Display({ game }: { game: Game }) {
 function Host({ game }: { game: Game }) {
   const team = activeTeam(game);
   const q = game.currentQuestion;
+  const timerExpired = useTimerExpired(game.timerEndsAt);
   const choices =
     game.selectedCategory && game.selectedDifficulty
       ? game.questionSets[game.selectedCategory][game.selectedDifficulty]
@@ -1036,7 +1079,7 @@ function Host({ game }: { game: Game }) {
             onClick={() => action("reveal-options")}
             className="bg-gold text-ink"
           >
-            Reveal options and start clock
+            Reveal options
           </button>
         </Panel>
       </main>
@@ -1073,7 +1116,13 @@ function Host({ game }: { game: Game }) {
               onClick={() => action("toggle-clock")}
               className="bg-slate-700"
             >
-              {game.timerPaused ? "Resume clock" : "Pause clock"}
+              {game.timerPaused ? "Resume timer" : "Pause timer"}
+            </button>
+            <button
+              onClick={() => action("toggle-full-points-override")}
+              className={game.fullPointsOverride ? "bg-emerald-500 text-ink" : "bg-slate-700"}
+            >
+              {game.fullPointsOverride ? "Superadmin override active" : "Superadmin: override timer"}
             </button>
           </div>
           <h2 className="mb-6 text-3xl font-black">{q.text}</h2>
@@ -1090,15 +1139,15 @@ function Host({ game }: { game: Game }) {
               return (
                 <button
                   key={option}
-                  disabled={removed}
+                  disabled={removed || (timerExpired && !game.fullPointsOverride)}
                   onClick={() => {
                     sounds.stopSuspense();
                     sounds.playSelection();
                     action("select-option", { optionIndex: index });
                   }}
-                  className={`text-left ${removed ? "bg-slate-950 text-slate-500" : "bg-slate-700"}`}
+                  className={`text-left ${removed || (timerExpired && !game.fullPointsOverride) ? "bg-slate-950 text-slate-500" : "bg-slate-700"}`}
                 >
-                  <span className={`mr-3 ${removed ? "text-slate-600" : "text-gold"}`}>{letters[index]}</span>
+                  <span className={`mr-3 ${removed || (timerExpired && !game.fullPointsOverride) ? "text-slate-600" : "text-gold"}`}>{letters[index]}</span>
                   {option}
                 </button>
               );
@@ -1145,6 +1194,7 @@ function Host({ game }: { game: Game }) {
               key={option}
               disabled={
                 answerSelected ||
+                (!game.timerEndsAt || timerExpired) && !game.fullPointsOverride ||
                 game.removedOptionIndexes.includes(index) ||
                 game.disabledOptionIndexes.includes(index)
               }
@@ -1153,7 +1203,9 @@ function Host({ game }: { game: Game }) {
                 sounds.playSelection();
                 action("select-option", { optionIndex: index });
               }}
-              className={`text-left ${game.selectedOption === index
+              className={`text-left ${timerExpired
+                  ? "bg-slate-950 text-slate-500"
+                  : game.selectedOption === index
                   ? "bg-gold text-ink"
                   : "bg-slate-700"
                 }`}
@@ -1165,6 +1217,12 @@ function Host({ game }: { game: Game }) {
         </div>
         {game.phase === "answer-review" && (
           <div className="mt-6 flex flex-wrap gap-3">
+            <button
+              onClick={() => action("toggle-full-points-override")}
+              className={game.fullPointsOverride ? "bg-emerald-500 text-ink" : "bg-slate-700"}
+            >
+              {game.fullPointsOverride ? "Superadmin: full points enabled" : "Superadmin: award full points"}
+            </button>
             <button
               onClick={() => {
                 sounds.stopSuspense();

@@ -440,7 +440,7 @@ function createState() {
       difficultyDetails,
       pointsByDifficulty,
       incorrectPenalty: 10,
-      timerSeconds: 30
+      timerSeconds: 60
     },
     teams,
     questionSets,
@@ -459,6 +459,7 @@ function createState() {
     removedOptionIndexes: [],
     disabledOptionIndexes: [],
     answerAttempt: 1,
+    fullPointsOverride: false,
     questionNotice: null,
     hintVisible: false
   };
@@ -474,7 +475,8 @@ function getState() {
       categoryDetails,
       difficulties,
       difficultyDetails,
-      pointsByDifficulty
+      pointsByDifficulty,
+      timerSeconds: 60
     };
     state.questionSets = questionSets;
     if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion;
@@ -490,6 +492,7 @@ function getState() {
     state.removedOptionIndexes ??= [];
     state.disabledOptionIndexes ??= [];
     state.answerAttempt ??= 1;
+    state.fullPointsOverride ??= false;
     state.questionNotice ??= null;
     state.hintVisible ??= false;
     return state;
@@ -576,6 +579,7 @@ app.post("/api/game/select-question", (req, res) => {
     state.removedOptionIndexes = [];
     state.disabledOptionIndexes = [];
     state.answerAttempt = 1;
+    state.fullPointsOverride = false;
     state.questionNotice = null;
     state.hintVisible = false;
     state.phase = "question-transition";
@@ -589,13 +593,25 @@ app.post("/api/game/select-question", (req, res) => {
     publish();
   }, 2200);
 });
-app.post("/api/game/reveal-options", (_req, res) => update((state) => {
-  if (!state.currentQuestion || state.phase !== "question-prompt") return "Select a question before revealing its options.";
-  state.phase = "question";
-  state.timerPaused = false;
-  state.timerRemainingSeconds = null;
-  state.timerEndsAt = Date.now() + state.rules.timerSeconds * 1000;
-}, res));
+app.post("/api/game/reveal-options", (_req, res) => {
+  let questionId = null;
+  update((state) => {
+    if (!state.currentQuestion || state.phase !== "question-prompt") return "Select a question before revealing its options.";
+    questionId = state.currentQuestion.id;
+    state.phase = "question";
+    state.timerPaused = false;
+    state.timerRemainingSeconds = null;
+    state.timerEndsAt = null;
+  }, res);
+  if (!questionId) return;
+  setTimeout(() => {
+    const state = getState();
+    if (state.phase !== "question" || state.currentQuestion?.id !== questionId || state.timerPaused) return;
+    state.timerEndsAt = Date.now() + state.rules.timerSeconds * 1000;
+    saveState(state);
+    publish();
+  }, 1000);
+});
 
 function pauseClock(state) {
   if (state.timerEndsAt) state.timerRemainingSeconds = Math.max(0, Math.ceil((state.timerEndsAt - Date.now()) / 1000));
@@ -636,7 +652,9 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
 app.post("/api/game/select-option", (req, res) => update((state) => {
   const optionIndex = Number(req.body.optionIndex);
   if (!state.currentQuestion || state.phase !== "question" || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex) || state.disabledOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
+  if ((!state.timerEndsAt || state.timerEndsAt <= Date.now()) && !state.fullPointsOverride) return "The clock has expired.";
   state.selectedOption = optionIndex;
+  state.timerRemainingSeconds = Math.max(0, Math.ceil((state.timerEndsAt - Date.now()) / 1000));
   state.timerEndsAt = null;
   state.phase = "answer-review";
 }, res));
@@ -656,7 +674,11 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
     state.phase = "question";
     return;
   }
-  const points = correct ? state.rules.pointsByDifficulty[state.currentQuestion.difficulty] / (state.answerAttempt === 2 ? 2 : 1) : -state.rules.incorrectPenalty;
+  const answeredInFirstHalf = (state.timerRemainingSeconds ?? 0) > state.rules.timerSeconds / 2;
+  const timingMultiplier = answeredInFirstHalf ? 1 : .5;
+  const points = correct
+    ? state.rules.pointsByDifficulty[state.currentQuestion.difficulty] * (state.fullPointsOverride ? 1 : timingMultiplier / (state.answerAttempt === 2 ? 2 : 1))
+    : -state.rules.incorrectPenalty;
   team.score += points;
   state.attempts.push({
     teamId: team.id,
@@ -670,6 +692,10 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
   state.answerRevealed = true;
   state.questionNotice = correct ? null : "Second attempt was incorrect. A 10 point penalty has been applied.";
   state.phase = "answer-result";
+}, res));
+app.post("/api/game/toggle-full-points-override", (_req, res) => update((state) => {
+  if (!state.currentQuestion || !["question", "answer-review"].includes(state.phase)) return "The full-points override is available while a question is in play.";
+  state.fullPointsOverride = !state.fullPointsOverride;
 }, res));
 app.post("/api/game/skip-question", (_req, res) => update((state) => {
   if (!state.currentQuestion || !["question", "answer-review"].includes(state.phase)) return "A question can only be skipped while it is in play.";
@@ -704,6 +730,7 @@ app.post("/api/game/continue", (_req, res) => update((state) => {
   state.removedOptionIndexes = [];
   state.disabledOptionIndexes = [];
   state.answerAttempt = 1;
+  state.fullPointsOverride = false;
   state.questionNotice = null;
   state.hintVisible = false;
   state.selectedDifficulty = null;
