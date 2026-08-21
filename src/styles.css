@@ -79,6 +79,71 @@ button {
     @apply mx-auto min-h-screen p-8;
 }
 
+.team-selection-host-card {
+    display: flex;
+    min-height: 10rem;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, .65);
+    border-radius: .75rem;
+    background-color: rgba(15, 23, 42, .86);
+}
+
+.team-selection-host-main {
+    display: flex;
+    min-height: 7rem;
+    flex: 1;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+}
+
+.team-members-trigger {
+    border-radius: 0;
+    border-top: 1px solid rgba(243, 204, 114, .5);
+    background: rgba(2, 6, 23, .8);
+    color: #f3cc72;
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.team-members-reveal {
+    padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.team-members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: clamp(.85rem, 2vw, 1.5rem);
+    width: min(100%, 65rem);
+    margin: 0 auto;
+}
+
+.team-members-grid-host {
+    width: 100%;
+    margin: 0;
+}
+
+.team-member-card {
+    display: grid;
+    min-height: 5.25rem;
+    place-items: center;
+    border: 1px solid rgba(243, 204, 114, .75);
+    border-radius: 1rem;
+    background: linear-gradient(145deg, rgba(35, 48, 68, .94), rgba(7, 13, 25, .94));
+    padding: 1rem;
+    color: #fff;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    text-align: center;
+    box-shadow: 0 .4rem 1rem rgba(0, 0, 0, .3);
+}
+
 .landing {
     background: radial-gradient(circle at top, #263b62 0%, #101522 58%, #080b12 100%);
 }

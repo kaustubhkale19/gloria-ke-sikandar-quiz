@@ -387,6 +387,22 @@ function loadQuestionSets() {
 }
 const questionSets = loadQuestionSets();
 
+// Team rosters live alongside questions in question-bank.csv. Add one row per
+// member using: team_members,<team id>,<member name>,,,,,,
+function loadTeamMembers() {
+  ensureStarterQuestionBank();
+  const membersByTeam = {};
+  const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
+  rows.forEach(([recordType, teamId, memberName]) => {
+    if (recordType.trim().toLowerCase() !== "team_members") return;
+    const id = teamId.trim().toLowerCase();
+    const name = memberName.trim();
+    if (!id || !name) return;
+    (membersByTeam[id] ??= []).push(name);
+  });
+  return membersByTeam;
+}
+
 function createState() {
   const teams = [{
     id: "raw",
@@ -394,6 +410,7 @@ function createState() {
     logo: "🕵️",
     description: "India's silent intelligence network",
     theme: "radial-gradient(circle at top right, #d89430 0%, #1f4b36 40%, #071c19 86%)",
+    members: [],
     score: 0
   },
   {
@@ -402,6 +419,7 @@ function createState() {
     logo: "♟️",
     description: "The masters of covert strategy",
     theme: "radial-gradient(circle at top right, #9f2838 0%, #4c1724 43%, #160b12 86%)",
+    members: [],
     score: 0
   },
   {
@@ -410,6 +428,7 @@ function createState() {
     logo: "🛰️",
     description: "Global intelligence, precision and resolve",
     theme: "radial-gradient(circle at top right, #2b73bd 0%, #163d71 43%, #07152b 86%)",
+    members: [],
     score: 0
   },
   {
@@ -418,6 +437,7 @@ function createState() {
     logo: "🦉",
     description: "Expert intelligence from the shadows",
     theme: "radial-gradient(circle at top right, #2f9a9b 0%, #155154 43%, #071e25 86%)",
+    members: [],
     score: 0
   }
   ];
@@ -446,6 +466,7 @@ function createState() {
     questionSets,
     phase: "landing",
     activeTeamId: null,
+    revealedTeamId: null,
     selectedCategory: null,
     selectedDifficulty: null,
     currentQuestion: null,
@@ -479,6 +500,10 @@ function getState() {
       timerSeconds: 60
     };
     state.questionSets = questionSets;
+    const membersByTeam = loadTeamMembers();
+    state.teams.forEach((team) => {
+      team.members = membersByTeam[team.id] ?? [];
+    });
     if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion;
     state.teams.forEach((team) => {
       team.lifelines ??= {
@@ -498,6 +523,10 @@ function getState() {
     return state;
   }
   const state = createState();
+  const membersByTeam = loadTeamMembers();
+  state.teams.forEach((team) => {
+    team.members = membersByTeam[team.id] ?? [];
+  });
   saveState(state);
   return state;
 }
@@ -543,11 +572,23 @@ app.get("/api/game", (_req, res) => res.json(getState()));
 app.post("/api/game/start", (_req, res) => update((state) => {
   state.phase = "team-selection";
 }, res));
+app.post("/api/game/reveal-team-members", (req, res) => update((state) => {
+  const team = state.teams.find((item) => item.id === req.body.teamId);
+  if (!team) return "Select a valid team.";
+  state.revealedTeamId = team.id;
+  state.phase = "team-members";
+}, res));
+app.post("/api/game/hide-team-members", (_req, res) => update((state) => {
+  if (state.phase !== "team-members") return "Team members are not currently being shown.";
+  state.revealedTeamId = null;
+  state.phase = "team-selection";
+}, res));
 app.post("/api/game/select-team", (req, res) => update((state) => {
   const team = state.teams.find((item) => item.id === req.body.teamId);
   if (!team) return "Select a valid team.";
   if (teamComplete(state, team.id)) return "This team has already completed the game.";
   state.activeTeamId = team.id;
+  state.revealedTeamId = null;
   state.phase = "category-selection";
   state.selectedCategory = null;
   state.selectedDifficulty = null;
@@ -653,11 +694,13 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
 }, res));
 app.post("/api/game/select-option", (req, res) => update((state) => {
   const optionIndex = Number(req.body.optionIndex);
-  if (!state.currentQuestion || state.phase !== "question" || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex) || state.disabledOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
-  if ((!state.timerEndsAt || state.timerEndsAt <= Date.now()) && !state.fullPointsOverride) return "The clock has expired.";
+  if (!state.currentQuestion || !["question", "answer-review"].includes(state.phase) || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex) || state.disabledOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
+  if (state.phase === "question" && (!state.timerEndsAt || state.timerEndsAt <= Date.now()) && !state.fullPointsOverride) return "The clock has expired.";
   state.selectedOption = optionIndex;
-  state.timerRemainingSeconds = Math.max(0, Math.ceil((state.timerEndsAt - Date.now()) / 1000));
-  state.timerEndsAt = null;
+  if (state.phase === "question") {
+    state.timerRemainingSeconds = Math.max(0, Math.ceil((state.timerEndsAt - Date.now()) / 1000));
+    state.timerEndsAt = null;
+  }
   state.phase = "answer-review";
 }, res));
 app.post("/api/game/mark-answer", (req, res) => update((state) => {
@@ -748,6 +791,10 @@ app.post("/api/game/continue", (_req, res) => update((state) => {
 }, res));
 app.post("/api/game/back", (_req, res) => update((state) => {
   if (state.phase === "team-selection") state.phase = "landing";
+  else if (state.phase === "team-members") {
+    state.phase = "team-selection";
+    state.revealedTeamId = null;
+  }
   else if (state.phase === "category-selection") {
     state.phase = "team-selection";
     state.activeTeamId = null;

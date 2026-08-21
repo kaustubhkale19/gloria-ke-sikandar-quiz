@@ -21,6 +21,7 @@ type Team = {
   logo: string;
   description: string;
   theme: string;
+  members: string[];
   score: number;
   lifelines: Lifelines;
 };
@@ -57,6 +58,7 @@ type Game = {
   questionSets: Record<string, Record<Difficulty, Question[]>>;
   phase: string;
   activeTeamId: string | null;
+  revealedTeamId: string | null;
   selectedCategory: string | null;
   selectedDifficulty: Difficulty | null;
   currentQuestion: Question | null;
@@ -500,6 +502,31 @@ function Display({ game }: { game: Game }) {
         </div>
       </main>
     );
+  if (game.phase === "team-members") {
+    const rosterTeam = game.teams.find((item) => item.id === game.revealedTeamId);
+    if (!rosterTeam) return null;
+    return (
+      <main className="landing min-h-screen p-12" style={displayBackgroundStyle(rosterTeam)}>
+        <DisplayHeader game={game} />
+        <section className="team-members-reveal mx-auto max-w-6xl text-center">
+          <p className="mb-3 text-xl font-bold uppercase tracking-[.3em] text-gold">Meet the team</p>
+          <div className="mb-9 flex items-center justify-center gap-4">
+            <span className="text-6xl" aria-hidden="true">{rosterTeam.logo}</span>
+            <h2 className="text-6xl font-black">{rosterTeam.name}</h2>
+          </div>
+          {rosterTeam.members.length ? (
+            <div className="team-members-grid" aria-label={`${rosterTeam.name} team members`}>
+              {rosterTeam.members.map((member) => <div key={member} className="team-member-card">{member}</div>)}
+            </div>
+          ) : (
+            <p className="rounded-2xl border border-gold/60 bg-ink/80 p-8 text-xl text-slate-200">
+              No team members have been added yet.
+            </p>
+          )}
+        </section>
+      </main>
+    );
+  }
   if (
     [
       "team-selection",
@@ -860,6 +887,7 @@ function Host({ game }: { game: Game }) {
   const [muted, setMuted] = useState(false);
   const canGoBack = [
     "team-selection",
+    "team-members",
     "category-selection",
     "difficulty-selection",
     "question-selection",
@@ -932,35 +960,50 @@ function Host({ game }: { game: Game }) {
                 game.attempts.filter((a) => a.teamId === item.id).length ===
                 game.rules.categories.length * 2;
               return (
-                <button
+                <div
                   key={item.id}
-                  disabled={done}
-                  onClick={() => action("select-team", { teamId: item.id })}
                   style={{
                     backgroundImage: `linear-gradient(rgba(5, 11, 18, 0.2), rgba(5, 11, 18, 0.55)), url(${teamBackdrops[item.id]
                       })`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}
-                  className="flex min-h-40 items-center gap-4 text-left"
+                  className="team-selection-host-card"
                 >
-                  <span className="shrink-0 text-5xl">{item.logo}</span>
-                  <span className="min-w-0 flex-1 text-3xl font-black">
-                    {item.name}
-                    <small className="mt-2 block text-lg font-medium text-slate-200">
-                      {item.description}
-                    </small>
-                  </span>
-                  <span className="shrink-0 text-xl font-black text-gold">
-                    {done ? "Complete" : `${item.score} pts`}
-                  </span>
-                </button>
+                  <button disabled={done} onClick={() => action("select-team", { teamId: item.id })} className="team-selection-host-main">
+                    <span className="shrink-0 text-5xl">{item.logo}</span>
+                    <span className="min-w-0 flex-1 text-3xl font-black">
+                      {item.name}
+                      <small className="mt-2 block text-lg font-medium text-slate-200">{item.description}</small>
+                    </span>
+                    <span className="shrink-0 text-xl font-black text-gold">{done ? "Complete" : `${item.score} pts`}</span>
+                  </button>
+                  <button onClick={() => action("reveal-team-members", { teamId: item.id })} className="team-members-trigger">
+                    Reveal members <span aria-hidden="true">({item.members.length})</span>
+                  </button>
+                </div>
               );
             })}
           </div>
         </Panel>
       </main>
     );
+  if (game.phase === "team-members") {
+    const rosterTeam = game.teams.find((item) => item.id === game.revealedTeamId);
+    if (!rosterTeam) return null;
+    return (
+      <main className="host" style={hostBackgroundStyle(rosterTeam)}>
+        {title}
+        <Panel title={`${rosterTeam.name}: team members`}>
+          <p className="mb-5 text-slate-300">The roster is now visible on the projector display.</p>
+          <div className="team-members-grid team-members-grid-host">
+            {rosterTeam.members.length ? rosterTeam.members.map((member) => <div key={member} className="team-member-card">{member}</div>) : <p>No team members are configured in the CSV.</p>}
+          </div>
+          <button onClick={() => action("hide-team-members")} className="mt-6 bg-gold text-ink">Back to teams</button>
+        </Panel>
+      </main>
+    );
+  }
   if (game.phase === "category-selection")
     return (
       <main className="host" style={hostBackgroundStyle(team)}>
@@ -1173,7 +1216,6 @@ function Host({ game }: { game: Game }) {
         </Panel>
       </main>
     );
-  const answerSelected = game.selectedOption !== null;
   return (
     <main className="host" style={hostBackgroundStyle(team)}>
       {title}
@@ -1188,13 +1230,17 @@ function Host({ game }: { game: Game }) {
             {game.questionNotice}
           </p>
         )}
+        {game.phase === "answer-review" && (
+          <p className="mb-5 text-sm font-bold text-gold">
+            Review the selection below. You can choose a different answer before confirming.
+          </p>
+        )}
         <div className="grid gap-3">
           {q.options.map((option, index) => (
             <button
               key={option}
               disabled={
-                answerSelected ||
-                (!game.timerEndsAt || timerExpired) && !game.fullPointsOverride ||
+                game.phase !== "answer-review" ||
                 game.removedOptionIndexes.includes(index) ||
                 game.disabledOptionIndexes.includes(index)
               }

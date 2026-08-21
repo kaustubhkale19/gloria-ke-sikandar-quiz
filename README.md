@@ -12,6 +12,16 @@ A fully local, open-source quiz-game application with a host console and a synch
 
 The Express/Socket.IO server runs at port 3000 and saves its data locally in `data/quiz-show.db`.
 
+## Team rosters
+
+Team members are maintained in the same editable [`data/question-bank.csv`](data/question-bank.csv) file as the questions. Add one row per member using the existing columns:
+
+```csv
+"team_members","raw","Aarav Sharma","","","","","",""
+```
+
+Use one of `raw`, `kgb`, `cia`, or `mossad` in column two and place the member's display name in column three. On the host console's team-selection screen, select **Reveal members** to show that roster on the projector; select **Back to teams** when finished.
+
 ## Game flow and rules
 
 Rules belong in one game configuration and should be settled before a round begins:
@@ -30,7 +40,7 @@ For this first runnable step, the rules and sample questions are seeded in `serv
 
 
 
-Notes on projector console  15-Aug-2026
+Requirements / Features-
 1. Welcome screen - Remove Welcome to text.
 Gloria Ke Sikandar should be a half rounded on top, Season 2 - small in the center and below that Dhurandar should be bigger in size as branding. Font should be same as Dhurandar movie title.
 2. Top Left - ARCH Logo and Center - Gloria Ke Sikandar and Top Right - Dhurandhar  
@@ -54,3 +64,5 @@ The points details should be displayed in a separate section with points as coin
 19. host console should have override option for timer and award full points.
 20. If wrong option is selected, do not hide the option, make it non clickable and greyed out.
 21. When Remove-2 is selected, the wrong options text are removed but box should be greyed out.
+22. When Team names are revealed, have a facility to reveal the team members. The trigger should be on host console. The team members should be fetched from same external csv where question banks are present so that can be edited externally. The team members list displayed should be in a responsive container.
+23. host console should have option to change the answer once selected before confirming
