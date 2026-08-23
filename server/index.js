@@ -578,8 +578,12 @@ app.post("/api/game/reveal-team-members", (req, res) => update((state) => {
   state.revealedTeamId = team.id;
   state.phase = "team-members";
 }, res));
+app.post("/api/game/reveal-all-team-members", (_req, res) => update((state) => {
+  state.revealedTeamId = null;
+  state.phase = "all-team-members";
+}, res));
 app.post("/api/game/hide-team-members", (_req, res) => update((state) => {
-  if (state.phase !== "team-members") return "Team members are not currently being shown.";
+  if (!["team-members", "all-team-members"].includes(state.phase)) return "Team members are not currently being shown.";
   state.revealedTeamId = null;
   state.phase = "team-selection";
 }, res));
@@ -795,6 +799,7 @@ app.post("/api/game/back", (_req, res) => update((state) => {
     state.phase = "team-selection";
     state.revealedTeamId = null;
   }
+  else if (state.phase === "all-team-members") state.phase = "team-selection";
   else if (state.phase === "category-selection") {
     state.phase = "team-selection";
     state.activeTeamId = null;

@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode, useEffect, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { io } from "socket.io-client";
 import "./styles.css";
@@ -255,11 +255,13 @@ function Timer({
   paused = false,
   remainingSeconds = null,
   totalSeconds = 60,
+  className = "",
 }: {
   until: number | null;
   paused?: boolean;
   remainingSeconds?: number | null;
   totalSeconds?: number;
+  className?: string;
 }) {
   const [remaining, setRemaining] = useState(0);
   useEffect(() => {
@@ -282,28 +284,30 @@ function Timer({
       </div>
     );
   const elapsed = Math.min(totalSeconds, Math.max(0, totalSeconds - remaining));
-  const progress = (elapsed / totalSeconds) * 100;
+  const circumference = 2 * Math.PI * 44;
+  const dashOffset = circumference * (elapsed / totalSeconds);
   const lateHalf = elapsed >= totalSeconds / 2;
   return (
     <div
-      className={`timer-progress ${lateHalf ? "timer-late" : "timer-early"} ${!paused && remaining > 0 && remaining <= 10 ? "timer-critical" : ""}`}
+      className={`timer-progress ${lateHalf ? "timer-late" : "timer-early"} ${!paused && remaining > 0 && remaining <= 10 ? "timer-critical" : ""} ${className}`}
       role="progressbar"
       aria-label="Question time elapsed"
       aria-valuemin={0}
       aria-valuemax={totalSeconds}
       aria-valuenow={elapsed}
     >
-      <div className="timer-progress-track">
-        <div className="timer-progress-fill" style={{ width: `${progress}%` }} />
-        <span className="timer-progress-elapsed">{elapsed}s</span>
-      </div>
+      <svg className="timer-progress-ring" viewBox="0 0 100 100" aria-hidden="true">
+        <circle className="timer-progress-track" cx="50" cy="50" r="44" />
+        <circle
+          className="timer-progress-fill"
+          cx="50"
+          cy="50"
+          r="44"
+          style={{ strokeDasharray: circumference, strokeDashoffset: dashOffset }}
+        />
+      </svg>
+      <span className="timer-progress-elapsed">{remaining}</span>
       {paused && <span className="timer-progress-status">Paused</span>}
-    </div>
-  );
-  return (
-    <div className="timer rounded-full border-2 border-gold bg-panel px-7 py-3 text-2xl font-black text-gold">
-      <span aria-hidden="true">🕒</span>
-      {remaining}s{paused && <span className="text-sm uppercase">Paused</span>}
     </div>
   );
 }
@@ -352,17 +356,22 @@ function DisplayHeader({ game }: { game: Game; team?: Team }) {
 function DisplayCategoryHeading({
   category,
   detail,
+  timer,
 }: {
   category: string | null | undefined;
   detail: string;
+  timer?: ReactNode;
 }) {
   return (
-    <div className="mb-8 text-center">
-      <p className="mb-2 text-lg font-bold uppercase tracking-[.3em] text-slate-300">
-        Your chosen category
-      </p>
-      <h2 className="text-6xl font-black text-gold">{category}</h2>
-      <p className="mt-3 text-2xl font-bold">{detail}</p>
+    <div className="display-category-heading mb-8">
+      <div className="text-center">
+        <p className="mb-2 text-lg font-bold uppercase tracking-[.3em] text-slate-300">
+          Your chosen category
+        </p>
+        <h2 className="text-6xl font-black text-gold">{category}</h2>
+        <p className="mt-3 text-2xl font-bold">{detail}</p>
+      </div>
+      {timer}
     </div>
   );
 }
@@ -527,6 +536,34 @@ function Display({ game }: { game: Game }) {
       </main>
     );
   }
+  if (game.phase === "all-team-members")
+    return (
+      <main
+        className="landing min-h-screen overflow-auto p-12 text-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(3, 8, 18, 0.38), rgba(3, 8, 18, 0.7)), url(${gameshowStage})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <section className="all-teams-reveal mx-auto">
+          <p className="mb-2 text-xl font-bold uppercase tracking-[.3em] text-gold">Meet the teams</p>
+          <h2 className="mb-9 text-6xl font-black">All teams and members</h2>
+          <div className="team-rosters-column">
+            {game.teams.map((item) => (
+              <article key={item.id} className="team-roster-card">
+                <h3><span aria-hidden="true">{item.logo}</span>{item.name}</h3>
+                {item.members.length ? (
+                  <div className="team-roster-members">
+                    {item.members.map((member) => <div key={member}>{member}</div>)}
+                  </div>
+                ) : <p>No team members are configured.</p>}
+              </article>
+            ))}
+          </div>
+        </section>
+      </main>
+    );
   if (
     [
       "team-selection",
@@ -660,14 +697,11 @@ function Display({ game }: { game: Game }) {
       <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
         <DisplayHeader game={game} team={team} />
         <section className="question-reveal mx-auto max-w-6xl">
-          <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
-          <div className="mb-8 flex justify-center">
-            <Timer
-              until={game.timerEndsAt}
-              paused={game.timerPaused}
-              remainingSeconds={game.timerRemainingSeconds}
-            />
-          </div>
+          <DisplayCategoryHeading
+            category={question.category}
+            detail={difficultyIcon}
+            timer={<Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} />}
+          />
           <h2 className="mb-10 text-center text-5xl font-black leading-tight">
             {question.text}
           </h2>
@@ -717,14 +751,11 @@ function Display({ game }: { game: Game }) {
     <main className="min-h-screen p-10" style={questionBackgroundStyle(team, question.difficulty)}>
       <DisplayHeader game={game} team={team} />
       <section className="question-reveal mx-auto max-w-6xl">
-        <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
-        <div className="mb-8 flex justify-center">
-          <Timer
-            until={game.timerEndsAt}
-            paused={game.timerPaused}
-            remainingSeconds={game.timerRemainingSeconds}
-          />
-        </div>
+        <DisplayCategoryHeading
+          category={question.category}
+          detail={difficultyIcon}
+          timer={<Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} />}
+        />
         <h2 className="mb-10 text-center text-5xl font-black leading-tight">
           {question.text}
         </h2>
@@ -888,6 +919,7 @@ function Host({ game }: { game: Game }) {
   const canGoBack = [
     "team-selection",
     "team-members",
+    "all-team-members",
     "category-selection",
     "difficulty-selection",
     "question-selection",
@@ -954,6 +986,11 @@ function Host({ game }: { game: Game }) {
       <main className="host" style={hostBackgroundStyle()}>
         {title}
         <Panel title="Select the next playing team">
+          <div className="mb-5 text-center">
+            <button onClick={() => action("reveal-all-team-members")} className="bg-gold text-ink">
+              Show all teams and members
+            </button>
+          </div>
           <div className={`grid gap-3 ${matrixGrid(game.teams.length)}`}>
             {game.teams.map((item) => {
               const done =
@@ -1004,6 +1041,16 @@ function Host({ game }: { game: Game }) {
       </main>
     );
   }
+  if (game.phase === "all-team-members")
+    return (
+      <main className="host" style={hostBackgroundStyle()}>
+        {title}
+        <Panel title="All teams and team members">
+          <p className="mb-5 text-slate-300">All rosters are now visible on the projector display.</p>
+          <button onClick={() => action("hide-team-members")} className="bg-gold text-ink">Back to teams</button>
+        </Panel>
+      </main>
+    );
   if (game.phase === "category-selection")
     return (
       <main className="host" style={hostBackgroundStyle(team)}>

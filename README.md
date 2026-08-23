@@ -67,8 +67,8 @@ The points details should be displayed in a separate section with points as coin
 22. When Team names are revealed, have a facility to reveal the team members. The trigger should be on host console. The team members should be fetched from same external csv where question banks are present so that can be edited externally. The team members list displayed should be in a responsive container.
 23. host console should have option to change the answer once selected before confirming
 
-24. Arena page for all team lineups on one page
-25. Timer text not readable. Take it above timer bar.
+24. Arena page for all team lineups on one page - WIP
+25. Timer text not readable. Take it above timer bar. - Done
 26. Show placeholder screen for pause timer.
 27. Increase hint text font
 28. Second attempt is giving full points to team. Should award half points for second attempt.
