@@ -14,7 +14,8 @@ type Question = {
   correctOption: number;
   hint: string;
 };
-type Lifelines = { removeTwo: boolean; flip: boolean; hint: boolean };
+type Lifelines = { removeTwo: boolean; flip: boolean; doubleTrouble: boolean; safeguard: boolean };
+type LifelineAnimation = { type: keyof Lifelines; token: number };
 type Team = {
   id: string;
   name: string;
@@ -53,6 +54,7 @@ type Game = {
     pointsByDifficulty: Record<Difficulty, number>;
     incorrectPenalty: number;
     timerSeconds: number;
+    timerSecondsByDifficulty: Record<Difficulty, { first: number; second: number }>;
   };
   teams: Team[];
   questionSets: Record<string, Record<Difficulty, Question[]>>;
@@ -73,8 +75,10 @@ type Game = {
   disabledOptionIndexes: number[];
   answerAttempt: number;
   fullPointsOverride: boolean;
+  doubleTroubleActive: boolean;
+  safeguardActive: boolean;
+  lifelineAnimation: LifelineAnimation | null;
   questionNotice: string | null;
-  hintVisible: boolean;
 };
 
 const API = "http://localhost:3000/api/game";
@@ -82,6 +86,7 @@ const ASSETS = "http://localhost:3000/assets";
 const gameshowStage = `${ASSETS}/gameshow-stage.png`;
 const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const dhurandharTitle = `${ASSETS}/dhurandhar-title-transparent.png`;
+const tvColourBars = `${ASSETS}/tv-colour-bars.png`;
 const rewardCoin = `${ASSETS}/reward-coin.png`;
 const mysteryBox = `${ASSETS}/mystery-box.png`;
 const letters = ["A", "B", "C", "D", "E"];
@@ -135,7 +140,8 @@ const lifelineItems: { type: keyof Lifelines; icon: string; label: string }[] =
   [
     { type: "removeTwo", icon: "✂️", label: "Remove 2" },
     { type: "flip", icon: "🔄", label: "Flip" },
-    { type: "hint", icon: "💡", label: "Hint" },
+    { type: "doubleTrouble", icon: "⚡", label: "Double Trouble" },
+    { type: "safeguard", icon: "🛡️", label: "Safeguard" },
   ];
 
 function backgroundStyle(team?: Team) {
@@ -323,24 +329,68 @@ function useTimerExpired(until: number | null) {
   return Boolean(until && now >= until);
 }
 
+function teamProgress(game: Game, teamId: string) {
+  const attempts = game.attempts.filter((attempt) => attempt.teamId === teamId);
+  const categoriesAttempted = new Set(attempts.map((attempt) => attempt.category)).size;
+  const attemptsByDifficulty = game.rules.difficulties.reduce(
+    (totals, difficulty) => {
+      totals[difficulty] = attempts.filter((attempt) => attempt.difficulty === difficulty).length;
+      return totals;
+    },
+    {} as Record<Difficulty, number>
+  );
+
+  return { categoriesAttempted, attemptsByDifficulty };
+}
+
+function rankedTeams(game: Game) {
+  return game.teams
+    .map((team, originalIndex) => ({ team, originalIndex }))
+    .sort((a, b) => b.team.score - a.team.score || a.originalIndex - b.originalIndex)
+    .map(({ team }) => team);
+}
+
+function questionTimerSeconds(game: Game) {
+  const difficulty = game.currentQuestion?.difficulty;
+  if (!difficulty) return game.rules.timerSeconds;
+  return game.rules.timerSecondsByDifficulty[difficulty][game.answerAttempt === 2 ? "second" : "first"];
+}
+
 function Scoreboard({ game }: { game: Game }) {
   return (
     <div className="scoreboard">
-      {game.teams.map((team) => (
-        <div
-          key={team.id}
-          className={`score-card rounded-xl border shadow-xl ${team.id === game.activeTeamId
-              ? "border-gold bg-ink/95 ring-2 ring-gold/50"
-              : "border-slate-600 bg-ink/80"
-            }`}
-        >
-          <span className="score-team-icon" aria-hidden="true">{team.logo}</span>
-          <span className="score-team-name" title={team.name}>{team.name}</span>
-          <span className={`score-team-points ${team.id === game.activeTeamId ? "text-gold" : "text-slate-200"}`}>
-            {team.score}
-          </span>
-        </div>
-      ))}
+      {game.teams.map((team) => {
+        const progress = teamProgress(game, team.id);
+        return (
+          <div
+            key={team.id}
+            className={`score-card rounded-xl border shadow-xl ${team.id === game.activeTeamId
+                ? "border-gold bg-ink/95 ring-2 ring-gold/50"
+                : "border-slate-600 bg-ink/80"
+              }`}
+          >
+            <div className="score-card-heading">
+              <span className="score-team-icon" aria-hidden="true">{team.logo}</span>
+              <span className="score-team-name" title={team.name}>{team.name}</span>
+              <span className={`score-team-points ${team.id === game.activeTeamId ? "text-gold" : "text-slate-200"}`}>
+                {team.score}
+              </span>
+            </div>
+            <div className="score-progress" aria-label={`${team.name} is at round ${progress.categoriesAttempted}`}>
+              <span className="score-category-count">
+                Round <strong>{progress.categoriesAttempted}</strong>
+              </span>
+              <span className="score-levels" aria-label="Attempts by difficulty">
+                {game.rules.difficulties.map((difficulty) => (
+                  <span key={difficulty} className={`score-level score-level-${difficulty}`} title={`${difficulty}: ${progress.attemptsByDifficulty[difficulty]} attempts`}>
+                    {difficulty.charAt(0).toUpperCase()} <strong>{progress.attemptsByDifficulty[difficulty]}</strong>
+                  </span>
+                ))}
+              </span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -379,9 +429,13 @@ function DisplayCategoryHeading({
 function LifelineBar({
   team,
   onUse,
+  doubleTroubleActive = false,
+  safeguardActive = false,
 }: {
   team?: Team;
   onUse?: (type: keyof Lifelines) => void;
+  doubleTroubleActive?: boolean;
+  safeguardActive?: boolean;
 }) {
   if (new URLSearchParams(location.search).get("screen") === "display")
     return null;
@@ -395,28 +449,34 @@ function LifelineBar({
           onClick={() => {
             if (canUse) onUse?.(item.type);
           }}
-          className="lifeline-circle"
+          className={`lifeline-circle ${item.type === "doubleTrouble" && doubleTroubleActive ? "is-active" : ""} ${item.type === "safeguard" && safeguardActive ? "is-safeguard-active" : ""}`}
           title={item.label}
+          aria-label={item.label}
+          aria-pressed={item.type === "doubleTrouble" ? doubleTroubleActive : undefined}
         >
-          <span className="text-2xl">{item.icon}</span>
-          <span className="text-xs">{item.label}</span>
+          <span className={`lifeline-icon ${item.type === "doubleTrouble" ? "double-trouble-icon" : ""}`} aria-hidden="true">
+            {item.type === "doubleTrouble" ? "2" : item.icon}
+          </span>
         </button>
       ))}
     </div>
   );
 }
 
-function DisplayLifelines({ team }: { team?: Team }) {
+function DisplayLifelines({ team, doubleTroubleActive, safeguardActive }: { team?: Team; doubleTroubleActive: boolean; safeguardActive: boolean }) {
   return (
     <aside className="display-lifelines" aria-label="Team lifelines">
       {lifelineItems.map((item) => (
         <div
           key={item.type}
           aria-disabled={!team?.lifelines?.[item.type]}
-          className="lifeline-circle"
+          aria-label={item.label}
+          title={item.label}
+          className={`lifeline-circle ${item.type === "doubleTrouble" && doubleTroubleActive ? "is-active" : ""} ${item.type === "safeguard" && safeguardActive ? "is-safeguard-active" : ""}`}
         >
-          <span className="text-2xl">{item.icon}</span>
-          <span className="text-xs">{item.label}</span>
+          <span className={`lifeline-icon ${item.type === "doubleTrouble" ? "double-trouble-icon" : ""}`} aria-hidden="true">
+            {item.type === "doubleTrouble" ? "2" : item.icon}
+          </span>
         </div>
       ))}
     </aside>
@@ -429,7 +489,9 @@ function resultMessage(game: Game) {
     return "Question skipped. No points awarded or deducted.";
   if (attempt?.correct)
     return `Correct! +${attempt.points} points`;
-  return `Incorrect. -${game.rules.incorrectPenalty} points`;
+  if (attempt?.points === 0)
+    return "Incorrect. No points deducted.";
+  return `Incorrect. -${Math.abs(attempt?.points ?? game.rules.incorrectPenalty)} points`;
 }
 
 function BrandBanner({
@@ -467,6 +529,69 @@ function Display({ game }: { game: Game }) {
   const difficultyIcon = game.rules.difficultyDetails.find(
     (item) => item.id === question?.difficulty
   )?.logo ?? question?.difficulty;
+  const selectedDifficultyIcon = game.rules.difficultyDetails.find(
+    (item) => item.id === game.selectedDifficulty
+  )?.logo ?? "";
+  if (game.lifelineAnimation) {
+    const lifeline = lifelineItems.find((item) => item.type === game.lifelineAnimation?.type);
+    if (lifeline)
+      return (
+        <main className="lifeline-activation-screen min-h-screen" style={displayBackgroundStyle(team)}>
+          <section className="lifeline-activation" aria-live="assertive">
+            <span className={`lifeline-activation-icon ${lifeline.type === "doubleTrouble" ? "is-double" : ""}`} aria-hidden="true">
+              {lifeline.type === "doubleTrouble" ? "2×" : lifeline.icon}
+            </span>
+            <p>{lifeline.label}</p>
+            <h1>Activated</h1>
+          </section>
+        </main>
+      );
+  }
+  if (game.phase === "game-over") {
+    const finalStandings = rankedTeams(game);
+    const winner = finalStandings[0];
+    return (
+      <main className="finale-screen min-h-screen overflow-auto p-12 text-center" style={displayBackgroundStyle(winner)}>
+        <section className="finale-content mx-auto">
+          <p className="finale-kicker">The final scores are in</p>
+          <p className="finale-announcement">And the winner is</p>
+          <div className="finale-winner">
+            <span className="finale-winner-logo" aria-hidden="true">{winner.logo}</span>
+            <h1>{winner.name}</h1>
+            <p>{winner.score} points</p>
+          </div>
+          <section className="final-standings" aria-label="Final points table">
+            <h2>Final standings</h2>
+            {finalStandings.map((item, index) => (
+              <div key={item.id} className={`final-standing ${index === 0 ? "is-winner" : ""}`}>
+                <span className="final-standing-rank">{index + 1}</span>
+                <span className="final-standing-logo" aria-hidden="true">{item.logo}</span>
+                <span className="final-standing-team">{item.name}</span>
+                <strong>{item.score} <small>pts</small></strong>
+              </div>
+            ))}
+          </section>
+        </section>
+      </main>
+    );
+  }
+  if (game.timerPaused && game.phase === "question")
+    return (
+      <main
+        className="landing grid min-h-screen place-items-center overflow-hidden p-12 text-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(3, 8, 18, 0.4), rgba(3, 8, 18, 0.72)), url(${gameshowStage})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <section className="projector-pause-notice" aria-live="polite">
+          <img className="projector-pause-pattern" src={tvColourBars} alt="Vintage television colour bars" />
+          <h1>Sorry for interruption</h1>
+          <p className="projector-pause-message">We are experiencing a technical glitch.</p>
+        </section>
+      </main>
+    );
   if (game.phase === "landing")
     return (
       <main
@@ -598,7 +723,7 @@ function Display({ game }: { game: Game }) {
           {game.phase === "difficulty-selection" ? (
             <DisplayCategoryHeading category={game.selectedCategory} detail="Pick a difficulty" />
           ) : game.phase === "question-selection" ? (
-            <DisplayCategoryHeading category={game.selectedCategory} detail="Choose a hidden question number" />
+            <DisplayCategoryHeading category={game.selectedCategory} detail={`${selectedDifficultyIcon} · Choose a hidden question number`} />
           ) : (
             <h2 className="mb-10 text-5xl font-black">{heading}</h2>
           )}
@@ -691,6 +816,7 @@ function Display({ game }: { game: Game }) {
       </main>
     );
   const result = game.phase === "answer-result";
+  const pendingReveal = game.phase === "answer-pending-reveal";
   const selected = game.selectedOption;
   if (game.removedOptionIndexes.length || game.disabledOptionIndexes.length)
     return (
@@ -700,7 +826,7 @@ function Display({ game }: { game: Game }) {
           <DisplayCategoryHeading
             category={question.category}
             detail={difficultyIcon}
-            timer={<Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} />}
+            timer={!result && !pendingReveal ? <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} /> : undefined}
           />
           <h2 className="mb-10 text-center text-5xl font-black leading-tight">
             {question.text}
@@ -754,7 +880,7 @@ function Display({ game }: { game: Game }) {
         <DisplayCategoryHeading
           category={question.category}
           detail={difficultyIcon}
-          timer={<Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} />}
+          timer={!result && !pendingReveal ? <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} /> : undefined}
         />
         <h2 className="mb-10 text-center text-5xl font-black leading-tight">
           {question.text}
@@ -786,20 +912,15 @@ function Display({ game }: { game: Game }) {
             );
           })}
         </div>
-        {game.hintVisible && (
-          <p className="mt-6 rounded-xl border border-gold bg-panel p-4 text-center text-lg text-gold">
-            💡 {question.hint}
-          </p>
-        )}
         <LifelineBar
           team={team}
           onUse={(type) => action("use-lifeline", { type })}
+          doubleTroubleActive={game.doubleTroubleActive}
+          safeguardActive={game.safeguardActive}
         />
         {result && (
           <p className="mt-8 text-center text-3xl font-black text-gold">
-            {game.attempts.at(-1)?.correct
-              ? `Correct! +${game.attempts.at(-1)?.points} points`
-              : `Incorrect. -${game.rules.incorrectPenalty} points`}
+            {resultMessage(game)}
           </p>
         )}
       </section>
@@ -811,7 +932,7 @@ function Display({ game }: { game: Game }) {
       <section className="question-reveal mx-auto max-w-6xl">
         <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
         <div className="mb-8 flex justify-center">
-          <Timer until={game.timerEndsAt} />
+          <Timer until={game.timerEndsAt} totalSeconds={questionTimerSeconds(game)} />
         </div>
         <h2 className="mb-10 text-center text-5xl font-black leading-tight">
           {question.text}
@@ -841,9 +962,7 @@ function Display({ game }: { game: Game }) {
         </div>
         {result && (
           <p className="mt-8 text-center text-3xl font-black text-gold">
-            {game.attempts.at(-1)?.correct
-              ? `Correct! +${game.attempts.at(-1)?.points} points`
-              : `Incorrect. -${game.rules.incorrectPenalty} points`}
+            {resultMessage(game)}
           </p>
         )}
       </section>
@@ -866,7 +985,7 @@ function Display({ game }: { game: Game }) {
             {question.category} · {question.difficulty}
           </p>
         </div>
-        <Timer until={game.timerEndsAt} />
+        <Timer until={game.timerEndsAt} totalSeconds={questionTimerSeconds(game)} />
       </header>
       <section className="question-reveal mx-auto max-w-6xl">
         <h2 className="mb-10 text-center text-5xl font-black leading-tight">
@@ -897,9 +1016,7 @@ function Display({ game }: { game: Game }) {
         </div>
         {result && (
           <p className="mt-8 text-center text-3xl font-black text-gold">
-            {game.attempts.at(-1)?.correct
-              ? `Correct! +${game.attempts.at(-1)?.points} points`
-              : `Incorrect. -${game.rules.incorrectPenalty} points`}
+            {resultMessage(game)}
           </p>
         )}
       </section>
@@ -915,7 +1032,11 @@ function Host({ game }: { game: Game }) {
     game.selectedCategory && game.selectedDifficulty
       ? game.questionSets[game.selectedCategory][game.selectedDifficulty]
       : [];
+  const selectedDifficultyIcon = game.rules.difficultyDetails.find(
+    (item) => item.id === game.selectedDifficulty
+  )?.logo ?? "";
   const [muted, setMuted] = useState(false);
+  const [lifelineToConfirm, setLifelineToConfirm] = useState<keyof Lifelines | null>(null);
   const canGoBack = [
     "team-selection",
     "team-members",
@@ -932,6 +1053,12 @@ function Host({ game }: { game: Game }) {
     ) {
       sounds.stopSuspense();
       action("reset");
+    }
+  };
+  const endGame = () => {
+    if (window.confirm("End the game now? The projector will reveal the final standings and winner.")) {
+      sounds.stopSuspense();
+      action("end-game");
     }
   };
   const toggleSound = () => {
@@ -953,6 +1080,11 @@ function Host({ game }: { game: Game }) {
         <button onClick={toggleSound} className="bg-slate-700">
           {muted ? "🔇 Sound off" : "🔊 Sound on"}
         </button>
+        {game.phase !== "landing" && game.phase !== "game-over" && (
+          <button onClick={endGame} className="bg-amber-600 text-ink">
+            End game & reveal winner
+          </button>
+        )}
         <button onClick={resetGame} className="bg-rose-700">
           Reset game
         </button>
@@ -981,6 +1113,31 @@ function Host({ game }: { game: Game }) {
         </Panel>
       </main>
     );
+  if (game.phase === "game-over") {
+    const finalStandings = rankedTeams(game);
+    const winner = finalStandings[0];
+    return (
+      <main className="host" style={hostBackgroundStyle(winner)}>
+        {title}
+        <Panel title="Finale is live on the projector">
+          <p className="mb-6 text-xl text-gold">
+            {winner.logo} {winner.name} wins with {winner.score} points.
+          </p>
+          <div className="grid gap-3">
+            {finalStandings.map((item, index) => (
+              <div key={item.id} className="flex items-center gap-4 rounded-xl bg-slate-800/80 px-5 py-4">
+                <strong className="w-7 text-gold">{index + 1}</strong>
+                <span className="text-2xl" aria-hidden="true">{item.logo}</span>
+                <span className="flex-1 text-xl font-bold">{item.name}</span>
+                <strong className="text-gold">{item.score} pts</strong>
+              </div>
+            ))}
+          </div>
+          <button onClick={resetGame} className="mt-7 bg-rose-700">Start a new game</button>
+        </Panel>
+      </main>
+    );
+  }
   if (game.phase === "team-selection")
     return (
       <main className="host" style={hostBackgroundStyle()}>
@@ -1126,7 +1283,7 @@ function Host({ game }: { game: Game }) {
       <main className="host" style={hostBackgroundStyle(team)}>
         {title}
         <Panel
-          title={`${team?.name}: ${game.selectedCategory} / ${game.selectedDifficulty}`}
+          title={`${team?.name}: ${game.selectedCategory} / ${selectedDifficultyIcon}`}
         >
           <p className="mb-5 text-slate-300">
             Let the team select a numbered tile. The question remains hidden
@@ -1201,6 +1358,7 @@ function Host({ game }: { game: Game }) {
               until={game.timerEndsAt}
               paused={game.timerPaused}
               remainingSeconds={game.timerRemainingSeconds}
+              totalSeconds={questionTimerSeconds(game)}
             />
             <button
               onClick={() => action("toggle-clock")}
@@ -1243,11 +1401,6 @@ function Host({ game }: { game: Game }) {
               );
             })}
           </div>
-          {game.hintVisible && (
-            <p className="mt-5 rounded-xl border border-gold p-4 text-gold">
-              💡 {q.hint}
-            </p>
-          )}
           <div className="mt-6">
             <button
               onClick={() => action("skip-question")}
@@ -1258,8 +1411,23 @@ function Host({ game }: { game: Game }) {
           </div>
           <LifelineBar
             team={team}
-            onUse={(type) => action("use-lifeline", { type })}
+            onUse={setLifelineToConfirm}
+            doubleTroubleActive={game.doubleTroubleActive}
+            safeguardActive={game.safeguardActive}
           />
+          {lifelineToConfirm && (() => {
+            const lifeline = lifelineItems.find((item) => item.type === lifelineToConfirm)!;
+            return (
+              <div className="mt-6 rounded-xl border border-gold bg-amber-400/15 p-5 text-center">
+                <p className="text-xl font-black text-gold">Use {lifeline.label}?</p>
+                <p className="mt-2 text-slate-200">This lifeline can only be used once by this team.</p>
+                <div className="mt-4 flex justify-center gap-3">
+                  <button onClick={() => setLifelineToConfirm(null)} className="bg-slate-700">Cancel</button>
+                  <button onClick={() => { action("use-lifeline", { type: lifelineToConfirm }); setLifelineToConfirm(null); }} className="bg-gold text-ink">Confirm lifeline</button>
+                </div>
+              </div>
+            );
+          })()}
         </Panel>
       </main>
     );
@@ -1271,6 +1439,11 @@ function Host({ game }: { game: Game }) {
           {q.category} · {q.difficulty} ·{" "}
           {game.rules.pointsByDifficulty[q.difficulty]} points
         </p>
+        {game.phase === "answer-review" && (
+          <div className="mb-5 flex justify-center">
+            <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} />
+          </div>
+        )}
         <h2 className="mb-6 text-3xl font-black">{q.text}</h2>
         {game.questionNotice && (
           <p className="mb-5 rounded-xl border border-amber-400 bg-amber-500/15 p-4 font-bold text-amber-200">
@@ -1281,6 +1454,14 @@ function Host({ game }: { game: Game }) {
           <p className="mb-5 text-sm font-bold text-gold">
             Review the selection below. You can choose a different answer before confirming.
           </p>
+        )}
+        {game.phase === "answer-pending-reveal" && (
+          <div className="mb-5 rounded-xl border border-gold/70 bg-amber-400/10 p-5 text-center">
+            <p className="mb-4 font-bold text-gold">Final answer recorded. The correct answer is still hidden on the projector.</p>
+            <button onClick={() => action("reveal-answer")} className="bg-gold text-ink">
+              Reveal correct answer
+            </button>
+          </div>
         )}
         <div className="grid gap-3">
           {q.options.map((option, index) => (
@@ -1334,10 +1515,6 @@ function Host({ game }: { game: Game }) {
             >
               Skip question
             </button>
-            <LifelineBar
-              team={team}
-              onUse={(type) => action("use-lifeline", { type })}
-            />
           </div>
         )}
         {game.phase === "answer-result" && (
@@ -1389,8 +1566,10 @@ function App() {
   const isDisplay =
     new URLSearchParams(location.search).get("screen") === "display";
   const isLandingDisplay = isDisplay && game.phase === "landing";
+  const showScoreboardLane =
+    isDisplay && !isLandingDisplay && !game.timerPaused && !["all-team-members", "game-over"].includes(game.phase);
   const showDisplayLifelines =
-    isDisplay && !isLandingDisplay && game.phase !== "team-selection";
+    isDisplay && game.phase === "question" && !game.timerPaused;
   const screen = isDisplay ? <Display game={game} /> : <Host game={game} />;
   return (
     <>
@@ -1398,9 +1577,9 @@ function App() {
         showGameTitle={!isLandingDisplay}
         showDhurandhar={!isLandingDisplay}
       />
-      {showDisplayLifelines && <DisplayLifelines team={activeTeam(game)} />}
+      {showDisplayLifelines && <DisplayLifelines team={activeTeam(game)} doubleTroubleActive={game.doubleTroubleActive} safeguardActive={game.safeguardActive} />}
       <div
-        className={`screen-content ${isDisplay && !isLandingDisplay ? "has-scoreboard" : ""
+        className={`screen-content ${showScoreboardLane ? "has-scoreboard" : ""
           } ${showDisplayLifelines ? "has-lifelines" : ""}`}
       >
         {screen}

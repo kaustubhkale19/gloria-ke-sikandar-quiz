@@ -66,26 +66,25 @@ The points details should be displayed in a separate section with points as coin
 21. When Remove-2 is selected, the wrong options text are removed but box should be greyed out.
 22. When Team names are revealed, have a facility to reveal the team members. The trigger should be on host console. The team members should be fetched from same external csv where question banks are present so that can be edited externally. The team members list displayed should be in a responsive container.
 23. host console should have option to change the answer once selected before confirming
-
-24. Arena page for all team lineups on one page - WIP
+24. Arena page for all team lineups on one page - Done
 25. Timer text not readable. Take it above timer bar. - Done
-26. Show placeholder screen for pause timer.
-27. Increase hint text font
-28. Second attempt is giving full points to team. Should award half points for second attempt.
-29. Provide feature to end the game, show final points table and annouce a winner.
-30. Increase icon size for lifelines and remove text.
-31. Game rules and help. Content to be provided by Abhishek
-32. Seperate team csv file from question bank
-33. Hint not showing on audience console if multiple lifelines are used
-34. Remove Hint lifeline. Keep only 2 lifelines Remove 2 and Flip. Lifelines can be used after the options are revealed.
-35. Add 2 boosters - Double-Trouble (Apply 2x to awarded points, positive as well as penalty points) and Safegurad (no penalty for this question)
-36. Keep the timer running until final answer is submitted from host console. Pause the timer if submitting answer is correct.
-37. Timer duratio: Easy (30 for first attempt and 20 for second), Medium (60 for first attempt and 40 for second) and Hard (60 for first attempt and 90 for second)
-38. Point calculation on Flip should be standard. Do not award half points for first attempt on flipped question.
-39. If team does not attempt a question, treat it as skip. Award 0 points. Do not show 'Incorrect -10 points' on audience screen.
-40. Make the timer as count down i.e. 60 - 59 - 58. Keep the animation and color theme.
-41. After confirming answer from host console, provide one more step to reveal the result.
-42. Provide confirmation option after selecting booster or lifeline.
-43. Add difficulty star on question number selection page as well.
-44. used lifeline disable style is not clearly visible.
-46. In team points box, show number of attempted categories in bracket.
+26. Show placeholder screen for pause timer - Done
+27. Increase hint text font - Deferred
+28. Second attempt is giving full points to team. Should award half points for second attempt. - Done
+29. Provide feature to end the game, show final points table and annouce a winner - Done.
+30. Increase icon size for lifelines and remove text - Done
+31. Game rules and help. Content to be provided by Abhishek - Pending
+32. Seperate team csv file from question bank - Pending
+33. Hint not showing on audience console if multiple lifelines are used - Deferred.
+34. Remove Hint lifeline. Keep only 2 lifelines Remove 2 and Flip. Lifelines can be used after the options are revealed - Done
+35. Add 2 boosters - Double-Trouble (Apply 2x to awarded points, positive as well as penalty points) and Safegurad (no penalty for this question) - Done
+36. Keep the timer running until final answer is submitted from host console. Pause the timer if submitting answer is correct. - Done.
+37. Implement Timer duration as - Easy (30 seconds for first attempt and 20 for second attempt), Medium (60 for first attempt and 40 for second) and Hard (60 for first attempt and 90 for second) - Done
+38. Point calculation on Flip should be standard. Do not award half points for first attempt on flipped question. - Done
+39. If team does not attempt a question, treat it as skip. Award 0 points. Do not show 'Incorrect -10 points' on projector screen - Done
+40. Make the timer as count down i.e. 60 - 59 - 58. Keep the animation and color theme - Done
+41. After confirming answer from host console, provide one more step to reveal the result - Done.
+42. Provide confirmation option after selecting booster or lifeline. - Done
+43. Add difficulty star on question number selection page as well - Done
+44. used lifeline disable style is not clearly visible - Done
+46. In team points box, show number of attempted categories in bracket - Done
