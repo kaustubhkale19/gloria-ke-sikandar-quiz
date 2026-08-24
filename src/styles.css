@@ -47,13 +47,13 @@ button {
 .brand-dhurandhar,
 .brand-dhurandhar-spacer {
     justify-self: end;
-    width: clamp(8rem, 12vw, 12.5rem);
+    width: clamp(12rem, calc(20vw - 3rem), 22rem);
 }
 
 .brand-dhurandhar {
-    height: 5rem;
-    width: auto;
-    padding: .45rem .7rem;
+    height: 7.6rem;
+    width: clamp(12rem, calc(20vw - 3rem), 22rem);
+    padding: .55rem .85rem;
     border: 1px solid rgba(255, 226, 144, .9);
     border-radius: 9999px;
     background: radial-gradient(ellipse at center, rgba(122, 80, 42, .98), rgba(7, 12, 24, .99) 72%);
@@ -425,6 +425,10 @@ button {
         width: 5.8rem;
     }
 
+    .brand-dhurandhar {
+        height: 4rem;
+    }
+
     .screen-content>main {
         padding-top: 7.2rem !important;
     }
@@ -779,27 +783,49 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #fde68a;
+    border: .24rem solid transparent;
     border-radius: 9999px;
-    background: radial-gradient(circle at 35% 30%, #fde68a, #eab308 58%, #a16207);
-    color: #201407;
+    background: radial-gradient(circle at 45% 40%, #1e3a5f, #081321 72%) padding-box, linear-gradient(145deg, #fff1a6, #eab308 55%, #854d0e) border-box;
+    color: #fff;
     padding: .5rem;
-    box-shadow: 0 .3rem .8rem rgba(0, 0, 0, .42), inset 0 0 .65rem rgba(255, 255, 255, .42);
+    box-shadow: 0 .35rem 1rem rgba(0, 0, 0, .5), inset 0 0 1rem rgba(250, 204, 21, .2);
 }
 
 .lifeline-circle:disabled,
 .display-lifelines .lifeline-circle[aria-disabled="true"] {
-    border-color: #475569;
-    background: rgba(15, 23, 42, .88);
+    border-color: #64748b;
+    background: #111827;
     box-shadow: none;
     color: #64748b;
     opacity: 1 !important;
+}
+
+.lifeline-circle:disabled .lifeline-sprite,
+.display-lifelines .lifeline-circle[aria-disabled="true"] .lifeline-sprite {
+    filter: grayscale(1) brightness(.42) contrast(.8);
+    opacity: .38;
 }
 
 .lifeline-icon {
     font-size: 4.2rem;
     line-height: 1;
 }
+
+.lifeline-sprite {
+    display: block;
+    width: min(6.3rem, 72%);
+    height: auto;
+    aspect-ratio: 1;
+    background-image: url("http://localhost:3000/assets/lifeline-icons.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 200% 200%;
+    filter: drop-shadow(0 .28rem .25rem rgba(0, 0, 0, .58)) saturate(1.12) contrast(1.12);
+}
+
+.lifeline-sprite-flip { background-position: 100% 0; }
+.lifeline-sprite-doubleTrouble { background-position: 0 100%; }
+.lifeline-sprite-safeguard { background-position: 100% 100%; }
 
 .double-trouble-icon {
     position: relative;
@@ -875,6 +901,12 @@ button {
     line-height: 1;
     filter: drop-shadow(0 .4rem .3rem rgba(0, 0, 0, .6));
     animation: lifelinePulse 1s ease-in-out infinite alternate;
+}
+
+.lifeline-activation-icon.lifeline-sprite {
+    width: clamp(9rem, 22vw, 16rem);
+    height: clamp(9rem, 22vw, 16rem);
+    margin: 0 auto;
 }
 
 .lifeline-activation-icon.is-double {

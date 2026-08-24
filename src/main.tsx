@@ -454,9 +454,7 @@ function LifelineBar({
           aria-label={item.label}
           aria-pressed={item.type === "doubleTrouble" ? doubleTroubleActive : undefined}
         >
-          <span className={`lifeline-icon ${item.type === "doubleTrouble" ? "double-trouble-icon" : ""}`} aria-hidden="true">
-            {item.type === "doubleTrouble" ? "2" : item.icon}
-          </span>
+          <span className={`lifeline-sprite lifeline-sprite-${item.type}`} aria-hidden="true" />
         </button>
       ))}
     </div>
@@ -474,9 +472,7 @@ function DisplayLifelines({ team, doubleTroubleActive, safeguardActive }: { team
           title={item.label}
           className={`lifeline-circle ${item.type === "doubleTrouble" && doubleTroubleActive ? "is-active" : ""} ${item.type === "safeguard" && safeguardActive ? "is-safeguard-active" : ""}`}
         >
-          <span className={`lifeline-icon ${item.type === "doubleTrouble" ? "double-trouble-icon" : ""}`} aria-hidden="true">
-            {item.type === "doubleTrouble" ? "2" : item.icon}
-          </span>
+          <span className={`lifeline-sprite lifeline-sprite-${item.type}`} aria-hidden="true" />
         </div>
       ))}
     </aside>
@@ -538,9 +534,7 @@ function Display({ game }: { game: Game }) {
       return (
         <main className="lifeline-activation-screen min-h-screen" style={displayBackgroundStyle(team)}>
           <section className="lifeline-activation" aria-live="assertive">
-            <span className={`lifeline-activation-icon ${lifeline.type === "doubleTrouble" ? "is-double" : ""}`} aria-hidden="true">
-              {lifeline.type === "doubleTrouble" ? "2×" : lifeline.icon}
-            </span>
+            <span className={`lifeline-activation-icon lifeline-sprite lifeline-sprite-${lifeline.type}`} aria-hidden="true" />
             <p>{lifeline.label}</p>
             <h1>Activated</h1>
           </section>
