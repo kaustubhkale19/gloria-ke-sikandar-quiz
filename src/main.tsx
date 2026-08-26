@@ -1283,7 +1283,7 @@ function Host({ game }: { game: Game }) {
             Let the team select a numbered tile. The question remains hidden
             until selected.
           </p>
-          <div className="grid grid-cols-5 gap-3">
+          <div className="grid grid-cols-5 gap-3 mx-auto max-w-3xl">
             {choices.map((question) => (
               <button
                 key={question.id}
