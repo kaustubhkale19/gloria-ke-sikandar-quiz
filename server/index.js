@@ -113,7 +113,7 @@ const pointsByDifficulty = {
 const timerSecondsByDifficulty = {
   easy: { first: 30, second: 20 },
   medium: { first: 60, second: 40 },
-  hard: { first: 60, second: 90 }
+  hard: { first: 90, second: 60 }
 };
 const questionsPerCategory = 2;
 const questionBank = {

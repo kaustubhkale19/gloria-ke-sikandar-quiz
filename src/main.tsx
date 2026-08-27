@@ -84,11 +84,11 @@ type Game = {
 const API = "http://localhost:3000/api/game";
 const ASSETS = "http://localhost:3000/assets";
 const gameshowStage = `${ASSETS}/gameshow-stage.png`;
-const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const dhurandharTitle = `${ASSETS}/dhurandhar-title-transparent.png`;
 const tvColourBars = `${ASSETS}/tv-colour-bars.png`;
 const rewardCoin = `${ASSETS}/reward-coin.png`;
 const mysteryBox = `${ASSETS}/mystery-box.png`;
+const lionTitleBanner = `${ASSETS}/gloria-ke-sikandar-lion-banner.png`;
 const letters = ["A", "B", "C", "D", "E"];
 const teamBackdrops: Record<string, string> = {
   raw: `${ASSETS}/team-raw.png`,
@@ -497,23 +497,10 @@ function BrandBanner({
   showGameTitle?: boolean;
   showDhurandhar?: boolean;
 }) {
+  const showBanner = showGameTitle || showDhurandhar;
   return (
     <header className="brand-banner" aria-label="Gloria Ke Sikandar branding">
-      <img className="brand-arch" src={archLogo} alt="Gloria Arch" />
-      {showGameTitle ? (
-        <p className="brand-game-title">Gloria Ke Sikandar</p>
-      ) : (
-        <span className="brand-game-title-spacer" aria-hidden="true" />
-      )}
-      {showDhurandhar ? (
-        <img
-          className="brand-dhurandhar"
-          src={dhurandharTitle}
-          alt="Dhurandhar"
-        />
-      ) : (
-        <span className="brand-dhurandhar-spacer" aria-hidden="true" />
-      )}
+      {showBanner && <img className="brand-lion-title" src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />}
     </header>
   );
 }
@@ -596,20 +583,7 @@ function Display({ game }: { game: Game }) {
           backgroundSize: "cover",
         }}
       >
-        <div
-          className="projector-brand"
-          aria-label="Gloria Ke Sikandar, Season 2, Dhurandhar"
-        >
-          <p className="projector-title projector-title-landing">
-            Gloria Ke Sikandar
-          </p>
-          <p className="projector-season">Season 2</p>
-          <img
-            className="projector-dhurandar"
-            src={dhurandharTitle}
-            alt="Dhurandhar"
-          />
-        </div>
+        <img className="projector-lion-title" src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />
       </main>
     );
   if (game.phase === "question-transition" && question)
@@ -1544,8 +1518,49 @@ function Panel({
   );
 }
 
+function GameRules({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [onClose]);
+
+  return (
+    <div className="rules-overlay" role="presentation" onMouseDown={onClose}>
+      <section
+        className="rules-poster"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rules-title"
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <button className="rules-close" type="button" onClick={onClose} aria-label="Close game rules">×</button>
+        <header className="rules-poster-heading">
+          <img src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />
+          <h1 id="rules-title">Game Rules</h1>
+          <span>Rules · scoring · lifelines · trump cards</span>
+        </header>
+        <div className="rules-grid">
+          <article className="rules-teams"><h2>Teams & rounds</h2><p>Players are divided into 4 teams.</p><div className="rules-team-badges" aria-label="Teams"><span className="rules-team-raw">RAW</span><span className="rules-team-kgb">KGB</span><span className="rules-team-cia">CIA</span><span className="rules-team-mossad">Mossad</span></div><p>The game is conducted in 8 rounds. Each team plays 2 rounds, in the sequence shown by the host.</p></article>
+          <article className="rules-rounds"><h2>Sequence of rounds</h2><div className="rules-round-strip"><span>1<br /><b>RAW</b></span><i>→</i><span>2<br /><b>KGB</b></span><i>→</i><span>3<br /><b>CIA</b></span><i>→</i><span>4<br /><b>Mossad</b></span></div><p>The order rotates in later sets so every team gets its turn.</p></article>
+          <article><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span>🏆</span><span>📚</span><span>🌍</span><span>🎬</span><span>🎵</span><span>🔬</span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
+          <article className="rules-points"><h2>Points & time</h2><div className="rules-score-table"><span>Easy <b>10</b><em>30s / 20s</em></span><span>Medium <b>20</b><em>60s / 40s</em></span><span>Difficult <b>30</b><em>90s / 60s</em></span></div><p>Time shown is first attempt / second attempt.</p></article>
+          <article><h2>Attempts</h2><p>There is no negative marking on the first attempt.</p><p>On a wrong second attempt, 10 points are deducted. A team may decline the second attempt to avoid the penalty.</p><p>No first-attempt selection means the question is skipped, with no points gained or lost.</p></article>
+          <article className="rules-lifelines"><h2>Lifelines</h2><div className="rules-lifeline-art"><span><i className="lifeline-sprite lifeline-sprite-removeTwo" /><b>Remove 2</b></span><span><i className="lifeline-sprite lifeline-sprite-flip" /><b>Flip</b></span></div><p>Each team has 2 lifelines, usable once each. Remove 2 removes two wrong answers; Flip replaces the question and restarts the first attempt. Both may be used on one question if required.</p></article>
+          <article className="rules-trumps"><h2>Trump cards</h2><div className="rules-trump-art"><span><b>2×</b><em>Double Trouble</em></span><span><b>🛡</b><em>Safeguard</em></span></div><p>Declare a trump card before choosing a question. Double Trouble doubles points and penalties; Safeguard prevents negative marking, even on the second attempt.</p></article>
+          <article><h2>Winning</h2><p>The team with the highest score at the end of the game is declared the winner.</p></article>
+        </div>
+        <p className="rules-dismiss">Click outside, press Esc, or use × to return to the game.</p>
+      </section>
+    </div>
+  );
+}
+
 function App() {
   const game = useGame();
+  const [rulesOpen, setRulesOpen] = useState(false);
   if (!game)
     return (
       <>
@@ -1571,6 +1586,11 @@ function App() {
         showGameTitle={!isLandingDisplay}
         showDhurandhar={!isLandingDisplay}
       />
+      {!isLandingDisplay && game.phase !== "game-over" && (
+        <button className="rules-trigger" type="button" onClick={() => setRulesOpen(true)} aria-haspopup="dialog" aria-label="Show game rules">
+          <span aria-hidden="true">?</span><span>Rules</span>
+        </button>
+      )}
       {showDisplayLifelines && <DisplayLifelines team={activeTeam(game)} doubleTroubleActive={game.doubleTroubleActive} safeguardActive={game.safeguardActive} />}
       <div
         className={`screen-content ${showScoreboardLane ? "has-scoreboard" : ""
@@ -1578,6 +1598,7 @@ function App() {
       >
         {screen}
       </div>
+      {rulesOpen && <GameRules onClose={() => setRulesOpen(false)} />}
     </>
   );
 }
