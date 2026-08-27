@@ -75,6 +75,7 @@ type Game = {
   disabledOptionIndexes: number[];
   answerAttempt: number;
   fullPointsOverride: boolean;
+  trumpCardDecisionMade: boolean;
   doubleTroubleActive: boolean;
   safeguardActive: boolean;
   lifelineAnimation: LifelineAnimation | null;
@@ -440,9 +441,10 @@ function LifelineBar({
   if (new URLSearchParams(location.search).get("screen") === "display")
     return null;
   const canUse = Boolean(onUse);
+  const questionLifelines = lifelineItems.filter((item) => item.type === "removeTwo" || item.type === "flip");
   return (
     <div className="mt-7 flex flex-wrap justify-center gap-5">
-      {lifelineItems.map((item) => (
+      {questionLifelines.map((item) => (
         <button
           key={item.type}
           disabled={!team?.lifelines?.[item.type]}
@@ -462,18 +464,34 @@ function LifelineBar({
 }
 
 function DisplayLifelines({ team, doubleTroubleActive, safeguardActive }: { team?: Team; doubleTroubleActive: boolean; safeguardActive: boolean }) {
+  const groups = [
+    { title: "Lifelines", items: lifelineItems.filter((item) => item.type === "removeTwo" || item.type === "flip") },
+    { title: "Trump cards", items: lifelineItems.filter((item) => item.type === "doubleTrouble" || item.type === "safeguard") },
+  ];
   return (
-    <aside className="display-lifelines" aria-label="Team lifelines">
-      {lifelineItems.map((item) => (
-        <div
-          key={item.type}
-          aria-disabled={!team?.lifelines?.[item.type]}
-          aria-label={item.label}
-          title={item.label}
-          className={`lifeline-circle ${item.type === "doubleTrouble" && doubleTroubleActive ? "is-active" : ""} ${item.type === "safeguard" && safeguardActive ? "is-safeguard-active" : ""}`}
-        >
-          <span className={`lifeline-sprite lifeline-sprite-${item.type}`} aria-hidden="true" />
-        </div>
+    <aside className="display-lifelines" aria-label="Team lifelines and trump cards">
+      {groups.map((group) => (
+        <section className="display-power-group" key={group.title} aria-label={group.title}>
+          <h2>{group.title}</h2>
+          <div className="display-power-items">
+            {group.items.map((item) => {
+              const isTrumpActive =
+                (item.type === "doubleTrouble" && doubleTroubleActive) ||
+                (item.type === "safeguard" && safeguardActive);
+              return (
+                <div
+                  key={item.type}
+                  aria-disabled={!team?.lifelines?.[item.type] && !isTrumpActive}
+                  aria-label={item.label}
+                  title={item.label}
+                  className={`lifeline-circle ${item.type === "doubleTrouble" || item.type === "safeguard" ? `trump-card trump-card-${item.type}` : ""} ${item.type === "doubleTrouble" && doubleTroubleActive ? "is-active" : ""} ${item.type === "safeguard" && safeguardActive ? "is-safeguard-active" : ""}`}
+                >
+                  <span className={`lifeline-sprite lifeline-sprite-${item.type}`} aria-hidden="true" />
+                </div>
+              );
+            })}
+          </div>
+        </section>
       ))}
     </aside>
   );
@@ -576,7 +594,7 @@ function Display({ game }: { game: Game }) {
   if (game.phase === "landing")
     return (
       <main
-        className="landing grid min-h-screen place-items-center overflow-hidden p-12 text-center"
+        className="landing projector-landing grid min-h-screen place-items-center overflow-hidden p-12 text-center"
         style={{
           backgroundImage: `linear-gradient(rgba(3, 8, 18, 0.28), rgba(3, 8, 18, 0.5)), url(${gameshowStage})`,
           backgroundPosition: "center",
@@ -1005,6 +1023,7 @@ function Host({ game }: { game: Game }) {
   )?.logo ?? "";
   const [muted, setMuted] = useState(false);
   const [lifelineToConfirm, setLifelineToConfirm] = useState<keyof Lifelines | null>(null);
+  const [trumpCardToConfirm, setTrumpCardToConfirm] = useState<"none" | "doubleTrouble" | "safeguard" | null>(null);
   const canGoBack = [
     "team-selection",
     "team-members",
@@ -1257,11 +1276,48 @@ function Host({ game }: { game: Game }) {
             Let the team select a numbered tile. The question remains hidden
             until selected.
           </p>
+          <section className="mb-6 rounded-xl border border-gold/70 bg-ink/80 p-4 text-center">
+            <h2 className="text-lg font-black uppercase tracking-wider text-gold">Declare a trump card</h2>
+            <p className="mt-1 text-sm text-slate-300">Choose a card, or declare no trump card, before selecting the question.</p>
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
+              {lifelineItems.filter((item) => item.type === "doubleTrouble" || item.type === "safeguard").map((item) => (
+                <button
+                  key={item.type}
+                  disabled={game.trumpCardDecisionMade || !team?.lifelines?.[item.type]}
+                  onClick={() => setTrumpCardToConfirm(item.type as "doubleTrouble" | "safeguard")}
+                  className={`flex items-center gap-2 ${item.type === "doubleTrouble" ? "bg-red-900" : "bg-cyan-900"}`}
+                >
+                  <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${item.type}`} aria-hidden="true" />
+                  {item.label}
+                </button>
+              ))}
+              <button
+                disabled={game.trumpCardDecisionMade}
+                onClick={() => setTrumpCardToConfirm("none")}
+                className="bg-slate-700"
+              >
+                No trump card
+              </button>
+            </div>
+            {game.trumpCardDecisionMade && <p className="mt-3 font-bold text-gold">{game.doubleTroubleActive ? "Double Trouble declared." : game.safeguardActive ? "Safeguard declared." : "No trump card declared."}</p>}
+            {trumpCardToConfirm && !game.trumpCardDecisionMade && (
+              <div className="mt-4 rounded-lg border border-gold/60 bg-amber-400/15 p-3">
+                <p className="font-black text-gold">{trumpCardToConfirm === "none" ? "Continue without a Trump Card?" : `Declare ${lifelineItems.find((item) => item.type === trumpCardToConfirm)?.label}?`}</p>
+                <div className="mt-3 flex justify-center gap-3">
+                  <button onClick={() => setTrumpCardToConfirm(null)} className="bg-slate-700">Cancel</button>
+                  <button onClick={() => { action("select-trump-card", { type: trumpCardToConfirm }); setTrumpCardToConfirm(null); }} className="inline-flex items-center gap-2 bg-gold text-ink">
+                    {trumpCardToConfirm !== "none" && <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${trumpCardToConfirm}`} aria-hidden="true" />}
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
           <div className="grid grid-cols-5 gap-3 mx-auto max-w-3xl">
             {choices.map((question) => (
               <button
                 key={question.id}
-                disabled={game.usedQuestionIds.includes(question.id)}
+                disabled={!game.trumpCardDecisionMade || game.usedQuestionIds.includes(question.id)}
                 onClick={() => {
                   sounds.startSuspense();
                   action("select-question", { number: question.number });
@@ -1549,7 +1605,7 @@ function GameRules({ onClose }: { onClose: () => void }) {
           <article className="rules-points"><h2>Points & time</h2><div className="rules-score-table"><span>Easy <b>10</b><em>30s / 20s</em></span><span>Medium <b>20</b><em>60s / 40s</em></span><span>Difficult <b>30</b><em>90s / 60s</em></span></div><p>Time shown is first attempt / second attempt.</p></article>
           <article><h2>Attempts</h2><p>There is no negative marking on the first attempt.</p><p>On a wrong second attempt, 10 points are deducted. A team may decline the second attempt to avoid the penalty.</p><p>No first-attempt selection means the question is skipped, with no points gained or lost.</p></article>
           <article className="rules-lifelines"><h2>Lifelines</h2><div className="rules-lifeline-art"><span><i className="lifeline-sprite lifeline-sprite-removeTwo" /><b>Remove 2</b></span><span><i className="lifeline-sprite lifeline-sprite-flip" /><b>Flip</b></span></div><p>Each team has 2 lifelines, usable once each. Remove 2 removes two wrong answers; Flip replaces the question and restarts the first attempt. Both may be used on one question if required.</p></article>
-          <article className="rules-trumps"><h2>Trump cards</h2><div className="rules-trump-art"><span><b>2×</b><em>Double Trouble</em></span><span><b>🛡</b><em>Safeguard</em></span></div><p>Declare a trump card before choosing a question. Double Trouble doubles points and penalties; Safeguard prevents negative marking, even on the second attempt.</p></article>
+          <article className="rules-trumps"><h2>Trump cards</h2><div className="rules-trump-art"><span><i className="lifeline-sprite lifeline-sprite-doubleTrouble" /><b>Double Trouble</b></span><span><i className="lifeline-sprite lifeline-sprite-safeguard" /><b>Safeguard</b></span></div><p>Declare a trump card before choosing a question. Double Trouble doubles points and penalties; Safeguard prevents negative marking, even on the second attempt.</p></article>
           <article><h2>Winning</h2><p>The team with the highest score at the end of the game is declared the winner.</p></article>
         </div>
         <p className="rules-dismiss">Click outside, press Esc, or use × to return to the game.</p>
@@ -1578,7 +1634,15 @@ function App() {
   const showScoreboardLane =
     isDisplay && !isLandingDisplay && !game.timerPaused && !["all-team-members", "game-over"].includes(game.phase);
   const showDisplayLifelines =
-    isDisplay && game.phase === "question" && !game.timerPaused;
+    isDisplay && [
+      "question-selection",
+      "question-transition",
+      "question-prompt",
+      "question",
+      "answer-review",
+      "answer-pending-reveal",
+      "answer-result",
+    ].includes(game.phase) && !game.timerPaused;
   const screen = isDisplay ? <Display game={game} /> : <Host game={game} />;
   return (
     <>

@@ -489,6 +489,7 @@ function createState() {
     answerAttempt: 1,
     fullPointsOverride: false,
     flippedQuestionActive: false,
+    trumpCardDecisionMade: false,
     doubleTroubleActive: false,
     safeguardActive: false,
     lifelineAnimation: null,
@@ -531,6 +532,7 @@ function getState() {
     state.answerAttempt ??= 1;
     state.fullPointsOverride ??= false;
     state.flippedQuestionActive ??= false;
+    state.trumpCardDecisionMade ??= false;
     state.doubleTroubleActive ??= false;
     state.safeguardActive ??= false;
     state.lifelineAnimation ??= null;
@@ -583,6 +585,8 @@ function recordSkippedQuestion(state) {
   state.timerRemainingSeconds = null;
   state.answerRevealed = true;
   state.questionNotice = "Question skipped. No points awarded or deducted.";
+  state.doubleTroubleActive = false;
+  state.safeguardActive = false;
   state.phase = "answer-pending-reveal";
 }
 
@@ -694,11 +698,34 @@ app.post("/api/game/select-category", (req, res) => update((state) => {
 app.post("/api/game/select-difficulty", (req, res) => update((state) => {
   if (!difficulties.includes(req.body.difficulty)) return "Select a valid difficulty.";
   state.selectedDifficulty = req.body.difficulty;
+  state.trumpCardDecisionMade = false;
+  state.doubleTroubleActive = false;
+  state.safeguardActive = false;
   state.phase = "question-selection";
+}, res));
+app.post("/api/game/select-trump-card", (req, res) => update((state) => {
+  const type = req.body.type;
+  const team = state.teams.find((item) => item.id === state.activeTeamId);
+  if (!team || state.phase !== "question-selection") return "Choose a trump card while selecting a question.";
+  if (state.trumpCardDecisionMade) return "A trump card decision has already been made for this question.";
+  if (!["none", "doubleTrouble", "safeguard"].includes(type)) return "Select a valid trump card.";
+  if (type !== "none" && !team.lifelines?.[type]) return "This trump card has already been used by this team.";
+  state.trumpCardDecisionMade = true;
+  if (type === "doubleTrouble") {
+    team.lifelines.doubleTrouble = false;
+    state.doubleTroubleActive = true;
+    triggerLifelineAnimation(state, type);
+  }
+  if (type === "safeguard") {
+    team.lifelines.safeguard = false;
+    state.safeguardActive = true;
+    triggerLifelineAnimation(state, type);
+  }
 }, res));
 app.post("/api/game/select-question", (req, res) => {
   let selectedQuestionId = null;
   update((state) => {
+    if (state.phase !== "question-selection" || !state.trumpCardDecisionMade) return "Declare a trump card decision before selecting a question.";
     const question = state.questionSets[state.selectedCategory]?.[state.selectedDifficulty]?.find((item) => item.number === Number(req.body.number));
     if (!question || state.usedQuestionIds.includes(question.id)) return "That question is unavailable.";
     selectedQuestionId = question.id;
@@ -715,8 +742,6 @@ app.post("/api/game/select-question", (req, res) => {
     state.fullPointsOverride = false;
     // Keep the marker when this selection follows the Flip lifeline.
     state.flippedQuestionActive ??= false;
-    state.doubleTroubleActive = false;
-    state.safeguardActive = false;
     state.questionNotice = null;
     state.phase = "question-transition";
   }, res);
@@ -765,19 +790,13 @@ app.post("/api/game/toggle-clock", (_req, res) => update((state) => {
 app.post("/api/game/use-lifeline", (req, res) => update((state) => {
   const type = req.body.type;
   const team = state.teams.find((item) => item.id === state.activeTeamId);
-  if (!team || !state.currentQuestion || state.phase !== "question" || !["removeTwo", "flip", "doubleTrouble", "safeguard"].includes(type)) return "That lifeline is unavailable right now.";
+  if (!team || !state.currentQuestion || state.phase !== "question" || !["removeTwo", "flip"].includes(type)) return "That lifeline is unavailable right now.";
   if (!team.lifelines?.[type]) return "This lifeline has already been used by this team.";
   team.lifelines[type] = false;
   triggerLifelineAnimation(state, type);
   state.selectedOption = null;
   state.phase = "question";
   if (type === "removeTwo") state.removedOptionIndexes = state.currentQuestion.options.map((_, index) => index).filter((index) => index !== state.currentQuestion.correctOption && !state.disabledOptionIndexes.includes(index)).slice(0, 2);
-  if (type === "doubleTrouble") {
-    state.doubleTroubleActive = true;
-  }
-  if (type === "safeguard") {
-    state.safeguardActive = true;
-  }
   if (type === "flip") {
     const flippedQuestionId = state.currentQuestion.id;
     state.usedQuestionIds = [...new Set([...state.usedQuestionIds, flippedQuestionId])];
@@ -788,6 +807,7 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
     state.disabledOptionIndexes = [];
     state.answerAttempt = 1;
     state.flippedQuestionActive = true;
+    state.trumpCardDecisionMade = false;
     state.doubleTroubleActive = false;
     state.safeguardActive = false;
     state.questionNotice = null;
@@ -867,6 +887,8 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
       : state.doubleTroubleActive
         ? "Double Trouble answer was incorrect. Double points have been deducted."
         : "Second attempt was incorrect. A 10 point penalty has been applied.";
+  state.doubleTroubleActive = false;
+  state.safeguardActive = false;
   if (!correct) state.timerEndsAt = null;
   state.phase = "answer-pending-reveal";
 }, res));
@@ -895,6 +917,7 @@ app.post("/api/game/continue", (_req, res) => update((state) => {
   state.answerAttempt = 1;
   state.fullPointsOverride = false;
   state.flippedQuestionActive = false;
+  state.trumpCardDecisionMade = false;
   state.doubleTroubleActive = false;
   state.safeguardActive = false;
   state.questionNotice = null;
@@ -923,6 +946,13 @@ app.post("/api/game/back", (_req, res) => update((state) => {
     state.phase = "category-selection";
     state.selectedCategory = null;
   } else if (state.phase === "question-selection") {
+    const team = state.teams.find((item) => item.id === state.activeTeamId);
+    // A declared card is not spent until a question has actually been selected.
+    if (team && state.doubleTroubleActive) team.lifelines.doubleTrouble = true;
+    if (team && state.safeguardActive) team.lifelines.safeguard = true;
+    state.trumpCardDecisionMade = false;
+    state.doubleTroubleActive = false;
+    state.safeguardActive = false;
     state.phase = "difficulty-selection";
     state.selectedDifficulty = null;
   } else return "Back navigation is unavailable while a question is in play.";
