@@ -511,13 +511,15 @@ function resultMessage(game: Game) {
 function BrandBanner({
   showGameTitle = true,
   showDhurandhar = true,
+  positionClassName = "",
 }: {
   showGameTitle?: boolean;
   showDhurandhar?: boolean;
+  positionClassName?: string;
 }) {
   const showBanner = showGameTitle || showDhurandhar;
   return (
-    <header className="brand-banner" aria-label="Gloria Ke Sikandar branding">
+    <header className={`brand-banner ${positionClassName}`} aria-label="Gloria Ke Sikandar branding">
       {showBanner && <img className="brand-lion-title" src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />}
     </header>
   );
@@ -1649,6 +1651,15 @@ function App() {
       <BrandBanner
         showGameTitle={!isLandingDisplay}
         showDhurandhar={!isLandingDisplay}
+        positionClassName={
+          showScoreboardLane && showDisplayLifelines
+            ? "brand-banner--scoreboard-lifelines"
+            : showScoreboardLane
+              ? "brand-banner--scoreboard"
+              : showDisplayLifelines
+                ? "brand-banner--lifelines"
+                : ""
+        }
       />
       {!isLandingDisplay && game.phase !== "game-over" && (
         <button className="rules-trigger" type="button" onClick={() => setRulesOpen(true)} aria-haspopup="dialog" aria-label="Show game rules">

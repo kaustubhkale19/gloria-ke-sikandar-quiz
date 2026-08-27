@@ -19,6 +19,23 @@ button {
     pointer-events: none;
 }
 
+/* Keep the programme title on the same centre line as the playable stage.
+   The side lanes are deliberately asymmetric, so viewport centring is wrong. */
+.brand-banner--scoreboard-lifelines {
+    left: 10vw;
+    right: 20vw;
+}
+
+.brand-banner--scoreboard {
+    left: 10rem;
+    right: 20vw;
+}
+
+.brand-banner--lifelines {
+    left: 10vw;
+    right: 4rem;
+}
+
 .brand-lion-title { width: clamp(16rem, 38vw, 34rem); max-height: 8.25rem; object-fit: contain; filter: drop-shadow(0 .2rem .35rem rgba(0, 0, 0, .8)); }
 
 .screen-content>main {
