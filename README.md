@@ -88,3 +88,8 @@ The points details should be displayed in a separate section with points as coin
 43. Add difficulty star on question number selection page as well - Done
 44. used lifeline disable style is not clearly visible - Done
 46. In team points box, show number of attempted categories in bracket - Done
+47. If correct option is selected, ponits being awarded before clicking 'Reveal Correct Answer' button. Award points only after revealing correct answer.
+48. Rules not opening on Audience console when Rules button is clicked on host console. To open rules on audience console, rules button on audience screen needs to be clicked. 
+49. Sync Rules popop window open/close on host and audience console.
+50. On host console - Do not ask for Trump card selection if both Trump cards are used by a team. Just show that trump cards are used.
+51. On clicking lifeline, should we pause the clock till lifelife is confirmed?
