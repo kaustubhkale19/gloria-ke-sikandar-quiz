@@ -16,6 +16,7 @@ type Question = {
 };
 type Lifelines = { removeTwo: boolean; flip: boolean; doubleTrouble: boolean; safeguard: boolean };
 type LifelineAnimation = { type: keyof Lifelines; token: number };
+type LifelineConfirmation = { type: "removeTwo" | "flip"; resumeClock: boolean };
 type Team = {
   id: string;
   name: string;
@@ -36,6 +37,7 @@ type Attempt = {
   skipped?: boolean;
   answerAttempt?: number;
 };
+type PendingAnswer = Attempt;
 type CardDetail = {
   logo: string;
   name: string;
@@ -66,6 +68,7 @@ type Game = {
   currentQuestion: Question | null;
   selectedOption: number | null;
   answerRevealed: boolean;
+  pendingAnswer: PendingAnswer | null;
   usedQuestionIds: string[];
   attempts: Attempt[];
   timerEndsAt: number | null;
@@ -79,7 +82,9 @@ type Game = {
   doubleTroubleActive: boolean;
   safeguardActive: boolean;
   lifelineAnimation: LifelineAnimation | null;
+  lifelineConfirmation: LifelineConfirmation | null;
   questionNotice: string | null;
+  rulesOpen: boolean;
 };
 
 const API = "http://localhost:3000/api/game";
@@ -576,7 +581,9 @@ function Display({ game }: { game: Game }) {
       </main>
     );
   }
-  if (game.timerPaused && game.phase === "question")
+  // A lifeline confirmation pauses the clock, but the projector should stay
+  // on the question rather than showing the manual-pause interruption screen.
+  if (game.timerPaused && game.phase === "question" && !game.lifelineConfirmation)
     return (
       <main
         className="landing grid min-h-screen place-items-center overflow-hidden p-12 text-center"
@@ -835,7 +842,7 @@ function Display({ game }: { game: Game }) {
                 <div
                   key={option}
                   aria-disabled={removed || (timerExpired && !game.fullPointsOverride)}
-                  className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${(timerExpired && !game.fullPointsOverride) || removed
+                  className={`option-reveal ${result && correct ? "cinematic-correct-reveal" : ""} ${result && wrong ? "cinematic-wrong-reveal" : ""} rounded-2xl border-2 p-6 text-2xl font-bold ${(timerExpired && !game.fullPointsOverride) || removed
                       ? "border-slate-700 bg-slate-950 text-slate-500"
                       : correct
                         ? "border-emerald-400 bg-emerald-500/20"
@@ -882,7 +889,7 @@ function Display({ game }: { game: Game }) {
               <div
                 key={option}
                 aria-disabled={timerExpired && !game.fullPointsOverride}
-                className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${timerExpired && !game.fullPointsOverride
+                className={`option-reveal ${result && correct ? "cinematic-correct-reveal" : ""} ${result && wrong ? "cinematic-wrong-reveal" : ""} rounded-2xl border-2 p-6 text-2xl font-bold ${timerExpired && !game.fullPointsOverride
                     ? "border-slate-700 bg-slate-950 text-slate-500"
                     : correct
                     ? "border-emerald-400 bg-emerald-500/20"
@@ -907,7 +914,7 @@ function Display({ game }: { game: Game }) {
           safeguardActive={game.safeguardActive}
         />
         {result && (
-          <p className="mt-8 text-center text-3xl font-black text-gold">
+            <p className="cinematic-result mt-8 text-center text-3xl font-black text-gold">
             {resultMessage(game)}
           </p>
         )}
@@ -932,7 +939,7 @@ function Display({ game }: { game: Game }) {
             return (
               <div
                 key={option}
-                className={`option-reveal rounded-2xl border-2 p-6 text-2xl font-bold ${correct
+                className={`option-reveal ${result && correct ? "cinematic-correct-reveal" : ""} ${result && wrong ? "cinematic-wrong-reveal" : ""} rounded-2xl border-2 p-6 text-2xl font-bold ${correct
                     ? "border-emerald-400 bg-emerald-500/20"
                     : wrong
                       ? "border-rose-400 bg-rose-500/20"
@@ -949,7 +956,7 @@ function Display({ game }: { game: Game }) {
           })}
         </div>
         {result && (
-          <p className="mt-8 text-center text-3xl font-black text-gold">
+            <p className="cinematic-result mt-8 text-center text-3xl font-black text-gold">
             {resultMessage(game)}
           </p>
         )}
@@ -1023,8 +1030,11 @@ function Host({ game }: { game: Game }) {
   const selectedDifficultyIcon = game.rules.difficultyDetails.find(
     (item) => item.id === game.selectedDifficulty
   )?.logo ?? "";
+  const allTrumpCardsUsed = Boolean(
+    team && !team.lifelines.doubleTrouble && !team.lifelines.safeguard
+  );
   const [muted, setMuted] = useState(false);
-  const [lifelineToConfirm, setLifelineToConfirm] = useState<keyof Lifelines | null>(null);
+  const lifelineToConfirm = game.lifelineConfirmation?.type ?? null;
   const [trumpCardToConfirm, setTrumpCardToConfirm] = useState<"none" | "doubleTrouble" | "safeguard" | null>(null);
   const canGoBack = [
     "team-selection",
@@ -1279,30 +1289,30 @@ function Host({ game }: { game: Game }) {
             until selected.
           </p>
           <section className="mb-6 rounded-xl border border-gold/70 bg-ink/80 p-4 text-center">
-            <h2 className="text-lg font-black uppercase tracking-wider text-gold">Declare a trump card</h2>
-            <p className="mt-1 text-sm text-slate-300">Choose a card, or declare no trump card, before selecting the question.</p>
-            <div className="mt-4 flex flex-wrap justify-center gap-3">
-              {lifelineItems.filter((item) => item.type === "doubleTrouble" || item.type === "safeguard").map((item) => (
-                <button
-                  key={item.type}
-                  disabled={game.trumpCardDecisionMade || !team?.lifelines?.[item.type]}
-                  onClick={() => setTrumpCardToConfirm(item.type as "doubleTrouble" | "safeguard")}
-                  className={`flex items-center gap-2 ${item.type === "doubleTrouble" ? "bg-red-900" : "bg-cyan-900"}`}
-                >
-                  <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${item.type}`} aria-hidden="true" />
-                  {item.label}
-                </button>
-              ))}
-              <button
-                disabled={game.trumpCardDecisionMade}
-                onClick={() => setTrumpCardToConfirm("none")}
-                className="bg-slate-700"
-              >
-                No trump card
-              </button>
-            </div>
-            {game.trumpCardDecisionMade && <p className="mt-3 font-bold text-gold">{game.doubleTroubleActive ? "Double Trouble declared." : game.safeguardActive ? "Safeguard declared." : "No trump card declared."}</p>}
-            {trumpCardToConfirm && !game.trumpCardDecisionMade && (
+            {allTrumpCardsUsed ? (
+              <>
+                <h2 className="text-lg font-black uppercase tracking-wider text-gold">Trump cards used</h2>
+                <p className="mt-1 text-sm text-slate-300">Double Trouble and Safeguard have both been used. Select a question to continue.</p>
+              </>
+            ) : <>
+              <h2 className="text-lg font-black uppercase tracking-wider text-gold">Declare a trump card</h2>
+              <p className="mt-1 text-sm text-slate-300">Choose a card, or declare no trump card, before selecting the question.</p>
+              <div className="mt-4 flex flex-wrap justify-center gap-3">
+                {lifelineItems.filter((item) => item.type === "doubleTrouble" || item.type === "safeguard").map((item) => (
+                  <button
+                    key={item.type}
+                    disabled={game.trumpCardDecisionMade || !team?.lifelines?.[item.type]}
+                    onClick={() => setTrumpCardToConfirm(item.type as "doubleTrouble" | "safeguard")}
+                    className={`flex items-center gap-2 ${item.type === "doubleTrouble" ? "bg-red-900" : "bg-cyan-900"}`}
+                  >
+                    <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${item.type}`} aria-hidden="true" />
+                    {item.label}
+                  </button>
+                ))}
+                <button disabled={game.trumpCardDecisionMade} onClick={() => setTrumpCardToConfirm("none")} className="bg-slate-700">No trump card</button>
+              </div>
+              {game.trumpCardDecisionMade && <p className="mt-3 font-bold text-gold">{game.doubleTroubleActive ? "Double Trouble declared." : game.safeguardActive ? "Safeguard declared." : "No trump card declared."}</p>}
+              {trumpCardToConfirm && !game.trumpCardDecisionMade && (
               <div className="mt-4 rounded-lg border border-gold/60 bg-amber-400/15 p-3">
                 <p className="font-black text-gold">{trumpCardToConfirm === "none" ? "Continue without a Trump Card?" : `Declare ${lifelineItems.find((item) => item.type === trumpCardToConfirm)?.label}?`}</p>
                 <div className="mt-3 flex justify-center gap-3">
@@ -1314,12 +1324,13 @@ function Host({ game }: { game: Game }) {
                 </div>
               </div>
             )}
+            </>}
           </section>
           <div className="grid grid-cols-5 gap-3 mx-auto max-w-3xl">
             {choices.map((question) => (
               <button
                 key={question.id}
-                disabled={!game.trumpCardDecisionMade || game.usedQuestionIds.includes(question.id)}
+                disabled={(!game.trumpCardDecisionMade && !allTrumpCardsUsed) || game.usedQuestionIds.includes(question.id)}
                 onClick={() => {
                   sounds.startSuspense();
                   action("select-question", { number: question.number });
@@ -1437,7 +1448,7 @@ function Host({ game }: { game: Game }) {
           </div>
           <LifelineBar
             team={team}
-            onUse={setLifelineToConfirm}
+            onUse={(type) => action("begin-lifeline-confirmation", { type })}
             doubleTroubleActive={game.doubleTroubleActive}
             safeguardActive={game.safeguardActive}
           />
@@ -1448,8 +1459,8 @@ function Host({ game }: { game: Game }) {
                 <p className="text-xl font-black text-gold">Use {lifeline.label}?</p>
                 <p className="mt-2 text-slate-200">This lifeline can only be used once by this team.</p>
                 <div className="mt-4 flex justify-center gap-3">
-                  <button onClick={() => setLifelineToConfirm(null)} className="bg-slate-700">Cancel</button>
-                  <button onClick={() => { action("use-lifeline", { type: lifelineToConfirm }); setLifelineToConfirm(null); }} className="bg-gold text-ink">Confirm lifeline</button>
+                  <button onClick={() => action("cancel-lifeline-confirmation")} className="bg-slate-700">Cancel</button>
+                  <button onClick={() => action("use-lifeline", { type: lifelineToConfirm })} className="bg-gold text-ink">Confirm lifeline</button>
                 </div>
               </div>
             );
@@ -1618,7 +1629,6 @@ function GameRules({ onClose }: { onClose: () => void }) {
 
 function App() {
   const game = useGame();
-  const [rulesOpen, setRulesOpen] = useState(false);
   if (!game)
     return (
       <>
@@ -1662,7 +1672,7 @@ function App() {
         }
       />
       {!isLandingDisplay && game.phase !== "game-over" && (
-        <button className="rules-trigger" type="button" onClick={() => setRulesOpen(true)} aria-haspopup="dialog" aria-label="Show game rules">
+        <button className="rules-trigger" type="button" onClick={() => action("set-rules-open", { open: true })} aria-haspopup="dialog" aria-label="Show game rules">
           <span aria-hidden="true">?</span><span>Rules</span>
         </button>
       )}
@@ -1673,7 +1683,7 @@ function App() {
       >
         {screen}
       </div>
-      {rulesOpen && <GameRules onClose={() => setRulesOpen(false)} />}
+      {game.rulesOpen && <GameRules onClose={() => action("set-rules-open", { open: false })} />}
     </>
   );
 }

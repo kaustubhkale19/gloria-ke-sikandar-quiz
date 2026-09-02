@@ -1183,6 +1183,53 @@ button {
     animation: optionReveal .38s ease-out both;
 }
 
+.cinematic-correct-reveal {
+    position: relative;
+    overflow: hidden;
+    animation: cinematicCorrect 1.35s cubic-bezier(.18, .85, .25, 1) both;
+    box-shadow: 0 0 0 .15rem rgba(255, 255, 255, .5), 0 0 2.8rem .8rem rgba(74, 222, 128, .62);
+}
+
+.cinematic-correct-reveal::after {
+    position: absolute;
+    inset: -35% -20%;
+    background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,.92) 50%, transparent 62%);
+    content: "";
+    animation: answerShimmer 1.15s ease-out .18s both;
+    pointer-events: none;
+}
+
+.cinematic-wrong-reveal {
+    animation: cinematicWrong .7s ease-out both;
+}
+
+.cinematic-result {
+    animation: resultStamp .75s cubic-bezier(.18, .9, .28, 1.25) .48s both;
+    text-shadow: 0 0 .75rem rgba(250, 204, 21, .72);
+}
+
+@keyframes cinematicCorrect {
+    0% { transform: scale(.84); filter: brightness(2.6); }
+    45% { transform: scale(1.065); filter: brightness(1.5); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+@keyframes answerShimmer {
+    from { transform: translateX(-125%) skewX(-18deg); }
+    to { transform: translateX(125%) skewX(-18deg); }
+}
+
+@keyframes cinematicWrong {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-1rem); }
+    55% { transform: translateX(.8rem); }
+}
+
+@keyframes resultStamp {
+    from { opacity: 0; transform: translateY(1rem) scale(.6); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 .question-reveal .grid.grid-cols-2> :nth-child(5) {
     grid-column: 1 / -1;
     width: calc((100% - 1.25rem) / 2);

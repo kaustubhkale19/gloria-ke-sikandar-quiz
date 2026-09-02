@@ -479,6 +479,7 @@ function createState() {
     currentQuestion: null,
     selectedOption: null,
     answerRevealed: false,
+    pendingAnswer: null,
     usedQuestionIds: [],
     attempts: [],
     timerEndsAt: null,
@@ -493,7 +494,9 @@ function createState() {
     doubleTroubleActive: false,
     safeguardActive: false,
     lifelineAnimation: null,
+    lifelineConfirmation: null,
     questionNotice: null,
+    rulesOpen: false,
   };
 }
 
@@ -536,7 +539,10 @@ function getState() {
     state.doubleTroubleActive ??= false;
     state.safeguardActive ??= false;
     state.lifelineAnimation ??= null;
+    state.lifelineConfirmation ??= null;
     state.questionNotice ??= null;
+    state.pendingAnswer ??= null;
+    state.rulesOpen ??= false;
     return state;
   }
   const state = createState();
@@ -648,6 +654,10 @@ app.get("/api/game", (_req, res) => res.json(getState()));
 app.post("/api/game/start", (_req, res) => update((state) => {
   state.phase = "team-selection";
 }, res));
+app.post("/api/game/set-rules-open", (req, res) => update((state) => {
+  if (typeof req.body.open !== "boolean") return "Provide whether the rules should be open.";
+  state.rulesOpen = req.body.open;
+}, res));
 app.post("/api/game/end-game", (_req, res) => update((state) => {
   if (state.phase === "landing") return "Start the game before ending it.";
   state.phase = "game-over";
@@ -663,6 +673,7 @@ app.post("/api/game/end-game", (_req, res) => update((state) => {
   state.removedOptionIndexes = [];
   state.disabledOptionIndexes = [];
   state.questionNotice = null;
+  state.rulesOpen = false;
 }, res));
 app.post("/api/game/reveal-team-members", (req, res) => update((state) => {
   const team = state.teams.find((item) => item.id === req.body.teamId);
@@ -697,8 +708,10 @@ app.post("/api/game/select-category", (req, res) => update((state) => {
 }, res));
 app.post("/api/game/select-difficulty", (req, res) => update((state) => {
   if (!difficulties.includes(req.body.difficulty)) return "Select a valid difficulty.";
+  const team = state.teams.find((item) => item.id === state.activeTeamId);
   state.selectedDifficulty = req.body.difficulty;
-  state.trumpCardDecisionMade = false;
+  // With no trump cards left, there is nothing for the host to decide.
+  state.trumpCardDecisionMade = Boolean(team && !team.lifelines?.doubleTrouble && !team.lifelines?.safeguard);
   state.doubleTroubleActive = false;
   state.safeguardActive = false;
   state.phase = "question-selection";
@@ -725,7 +738,10 @@ app.post("/api/game/select-trump-card", (req, res) => update((state) => {
 app.post("/api/game/select-question", (req, res) => {
   let selectedQuestionId = null;
   update((state) => {
-    if (state.phase !== "question-selection" || !state.trumpCardDecisionMade) return "Declare a trump card decision before selecting a question.";
+    const team = state.teams.find((item) => item.id === state.activeTeamId);
+    const allTrumpCardsUsed = team && !team.lifelines?.doubleTrouble && !team.lifelines?.safeguard;
+    if (state.phase !== "question-selection" || (!state.trumpCardDecisionMade && !allTrumpCardsUsed)) return "Declare a trump card decision before selecting a question.";
+    if (allTrumpCardsUsed) state.trumpCardDecisionMade = true;
     const question = state.questionSets[state.selectedCategory]?.[state.selectedDifficulty]?.find((item) => item.number === Number(req.body.number));
     if (!question || state.usedQuestionIds.includes(question.id)) return "That question is unavailable.";
     selectedQuestionId = question.id;
@@ -733,6 +749,8 @@ app.post("/api/game/select-question", (req, res) => {
     state.usedQuestionIds.push(question.id);
     state.selectedOption = null;
     state.answerRevealed = false;
+    state.pendingAnswer = null;
+    state.lifelineConfirmation = null;
     state.timerEndsAt = null;
     state.timerPaused = false;
     state.timerRemainingSeconds = null;
@@ -787,16 +805,44 @@ app.post("/api/game/toggle-clock", (_req, res) => update((state) => {
     state.timerPaused = false;
   } else pauseClock(state);
 }, res));
+app.post("/api/game/begin-lifeline-confirmation", (req, res) => update((state) => {
+  const type = req.body.type;
+  const team = state.teams.find((item) => item.id === state.activeTeamId);
+  if (!team || !state.currentQuestion || state.phase !== "question" || !["removeTwo", "flip"].includes(type)) return "That lifeline is unavailable right now.";
+  if (!team.lifelines?.[type]) return "This lifeline has already been used by this team.";
+  if (state.lifelineConfirmation) return "A lifeline is already waiting for confirmation.";
+  const resumeClock = Boolean(state.timerEndsAt && state.timerEndsAt > Date.now());
+  if (resumeClock) pauseClock(state);
+  state.lifelineConfirmation = { type, resumeClock };
+}, res));
+app.post("/api/game/cancel-lifeline-confirmation", (_req, res) => update((state) => {
+  const confirmation = state.lifelineConfirmation;
+  if (!confirmation) return "There is no lifeline waiting for confirmation.";
+  state.lifelineConfirmation = null;
+  if (confirmation.resumeClock && state.currentQuestion && state.phase === "question") {
+    startClock(state, state.timerRemainingSeconds ?? questionTimerSeconds(state));
+    state.timerRemainingSeconds = null;
+    state.timerPaused = false;
+  }
+}, res));
 app.post("/api/game/use-lifeline", (req, res) => update((state) => {
   const type = req.body.type;
   const team = state.teams.find((item) => item.id === state.activeTeamId);
   if (!team || !state.currentQuestion || state.phase !== "question" || !["removeTwo", "flip"].includes(type)) return "That lifeline is unavailable right now.";
   if (!team.lifelines?.[type]) return "This lifeline has already been used by this team.";
+  const confirmation = state.lifelineConfirmation;
+  if (!confirmation || confirmation.type !== type) return "Confirm the selected lifeline before using it.";
   team.lifelines[type] = false;
+  state.lifelineConfirmation = null;
   triggerLifelineAnimation(state, type);
   state.selectedOption = null;
   state.phase = "question";
   if (type === "removeTwo") state.removedOptionIndexes = state.currentQuestion.options.map((_, index) => index).filter((index) => index !== state.currentQuestion.correctOption && !state.disabledOptionIndexes.includes(index)).slice(0, 2);
+  if (type === "removeTwo" && confirmation.resumeClock) {
+    startClock(state, state.timerRemainingSeconds ?? questionTimerSeconds(state));
+    state.timerRemainingSeconds = null;
+    state.timerPaused = false;
+  }
   if (type === "flip") {
     const flippedQuestionId = state.currentQuestion.id;
     state.usedQuestionIds = [...new Set([...state.usedQuestionIds, flippedQuestionId])];
@@ -814,6 +860,7 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
     state.timerPaused = false;
     state.timerRemainingSeconds = null;
     state.timerEndsAt = null;
+    state.lifelineConfirmation = null;
     state.phase = "question-selection";
   }
 }, res));
@@ -863,14 +910,15 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
       : state.doubleTroubleActive
         ? -difficultyPoints * 2
         : -state.rules.incorrectPenalty;
-  team.score += points;
   if (correct) {
     // Freeze the clock exactly when the host confirms a correct answer.
     state.timerRemainingSeconds = remainingSeconds;
     state.timerEndsAt = null;
     state.timerPaused = true;
   }
-  state.attempts.push({
+  // Keep the outcome sealed until the host reveals it.  This prevents the
+  // audience scoreboard from changing before the on-screen reveal.
+  state.pendingAnswer = {
     teamId: team.id,
     category: state.selectedCategory,
     difficulty: state.selectedDifficulty,
@@ -878,7 +926,7 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
     correct,
     points,
     answerAttempt: state.answerAttempt
-  });
+  };
   state.answerRevealed = true;
   state.questionNotice = correct
     ? null
@@ -894,6 +942,14 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
 }, res));
 app.post("/api/game/reveal-answer", (_req, res) => update((state) => {
   if (!state.currentQuestion || state.phase !== "answer-pending-reveal") return "There is no answer waiting to be revealed.";
+  const pendingAnswer = state.pendingAnswer;
+  if (pendingAnswer) {
+    const team = state.teams.find((item) => item.id === pendingAnswer.teamId);
+    if (!team) return "No active team.";
+    team.score += pendingAnswer.points;
+    state.attempts.push(pendingAnswer);
+    state.pendingAnswer = null;
+  }
   state.phase = "answer-result";
 }, res));
 app.post("/api/game/toggle-full-points-override", (_req, res) => update((state) => {
@@ -909,6 +965,8 @@ app.post("/api/game/continue", (_req, res) => update((state) => {
   state.currentQuestion = null;
   state.selectedOption = null;
   state.answerRevealed = false;
+  state.pendingAnswer = null;
+  state.lifelineConfirmation = null;
   state.timerEndsAt = null;
   state.timerPaused = false;
   state.timerRemainingSeconds = null;
