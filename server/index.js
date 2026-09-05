@@ -855,7 +855,8 @@ app.post("/api/game/use-lifeline", (req, res) => update((state) => {
     state.flippedQuestionActive = true;
     state.trumpCardDecisionMade = false;
     state.doubleTroubleActive = false;
-    state.safeguardActive = false;
+    // Safeguard is declared for the question selection and must continue to
+    // protect the replacement question when Flip is used.
     state.questionNotice = null;
     state.timerPaused = false;
     state.timerRemainingSeconds = null;
