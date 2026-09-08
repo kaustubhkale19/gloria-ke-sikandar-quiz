@@ -39,22 +39,58 @@ button {
 .brand-lion-title { width: clamp(16rem, 38vw, 34rem); max-height: 8.25rem; object-fit: contain; filter: drop-shadow(0 .2rem .35rem rgba(0, 0, 0, .8)); }
 
 .screen-content>main {
+    box-sizing: border-box;
+    /* Let the question layout respond to the usable centre lane, rather than
+       the full viewport (the side panels are fixed on larger screens). */
+    container-type: inline-size;
     padding: 10rem 10rem 0 10rem!important;
 }
 
 .screen-content.has-scoreboard.has-lifelines>main {
-    /* Reserve 10% left and 20% right, leaving 70% for main content. */
+    /* Reserve both side lanes plus a visible breathing gap before the cards. */
     padding-left: 10vw !important;
-    padding-right: 20vw !important;
+    padding-right: calc(20vw + clamp(1.5rem, 2vw, 3rem)) !important;
 }
 
 .screen-content.has-scoreboard:not(.has-lifelines)>main {
-    padding-right: 20vw !important;
+    /* The score lane begins at 80vw.  Keep the centre panel away from it,
+       rather than having answer tiles finish on the lane boundary. */
+    padding-right: calc(20vw + clamp(1.5rem, 2vw, 3rem)) !important;
 }
 
 .screen-content.has-lifelines:not(.has-scoreboard)>main {
     padding-left: 10vw !important;
     padding-right: 4rem !important;
+}
+
+/* Question content must stay inside the centre lane.  In particular, a grid
+   track's default `min-width: auto` can allow a long answer to widen the grid
+   beneath the fixed lifeline or score panels. */
+.question-reveal {
+    width: 100%;
+    min-width: 0;
+}
+
+.question-reveal h2,
+.question-reveal .option-reveal {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.question-reveal > .grid {
+    min-width: 0;
+}
+
+.question-reveal > .grid.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* When the reserved side lanes make the centre panel narrow, stack answers
+   in normal document flow instead of allowing two columns to collide. */
+@container (max-width: 48rem) {
+    .question-reveal > .grid.grid-cols-2 {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 .host {
@@ -472,7 +508,7 @@ button {
 .score-team-name {
     overflow: hidden;
     color: #e2e8f0;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.15;
     text-overflow: ellipsis;
@@ -480,7 +516,7 @@ button {
 }
 
 .score-team-points {
-    font-size: 2.35rem;
+    font-size: 2.7rem;
     font-weight: 900;
     line-height: 1;
 }
@@ -494,7 +530,7 @@ button {
     padding-top: .7rem;
     border-top: 1px solid rgba(148, 163, 184, .35);
     color: #cbd5e1;
-    font-size: .73rem;
+    font-size: .85rem;
     font-weight: 700;
     letter-spacing: .02em;
     line-height: 1;
@@ -508,7 +544,7 @@ button {
 }
 
 .score-category-count {
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .score-levels {
