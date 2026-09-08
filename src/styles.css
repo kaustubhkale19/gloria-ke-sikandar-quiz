@@ -192,8 +192,9 @@ button {
     font-weight: 900;
 }
 
-.team-roster-card h3 span {
-    font-size: 1.2em;
+.team-roster-logo {
+    width: 1.2em;
+    height: 1.2em;
 }
 
 .team-roster-members {
@@ -349,8 +350,9 @@ button {
 
 .finale-winner-logo {
     display: block;
-    font-size: clamp(4.5rem, 8vw, 7rem);
-    line-height: 1;
+    width: clamp(4.5rem, 8vw, 7rem);
+    height: clamp(4.5rem, 8vw, 7rem);
+    margin: 0 auto;
 }
 
 .finale-winner h1 {
@@ -411,7 +413,7 @@ button {
 }
 
 .final-standing-rank { font-weight: 900; }
-.final-standing-logo { font-size: 1.7em; }
+.final-standing-logo { width: 1.7em; height: 1.7em; }
 .final-standing-team { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 800; }
 .final-standing strong { font-weight: 900; }
 .final-standing small { font-size: .6em; }
@@ -501,8 +503,14 @@ button {
 }
 
 .score-team-icon {
-    font-size: 2rem;
-    line-height: 1;
+    width: 2.8rem;
+    height: 2.8rem;
+    object-fit: contain;
+}
+
+.team-icon {
+    display: inline-block;
+    object-fit: contain;
 }
 
 .score-team-name {

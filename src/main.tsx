@@ -102,6 +102,12 @@ const teamBackdrops: Record<string, string> = {
   cia: `${ASSETS}/team-cia.png`,
   mossad: `${ASSETS}/team-mossad.png`,
 };
+const teamIcons: Record<string, string> = {
+  raw: `${ASSETS}/team-icons/raw-eagle.png`,
+  kgb: `${ASSETS}/team-icons/kgb-raven.png`,
+  cia: `${ASSETS}/team-icons/cia-owl.png`,
+  mossad: `${ASSETS}/team-icons/mossad-lion.png`,
+};
 const difficultyThemes: Record<Difficulty, { overlay: string; cardBackground: string; border: string }> = {
   easy: { overlay: "rgba(21, 128, 61, .42)", cardBackground: "linear-gradient(145deg, rgba(22, 163, 74, .42), rgba(5, 46, 22, .88))", border: "#4ade80" },
   medium: { overlay: "rgba(21, 94, 117, .44)", cardBackground: "linear-gradient(145deg, rgba(14, 116, 144, .48), rgba(8, 47, 73, .9))", border: "#22d3ee" },
@@ -362,6 +368,12 @@ function questionTimerSeconds(game: Game) {
   return game.rules.timerSecondsByDifficulty[difficulty][game.answerAttempt === 2 ? "second" : "first"];
 }
 
+function TeamIcon({ team, className = "" }: { team: Team; className?: string }) {
+  const source = teamIcons[team.id];
+  if (!source) return <span className={className} aria-hidden="true">{team.logo}</span>;
+  return <img className={`team-icon ${className}`} src={source} alt="" aria-hidden="true" />;
+}
+
 function Scoreboard({ game }: { game: Game }) {
   return (
     <div className="scoreboard">
@@ -374,9 +386,9 @@ function Scoreboard({ game }: { game: Game }) {
                 ? "border-gold bg-ink/95 ring-2 ring-gold/50"
                 : "border-slate-600 bg-ink/80"
               }`}
-          >
+            >
             <div className="score-card-heading">
-              <span className="score-team-icon" aria-hidden="true">{team.logo}</span>
+              <TeamIcon team={team} className="score-team-icon" />
               <span className="score-team-name" title={team.name}>{team.name}</span>
               <span className={`score-team-points ${team.id === game.activeTeamId ? "text-gold" : "text-slate-200"}`}>
                 {team.score}
@@ -562,7 +574,7 @@ function Display({ game }: { game: Game }) {
           <p className="finale-kicker">The final scores are in</p>
           <p className="finale-announcement">And the winner is</p>
           <div className="finale-winner">
-            <span className="finale-winner-logo" aria-hidden="true">{winner.logo}</span>
+            <TeamIcon team={winner} className="finale-winner-logo" />
             <h1>{winner.name}</h1>
             <p>{winner.score} points</p>
           </div>
@@ -571,7 +583,7 @@ function Display({ game }: { game: Game }) {
             {finalStandings.map((item, index) => (
               <div key={item.id} className={`final-standing ${index === 0 ? "is-winner" : ""}`}>
                 <span className="final-standing-rank">{index + 1}</span>
-                <span className="final-standing-logo" aria-hidden="true">{item.logo}</span>
+                <TeamIcon team={item} className="final-standing-logo" />
                 <span className="final-standing-team">{item.name}</span>
                 <strong>{item.score} <small>pts</small></strong>
               </div>
@@ -640,7 +652,7 @@ function Display({ game }: { game: Game }) {
         <section className="team-members-reveal mx-auto max-w-6xl text-center">
           <p className="mb-3 text-xl font-bold uppercase tracking-[.3em] text-gold">Meet the team</p>
           <div className="mb-9 flex items-center justify-center gap-4">
-            <span className="text-6xl" aria-hidden="true">{rosterTeam.logo}</span>
+            <TeamIcon team={rosterTeam} className="h-16 w-16" />
             <h2 className="text-6xl font-black">{rosterTeam.name}</h2>
           </div>
           {rosterTeam.members.length ? (
@@ -672,7 +684,7 @@ function Display({ game }: { game: Game }) {
           <div className="team-rosters-column">
             {game.teams.map((item) => (
               <article key={item.id} className="team-roster-card">
-                <h3><span aria-hidden="true">{item.logo}</span>{item.name}</h3>
+                <h3><TeamIcon team={item} className="team-roster-logo" />{item.name}</h3>
                 {item.members.length ? (
                   <div className="team-roster-members">
                     {item.members.map((member) => <div key={member}>{member}</div>)}
@@ -750,6 +762,9 @@ function Display({ game }: { game: Game }) {
                   game.phase === "team-selection" && card.id
                     ? teamBackdrops[card.id]
                     : undefined;
+                const teamCard = game.phase === "team-selection"
+                  ? game.teams.find((item) => item.id === card.id)
+                  : undefined;
                 return (
                   <div
                     key={card.name}
@@ -772,7 +787,9 @@ function Display({ game }: { game: Game }) {
                         : "border-slate-600 bg-panel"
                       } ${game.phase === "team-selection" ? "projector-team-card" : ""}`}
                   >
-                    <div className={`mb-3 ${game.phase === "team-selection" ? "text-7xl" : "text-5xl"}`}>{card.logo}</div>
+                    <div className={`mb-3 ${game.phase === "team-selection" ? "h-24" : "text-5xl"}`}>
+                      {teamCard ? <TeamIcon team={teamCard} className="h-full w-full" /> : card.logo}
+                    </div>
                     <h3 className={game.phase === "team-selection" ? "text-4xl font-black" : "text-2xl font-black"}>{card.name}</h3>
                     <p className={`mt-2 text-slate-300 ${game.phase === "team-selection" ? "text-xl" : ""}`}>
                       {locked ? "Completed by this team" : card.description}
@@ -1120,13 +1137,14 @@ function Host({ game }: { game: Game }) {
         {title}
         <Panel title="Finale is live on the projector">
           <p className="mb-6 text-xl text-gold">
-            {winner.logo} {winner.name} wins with {winner.score} points.
+            <TeamIcon team={winner} className="mr-2 h-7 w-7 align-middle" />
+            {winner.name} wins with {winner.score} points.
           </p>
           <div className="grid gap-3">
             {finalStandings.map((item, index) => (
               <div key={item.id} className="flex items-center gap-4 rounded-xl bg-slate-800/80 px-5 py-4">
                 <strong className="w-7 text-gold">{index + 1}</strong>
-                <span className="text-2xl" aria-hidden="true">{item.logo}</span>
+                <TeamIcon team={item} className="h-9 w-9" />
                 <span className="flex-1 text-xl font-bold">{item.name}</span>
                 <strong className="text-gold">{item.score} pts</strong>
               </div>
@@ -1164,7 +1182,7 @@ function Host({ game }: { game: Game }) {
                   className="team-selection-host-card"
                 >
                   <button disabled={done} onClick={() => action("select-team", { teamId: item.id })} className="team-selection-host-main">
-                    <span className="shrink-0 text-5xl">{item.logo}</span>
+                    <TeamIcon team={item} className="h-14 w-14 shrink-0" />
                     <span className="min-w-0 flex-1 text-3xl font-black">
                       {item.name}
                       <small className="mt-2 block text-lg font-medium text-slate-200">{item.description}</small>
