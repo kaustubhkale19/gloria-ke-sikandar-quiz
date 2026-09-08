@@ -1,12 +1,12 @@
 category,difficulty,question,option_a,option_b,option_c,option_d,option_e,correct_option
-Sports,easy,Which nation won 1996 cricket ODI worldcup?,Australi,West Indies,Sri Lanka,Pakistan,England,3
+Sports,easy,Which nation won 1996 cricket ODI world cup?,Australia,West Indies,Sri Lanka,Pakistan,England,3
 Sports,easy,Which nation has won the most men's FIFA World Cups?,Italy,France,Brazil,Germany,Argentina,2
 Sports,easy,Which athlete holds the men's 100-metre world record?,Yohan Blake,Justin Gatlin,Tyson Gay,Carl Lewis,Usain Bolt,4
 Sports,easy,"In tennis, what is the term for a score of zero?",Love,Nil,Duck,Nada,Blank,0
-Sports,easy,Which player has won the most Grand Slam singles titles in men’s tennis?,Roger Federer,Rafael Nadal,Novak Djokovic,Andy Murray,Pete Sampras,2
+Sports,easy,Which player has won the most Grand Slam singles titles in men's tennis?,Roger Federer,Rafael Nadal,Novak Djokovic,Andy Murray,Pete Sampras,2
 Sports,easy,Every how many years is the men's FIFA World Cup tournament traditionally held?,Every year,Every 2 years,Every 3 years,Every 4 years,Every 5 years,3
-Sports,easy,"Which country is famous for its men’s field-hockey team nickname, the Kookaburras?",India,Australia,Netherlands,Germany,Pakistan,1
-Sports,easy,Which grand slam tennis tournament is famously played on grass courts?,French Open,US Open,Australian Open,Wimbeldon,ATP Finals,3
+Sports,easy,"Which country is famous for its men's field-hockey team nickname, the Kookaburras?",India,Australia,Netherlands,Germany,Pakistan,1
+Sports,easy,Which grand slam tennis tournament is famously played on grass courts?,French Open,US Open,Australian Open,Wimbledon,ATP Finals,3
 Sports,easy,"In volleyball, what is the maximum number of times a team can touch the ball before returning it over the net?",Only once,2 times,3 times,4 times,Unlimited,2
 Sports,easy,What situation occurs in chess when a player is not in check but has no legal moves left to make?,Checkmate,Stalemate,Draw by agreement,Forfeit,Time out,1
 Sports,easy,What is the standard length of a cricket pitch between the two sets of wickets?,18 yards,20 yards,22 yards,24 yards,25 yards,2
@@ -22,7 +22,7 @@ Sports,medium,Who holds the record for the fastest century in Men's ODI history?
 Sports,medium,"Apart from Sachin Tendulkar, who holds the record for the second-most centuries in Test cricket history?",Ricky Ponting,Jacques Kallis,Joe Root,Kumar Sangakkara,Steve Smith,1
 Sports,medium,Sir Don Bradman famously retired with the highest Test batting average of all time. What was his exact final career average?,95.5,98.4,99.94,100,101.24,2
 Sports,medium,"Under the official MCC Laws of Cricket, if a fielder uses their cap to intentionally collect/gather the ball while it is in play, how many penalty runs are automatically awarded to the batting team?",1 run,3 runs,5 runs,7 runs,9 runs,2
-Sports,medium,Which country won the men’s Hockey World Cup in 2023?,Belgium,Germany,Netherlands,Australia,India,1
+Sports,medium,Which country won the men's Hockey World Cup in 2023?,Belgium,Germany,Netherlands,Australia,India,1
 Sports,medium,Which city hosts the US Open tennis tournament?,Los Angeles,Chicago,New York City,Miami,Boston,2
 Sports,medium,Which of the following is an Indian domestic limited-overs T20 cricket tournament?,Vijay Hazare Trophy,Deodhar Trophy,Syed Mushtaq Ali Trophy,Ranji Trophy,Duleep Trophy,2
 Sports,medium,Which Indian cricketer represented India in both cricket and hockey?,Kapil Dev,M. J. Gopalan,Ajit Agarkar,Lala Amarnath,Vijay Hazare,1
@@ -35,18 +35,18 @@ Sports,hard,Muttiah Muralitharan holds the record for the most international wic
 Sports,hard,Which Australian fast bowler holds the record for taking the most individual wickets in a single Men's ODI World Cup tournament?,Glenn McGrath,Mitchell Starc,Brett Lee,Pat Cummins,Shane Warne,1
 Sports,hard,"Who is the only cricketer to have scored a century in his 100th Test match, his 100th ODI match, and his 100th T20I match?",Ricky Ponting,Virat Kohli,David Warner,Ross Taylor,Joe Root,2
 Sports,hard,Which goalkeeper captained Italy when it won the 2006 FIFA World Cup?,Gianluigi Buffon,Fabio Cannavaro,Francesco Totti,Alessandro Del Piero,Marco Materazzi,1
-Sports,hard,"In tennis, who was the first man in the Open Era to win all four Grand Slam tournaments at least twice?",Roger Federer,Rafael Nadal,Novak Djokovic,Björn Borg,Pete Sampras,2
-Sports,hard,Durand Cup is associated with with sport?,Football,Hockey,Athletics,Wrestling,Cricket,0
+Sports,hard,"In tennis, who was the first man in the Open Era to win all four Grand Slam tournaments at least twice?",Roger Federer,Rafael Nadal,Novak Djokovic,Bj'rn Borg,Pete Sampras,2
+Sports,hard,Durand Cup is associated with which sport?,Football,Hockey,Athletics,Wrestling,Cricket,0
 Sports,hard,Which of the following is a term not related to chess?,Castling,En Passant,Stalemate,Albatross,Fianchetto,3
 Sports,hard,"In basketball, how many personal fouls generally result in a player being disqualified from an NBA game?",4,5,6,7,8,2
 Sports,hard,"In athletics, the Fosbury Flop is a technique associated with which event?",Pole vault,High jump,Long jump,Triple jump,Hurdles,1
 Sports,hard,Who has taken the most catches as a fielder for India in international cricket,Rahul Dravid,Sachin Tendulkar,Virat Kohli,Mohammad Azharuddin,Rohit Sharma,2
-Sports,hard,The Thomas Cup is the world championship trophy for men’s teams in which sport?,Squash,Table tennis,Badminton,Tennis,Volleyball,2
+Sports,hard,The Thomas Cup is the world championship trophy for men's teams in which sport?,Squash,Table tennis,Badminton,Tennis,Volleyball,2
 Sports,hard,Which country hosted the first FIFA World Cup in 1930 and also won it?,Argentina,Brazil,France,Italy,Uruguay,4
 Sports,hard,Which athlete won the first individual Olympic gold medal for independent India?,Neeraj Chopra,Abhinav Bindra,Rajyavardhan Singh Rathore,Leander Paes,Karnam Malleswari,1
 History,easy,"The Treaty of Purandar, signed in 1665, was between Shivaji and:",Shaista Khan,Mirzaraje Jaisingh,Aurangzeb,Jaswant Singh,Diler Khan,1
 History,easy,"In the Ashta Pradhan, the Peshwa was mainly responsible for:",Religious affairs,Foreign correspondence,General administration,Judicial matters,Military intelligence,2
-History,easy,Which title was held by the finance minister in Shivaji Maharaj’s Ashta Pradhan,Amatya,Sachiv,Panditrao,Nyayadhish,Senapati,0
+History,easy,Which title was held by the finance minister in Shivaji Maharaj's Ashta Pradhan,Amatya,Sachiv,Panditrao,Nyayadhish,Senapati,0
 History,easy,Which Sikh Guru founded the Khalsa in 1699?,Guru Arjan Dev,Guru Hargobind,Guru Tegh Bahadur,Guru Gobind Singh,Guru Nanak Dev,3
 History,easy,The First Battle of Panipat in 1526 was fought between Babur and:,Sher Shah Suri,Ibrahim Lodi,Sikandar Lodi,Daulat Khan Lodi,Rana Sanga,1
 History,easy,"The Bhoodan Movement, which encouraged voluntary land donation, was led by:",Jayaprakash Narayan,Vinoba Bhave,Acharya Narendra Dev,Ram Manohar Lohia,J. B. Kripalani,1
@@ -58,10 +58,10 @@ History,easy,Which battle established British supremacy in Bengal?,Battle of Bux
 History,easy,Who commissioned the construction of the Red Fort in Delhi?,Akbar,Humayun,Shah Jahan,Aurangajeb,Bahadur Shah Zafar,2
 History,easy,"Following the passing of Shivaji Maharaj, Sambhaji Maharaj had to overcome internal court factions backing which of his half-brothers for the throne?",Rajaram,Shahu,Shivaji II,Sambhaji II,Vyankoji,0
 History,easy,"Under the reign of Sambhaji Maharaj, which Maratha fort near Nashik famously resisted a massive Mughal siege for over five years with a tiny garrison?",Salher,Mulher,Ramshej,Trimbakgad,Harihar,2
-History,easy,Which major battle in 1728 saw Peshwa Baji Rao I decisively outmaneuver the Nizam-ul-Mulk of Hyderabad using rapid cavalry movements?,Battle of Palkhed,Battle of Bhopal,Battle of Vasai,Battle of Amjhera,Battle of Dabhoi,0
+History,easy,Which major battle in 1728 saw Peshwa Baji Rao I decisively outmanoeuvred the Nizam-ul-Mulk of Hyderabad using rapid cavalry movements?,Battle of Palkhed,Battle of Bhopal,Battle of Vasai,Battle of Amjhera,Battle of Dabhoi,0
 History,medium,Which Chinese traveller visited India during the reign of Harshavardhana?,Fa-Hien,Hiuen Tsang,Al-Biruni,Ibn Battuta,Marco Polo,1
 History,medium,Which event prompted the withdrawal of the Non-Cooperation Movement in 1922?,Kakori conspiracy,Jallianwala Bagh massacre,Chauri Chaura incident,Dandi March,Bardoli Satyagraha,2
-History,medium,What was the original name of the Maratha commander Hambirao Mohite?,Hansaaji Mohite,Prataprao Mohite,Netaji Mohite,Sambhaji Mohite,Santaji Mohite,0
+History,medium,What was the original name of the Maratha commander Hambirrao Mohite?,Hansaaji Mohite,Prataprao Mohite,Netaji Mohite,Sambhaji Mohite,Santaji Mohite,0
 History,medium,The Swadeshi Movement began in response to the Partition of Bengal in 1905 by:,Lord Ripon,Lord Curzon,Lord Lytton,Lord Minto,Lord Hardinge,1
 History,medium,"Who was the first Governor-General of India under the Government of India Act, 1833?",Warren Hastings,Lord Cornwallis,Lord William Bentinck,Lord Canning,Lord Dalhousie,2
 History,medium,Who was appointed as one of the first chief Admirals (Darya Sarang) of Chhatrapati Shivaji Maharaj's navy?,Surendranath Banerjee,Satyendranath Tagore,Romesh Chandra Dutt,Dadabhai Naoroji,Womesh Chandra Bonnerjee,1
@@ -69,9 +69,9 @@ History,medium,"Ahmed Shah Abdali utilized unique light, mobile artillery pieces
 History,medium,The Home Rule League movement in India was launched by Bal Gangadhar Tilak and:,Sarojini Naidu,Annie Besant,Madam Bhikaji Cama,Aruna Asaf Ali,Sucheta Kripalani,1
 History,medium,The All-India Muslim League was founded in 1906 at:,Aligarh,Lahore,Lucknow,Dhaka,Karachi,3
 History,medium,"The Provisional Government of Free India, also called the Azad Hind Government, was proclaimed by Subhas Chandra Bose in 1943 at:",Rangoon,Tokyo,Bangkok,Singapore,Berlin,3
-History,medium,Which sea fort served as the primary headquarters and naval shipbuilding hub for Shivaji Maharaj’s coastal fleet?,Murud-Janjira,Sindhudurg,Vijaydurg,Padmadurg,Suvarnadurg,1
+History,medium,Which sea fort served as the primary headquarters and naval shipbuilding hub for Shivaji Maharaj's coastal fleet?,Murud-Janjira,Sindhudurg,Vijaydurg,Padmadurg,Suvarnadurg,1
 History,medium,Which fort was captured by Shivaji Maharaj in 1645 and later renamed Torna?,Kondhana,Prachandagad,Purandar,Panhala,Vishalgad,1
-History,medium,Who founded the Azad Hind Fauj ?,Bhagat Singh,Rash Bihari Bose,Chandra Shekhar Azad,V. D. Savarkar,Subhash Chandra Bose,2
+History,medium,Who founded the Azad Hind Fauj?,Bhagat Singh,Rash Bihari Bose,Chandra Shekhar Azad,V. D. Savarkar,Subhash Chandra Bose,2
 History,medium,Which military commander served as the first Sarnobat of Shivaji's infantry before the formal organization of the cavalry-heavy Ashta Pradhan forces?,Mankoji Dahatonde,Yesaji Kank,Baji Pasalkar,Tanaji Malusare,Kanhoji Jedhe,2
 History,medium,Who founded the Prarthana Samaj in Bombay in 1867 along with other reformers?,Atmaram Pandurang,Mahadev Govind Ranade,Jyotirao Phule,Gopal Hari Deshmukh,Vishnushastri Chiplunkar,0
 History,hard,The Peshwa rule effectively ended after the Third Anglo-Maratha War in:,1761,1775,1782,1802,1818,4
@@ -79,25 +79,25 @@ History,hard,"Megasthenes, author of Indica, was an ambassador at the court of w
 History,hard,Who was the first President of the Indian National Congress in 1885?,Dadabhai Naoroji,Womesh Chandra Bonnerjee,Surendranath Banerjee,Allan Octavian Hume,Gopal Krishna Gokhale,1
 History,hard,Who was the first Indian woman to become the President of the Indian National Congress?,Sarojini Naidu,Annie Besant,Sucheta Kriplani,Aruna Asaf Ali,Vijay Lakshmi Pandit,1
 History,hard,"Which young head of the Scindia (Shinde) clan fought bravely at Panipat, was captured wounded, and later executed by the Afghans?",Mahadji Scindia,Jayappa Scindia,Jankoji Scindia,Dattaji Scindia,Ranoji Scindia,2
-History,hard,"In Shivaji Maharaj’s Ashta Pradhan council, what was the official designation of the minister responsible for managing foreign affairs and diplomatic relations?",Amatya,Peshwa,Sachiv,Sumant (Dabir),Mantri,3
-History,hard,Which ruler is known as the “Napoleon of India”?,Chandragupta Maurya,Ashoka,Samudragupta,Harshavardhana,Kanishka,2
+History,hard,"In Shivaji Maharaj's Ashta Pradhan council, what was the official designation of the minister responsible for managing foreign affairs and diplomatic relations?",Amatya,Peshwa,Sachiv,Sumant (Dabir),Mantri,3
+History,hard,Which ruler is known as the 'Napoleon of India'?,Chandragupta Maurya,Ashoka,Samudragupta,Harshavardhana,Kanishka,2
 History,hard,Who established the underground Congress Radio during the Quit India Movement?,Aruna Asaf Ali,Sucheta Kripalani,Usha Mehta,Kalpana Dutt,Matangini Hazra,2
 History,hard,Which freedom fighter is known for hoisting the Indian National Congress flag at Gowalia Tank Maidan in Bombay during the Quit India Movement?,Sarojini Naidu,Aruna Asaf Ali,Vijaya Lakshmi Pandit,Annie Besant,Kamaladevi Chattopadhyay,1
 History,hard,Who was the Maratha commander killed during the Battle of Nesari in 1674?,Prataprao Gujar,Hambirrao Mohite,Netaji Palkar,Baji Prabhu Deshpande,Yesaji Kank,0
 History,hard,Which of the following leaders was NOT one of the five principal founding figures of the Non-Aligned Movement (NAM)?,Jawaharlal Nehru,Marshal Tito,Gamal Abdel Nasser,Kwame Nkrumah,Patrice Lumumba,4
-History,hard,Balaji Vishwanath secured Kanhoji Angre’s support for Chhatrapati Shahu through which agreement of 1714?,Treaty of Purandar,Treaty of Salbai,Treaty of Lonavala,Treaty of Bassein,Treaty of Surat,2
+History,hard,Balaji Vishwanath secured Kanhoji Angre's support for Chhatrapati Shahu through which agreement of 1714?,Treaty of Purandar,Treaty of Salbai,Treaty of Lonavala,Treaty of Bassein,Treaty of Surat,2
 History,hard,"When Maharani Ahilyabai Holkar took administration of the Holkar state in 1767, to which city did she move the permanent capital from Indore?",Maheshwar,Ujjain,Dhar,Gwalior,Mandsaur,0
 History,hard,"The Treaty of Salbai (1782), ending the First Anglo-Maratha War, was chiefly negotiated for the Marathas by:",Nana Fadnavis,Mahadji Shinde,Tukojirao Holkar,Haripant Phadke,Raghunathrao,1
 History,hard,Shivaji Maharaj underwent two distinct coronation (Rajyabhishek) ceremonies at Raigad Fort in 1674. Who conducted the second coronation to appease local spiritual concerns?,Gaga Bhatt,Nischal Puri Goswami,Ramdas Swami,Tukaram Maharaj,Moropant Pingle,1
 Geography,easy,Which is the longest river that flows entirely within India?,Narmada,Krishna,Godavari,Mahanadi,Kaveri,2
 Geography,easy,The Sundarbans are primarily located in which Indian state?,Odisha,Assam,West Bengal,Bihar,Jharkhand,2
 Geography,easy,Which city is situated on the banks of the Sabarmati River?,Surat,Ahmedabad,Vadodara,Rajkot,Bhavnagar,1
-Geography,easy,Which of these famous landmarks is located in Hyderabad?,Gateway of India,Victoria Memorial,Hawa Mahal,Sanchi Stupa,Charminar,4
-Geography,easy,Which river is called the “Dakshin Ganga” because of its importance in peninsular India?,Krishna,Kaveri,Tungabhadra,Godavari,Pennar,3
-Geography,easy,Which city is popularly called the “Silicon Valley of India”?,Hyderabad,Pune,Chennai,Gurugram,Bengaluru,4
+Geography,easy,Which famous landmark amongst the below is located in Hyderabad?,Gateway of India,Victoria Memorial,Hawa Mahal,Sanchi Stupa,Charminar,4
+Geography,easy,Which river is called the 'Dakshin Ganga' because of its importance in peninsular India?,Krishna,Kaveri,Tungabhadra,Godavari,Pennar,3
+Geography,easy,Which city is popularly called the 'Silicon Valley of India'?,Hyderabad,Pune,Chennai,Gurugram,Bengaluru,4
 Geography,easy,Which Indian state is the largest producer of tea in India?,West Bengal,Kerala,Tamil Nadu,Assam,Karnataka,3
 Geography,easy,The black soil of the Deccan Plateau is especially suitable for growing:,Rice,Cotton,Tea,Jute,Apple,1
-Geography,easy,Which state is popularly called the “Spice Garden of India”?,Karnataka,Kerala,Tamil Nadu,Goa,Andhra Pradesh,1
+Geography,easy,Which state is popularly called the 'Spice Garden of India'?,Karnataka,Kerala,Tamil Nadu,Goa,Andhra Pradesh,1
 Geography,easy,Which Indian state is the largest producer of salt?,Rajasthan,Gujarat,Maharashtra,Tamil Nadu,Andhra Pradesh,2
 Geography,easy,Which Indian state has the largest geographical area?,Madhya Pradesh,Maharashtra,Uttar Pradesh,Rajasthan,Gujarat,3
 Geography,easy,Which state was carved out of Madhya Pradesh on 1 November 2000?,Jharkhand,Chhattisgarh,Uttarakhand,Telangana,Goa,1
@@ -113,13 +113,13 @@ Geography,medium,"Golkonda Fort, once associated with the Qutb Shahi dynasty and
 Geography,medium,Mehrangarh Fort overlooks which city?,Jaipur,Udaipur,Jodhpur,Bikaner,Ajmer,2
 Geography,medium,The Bhakra Nangal Dam is built across which river?,Beas,Ravi,Chenab,Sutlej,Jhelum,3
 Geography,medium,Which is the largest dam in Maharashtra by storage capacity?,Koyna Dam,Jayakwadi Dam,Ujani Dam,Tansa Dam,Mulshi Dam,1
-Geography,medium,Which city is known as the “Golden City” because of its yellow sandstone architecture?,Bikaner,Jaisalmer,Jodhpur,Udaipur,Ajmer,1
+Geography,medium,Which city is known as the 'Golden City' because of its yellow sandstone architecture?,Bikaner,Jaisalmer,Jodhpur,Udaipur,Ajmer,1
 Geography,medium,Which city is located on the banks of the Brahmaputra River and is often called the gateway to Northeast India?,Imphal,Shillong,Guwahati,Agartala,Itanagar,2
 Geography,medium,Which mango variety from Goa has a Geographical Indication (GI) tag?,Alphonso,Kesar,Mankurad,Dasheri,Langra,2
 Geography,medium,Which of these states does not share an international border with Bangladesh?,Tripura,Mizoram,Meghalaya,Manipur,West Bengal,3
 Geography,medium,Which Indian state was known as the North-East Frontier Agency (NEFA) before becoming a Union Territory and later a state?,Nagaland,Mizoram,Arunachal Pradesh,Meghalaya,Manipur,2
 Geography,medium,Which Indian state shares borders with both Bhutan and Myanmar?,Assam,Arunachal Pradesh,Nagaland,Manipur,Mizoram,1
-Geography,hard,Which river is known as the “Sorrow of Bihar” because of its frequent floods?,Son,Gandak,Damodar,Kosi,Mahananda,3
+Geography,hard,Which river is known as the 'Sorrow of Bihar' because of its frequent floods?,Son,Gandak,Damodar,Kosi,Mahananda,3
 Geography,hard,Which is the only active volcano in India?,Narcondam,Barren Island,Deccan Traps,Dhinodhar Hills,Dhosi Hill,2
 Geography,hard,Which river flows through a rift valley between the Vindhya and Satpura ranges?,Godavari,Krishna,Mahanadi,Kaveri,Narmada,4
 Geography,hard,"Which city in Bihar is especially famous for its Shahi litchi, a geographical-indication fruit?",Patna,Gaya,Bhagalpur,Muzaffarpur,Darbhanga,3
@@ -127,8 +127,8 @@ Geography,hard,The Khajuraho Group of Monuments is located in which district of 
 Geography,hard,Which port was developed as an alternative to Karachi Port after Partition and became a major port of independent India?,Mumbai Port,Kandla Port,Chennai Port,Visakhapatnam Port,Paradip Port,2
 Geography,hard,"Which national park is famous for the endangered Hangul, or Kashmir stag?",Dachigam National Park,Hemis National Park,Great Himalayan National Park,Nanda Devi National Park,Valley of Flowers National Park,0
 Geography,hard,"Which national park is famous for the barasingha, or swamp deer?",Kanha National Park,Gir National Park,Ranthambore National Park,Mudumalai National Park,Rajaji National Park,0
-Geography,hard,"Hirakud Dam, one of India’s longest earthen dams, is built across which river?",Godavari,Mahanadi,Krishna,Brahmani,Subarnarekha,1
-Geography,hard,Which Indian city became the country’s first UNESCO World Heritage City in 2017?,Jaipur,Ahmedabad,Varanasi,Mysuru,Hyderabad,1
+Geography,hard,"Hirakud Dam, one of India's longest earthen dams, is built across which river?",Godavari,Mahanadi,Krishna,Brahmani,Subarnarekha,1
+Geography,hard,Which Indian city became the country's first UNESCO World Heritage City in 2017?,Jaipur,Ahmedabad,Varanasi,Mysuru,Hyderabad,1
 Geography,hard,Which is the only Indian state through which both the Tropic of Cancer and the Standard Meridian of India pass?,Madhya Pradesh,Chhattisgarh,Odisha,Jharkhand,Rajasthan,1
 Geography,hard,"The Siachen Glacier, the largest glacier in the Indian Himalayas, lies in which mountain range?",Zanskar Range,Pir Panjal Range,Karakoram Range,Dhauladhar Range,Ladakh Range,2
 Geography,hard,"The Nilgiri Biosphere Reserve spans parts of Tamil Nadu, Kerala, and:",Andhra Pradesh,Telangana,Karnataka,Goa,Maharashtra,2
@@ -275,12 +275,12 @@ Sci-Tech,easy,"Which gas is produced when an acid reacts with a carbonate, such 
 Sci-Tech,easy,Which is the hardest naturally occurring mineral?,Quartz,Topaz,Diamond,Corundum,Graphite,2
 Sci-Tech,easy,Which metal is extracted from bauxite ore?,Iron,Copper,Aluminium,Zinc,Lead,2
 Sci-Tech,easy,Which type of electromagnetic wave is most commonly used in radar systems?,Microwaves,Ultraviolet rays,X-rays,Gamma rays,Visible light,0
-Sci-Tech,easy,Which law states that the pressure of a gas is inversely proportional to its volume when temperature is constant?,Charles’s law,Boyle’s law,Ohm’s law,Faraday’s law,Hooke’s law,1
+Sci-Tech,easy,Which law states that the pressure of a gas is inversely proportional to its volume when temperature is constant?,Charles's law,Boyle's law,Ohm's law,Faraday's law,Hooke's law,1
 Sci-Tech,easy,Which electromagnetic radiation is commonly used in remote controls and thermal imaging?,Ultraviolet,Infrared,X-rays,Gamma rays,Radio waves,1
 Sci-Tech,easy,"Which law of thermodynamics states that energy cannot be created or destroyed, only converted from one form to another?",Zeroth law,First law,Second law,Third law,Law of gravitation,1
 Sci-Tech,easy,Which molecule is primarily responsible for carrying oxygen in human blood?,Insuline,Creatine,Collagen,Keratin,Haemoglobin,4
 Sci-Tech,easy,The chemical symbol K represents which element?,Krypton,Calcium,Cobalt,Potassium,Copper,3
-Sci-Tech,easy,Electromagnetic induction—the principle behind electric generators and transformers—was discovered by:,Michael Faraday,André-Marie Ampère,Georg Ohm,Nikola Tesla,Alessandro Volta,0
+Sci-Tech,easy,Electromagnetic induction 'the principle behind electric generators and transformers' was discovered by:,Michael Faraday,Andr'-Marie Amp're,Georg Ohm,Nikola Tesla,Alessandro Volta,0
 Sci-Tech,easy,What is a light-year a unit of?,Time,Luminosity,Distance,Energy,Speed,2
 Sci-Tech,easy,Which bond links amino acids together in a protein chain?,Glycosidic bond,Hydrogen bond,Peptide bond,Phosphodiester bond,Ionic bond,2
 Sci-Tech,easy,Which nutrient is primarily responsible for promoting leafy vegetative growth in plants?,Nitrogen,Phosphorus,Potassium,Calcium,Zinc,0
@@ -298,13 +298,13 @@ Sci-Tech,medium,Which bacterium is commonly associated with nitrogen fixation in
 Sci-Tech,medium,Which phenomenon explains why the sky appears blue?,Refraction,Diffraction,Rayleigh scattering,Total internal reflection,Dispersion,2
 Sci-Tech,medium,"In the Haber process, nitrogen and hydrogen combine to manufacture:",Methane,Ammonia,Nitric acid,Urea,Hydrogen peroxide,1
 Sci-Tech,medium,Which scientist discovered the electron through experiments using cathode rays?,Ernest Rutherford,J. J. Thomson,Niels Bohr,James Chadwick,Max Planck,1
-Sci-Tech,medium,What is believed to be at the center of the Milky Way?,A neutron star,A white dwarf,A supermassive black hole,A quasar,A massive planet,2
+Sci-Tech,medium,What is believed to be at the centre of the Milky Way?,A neutron star,A white dwarf,A supermassive black hole,A quasar,A massive planet,2
 Sci-Tech,hard,"What is the name of the boundary around a black hole beyond which nothing, including light, can escape?",Photon belt,Event horizon,Asteroid ring,Van Allen belt,Roche limit,1
 Sci-Tech,hard,What is the largest moon in the Solar System?,Titan,Europa,Ganymede,Callisto,Triton,2
 Sci-Tech,hard,What is the term for atoms of the same element that have different numbers of neutrons?,Ions,Isotopes,Molecules,Allotropes,Compounds,1
 Sci-Tech,hard,Which element has the atomic number 17?,Sulphur,Argon,Phosphorus,Chlorine,Potassium,3
 Sci-Tech,hard,"The gold-foil experiment that revealed a small, dense, positively charged atomic nucleus was led by:",J. J. Thomson,Ernest Rutherford,Niels Bohr,James Chadwick,Max Planck,1
-Sci-Tech,hard,Who invented the first successful X-ray imaging technique?,Marie Curie,Wilhelm Conrad Röntgen,Ernest Rutherford,Henri Becquerel,J. J. Thomson,1
+Sci-Tech,hard,Who invented the first successful X-ray imaging technique?,Marie Curie,Wilhelm Conrad R'ntgen,Ernest Rutherford,Henri Becquerel,J. J. Thomson,1
 Sci-Tech,hard,Which reptile has a fully four-chambered heart?,Lizard,Snake,Turtle,Crocodile,Gecko,3
 Sci-Tech,hard,Which Indian space mission became the first to soft-land near the Moon's south polar region?,Chandrayaan-1,Chandrayaan-2,Chandrayaan-3,Mangalyaan,Aditya-L1,2
 Sci-Tech,hard,"In electrolysis, reduction always occurs at the:",Anode,Cathode,Electrolyte,Salt bridge,External wire,1
@@ -312,9 +312,9 @@ Sci-Tech,hard,Which agricultural practice helps conserve soil moisture by coveri
 Sci-Tech,hard,Which animal has the highest blood pressure among known animals?,Elephant,Giraffee,Blue Whale,Hippopotamus,Horse,1
 Sci-Tech,hard,Which animal has fingerprints remarkably similar to those of humans?,Gorilla,Chimpanzee,Koala,Orangutan,Lemur,2
 Sci-Tech,hard,Which part of electro-magnetic spectrum has the highest photon energy?,Ultraviolet,X-Rays,Gamma Rays,Microwaves,Radio Waves,2
-Sci-Tech,hard,"According to Planck’s relation, the energy of a photon is directly proportional to its:",Wavelength,Frequency,Amplitude,Speed in vacuum,Direction of travel,1
-Sci-Tech,hard,Liquid water reaches its maximum density at approximately:,0°C,4°C,25°C,50°C,100°C,1
-Mythology,easy,What was the naam of the bow of Lord Ram?,Gandiv,Pinak,Sharang,Kodanda,Vijay,3
+Sci-Tech,hard,"According to Planck's relation, the energy of a photon is directly proportional to its:",Wavelength,Frequency,Amplitude,Speed in vacuum,Direction of travel,1
+Sci-Tech,hard,Liquid water reaches its maximum density at approximately:,0'C,4'C,25'C,50'C,100'C,1
+Mythology,easy,What was the name of the bow of Lord Ram?,Gandiv,Pinak,Sharang,Kodanda,Vijay,3
 Mythology,easy,What was the name of the mountain that Hanuman carried for Sanjivani?,Gandhmadan,Mahendra,Rhishyamukh,Chitrakoot,Dronagiri,4
 Mythology,easy,Shallya was the king of which kingdom?,Magadh,Vidarbha,Madra,Gaandhar,Mithila,2
 Mythology,easy,Which warrior was not present in chakravyuha?,Dronacharya,Bhishma,Karna,Krupacharya,Ashwathama,1
@@ -336,7 +336,7 @@ Mythology,medium,Which Mahabharata's Parv has Vishnu Sahastranaam?,Anushasan Par
 Mythology,medium,Who broke the axle of Dasharatha's chariot?,Raavan,Shambarasur,Vaali,Maarich,Indra,1
 Mythology,medium,Which of the following is not one of Arjuna's name?,Jishnu,Bibhatsu,Kiriti,Samihan,Savyasachi,3
 Mythology,medium,Who of the following is not Arjuna's son?,Babhruvahan,Shatanik,Abhimanyu,Iraavan,Shrutkarma,1
-Mythology,medium,"In the Ramayana, who was Bharata’s maternal grandfather and the king of Kekaya?",Janaka,Dasharatha,Ashwapati,Yudhajeet,Vibhishana,2
+Mythology,medium,"In the Ramayana, who was Bharata's maternal grandfather and the king of Kekaya?",Janaka,Dasharatha,Ashwapati,Yudhajeet,Vibhishana,2
 Mythology,medium,Who was Shikhandi in previous birth?,Amba,Ambika,Ambalika,Matsyagandha,Chitrangada,0
 Mythology,medium,"In the Mahabharata, who was the father of Dronacharya?",Bharadwaja,Vishwamitra,Vashishta,Parashurama,Agastya,0
 Mythology,medium,"In the Ramayana, Ruma was the wife of which character?",Vali,Sugriva,Jambavan,Angada,Nal,1
@@ -415,18 +415,18 @@ Arts,easy,"Which historic Maratha site in Maharashtra is famous for its survivin
 Arts,easy,"Which classical dance form of North India is famous for fast spins (chakkars), rhythmic footwork, and storytelling of Radha and Krishna?",Manipuri,Sattriya,Kuchipudi,Mohiniyattam,Kathak,4
 Arts,easy,"In classical Indian dance, what is the term used to describe expressive mimetic dance that communicates poetic narrative through facial expressions and mudras?",Abhinaya,Tandava,Natya,Nritta,Lasya,0
 Arts,easy,"Kathak tatkar In Kathak, the term tatkar refers to:",Hand gestures,Eye movements,Basic footwork ,Stage bowing,Costume arrangement,2
-Arts,easy,"Kathakali makeup In Kathakali, the color coding of facial makeup signifies:",Musical rhythm,Character’s nature ,Costume origin,Dance tempo,Stage lighting,1
-Arts,easy,The famous Nataraja sculpture represents which Hindu deity?,Vishnu,Brahma,Shiva,Ganesha,Indra,2
-Arts,easy,The Lion Capital of Ashoka is located at:,Sanchi,Bodhgaya,Nalanda,Sarnath,Ajantha,3
-Arts,easy,The famous Chola bronzes are particularly renowned for sculptures of:,Nataraja /Shiva,Buddha ,Ashoka,Guru Nanak,Mahavira,0
+Arts,easy,"Kathakali makeup In Kathakali, the color coding of facial makeup signifies:",Musical rhythm,Character's nature ,Costume origin,Dance tempo,Stage lighting,1
+Arts,easy,The famous 'Nataraja' sculpture represents which Hindu deity?,Vishnu,Brahma,Shiva,Ganesha,Indra,2
+Arts,easy,The 'Lion Capital of Ashoka' is located at:,Sanchi,Bodhgaya,Nalanda,Sarnath,Ajantha,3
+Arts,easy,The famous 'Chola bronzes' are particularly renowned for sculptures of:,Nataraja /Shiva,Buddha ,Ashoka,Guru Nanak,Mahavira,0
 Arts,medium,"Which historic palace complex in Kerala houses one of the largest continuous panels of 16th-century classical wall murals depicting scenes from the Ramayana, Bhagavata Purana, and Kumarasambhava?",Mattancherry (Dutch) Palace,Krishnapuram Palace,Koyikkal Palace,Padmanabhapuram Palace,Hill Palace,0
 Arts,medium,"Which ancient Sanskrit treatise, attributed to Sage Bharata Muni, serves as the foundational canon for Indian classical dance, drama, and music theory?",Natyashastra,Sangita Ratnakara,Kamasutra,Meghadoota,Arthashastra,0
 Arts,medium,"Which martial folk dance form from Eastern India (practiced in Jharkhand, Odisha, and West Bengal) features dancers wearing elaborate stylized masks representing gods and animals?",Kalaripayattu,Chhau,Kalarippayattu,Gatka,Thang-Ta,1
 Arts,medium,Which unique ritualistic floor-painting tradition from Kerala uses natural colored powders to depict deities inside sacred groves and temples?,Kalamezhuthu,Kalamkari,Aipan,Sanjhi,Mandana,0
-Arts,medium,The famous bronze sculpture of the 'Dancing Girl' discovered at Mohenjo-daro was constructed using which technique?,Sand casting,Lost-wax casting,Cold hammering,Electroplating,Repoussé technique,1
+Arts,medium,The famous bronze sculpture of the 'Dancing Girl' discovered at Mohenjo-daro was constructed using which technique?,Sand casting,Lost-wax casting,Cold hammering,Electroplating,Repouss' technique,1
 Arts,medium,Tanjore painting originated in:,Tamilnadu,Gujarat,Bihar,Assam,Mizoram,0
 Arts,medium,The Great Stupa at Sanchi is primarily associated with:,Jainism,Hinduism,Sikhism,Buddhism,Zoroastrianism,3
-Arts,medium,The rock-cut sculptures of Elephanta Caves are primarily dedicated to:,Vishnu,Buddha ,Mahavira,Surya,Shiva,4
+Arts,medium,The rock-cut sculptures of 'Elephanta Caves' are primarily dedicated to:,Vishnu,Buddha ,Mahavira,Surya,Shiva,4
 Arts,medium,Alpana is a traditional floor-art form particularly associated with:,Bengal,Punjab,Maharashtra,Karnataka,Rajasthan,0
 Arts,medium,Kolam is a traditional decorative design commonly made at the entrances of homes in:,Punjab,Himachal Pradesh,Bihar,"Tamilnadu, Southern India",Orisa,3
 Arts,medium,"The Victoria Terminus (now Chhatrapati Shivaji Maharaj Terminus) in Mumbai, designed by Frederick William Stevens, is a premier example of which architectural style?",Neo-Classical Style  ,Venetian Gothic Revival combined with Indian Traditional Architecture  ,Art Deco Style  ,Edwardian Baroque Style  ,Rococo Revival Style  ,1
@@ -455,19 +455,19 @@ Economics,easy,What does ATM stand for?,Automatic Transfer Money,Automated Telle
 Economics,easy,"If the price of a ?100 item rises to ?110, the price has increased by",5%,50%,1%,10%,100%,3
 Economics,easy,GST in India is primarily a tax on:,Gold reserves,Goods and services,Government salaries,Bank deposits,Foreign currency only,1
 Economics,easy,What does UPI stand for?,Union of Payment Interface,Unidentified Payment Interface,Unified Payments Interface,Universal Payment Internet,Union Payments Interface,2
-Economics,easy,What does CRR stand for ?,Credit Run Rate,Cash Rider Rate,Credit Reserve Ratio,Cash Reserve Ratio,Cash Riser Rate,3
+Economics,easy,What does CRR stand for?,Credit Run Rate,Cash Rider Rate,Credit Reserve Ratio,Cash Reserve Ratio,Cash Riser Rate,3
 Economics,easy,"Formula for Simple Interest is : where P = Principal , R = Rate of Interest, N = No. of Years money is kept",(P*N*R)/100,(P+N+R)/100,P(1+R/100)^N,P-(P/NR),(P*N*R)/1000,0
 Economics,easy,Which of these is a public sector bank?,Bank Of Baroda,HDFC Bank,ICICI Bank,Bandhan Bank,Saraswat Co-Operative Bank,0
 Economics,easy,Which one would normally happen when you put money in a bank fixed deposit?,You pay interest to the bank,The bank pays you interest on the money deposited,The government takes the Principal,Your money automatically becomes shares of the bank,Your money stops being legal,1
-Economics,easy,Which one would normally happen when you take a Loan from the bank ?,The bank pays you interest on the money owed,You pay interest to the bank on the money owed,"Nothing, nobody cares about the money",The bank gives you gifts every year,"You return only the money owed, no interest",1
+Economics,easy,Which one would normally happen when you take a Loan from the bank?,The bank pays you interest on the money owed,You pay interest to the bank on the money owed,"Nothing, nobody cares about the money",The bank gives you gifts every year,"You return only the money owed, no interest",1
 Economics,easy,"If demand for a product rises sharply while supply stays the same, what would normally happen to its price?",It always becomes zero,It remains fixed,It becomes negative,It tends to rise,It always doubles,3
 Economics,easy,Which Indian stock-market index is associated with the Bombay Stock Exchange?,Nifty50,Bank Nifty,Nifty IT,Sensex,Capex,3
 Economics,easy,Which of these is most closely associated with borrowing money to buy a house?,Demat Account,Hedge Funds,Equated Monthly Installments,GST Returns,Gross Domestic Product,2
-Economics,easy,Which of these is the current symobol of India's Currency ?,$,?,£,¥,€,1
+Economics,easy,Which of these is the current symobol of India's Currency?,$,?,',',',1
 Economics,medium,What is the highest denomination of Indian banknote currently in regular active circulation?,? 100,? 500,"? 1,000","? 2,000",? 750,1
 Economics,medium,Which of the following would most directly increase India's GDP?,Buying an old house from another Indian family,Government spending on building a new highway,Selling an old bicycle to your neighbour,Transferring money between your own bank accounts,Giving your child pocket money,1
 Economics,medium,What does inflation measure?,Increase in bank branches,Increase in only gold prices,Increase in the stock market index,Increase in India's population,Increase in the general level of prices,4
-Economics,medium,"A shopkeeper buys an article for ?800 and sells it for ?1,000. What is the profit percentage on cost?",20%,23%,17%,30%,25%,4
+Economics,medium,"A shopkeeper buys an article for 800 and sells it for 1,000. What is the profit percentage on cost?",20%,23%,17%,30%,25%,4
 Economics,medium,Which of the following best describes a mutual fund?,A government tax,A pool of money invested on behalf of investors,A type of bank loan,A stock exchange,A currency note,1
 Economics,medium,Which Indian institution is primarily associated with agricultural and rural development finance?,SEBI,IRDAI,PFRDA,NABARD,CIDCO,3
 Economics,medium,What is the primary purpose of SEBI?,Approve school textbooks,Predict Weather in India,Regulate the Cash flow in the Country,Print all currency notes,Regulate the securities market,4
@@ -484,8 +484,8 @@ Economics,hard,"As decided at the August 2026 MPC review, what was the RBI's pol
 Economics,hard,An Indian company earns US$10 million from exporting software services. Which part of India's balance of payments does this primarily affect?,Current account,Capital account only,Fiscal account,Monetary base only,Public debt account,0
 Economics,hard,"If the rupee moves from ?80 per US$ to ?85 per US$, the rupee has",Appreciated by approximately 6.25%,Depreciated by approximately 6.25%,Appreciated by exactly 5%,Depreciated by exactly 5%,Remained unchanged,1
 Economics,hard,Which statement about the fiscal deficit is most accurate?,It is the difference between exports and imports,It measures the government's total debt,It broadly represents the gap between government expenditure and receipts excluding certain borrowings,It is the difference between bank deposits and loans,It measures inflation,2
-Economics,hard,Who presented the first budget of Independent India ?,Nirmala Sitharaman,Yashwant Sinha,Sir C. D Deshmukh,R. K. Shanmukham Chetty,Pt. Jawaharlal Nehru,3
-Economics,hard,"Who was Governor RBI, when India opened its economy in 1991 ?",Dr. Raghuram Rajan,Dr. Bimal Jalan,S Venkitaramanan,Dr. Manmohan Singh,Shri Shaktikanta Das,2
+Economics,hard,Who presented the first budget of Independent India?,Nirmala Sitharaman,Yashwant Sinha,Sir C. D Deshmukh,R. K. Shanmukham Chetty,Pt. Jawaharlal Nehru,3
+Economics,hard,"Who was Governor RBI, when India opened its economy in 1991?",Dr. Raghuram Rajan,Dr. Bimal Jalan,S Venkitaramanan,Dr. Manmohan Singh,Shri Shaktikanta Das,2
 Economics,hard,"The rupee falls from ?80 per US dollar to ?85 per US dollar. Which Indian group is most likely to benefit, all else equal?",An Indian company importing crude oil,An Indian student paying university fees in the US,An Indian software company earning in dollars from overseas clients,An Indian tourist travelling to Europe,An Indian company importing machinery from Japan,2
 Economics,hard,"You have ?1,000 and choose to spend it on a concert rather than buying a pair of shoes you also wanted. In economics, the opportunity cost of going to the concert is:","? 1,000",The ticket price only,The shoes you gave up buying,The amount of GST on the ticket,"Zero, because you enjoyed the concert",2
 Economics,hard,"An employee's salary rises from ?50,000 to ?55,000 per month, a 10% increase. During the same period, the general price level rises by approximately 10%. In real terms, the employee's purchasing power has:",Increased substantially,Remained approximately unchanged,Doubled,Become zero,Decreased substantially,1
@@ -540,3 +540,43 @@ Bollywood,hard,Q2,1,2,3,4,5,0
 Bollywood,hard,Q3,1,2,3,4,5,0
 Bollywood,hard,Q4,1,2,3,4,5,0
 Bollywood,hard,Q1,1,2,3,4,5,0
+team_members,raw,Alisson Becker,,,,,,
+team_members,raw,Virgil van Dijk,,,,,,
+team_members,raw,Trent Alexander-Arnold,,,,,,
+team_members,raw,Andy Robertson,,,,,,
+team_members,raw,Alexis Mac Allister,,,,,,
+team_members,raw,Dominik Szoboszlai,,,,,,
+team_members,raw,Mohamed Salah,,,,,,
+team_members,raw,Cody Gakpo,,,,,,
+team_members,raw,Darwin Nunez,,,,,,
+team_members,raw,Luis Diaz,,,,,,
+team_members,kgb,David Raya,,,,,,
+team_members,kgb,William Saliba,,,,,,
+team_members,kgb,Gabriel Magalhaes,,,,,,
+team_members,kgb,Jurrien Timber,,,,,,
+team_members,kgb,Declan Rice,,,,,,
+team_members,kgb,Martin Odegaard,,,,,,
+team_members,kgb,Bukayo Saka,,,,,,
+team_members,kgb,Kai Havertz,,,,,,
+team_members,kgb,Gabriel Martinelli,,,,,,
+team_members,kgb,Leandro Trossard,,,,,,
+team_members,cia,Thibaut Courtois,,,,,,
+team_members,cia,Dani Carvajal,,,,,,
+team_members,cia,Antonio Rudiger,,,,,,
+team_members,cia,Eder Militao,,,,,,
+team_members,cia,Federico Valverde,,,,,,
+team_members,cia,Jude Bellingham,,,,,,
+team_members,cia,Eduardo Camavinga,,,,,,
+team_members,cia,Vinicius Junior,,,,,,
+team_members,cia,Rodrygo,,,,,,
+team_members,cia,Kylian Mbappe,,,,,,
+team_members,mossad,Marc-Andre ter Stegen,,,,,,
+team_members,mossad,Jules Kounde,,,,,,
+team_members,mossad,Ronald Araujo,,,,,,
+team_members,mossad,Alejandro Balde,,,,,,
+team_members,mossad,Frenkie de Jong,,,,,,
+team_members,mossad,Pedri,,,,,,
+team_members,mossad,Gavi,,,,,,
+team_members,mossad,Lamine Yamal,,,,,,
+team_members,mossad,Raphinha,,,,,,
+team_members,mossad,Ferran Torres,,,,,,
