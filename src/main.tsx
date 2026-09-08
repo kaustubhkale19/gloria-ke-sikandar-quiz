@@ -1,5 +1,20 @@
 import { StrictMode, useEffect, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
+import {
+  BookOpen,
+  ChartNoAxesCombined,
+  Clapperboard,
+  Flame,
+  FlaskConical,
+  Globe,
+  Landmark,
+  Music2,
+  Newspaper,
+  Palette,
+  Trophy,
+  Vote,
+  type LucideIcon,
+} from "lucide-react";
 import { io } from "socket.io-client";
 import "./styles.css";
 
@@ -107,6 +122,20 @@ const teamIcons: Record<string, string> = {
   kgb: `${ASSETS}/team-icons/kgb-raven.png`,
   cia: `${ASSETS}/team-icons/cia-owl.png`,
   mossad: `${ASSETS}/team-icons/mossad-lion.png`,
+};
+const categoryIcons: Record<string, LucideIcon> = {
+  Sports: Trophy,
+  History: Landmark,
+  Geography: Globe,
+  Politics: Vote,
+  Literature: BookOpen,
+  Music: Music2,
+  Bollywood: Clapperboard,
+  "Sci-Tech": FlaskConical,
+  Mythology: Flame,
+  "Current affairs": Newspaper,
+  Arts: Palette,
+  Economics: ChartNoAxesCombined,
 };
 const difficultyThemes: Record<Difficulty, { overlay: string; cardBackground: string; border: string }> = {
   easy: { overlay: "rgba(21, 128, 61, .42)", cardBackground: "linear-gradient(145deg, rgba(22, 163, 74, .42), rgba(5, 46, 22, .88))", border: "#4ade80" },
@@ -372,6 +401,11 @@ function TeamIcon({ team, className = "" }: { team: Team; className?: string }) 
   const source = teamIcons[team.id];
   if (!source) return <span className={className} aria-hidden="true">{team.logo}</span>;
   return <img className={`team-icon ${className}`} src={source} alt="" aria-hidden="true" />;
+}
+
+function CategoryIcon({ category, className = "" }: { category: string; className?: string }) {
+  const Icon = categoryIcons[category];
+  return Icon ? <Icon className={`category-icon ${className}`} aria-hidden="true" strokeWidth={2.25} /> : null;
 }
 
 function Scoreboard({ game }: { game: Game }) {
@@ -787,8 +821,8 @@ function Display({ game }: { game: Game }) {
                         : "border-slate-600 bg-panel"
                       } ${game.phase === "team-selection" ? "projector-team-card" : ""}`}
                   >
-                    <div className={`mb-3 ${game.phase === "team-selection" ? "h-24" : "text-5xl"}`}>
-                      {teamCard ? <TeamIcon team={teamCard} className="h-full w-full" /> : card.logo}
+                    <div className={`mb-3 ${game.phase === "team-selection" ? "h-24" : game.phase === "category-selection" ? "h-16" : "text-5xl"}`}>
+                      {teamCard ? <TeamIcon team={teamCard} className="h-full w-full" /> : game.phase === "category-selection" ? <CategoryIcon category={card.name} className="h-full w-full text-gold" /> : card.logo}
                     </div>
                     <h3 className={game.phase === "team-selection" ? "text-4xl font-black" : "text-2xl font-black"}>{card.name}</h3>
                     <p className={`mt-2 text-slate-300 ${game.phase === "team-selection" ? "text-xl" : ""}`}>
@@ -1246,7 +1280,7 @@ function Host({ game }: { game: Game }) {
                   }
                   className="bg-slate-700 text-left"
                 >
-                  <span className="mr-3 text-3xl">{category.logo}</span>
+                  <CategoryIcon category={category.name} className="mr-3 inline-block h-8 w-8 align-middle text-gold" />
                   <strong className="text-2xl">{category.name}</strong>
                   <small className="ml-3 text-slate-300">
                     {locked ? "Completed by this team" : category.description}
@@ -1633,6 +1667,7 @@ function GameRules({ onClose }: { onClose: () => void }) {
           <article className="rules-teams"><h2>Teams & rounds</h2><p>Players are divided into 4 teams.</p><div className="rules-team-badges" aria-label="Teams"><span className="rules-team-raw">RAW</span><span className="rules-team-kgb">KGB</span><span className="rules-team-cia">CIA</span><span className="rules-team-mossad">Mossad</span></div><p>The game is conducted in 8 rounds. Each team plays 2 rounds, in the sequence shown by the host.</p></article>
           <article className="rules-rounds"><h2>Sequence of rounds</h2><div className="rules-round-strip"><span>1<br /><b>RAW</b></span><i>→</i><span>2<br /><b>KGB</b></span><i>→</i><span>3<br /><b>CIA</b></span><i>→</i><span>4<br /><b>Mossad</b></span></div><p>The order rotates in later sets so every team gets its turn.</p></article>
           <article><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span>🏆</span><span>📚</span><span>🌍</span><span>🎬</span><span>🎵</span><span>🔬</span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
+          <article className="rules-category-icons-lucide"><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span><CategoryIcon category="Sports" /></span><span><CategoryIcon category="Literature" /></span><span><CategoryIcon category="Geography" /></span><span><CategoryIcon category="Bollywood" /></span><span><CategoryIcon category="Music" /></span><span><CategoryIcon category="Sci-Tech" /></span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
           <article className="rules-points"><h2>Points & time</h2><div className="rules-score-table"><span>Easy <b>10</b><em>30s / 20s</em></span><span>Medium <b>20</b><em>60s / 40s</em></span><span>Difficult <b>30</b><em>90s / 60s</em></span></div><p>Time shown is first attempt / second attempt.</p></article>
           <article><h2>Attempts</h2><p>There is no negative marking on the first attempt.</p><p>On a wrong second attempt, 10 points are deducted. A team may decline the second attempt to avoid the penalty.</p><p>No first-attempt selection means the question is skipped, with no points gained or lost.</p></article>
           <article className="rules-lifelines"><h2>Lifelines</h2><div className="rules-lifeline-art"><span><i className="lifeline-sprite lifeline-sprite-removeTwo" /><b>Remove 2</b></span><span><i className="lifeline-sprite lifeline-sprite-flip" /><b>Flip</b></span></div><p>Each team has 2 lifelines, usable once each. Remove 2 removes two wrong answers; Flip replaces the question and restarts the first attempt. Both may be used on one question if required.</p></article>
