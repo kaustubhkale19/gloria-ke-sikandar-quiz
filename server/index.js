@@ -319,7 +319,7 @@ function parseCsvLine(line) {
 }
 
 function questionHint(category, answer) {
-  return `Hint: This is a ${category} question. The answer starts with “${answer.charAt(0)}” and has ${answer.length} letters.`;
+  return `Hint: This is a ${category} question.`;
 }
 const fallbackExtraOptions = {
   "Which document is the supreme law of India?": "The Representation of the People Act",

@@ -1,221 +1,542 @@
 category,difficulty,question,option_a,option_b,option_c,option_d,option_e,correct_option
-"Bollywood","easy","Which actor played Veeru in the film Sholay?","Sanjeev Kumar","Dharmendra","Rajesh Khanna","Rishi Kapoor","Amitabh Bachchan","1"
-"Bollywood","easy","Which Indian film industry is commonly called Bollywood?","Tamil cinema","Telugu cinema","Marathi cinema","Hindi cinema","Bengali cinema","3"
-"Bollywood","easy","Which actor is known as the King of Bollywood?","Aamir Khan","Salman Khan","Akshay Kumar","Shah Rukh Khan","Ranbir Kapoor","3"
-"Bollywood","easy","Which actor played Veeru in the film Sholay?","Sanjeev Kumar","Amitabh Bachchan","Rishi Kapoor","Rajesh Khanna","Dharmendra","4"
-"Bollywood","easy","Which Indian film industry is commonly called Bollywood?","Bengali cinema","Tamil cinema","Hindi cinema","Telugu cinema","Marathi cinema","2"
-"Bollywood","easy","Which actor is known as the King of Bollywood?","Salman Khan","Akshay Kumar","Shah Rukh Khan","Ranbir Kapoor","Aamir Khan","2"
-"Bollywood","easy","Which actor played Veeru in the film Sholay?","Amitabh Bachchan","Rishi Kapoor","Sanjeev Kumar","Dharmendra","Rajesh Khanna","3"
-"Bollywood","easy","Which Indian film industry is commonly called Bollywood?","Tamil cinema","Marathi cinema","Hindi cinema","Bengali cinema","Telugu cinema","2"
-"Bollywood","easy","Which actor is known as the King of Bollywood?","Aamir Khan","Salman Khan","Ranbir Kapoor","Akshay Kumar","Shah Rukh Khan","4"
-"Bollywood","easy","Which actor played Veeru in the film Sholay?","Dharmendra","Sanjeev Kumar","Rajesh Khanna","Amitabh Bachchan","Rishi Kapoor","0"
-"Bollywood","easy","Which Indian film industry is commonly called Bollywood?","Bengali cinema","Marathi cinema","Telugu cinema","Tamil cinema","Hindi cinema","4"
-"Bollywood","easy","Which actor is known as the King of Bollywood?","Akshay Kumar","Aamir Khan","Shah Rukh Khan","Ranbir Kapoor","Salman Khan","2"
-"Bollywood","easy","Which actor played Veeru in the film Sholay?","Amitabh Bachchan","Dharmendra","Rajesh Khanna","Rishi Kapoor","Sanjeev Kumar","1"
-"Bollywood","easy","Which Indian film industry is commonly called Bollywood?","Telugu cinema","Bengali cinema","Marathi cinema","Hindi cinema","Tamil cinema","3"
-"Bollywood","easy","Which actor is known as the King of Bollywood?","Aamir Khan","Salman Khan","Ranbir Kapoor","Shah Rukh Khan","Akshay Kumar","3"
-"Bollywood","medium","Which film won the first Filmfare Award for Best Film?","Mother India","Shree 420","Guide","Mughal-e-Azam","Do Bigha Zamin","4"
-"Bollywood","medium","Who composed the music for Dilwale Dulhania Le Jayenge?","A. R. Rahman","Nadeem-Shravan","Jatin-Lalit","Shankar-Ehsaan-Loy","R. D. Burman","2"
-"Bollywood","medium","Which actor directed and starred in Taare Zameen Par?","Aamir Khan","Rajkumar Hirani","Karan Johar","Farhan Akhtar","Sanjay Leela Bhansali","0"
-"Bollywood","medium","Which film won the first Filmfare Award for Best Film?","Mughal-e-Azam","Guide","Do Bigha Zamin","Shree 420","Mother India","2"
-"Bollywood","medium","Who composed the music for Dilwale Dulhania Le Jayenge?","Nadeem-Shravan","A. R. Rahman","Jatin-Lalit","R. D. Burman","Shankar-Ehsaan-Loy","2"
-"Bollywood","medium","Which actor directed and starred in Taare Zameen Par?","Sanjay Leela Bhansali","Aamir Khan","Karan Johar","Rajkumar Hirani","Farhan Akhtar","1"
-"Bollywood","medium","Which film won the first Filmfare Award for Best Film?","Mother India","Shree 420","Guide","Do Bigha Zamin","Mughal-e-Azam","3"
-"Bollywood","medium","Who composed the music for Dilwale Dulhania Le Jayenge?","A. R. Rahman","R. D. Burman","Shankar-Ehsaan-Loy","Jatin-Lalit","Nadeem-Shravan","3"
-"Bollywood","medium","Which actor directed and starred in Taare Zameen Par?","Sanjay Leela Bhansali","Farhan Akhtar","Rajkumar Hirani","Karan Johar","Aamir Khan","4"
-"Bollywood","medium","Which film won the first Filmfare Award for Best Film?","Mughal-e-Azam","Mother India","Do Bigha Zamin","Shree 420","Guide","2"
-"Bollywood","medium","Who composed the music for Dilwale Dulhania Le Jayenge?","R. D. Burman","Shankar-Ehsaan-Loy","Jatin-Lalit","Nadeem-Shravan","A. R. Rahman","2"
-"Bollywood","medium","Which actor directed and starred in Taare Zameen Par?","Farhan Akhtar","Rajkumar Hirani","Sanjay Leela Bhansali","Aamir Khan","Karan Johar","3"
-"Bollywood","medium","Which film won the first Filmfare Award for Best Film?","Mother India","Guide","Do Bigha Zamin","Mughal-e-Azam","Shree 420","2"
-"Bollywood","medium","Who composed the music for Dilwale Dulhania Le Jayenge?","A. R. Rahman","R. D. Burman","Nadeem-Shravan","Shankar-Ehsaan-Loy","Jatin-Lalit","4"
-"Bollywood","medium","Which actor directed and starred in Taare Zameen Par?","Aamir Khan","Sanjay Leela Bhansali","Karan Johar","Farhan Akhtar","Rajkumar Hirani","0"
-"Bollywood","hard","Which 1957 Hindi film was nominated for the Academy Award for Best Foreign Language Film?","Madhumati","Naya Daur","Do Bigha Zamin","Pyaasa","Mother India","4"
-"Bollywood","hard","Who wrote the screenplay for the film Deewar?","Vijay Tendulkar","Salim-Javed","Gulzar","Prakash Mehra","Javed Siddiqui","1"
-"Bollywood","hard","Which film featured the song Awaara Hoon?","Awaara","Shree 420","Barsaat","Anari","Mera Naam Joker","0"
-"Bollywood","hard","Which 1957 Hindi film was nominated for the Academy Award for Best Foreign Language Film?","Do Bigha Zamin","Madhumati","Naya Daur","Mother India","Pyaasa","3"
-"Bollywood","hard","Who wrote the screenplay for the film Deewar?","Salim-Javed","Prakash Mehra","Vijay Tendulkar","Gulzar","Javed Siddiqui","0"
-"Bollywood","hard","Which film featured the song Awaara Hoon?","Shree 420","Awaara","Anari","Barsaat","Mera Naam Joker","1"
-"Bollywood","hard","Which 1957 Hindi film was nominated for the Academy Award for Best Foreign Language Film?","Madhumati","Do Bigha Zamin","Mother India","Naya Daur","Pyaasa","2"
-"Bollywood","hard","Who wrote the screenplay for the film Deewar?","Gulzar","Prakash Mehra","Javed Siddiqui","Salim-Javed","Vijay Tendulkar","3"
-"Bollywood","hard","Which film featured the song Awaara Hoon?","Barsaat","Anari","Mera Naam Joker","Shree 420","Awaara","4"
-"Bollywood","hard","Which 1957 Hindi film was nominated for the Academy Award for Best Foreign Language Film?","Naya Daur","Mother India","Pyaasa","Do Bigha Zamin","Madhumati","1"
-"Bollywood","hard","Who wrote the screenplay for the film Deewar?","Salim-Javed","Gulzar","Javed Siddiqui","Vijay Tendulkar","Prakash Mehra","0"
-"Bollywood","hard","Which film featured the song Awaara Hoon?","Mera Naam Joker","Barsaat","Anari","Awaara","Shree 420","3"
-"Bollywood","hard","Which 1957 Hindi film was nominated for the Academy Award for Best Foreign Language Film?","Mother India","Madhumati","Do Bigha Zamin","Pyaasa","Naya Daur","0"
-"Bollywood","hard","Who wrote the screenplay for the film Deewar?","Gulzar","Prakash Mehra","Vijay Tendulkar","Javed Siddiqui","Salim-Javed","4"
-"Bollywood","hard","Which film featured the song Awaara Hoon?","Mera Naam Joker","Shree 420","Awaara","Anari","Barsaat","2"
-"Sports","easy","How many players are on a football team on the field?","11","12","10","9","13","0"
-"Sports","easy","Which sport uses a bat, ball and wickets?","Hockey","Golf","Tennis","Baseball","Cricket","4"
-"Sports","easy","Which country hosted the 2016 Summer Olympics?","Brazil","South Africa","China","Japan","United Kingdom","0"
-"Sports","easy","How many players are on a football team on the field?","13","11","10","12","9","1"
-"Sports","easy","Which sport uses a bat, ball and wickets?","Cricket","Golf","Baseball","Hockey","Tennis","0"
-"Sports","easy","Which country hosted the 2016 Summer Olympics?","Japan","United Kingdom","China","Brazil","South Africa","3"
-"Sports","easy","How many players are on a football team on the field?","12","9","13","11","10","3"
-"Sports","easy","Which sport uses a bat, ball and wickets?","Hockey","Cricket","Tennis","Baseball","Golf","1"
-"Sports","easy","Which country hosted the 2016 Summer Olympics?","Brazil","Japan","United Kingdom","South Africa","China","0"
-"Sports","easy","How many players are on a football team on the field?","9","13","12","10","11","4"
-"Sports","easy","Which sport uses a bat, ball and wickets?","Cricket","Hockey","Golf","Tennis","Baseball","0"
-"Sports","easy","Which country hosted the 2016 Summer Olympics?","Japan","South Africa","China","United Kingdom","Brazil","4"
-"Sports","easy","How many players are on a football team on the field?","10","13","11","9","12","2"
-"Sports","easy","Which sport uses a bat, ball and wickets?","Tennis","Golf","Baseball","Cricket","Hockey","3"
-"Sports","easy","Which country hosted the 2016 Summer Olympics?","United Kingdom","China","Brazil","South Africa","Japan","2"
-"Sports","medium","Which country won the 2011 ICC Cricket World Cup?","India","Australia","Sri Lanka","England","Pakistan","0"
-"Sports","medium","In tennis, what is the term for a score of zero?","Nada","Nil","Duck","Blank","Love","4"
-"Sports","medium","How long is a standard marathon?","26.2 miles","30 miles","42 kilometres","20 miles","15 miles","0"
-"Sports","medium","Which country won the 2011 ICC Cricket World Cup?","Australia","Pakistan","England","Sri Lanka","India","4"
-"Sports","medium","In tennis, what is the term for a score of zero?","Nada","Love","Blank","Duck","Nil","1"
-"Sports","medium","How long is a standard marathon?","30 miles","15 miles","20 miles","26.2 miles","42 kilometres","3"
-"Sports","medium","Which country won the 2011 ICC Cricket World Cup?","India","England","Sri Lanka","Pakistan","Australia","0"
-"Sports","medium","In tennis, what is the term for a score of zero?","Love","Nada","Blank","Nil","Duck","0"
-"Sports","medium","How long is a standard marathon?","42 kilometres","30 miles","20 miles","15 miles","26.2 miles","4"
-"Sports","medium","Which country won the 2011 ICC Cricket World Cup?","Australia","England","Pakistan","India","Sri Lanka","3"
-"Sports","medium","In tennis, what is the term for a score of zero?","Nil","Duck","Blank","Love","Nada","3"
-"Sports","medium","How long is a standard marathon?","15 miles","26.2 miles","42 kilometres","30 miles","20 miles","1"
-"Sports","medium","Which country won the 2011 ICC Cricket World Cup?","India","Australia","Sri Lanka","Pakistan","England","0"
-"Sports","medium","In tennis, what is the term for a score of zero?","Love","Nil","Duck","Nada","Blank","0"
-"Sports","medium","How long is a standard marathon?","26.2 miles","42 kilometres","15 miles","20 miles","30 miles","0"
-"Sports","hard","Which athlete holds the men's 100-metre world record?","Carl Lewis","Usain Bolt","Justin Gatlin","Yohan Blake","Tyson Gay","1"
-"Sports","hard","In which sport is the Ryder Cup contested?","Tennis","Badminton","Golf","Rowing","Polo","2"
-"Sports","hard","Which nation has won the most men's FIFA World Cups?","Italy","France","Brazil","Germany","Argentina","2"
-"Sports","hard","Which athlete holds the men's 100-metre world record?","Yohan Blake","Justin Gatlin","Tyson Gay","Carl Lewis","Usain Bolt","4"
-"Sports","hard","In which sport is the Ryder Cup contested?","Rowing","Golf","Polo","Badminton","Tennis","1"
-"Sports","hard","Which nation has won the most men's FIFA World Cups?","Germany","Brazil","Italy","France","Argentina","1"
-"Sports","hard","Which athlete holds the men's 100-metre world record?","Carl Lewis","Yohan Blake","Justin Gatlin","Tyson Gay","Usain Bolt","4"
-"Sports","hard","In which sport is the Ryder Cup contested?","Golf","Badminton","Rowing","Polo","Tennis","0"
-"Sports","hard","Which nation has won the most men's FIFA World Cups?","Brazil","Germany","Argentina","Italy","France","0"
-"Sports","hard","Which athlete holds the men's 100-metre world record?","Yohan Blake","Tyson Gay","Usain Bolt","Justin Gatlin","Carl Lewis","2"
-"Sports","hard","In which sport is the Ryder Cup contested?","Tennis","Badminton","Polo","Golf","Rowing","3"
-"Sports","hard","Which nation has won the most men's FIFA World Cups?","France","Argentina","Italy","Brazil","Germany","3"
-"Sports","hard","Which athlete holds the men's 100-metre world record?","Carl Lewis","Justin Gatlin","Usain Bolt","Tyson Gay","Yohan Blake","2"
-"Sports","hard","In which sport is the Ryder Cup contested?","Golf","Tennis","Polo","Rowing","Badminton","0"
-"Sports","hard","Which nation has won the most men's FIFA World Cups?","France","Argentina","Italy","Germany","Brazil","4"
-"History","easy","Who was the first President of independent India?","Sardar Patel","Zakir Husain","Dr Rajendra Prasad","Jawaharlal Nehru","B. R. Ambedkar","2"
-"History","easy","The Taj Mahal was built by which Mughal emperor?","Aurangzeb","Humayun","Babur","Shah Jahan","Akbar","3"
-"History","easy","Which civilisation built the pyramids at Giza?","Romans","Egyptians","Persians","Mayans","Greeks","1"
-"History","easy","Who was the first President of independent India?","Jawaharlal Nehru","Sardar Patel","B. R. Ambedkar","Dr Rajendra Prasad","Zakir Husain","3"
-"History","easy","The Taj Mahal was built by which Mughal emperor?","Akbar","Shah Jahan","Aurangzeb","Humayun","Babur","1"
-"History","easy","Which civilisation built the pyramids at Giza?","Egyptians","Romans","Persians","Greeks","Mayans","0"
-"History","easy","Who was the first President of independent India?","Sardar Patel","Jawaharlal Nehru","Zakir Husain","B. R. Ambedkar","Dr Rajendra Prasad","4"
-"History","easy","The Taj Mahal was built by which Mughal emperor?","Humayun","Aurangzeb","Babur","Akbar","Shah Jahan","4"
-"History","easy","Which civilisation built the pyramids at Giza?","Greeks","Mayans","Romans","Egyptians","Persians","3"
-"History","easy","Who was the first President of independent India?","B. R. Ambedkar","Dr Rajendra Prasad","Zakir Husain","Sardar Patel","Jawaharlal Nehru","1"
-"History","easy","The Taj Mahal was built by which Mughal emperor?","Akbar","Babur","Shah Jahan","Humayun","Aurangzeb","2"
-"History","easy","Which civilisation built the pyramids at Giza?","Egyptians","Greeks","Mayans","Persians","Romans","0"
-"History","easy","Who was the first President of independent India?","Dr Rajendra Prasad","Zakir Husain","B. R. Ambedkar","Jawaharlal Nehru","Sardar Patel","0"
-"History","easy","The Taj Mahal was built by which Mughal emperor?","Babur","Akbar","Aurangzeb","Shah Jahan","Humayun","3"
-"History","easy","Which civilisation built the pyramids at Giza?","Greeks","Persians","Romans","Mayans","Egyptians","4"
-"History","medium","In which year did India gain independence?","1950","1946","1947","1945","1952","2"
-"History","medium","Who led the Dandi March in 1930?","Jawaharlal Nehru","Bal Gangadhar Tilak","Bhagat Singh","Mahatma Gandhi","Subhas Chandra Bose","3"
-"History","medium","The Berlin Wall fell in which year?","1989","1993","1987","1988","1991","0"
-"History","medium","In which year did India gain independence?","1945","1950","1947","1952","1946","2"
-"History","medium","Who led the Dandi March in 1930?","Jawaharlal Nehru","Bal Gangadhar Tilak","Bhagat Singh","Subhas Chandra Bose","Mahatma Gandhi","4"
-"History","medium","The Berlin Wall fell in which year?","1991","1988","1987","1989","1993","3"
-"History","medium","In which year did India gain independence?","1952","1946","1947","1950","1945","2"
-"History","medium","Who led the Dandi March in 1930?","Subhas Chandra Bose","Mahatma Gandhi","Jawaharlal Nehru","Bal Gangadhar Tilak","Bhagat Singh","1"
-"History","medium","The Berlin Wall fell in which year?","1989","1991","1993","1987","1988","0"
-"History","medium","In which year did India gain independence?","1945","1950","1952","1946","1947","4"
-"History","medium","Who led the Dandi March in 1930?","Mahatma Gandhi","Subhas Chandra Bose","Jawaharlal Nehru","Bhagat Singh","Bal Gangadhar Tilak","0"
-"History","medium","The Berlin Wall fell in which year?","1991","1989","1988","1993","1987","1"
-"History","medium","In which year did India gain independence?","1946","1952","1947","1945","1950","2"
-"History","medium","Who led the Dandi March in 1930?","Subhas Chandra Bose","Bal Gangadhar Tilak","Bhagat Singh","Mahatma Gandhi","Jawaharlal Nehru","3"
-"History","medium","The Berlin Wall fell in which year?","1993","1987","1988","1991","1989","4"
-"History","hard","Which treaty formally ended the First World War?","Treaty of Paris","Treaty of Versailles","Treaty of Tordesillas","Treaty of Ghent","Treaty of Utrecht","1"
-"History","hard","Which year is associated with the Battle of Plassey?","1764","1857","1707","1756","1757","4"
-"History","hard","Who founded the Maurya Empire?","Ashoka","Samudragupta","Harsha","Chandragupta Maurya","Bindusara","3"
-"History","hard","Which treaty formally ended the First World War?","Treaty of Versailles","Treaty of Paris","Treaty of Utrecht","Treaty of Tordesillas","Treaty of Ghent","0"
-"History","hard","Which year is associated with the Battle of Plassey?","1857","1756","1757","1707","1764","2"
-"History","hard","Who founded the Maurya Empire?","Bindusara","Samudragupta","Chandragupta Maurya","Ashoka","Harsha","2"
-"History","hard","Which treaty formally ended the First World War?","Treaty of Paris","Treaty of Utrecht","Treaty of Tordesillas","Treaty of Versailles","Treaty of Ghent","3"
-"History","hard","Which year is associated with the Battle of Plassey?","1756","1707","1757","1857","1764","2"
-"History","hard","Who founded the Maurya Empire?","Ashoka","Bindusara","Chandragupta Maurya","Samudragupta","Harsha","2"
-"History","hard","Which treaty formally ended the First World War?","Treaty of Versailles","Treaty of Utrecht","Treaty of Tordesillas","Treaty of Ghent","Treaty of Paris","0"
-"History","hard","Which year is associated with the Battle of Plassey?","1756","1707","1757","1764","1857","2"
-"History","hard","Who founded the Maurya Empire?","Harsha","Ashoka","Chandragupta Maurya","Bindusara","Samudragupta","2"
-"History","hard","Which treaty formally ended the First World War?","Treaty of Paris","Treaty of Ghent","Treaty of Tordesillas","Treaty of Utrecht","Treaty of Versailles","4"
-"History","hard","Which year is associated with the Battle of Plassey?","1764","1857","1756","1757","1707","3"
-"History","hard","Who founded the Maurya Empire?","Samudragupta","Bindusara","Harsha","Chandragupta Maurya","Ashoka","3"
-"Geography","easy","What is the capital of Japan?","Tokyo","Kyoto","Nagoya","Hiroshima","Osaka","0"
-"Geography","easy","Which is the largest ocean on Earth?","Pacific","Indian","Atlantic","Arctic","Southern Ocean","0"
-"Geography","easy","Mount Everest is part of which mountain range?","Alps","Rockies","Karakoram","Andes","Himalayas","4"
-"Geography","easy","What is the capital of Japan?","Kyoto","Hiroshima","Osaka","Tokyo","Nagoya","3"
-"Geography","easy","Which is the largest ocean on Earth?","Arctic","Southern Ocean","Indian","Pacific","Atlantic","3"
-"Geography","easy","Mount Everest is part of which mountain range?","Andes","Himalayas","Karakoram","Rockies","Alps","1"
-"Geography","easy","What is the capital of Japan?","Tokyo","Osaka","Nagoya","Kyoto","Hiroshima","0"
-"Geography","easy","Which is the largest ocean on Earth?","Atlantic","Pacific","Arctic","Southern Ocean","Indian","1"
-"Geography","easy","Mount Everest is part of which mountain range?","Himalayas","Andes","Karakoram","Alps","Rockies","0"
-"Geography","easy","What is the capital of Japan?","Osaka","Tokyo","Hiroshima","Nagoya","Kyoto","1"
-"Geography","easy","Which is the largest ocean on Earth?","Southern Ocean","Arctic","Indian","Atlantic","Pacific","4"
-"Geography","easy","Mount Everest is part of which mountain range?","Andes","Rockies","Alps","Himalayas","Karakoram","3"
-"Geography","easy","What is the capital of Japan?","Hiroshima","Nagoya","Kyoto","Osaka","Tokyo","4"
-"Geography","easy","Which is the largest ocean on Earth?","Atlantic","Pacific","Indian","Southern Ocean","Arctic","1"
-"Geography","easy","Mount Everest is part of which mountain range?","Himalayas","Rockies","Alps","Karakoram","Andes","0"
-"Geography","medium","Which river flows through Egypt?","Congo","Yangtze","Amazon","Nile","Danube","3"
-"Geography","medium","What is the largest hot desert in the world?","Arabian","Gobi","Kalahari","Sahara","Thar","3"
-"Geography","medium","Which country has the most natural lakes?","Canada","United States","Brazil","India","Russia","0"
-"Geography","medium","Which river flows through Egypt?","Nile","Danube","Congo","Amazon","Yangtze","0"
-"Geography","medium","What is the largest hot desert in the world?","Thar","Sahara","Arabian","Kalahari","Gobi","1"
-"Geography","medium","Which country has the most natural lakes?","Russia","Canada","India","United States","Brazil","1"
-"Geography","medium","Which river flows through Egypt?","Danube","Nile","Amazon","Yangtze","Congo","1"
-"Geography","medium","What is the largest hot desert in the world?","Sahara","Arabian","Thar","Gobi","Kalahari","0"
-"Geography","medium","Which country has the most natural lakes?","Canada","United States","Brazil","Russia","India","0"
-"Geography","medium","Which river flows through Egypt?","Nile","Yangtze","Congo","Danube","Amazon","0"
-"Geography","medium","What is the largest hot desert in the world?","Gobi","Kalahari","Thar","Arabian","Sahara","4"
-"Geography","medium","Which country has the most natural lakes?","Russia","Brazil","India","Canada","United States","3"
-"Geography","medium","Which river flows through Egypt?","Amazon","Danube","Yangtze","Congo","Nile","4"
-"Geography","medium","What is the largest hot desert in the world?","Kalahari","Gobi","Thar","Sahara","Arabian","3"
-"Geography","medium","Which country has the most natural lakes?","Brazil","Russia","United States","India","Canada","4"
-"Geography","hard","Which strait separates Asia and North America?","Sunda Strait","Bosporus","Bering Strait","Gibraltar Strait","Malacca Strait","2"
-"Geography","hard","What is the deepest known point in the world's oceans?","Tonga Trench","Puerto Rico Trench","Java Trench","Mariana Trench","Kermadec Trench","3"
-"Geography","hard","Which country contains the region of Transylvania?","Slovakia","Serbia","Romania","Bulgaria","Hungary","2"
-"Geography","hard","Which strait separates Asia and North America?","Gibraltar Strait","Malacca Strait","Bering Strait","Sunda Strait","Bosporus","2"
-"Geography","hard","What is the deepest known point in the world's oceans?","Mariana Trench","Puerto Rico Trench","Java Trench","Kermadec Trench","Tonga Trench","0"
-"Geography","hard","Which country contains the region of Transylvania?","Slovakia","Serbia","Romania","Hungary","Bulgaria","2"
-"Geography","hard","Which strait separates Asia and North America?","Bosporus","Gibraltar Strait","Bering Strait","Malacca Strait","Sunda Strait","2"
-"Geography","hard","What is the deepest known point in the world's oceans?","Kermadec Trench","Mariana Trench","Java Trench","Puerto Rico Trench","Tonga Trench","1"
-"Geography","hard","Which country contains the region of Transylvania?","Hungary","Slovakia","Serbia","Romania","Bulgaria","3"
-"Geography","hard","Which strait separates Asia and North America?","Gibraltar Strait","Malacca Strait","Bosporus","Bering Strait","Sunda Strait","3"
-"Geography","hard","What is the deepest known point in the world's oceans?","Kermadec Trench","Tonga Trench","Puerto Rico Trench","Java Trench","Mariana Trench","4"
-"Geography","hard","Which country contains the region of Transylvania?","Bulgaria","Hungary","Romania","Slovakia","Serbia","2"
-"Geography","hard","Which strait separates Asia and North America?","Malacca Strait","Bosporus","Bering Strait","Sunda Strait","Gibraltar Strait","2"
-"Geography","hard","What is the deepest known point in the world's oceans?","Tonga Trench","Puerto Rico Trench","Kermadec Trench","Mariana Trench","Java Trench","3"
-"Geography","hard","Which country contains the region of Transylvania?","Hungary","Serbia","Romania","Bulgaria","Slovakia","2"
-"team_members","raw","Alisson Becker","","","","","",""
-"team_members","raw","Virgil van Dijk","","","","","",""
-"team_members","raw","Trent Alexander-Arnold","","","","","",""
-"team_members","raw","Andy Robertson","","","","","",""
-"team_members","raw","Alexis Mac Allister","","","","","",""
-"team_members","raw","Dominik Szoboszlai","","","","","",""
-"team_members","raw","Mohamed Salah","","","","","",""
-"team_members","raw","Cody Gakpo","","","","","",""
-"team_members","raw","Darwin Nunez","","","","","",""
-"team_members","raw","Luis Diaz","","","","","",""
-"team_members","kgb","David Raya","","","","","",""
-"team_members","kgb","William Saliba","","","","","",""
-"team_members","kgb","Gabriel Magalhaes","","","","","",""
-"team_members","kgb","Jurrien Timber","","","","","",""
-"team_members","kgb","Declan Rice","","","","","",""
-"team_members","kgb","Martin Odegaard","","","","","",""
-"team_members","kgb","Bukayo Saka","","","","","",""
-"team_members","kgb","Kai Havertz","","","","","",""
-"team_members","kgb","Gabriel Martinelli","","","","","",""
-"team_members","kgb","Leandro Trossard","","","","","",""
-"team_members","cia","Thibaut Courtois","","","","","",""
-"team_members","cia","Dani Carvajal","","","","","",""
-"team_members","cia","Antonio Rudiger","","","","","",""
-"team_members","cia","Eder Militao","","","","","",""
-"team_members","cia","Federico Valverde","","","","","",""
-"team_members","cia","Jude Bellingham","","","","","",""
-"team_members","cia","Eduardo Camavinga","","","","","",""
-"team_members","cia","Vinicius Junior","","","","","",""
-"team_members","cia","Rodrygo","","","","","",""
-"team_members","cia","Kylian Mbappe","","","","","",""
-"team_members","mossad","Marc-Andre ter Stegen","","","","","",""
-"team_members","mossad","Jules Kounde","","","","","",""
-"team_members","mossad","Ronald Araujo","","","","","",""
-"team_members","mossad","Alejandro Balde","","","","","",""
-"team_members","mossad","Frenkie de Jong","","","","","",""
-"team_members","mossad","Pedri","","","","","",""
-"team_members","mossad","Gavi","","","","","",""
-"team_members","mossad","Lamine Yamal","","","","","",""
-"team_members","mossad","Raphinha","","","","","",""
-"team_members","mossad","Ferran Torres","","","","","",""
+Sports,easy,Which nation won 1996 cricket ODI worldcup?,Australi,West Indies,Sri Lanka,Pakistan,England,3
+Sports,easy,Which nation has won the most men's FIFA World Cups?,Italy,France,Brazil,Germany,Argentina,2
+Sports,easy,Which athlete holds the men's 100-metre world record?,Yohan Blake,Justin Gatlin,Tyson Gay,Carl Lewis,Usain Bolt,4
+Sports,easy,"In tennis, what is the term for a score of zero?",Love,Nil,Duck,Nada,Blank,0
+Sports,easy,Which player has won the most Grand Slam singles titles in men’s tennis?,Roger Federer,Rafael Nadal,Novak Djokovic,Andy Murray,Pete Sampras,2
+Sports,easy,Every how many years is the men's FIFA World Cup tournament traditionally held?,Every year,Every 2 years,Every 3 years,Every 4 years,Every 5 years,3
+Sports,easy,"Which country is famous for its men’s field-hockey team nickname, the Kookaburras?",India,Australia,Netherlands,Germany,Pakistan,1
+Sports,easy,Which grand slam tennis tournament is famously played on grass courts?,French Open,US Open,Australian Open,Wimbeldon,ATP Finals,3
+Sports,easy,"In volleyball, what is the maximum number of times a team can touch the ball before returning it over the net?",Only once,2 times,3 times,4 times,Unlimited,2
+Sports,easy,What situation occurs in chess when a player is not in check but has no legal moves left to make?,Checkmate,Stalemate,Draw by agreement,Forfeit,Time out,1
+Sports,easy,What is the standard length of a cricket pitch between the two sets of wickets?,18 yards,20 yards,22 yards,24 yards,25 yards,2
+Sports,easy,What is the highest individual score by a batsman in the history of Test match cricket?,365 not out,375,380,400 not out,405,3
+Sports,easy,"In Formula 1, what does the chequered flag signify?",A safety-car period,The fastest lap has been recorded,The session or race has ended,A driver has been disqualified,Rain is expected,2
+Sports,easy,What is a player called when they enter the opponent's half to score points in Kabaddi?,Defender,Raider,Striker,Chaser,Attacker,1
+Sports,easy,How many players from each team are on the court at the start of a Kabaddi match?,5,6,7,8,9,1
+Sports,medium,In which sport is the Ryder Cup contested?,Rowing,Golf,Polo,Badminton,Tennis,1
+Sports,medium,"Instead of a round ball, what object is used to play ice hockey?",Puck,Shuttlecock,Ring,Sphere,Disc,0
+Sports,medium,Which country has won the most men's field hockey Olympic gold medals in history?,Australia,Germany,Netherlands,Pakistan,India,4
+Sports,medium,"In golf, what term is used when a player completes a hole in one stroke under par?",Bogey,Eagle,Birdie,Albatross,Ace,2
+Sports,medium,Who holds the record for the fastest century in Men's ODI history?,Shahid Afridi,Sanath Jaisurya,Chris Gayle,AB de Villiers,Yuvraj Singh,3
+Sports,medium,"Apart from Sachin Tendulkar, who holds the record for the second-most centuries in Test cricket history?",Ricky Ponting,Jacques Kallis,Joe Root,Kumar Sangakkara,Steve Smith,1
+Sports,medium,Sir Don Bradman famously retired with the highest Test batting average of all time. What was his exact final career average?,95.5,98.4,99.94,100,101.24,2
+Sports,medium,"Under the official MCC Laws of Cricket, if a fielder uses their cap to intentionally collect/gather the ball while it is in play, how many penalty runs are automatically awarded to the batting team?",1 run,3 runs,5 runs,7 runs,9 runs,2
+Sports,medium,Which country won the men’s Hockey World Cup in 2023?,Belgium,Germany,Netherlands,Australia,India,1
+Sports,medium,Which city hosts the US Open tennis tournament?,Los Angeles,Chicago,New York City,Miami,Boston,2
+Sports,medium,Which of the following is an Indian domestic limited-overs T20 cricket tournament?,Vijay Hazare Trophy,Deodhar Trophy,Syed Mushtaq Ali Trophy,Ranji Trophy,Duleep Trophy,2
+Sports,medium,Which Indian cricketer represented India in both cricket and hockey?,Kapil Dev,M. J. Gopalan,Ajit Agarkar,Lala Amarnath,Vijay Hazare,1
+Sports,medium,"Who was the first-ever captain of the Indian women's cricket team, leading them during their debut Test match in 1976?",Mithali Raj,Shantha Rangaswamy,Diana Edulji,Jhulan Goswami,Anjum Chopra,1
+Sports,medium,Which Indian actor has represented India internationally in rugby?,Randeep Hooda,Rahul Bose,John Abraham,Milind Soman,Akshay Kumar,1
+Sports,medium,Who was the first Indian woman to win an Olympic medal?,P. T. Usha,Karnam Malleswari,Saina Nehwal,Mary Kom,Sakshi Malik,1
+Sports,hard,Which country hosted the 2016 Summer Olympics?,Brazil,Japan,United Kingdom,South Africa,China,0
+Sports,hard,From what specific distance from the goal line is a standard penalty kick taken in football?,10 yards,12 yards,15 yards,18 yards,20 yards,1
+Sports,hard,Muttiah Muralitharan holds the record for the most international wickets. What is his final tally across all three formats?,"1,001 wickets","1,250 wickets","1,347 wickets","1,412 wickets","1,500 wickets",2
+Sports,hard,Which Australian fast bowler holds the record for taking the most individual wickets in a single Men's ODI World Cup tournament?,Glenn McGrath,Mitchell Starc,Brett Lee,Pat Cummins,Shane Warne,1
+Sports,hard,"Who is the only cricketer to have scored a century in his 100th Test match, his 100th ODI match, and his 100th T20I match?",Ricky Ponting,Virat Kohli,David Warner,Ross Taylor,Joe Root,2
+Sports,hard,Which goalkeeper captained Italy when it won the 2006 FIFA World Cup?,Gianluigi Buffon,Fabio Cannavaro,Francesco Totti,Alessandro Del Piero,Marco Materazzi,1
+Sports,hard,"In tennis, who was the first man in the Open Era to win all four Grand Slam tournaments at least twice?",Roger Federer,Rafael Nadal,Novak Djokovic,Björn Borg,Pete Sampras,2
+Sports,hard,Durand Cup is associated with with sport?,Football,Hockey,Athletics,Wrestling,Cricket,0
+Sports,hard,Which of the following is a term not related to chess?,Castling,En Passant,Stalemate,Albatross,Fianchetto,3
+Sports,hard,"In basketball, how many personal fouls generally result in a player being disqualified from an NBA game?",4,5,6,7,8,2
+Sports,hard,"In athletics, the Fosbury Flop is a technique associated with which event?",Pole vault,High jump,Long jump,Triple jump,Hurdles,1
+Sports,hard,Who has taken the most catches as a fielder for India in international cricket,Rahul Dravid,Sachin Tendulkar,Virat Kohli,Mohammad Azharuddin,Rohit Sharma,2
+Sports,hard,The Thomas Cup is the world championship trophy for men’s teams in which sport?,Squash,Table tennis,Badminton,Tennis,Volleyball,2
+Sports,hard,Which country hosted the first FIFA World Cup in 1930 and also won it?,Argentina,Brazil,France,Italy,Uruguay,4
+Sports,hard,Which athlete won the first individual Olympic gold medal for independent India?,Neeraj Chopra,Abhinav Bindra,Rajyavardhan Singh Rathore,Leander Paes,Karnam Malleswari,1
+History,easy,"The Treaty of Purandar, signed in 1665, was between Shivaji and:",Shaista Khan,Mirzaraje Jaisingh,Aurangzeb,Jaswant Singh,Diler Khan,1
+History,easy,"In the Ashta Pradhan, the Peshwa was mainly responsible for:",Religious affairs,Foreign correspondence,General administration,Judicial matters,Military intelligence,2
+History,easy,Which title was held by the finance minister in Shivaji Maharaj’s Ashta Pradhan,Amatya,Sachiv,Panditrao,Nyayadhish,Senapati,0
+History,easy,Which Sikh Guru founded the Khalsa in 1699?,Guru Arjan Dev,Guru Hargobind,Guru Tegh Bahadur,Guru Gobind Singh,Guru Nanak Dev,3
+History,easy,The First Battle of Panipat in 1526 was fought between Babur and:,Sher Shah Suri,Ibrahim Lodi,Sikandar Lodi,Daulat Khan Lodi,Rana Sanga,1
+History,easy,"The Bhoodan Movement, which encouraged voluntary land donation, was led by:",Jayaprakash Narayan,Vinoba Bhave,Acharya Narendra Dev,Ram Manohar Lohia,J. B. Kripalani,1
+History,easy,The Satyashodhak Samaj was founded in 1873 by:,Raja Ram Mohan Roy,Ishwar Chandra Vidyasagar,Jyotirao Phule,Mahadev Govind Ranade,Gopal Hari Deshmukh,2
+History,easy,Who was the only woman ruler of the Delhi Sultanate?,Nur Jahan,Chand Bibi,Razia Sultan,Jahanara Begum,Rani Durgavati,2
+History,easy,Who served as the commander-in-chief of the Maratha field army during the Third Battle of Panipat in 1761?,Malhar Roa Holkar,Sadhashivrao Bhau,Vishwasrao,Raghunathrao,Nanasaheb Peshwa,1
+History,easy,Which prominent Rohilla Afghan chief played a vital role in convincing Shuja-ud-Daula (the Nawab of Awadh) to join Ahmed Shah Abdali?,Hafiz Rahmat Khan,Ali Muhammad Khan,Sadullah Khan,Dundi Khan,Najib-ud-Daula,4
+History,easy,Which battle established British supremacy in Bengal?,Battle of Buxar,Battle of Plassey,Battle of Panipat,Battle of Haldighati,Battle of Talikota,1
+History,easy,Who commissioned the construction of the Red Fort in Delhi?,Akbar,Humayun,Shah Jahan,Aurangajeb,Bahadur Shah Zafar,2
+History,easy,"Following the passing of Shivaji Maharaj, Sambhaji Maharaj had to overcome internal court factions backing which of his half-brothers for the throne?",Rajaram,Shahu,Shivaji II,Sambhaji II,Vyankoji,0
+History,easy,"Under the reign of Sambhaji Maharaj, which Maratha fort near Nashik famously resisted a massive Mughal siege for over five years with a tiny garrison?",Salher,Mulher,Ramshej,Trimbakgad,Harihar,2
+History,easy,Which major battle in 1728 saw Peshwa Baji Rao I decisively outmaneuver the Nizam-ul-Mulk of Hyderabad using rapid cavalry movements?,Battle of Palkhed,Battle of Bhopal,Battle of Vasai,Battle of Amjhera,Battle of Dabhoi,0
+History,medium,Which Chinese traveller visited India during the reign of Harshavardhana?,Fa-Hien,Hiuen Tsang,Al-Biruni,Ibn Battuta,Marco Polo,1
+History,medium,Which event prompted the withdrawal of the Non-Cooperation Movement in 1922?,Kakori conspiracy,Jallianwala Bagh massacre,Chauri Chaura incident,Dandi March,Bardoli Satyagraha,2
+History,medium,What was the original name of the Maratha commander Hambirao Mohite?,Hansaaji Mohite,Prataprao Mohite,Netaji Mohite,Sambhaji Mohite,Santaji Mohite,0
+History,medium,The Swadeshi Movement began in response to the Partition of Bengal in 1905 by:,Lord Ripon,Lord Curzon,Lord Lytton,Lord Minto,Lord Hardinge,1
+History,medium,"Who was the first Governor-General of India under the Government of India Act, 1833?",Warren Hastings,Lord Cornwallis,Lord William Bentinck,Lord Canning,Lord Dalhousie,2
+History,medium,Who was appointed as one of the first chief Admirals (Darya Sarang) of Chhatrapati Shivaji Maharaj's navy?,Surendranath Banerjee,Satyendranath Tagore,Romesh Chandra Dutt,Dadabhai Naoroji,Womesh Chandra Bonnerjee,1
+History,medium,"Ahmed Shah Abdali utilized unique light, mobile artillery pieces mounted on camels that could pivot and fire quickly. What were these weapons called?",Ban (Rockets),Zamburaka,Rahkala,Malik-i-Maidan,Top-e-Hawa,1
+History,medium,The Home Rule League movement in India was launched by Bal Gangadhar Tilak and:,Sarojini Naidu,Annie Besant,Madam Bhikaji Cama,Aruna Asaf Ali,Sucheta Kripalani,1
+History,medium,The All-India Muslim League was founded in 1906 at:,Aligarh,Lahore,Lucknow,Dhaka,Karachi,3
+History,medium,"The Provisional Government of Free India, also called the Azad Hind Government, was proclaimed by Subhas Chandra Bose in 1943 at:",Rangoon,Tokyo,Bangkok,Singapore,Berlin,3
+History,medium,Which sea fort served as the primary headquarters and naval shipbuilding hub for Shivaji Maharaj’s coastal fleet?,Murud-Janjira,Sindhudurg,Vijaydurg,Padmadurg,Suvarnadurg,1
+History,medium,Which fort was captured by Shivaji Maharaj in 1645 and later renamed Torna?,Kondhana,Prachandagad,Purandar,Panhala,Vishalgad,1
+History,medium,Who founded the Azad Hind Fauj ?,Bhagat Singh,Rash Bihari Bose,Chandra Shekhar Azad,V. D. Savarkar,Subhash Chandra Bose,2
+History,medium,Which military commander served as the first Sarnobat of Shivaji's infantry before the formal organization of the cavalry-heavy Ashta Pradhan forces?,Mankoji Dahatonde,Yesaji Kank,Baji Pasalkar,Tanaji Malusare,Kanhoji Jedhe,2
+History,medium,Who founded the Prarthana Samaj in Bombay in 1867 along with other reformers?,Atmaram Pandurang,Mahadev Govind Ranade,Jyotirao Phule,Gopal Hari Deshmukh,Vishnushastri Chiplunkar,0
+History,hard,The Peshwa rule effectively ended after the Third Anglo-Maratha War in:,1761,1775,1782,1802,1818,4
+History,hard,"Megasthenes, author of Indica, was an ambassador at the court of which ruler?",Chandragupta Maurya,Ashoka,Samudragupta,Kanishka,Bindusara,0
+History,hard,Who was the first President of the Indian National Congress in 1885?,Dadabhai Naoroji,Womesh Chandra Bonnerjee,Surendranath Banerjee,Allan Octavian Hume,Gopal Krishna Gokhale,1
+History,hard,Who was the first Indian woman to become the President of the Indian National Congress?,Sarojini Naidu,Annie Besant,Sucheta Kriplani,Aruna Asaf Ali,Vijay Lakshmi Pandit,1
+History,hard,"Which young head of the Scindia (Shinde) clan fought bravely at Panipat, was captured wounded, and later executed by the Afghans?",Mahadji Scindia,Jayappa Scindia,Jankoji Scindia,Dattaji Scindia,Ranoji Scindia,2
+History,hard,"In Shivaji Maharaj’s Ashta Pradhan council, what was the official designation of the minister responsible for managing foreign affairs and diplomatic relations?",Amatya,Peshwa,Sachiv,Sumant (Dabir),Mantri,3
+History,hard,Which ruler is known as the “Napoleon of India”?,Chandragupta Maurya,Ashoka,Samudragupta,Harshavardhana,Kanishka,2
+History,hard,Who established the underground Congress Radio during the Quit India Movement?,Aruna Asaf Ali,Sucheta Kripalani,Usha Mehta,Kalpana Dutt,Matangini Hazra,2
+History,hard,Which freedom fighter is known for hoisting the Indian National Congress flag at Gowalia Tank Maidan in Bombay during the Quit India Movement?,Sarojini Naidu,Aruna Asaf Ali,Vijaya Lakshmi Pandit,Annie Besant,Kamaladevi Chattopadhyay,1
+History,hard,Who was the Maratha commander killed during the Battle of Nesari in 1674?,Prataprao Gujar,Hambirrao Mohite,Netaji Palkar,Baji Prabhu Deshpande,Yesaji Kank,0
+History,hard,Which of the following leaders was NOT one of the five principal founding figures of the Non-Aligned Movement (NAM)?,Jawaharlal Nehru,Marshal Tito,Gamal Abdel Nasser,Kwame Nkrumah,Patrice Lumumba,4
+History,hard,Balaji Vishwanath secured Kanhoji Angre’s support for Chhatrapati Shahu through which agreement of 1714?,Treaty of Purandar,Treaty of Salbai,Treaty of Lonavala,Treaty of Bassein,Treaty of Surat,2
+History,hard,"When Maharani Ahilyabai Holkar took administration of the Holkar state in 1767, to which city did she move the permanent capital from Indore?",Maheshwar,Ujjain,Dhar,Gwalior,Mandsaur,0
+History,hard,"The Treaty of Salbai (1782), ending the First Anglo-Maratha War, was chiefly negotiated for the Marathas by:",Nana Fadnavis,Mahadji Shinde,Tukojirao Holkar,Haripant Phadke,Raghunathrao,1
+History,hard,Shivaji Maharaj underwent two distinct coronation (Rajyabhishek) ceremonies at Raigad Fort in 1674. Who conducted the second coronation to appease local spiritual concerns?,Gaga Bhatt,Nischal Puri Goswami,Ramdas Swami,Tukaram Maharaj,Moropant Pingle,1
+Geography,easy,Which is the longest river that flows entirely within India?,Narmada,Krishna,Godavari,Mahanadi,Kaveri,2
+Geography,easy,The Sundarbans are primarily located in which Indian state?,Odisha,Assam,West Bengal,Bihar,Jharkhand,2
+Geography,easy,Which city is situated on the banks of the Sabarmati River?,Surat,Ahmedabad,Vadodara,Rajkot,Bhavnagar,1
+Geography,easy,Which of these famous landmarks is located in Hyderabad?,Gateway of India,Victoria Memorial,Hawa Mahal,Sanchi Stupa,Charminar,4
+Geography,easy,Which river is called the “Dakshin Ganga” because of its importance in peninsular India?,Krishna,Kaveri,Tungabhadra,Godavari,Pennar,3
+Geography,easy,Which city is popularly called the “Silicon Valley of India”?,Hyderabad,Pune,Chennai,Gurugram,Bengaluru,4
+Geography,easy,Which Indian state is the largest producer of tea in India?,West Bengal,Kerala,Tamil Nadu,Assam,Karnataka,3
+Geography,easy,The black soil of the Deccan Plateau is especially suitable for growing:,Rice,Cotton,Tea,Jute,Apple,1
+Geography,easy,Which state is popularly called the “Spice Garden of India”?,Karnataka,Kerala,Tamil Nadu,Goa,Andhra Pradesh,1
+Geography,easy,Which Indian state is the largest producer of salt?,Rajasthan,Gujarat,Maharashtra,Tamil Nadu,Andhra Pradesh,2
+Geography,easy,Which Indian state has the largest geographical area?,Madhya Pradesh,Maharashtra,Uttar Pradesh,Rajasthan,Gujarat,3
+Geography,easy,Which state was carved out of Madhya Pradesh on 1 November 2000?,Jharkhand,Chhattisgarh,Uttarakhand,Telangana,Goa,1
+Geography,easy,The state of Telangana was formed in 2014 by being separated from:,Karnataka,Maharashtra,Andhra Pradesh,Tamil Nadu,Odisha,2
+Geography,easy,The Nanda Devi National Park is located in which state?,Himachal Pradesh,Uttarakhand,Sikkim,Arunachal Pradesh,Jammu and Kashmir,1
+Geography,easy,The Mahanadi River forms a major delta before entering which water body?,Arabian Sea,Bay of Bengal,Gulf of Kutch,Gulf of Mannar,Palk Bay,1
+Geography,medium,"Anamudi, the highest peak in South India, is located in which state?",Tamil Nadu,Karnataka,Kerala,Andhra Pradesh,Telangana,2
+Geography,medium,Which Indian state has the longest coastline?,Tamil Nadu,Andhra Pradesh,Maharashtra,Gujarat,Kerala,3
+Geography,medium,Which mountain pass connects Sikkim with Tibet and is an important trade route?,Nathu La,Zoji La,Rohtang Pass,Bomdi La,Shipki La,0
+Geography,medium,Which Indian state would you visit if you wanted to see the famous living root bridges?,Sikkim,Assam,Meghalaya,Arunachal Pradesh,Nagaland,2
+Geography,medium,Which plateau is known for major mineral reserves and covers much of Jharkhand and parts of neighbouring states?,Chota Nagpur Plateau,Malwa Plateau,Deccan Plateau,Bundelkhand Plateau,Meghalaya Plateau,0
+Geography,medium,"Golkonda Fort, once associated with the Qutb Shahi dynasty and diamond trade, is in which state?",Karnataka,Andhra Pradesh,Maharashtra,Tamil Nadu,Telangana,4
+Geography,medium,Mehrangarh Fort overlooks which city?,Jaipur,Udaipur,Jodhpur,Bikaner,Ajmer,2
+Geography,medium,The Bhakra Nangal Dam is built across which river?,Beas,Ravi,Chenab,Sutlej,Jhelum,3
+Geography,medium,Which is the largest dam in Maharashtra by storage capacity?,Koyna Dam,Jayakwadi Dam,Ujani Dam,Tansa Dam,Mulshi Dam,1
+Geography,medium,Which city is known as the “Golden City” because of its yellow sandstone architecture?,Bikaner,Jaisalmer,Jodhpur,Udaipur,Ajmer,1
+Geography,medium,Which city is located on the banks of the Brahmaputra River and is often called the gateway to Northeast India?,Imphal,Shillong,Guwahati,Agartala,Itanagar,2
+Geography,medium,Which mango variety from Goa has a Geographical Indication (GI) tag?,Alphonso,Kesar,Mankurad,Dasheri,Langra,2
+Geography,medium,Which of these states does not share an international border with Bangladesh?,Tripura,Mizoram,Meghalaya,Manipur,West Bengal,3
+Geography,medium,Which Indian state was known as the North-East Frontier Agency (NEFA) before becoming a Union Territory and later a state?,Nagaland,Mizoram,Arunachal Pradesh,Meghalaya,Manipur,2
+Geography,medium,Which Indian state shares borders with both Bhutan and Myanmar?,Assam,Arunachal Pradesh,Nagaland,Manipur,Mizoram,1
+Geography,hard,Which river is known as the “Sorrow of Bihar” because of its frequent floods?,Son,Gandak,Damodar,Kosi,Mahananda,3
+Geography,hard,Which is the only active volcano in India?,Narcondam,Barren Island,Deccan Traps,Dhinodhar Hills,Dhosi Hill,2
+Geography,hard,Which river flows through a rift valley between the Vindhya and Satpura ranges?,Godavari,Krishna,Mahanadi,Kaveri,Narmada,4
+Geography,hard,"Which city in Bihar is especially famous for its Shahi litchi, a geographical-indication fruit?",Patna,Gaya,Bhagalpur,Muzaffarpur,Darbhanga,3
+Geography,hard,The Khajuraho Group of Monuments is located in which district of Madhya Pradesh?,Panna,Chhatarpur,Satna,Rewa,Tikamgarh,1
+Geography,hard,Which port was developed as an alternative to Karachi Port after Partition and became a major port of independent India?,Mumbai Port,Kandla Port,Chennai Port,Visakhapatnam Port,Paradip Port,2
+Geography,hard,"Which national park is famous for the endangered Hangul, or Kashmir stag?",Dachigam National Park,Hemis National Park,Great Himalayan National Park,Nanda Devi National Park,Valley of Flowers National Park,0
+Geography,hard,"Which national park is famous for the barasingha, or swamp deer?",Kanha National Park,Gir National Park,Ranthambore National Park,Mudumalai National Park,Rajaji National Park,0
+Geography,hard,"Hirakud Dam, one of India’s longest earthen dams, is built across which river?",Godavari,Mahanadi,Krishna,Brahmani,Subarnarekha,1
+Geography,hard,Which Indian city became the country’s first UNESCO World Heritage City in 2017?,Jaipur,Ahmedabad,Varanasi,Mysuru,Hyderabad,1
+Geography,hard,Which is the only Indian state through which both the Tropic of Cancer and the Standard Meridian of India pass?,Madhya Pradesh,Chhattisgarh,Odisha,Jharkhand,Rajasthan,1
+Geography,hard,"The Siachen Glacier, the largest glacier in the Indian Himalayas, lies in which mountain range?",Zanskar Range,Pir Panjal Range,Karakoram Range,Dhauladhar Range,Ladakh Range,2
+Geography,hard,"The Nilgiri Biosphere Reserve spans parts of Tamil Nadu, Kerala, and:",Andhra Pradesh,Telangana,Karnataka,Goa,Maharashtra,2
+Geography,hard,Which is the largest freshwater lake in India by surface area?,Dal Lake,Wular Lake,Loktak Lake,Vembanad Lake,Kolleru Lake,1
+Geography,hard,The Bhabar region is located along the foothills of which mountain system?,Aravallis,Western Ghats,Himalayas,Eastern Ghats,Satpuras,2
+Politics,easy,Q1,1,2,3,4,5,0
+Politics,easy,Q2,1,2,3,4,5,0
+Politics,easy,Q3,1,2,3,4,5,0
+Politics,easy,Q4,1,2,3,4,5,0
+Politics,easy,Q1,1,2,3,4,5,0
+Politics,easy,Q2,1,2,3,4,5,0
+Politics,easy,Q3,1,2,3,4,5,0
+Politics,easy,Q4,1,2,3,4,5,0
+Politics,easy,Q1,1,2,3,4,5,0
+Politics,easy,Q2,1,2,3,4,5,0
+Politics,easy,Q3,1,2,3,4,5,0
+Politics,easy,Q4,1,2,3,4,5,0
+Politics,easy,Q1,1,2,3,4,5,0
+Politics,easy,Q2,1,2,3,4,5,0
+Politics,easy,Q3,1,2,3,4,5,0
+Politics,medium,Q4,1,2,3,4,5,0
+Politics,medium,Q1,1,2,3,4,5,0
+Politics,medium,Q2,1,2,3,4,5,0
+Politics,medium,Q3,1,2,3,4,5,0
+Politics,medium,Q4,1,2,3,4,5,0
+Politics,medium,Q1,1,2,3,4,5,0
+Politics,medium,Q2,1,2,3,4,5,0
+Politics,medium,Q3,1,2,3,4,5,0
+Politics,medium,Q4,1,2,3,4,5,0
+Politics,medium,Q1,1,2,3,4,5,0
+Politics,medium,Q2,1,2,3,4,5,0
+Politics,medium,Q3,1,2,3,4,5,0
+Politics,medium,Q4,1,2,3,4,5,0
+Politics,medium,Q1,1,2,3,4,5,0
+Politics,medium,Q2,1,2,3,4,5,0
+Politics,hard,Q3,1,2,3,4,5,0
+Politics,hard,Q4,1,2,3,4,5,0
+Politics,hard,Q1,1,2,3,4,5,0
+Politics,hard,Q2,1,2,3,4,5,0
+Politics,hard,Q3,1,2,3,4,5,0
+Politics,hard,Q4,1,2,3,4,5,0
+Politics,hard,Q1,1,2,3,4,5,0
+Politics,hard,Q2,1,2,3,4,5,0
+Politics,hard,Q3,1,2,3,4,5,0
+Politics,hard,Q4,1,2,3,4,5,0
+Politics,hard,Q1,1,2,3,4,5,0
+Politics,hard,Q2,1,2,3,4,5,0
+Politics,hard,Q3,1,2,3,4,5,0
+Politics,hard,Q4,1,2,3,4,5,0
+Politics,hard,Q1,1,2,3,4,5,0
+Literature,easy,Q1,1,2,3,4,5,0
+Literature,easy,Q2,1,2,3,4,5,0
+Literature,easy,Q3,1,2,3,4,5,0
+Literature,easy,Q4,1,2,3,4,5,0
+Literature,easy,Q1,1,2,3,4,5,0
+Literature,easy,Q2,1,2,3,4,5,0
+Literature,easy,Q3,1,2,3,4,5,0
+Literature,easy,Q4,1,2,3,4,5,0
+Literature,easy,Q1,1,2,3,4,5,0
+Literature,easy,Q2,1,2,3,4,5,0
+Literature,easy,Q3,1,2,3,4,5,0
+Literature,easy,Q4,1,2,3,4,5,0
+Literature,easy,Q1,1,2,3,4,5,0
+Literature,easy,Q2,1,2,3,4,5,0
+Literature,easy,Q3,1,2,3,4,5,0
+Literature,medium,Q4,1,2,3,4,5,0
+Literature,medium,Q1,1,2,3,4,5,0
+Literature,medium,Q2,1,2,3,4,5,0
+Literature,medium,Q3,1,2,3,4,5,0
+Literature,medium,Q4,1,2,3,4,5,0
+Literature,medium,Q1,1,2,3,4,5,0
+Literature,medium,Q2,1,2,3,4,5,0
+Literature,medium,Q3,1,2,3,4,5,0
+Literature,medium,Q4,1,2,3,4,5,0
+Literature,medium,Q1,1,2,3,4,5,0
+Literature,medium,Q2,1,2,3,4,5,0
+Literature,medium,Q3,1,2,3,4,5,0
+Literature,medium,Q4,1,2,3,4,5,0
+Literature,medium,Q1,1,2,3,4,5,0
+Literature,medium,Q2,1,2,3,4,5,0
+Literature,hard,Q3,1,2,3,4,5,0
+Literature,hard,Q4,1,2,3,4,5,0
+Literature,hard,Q1,1,2,3,4,5,0
+Literature,hard,Q2,1,2,3,4,5,0
+Literature,hard,Q3,1,2,3,4,5,0
+Literature,hard,Q4,1,2,3,4,5,0
+Literature,hard,Q1,1,2,3,4,5,0
+Literature,hard,Q2,1,2,3,4,5,0
+Literature,hard,Q3,1,2,3,4,5,0
+Literature,hard,Q4,1,2,3,4,5,0
+Literature,hard,Q1,1,2,3,4,5,0
+Literature,hard,Q2,1,2,3,4,5,0
+Literature,hard,Q3,1,2,3,4,5,0
+Literature,hard,Q4,1,2,3,4,5,0
+Literature,hard,Q1,1,2,3,4,5,0
+Music,easy,Q1,1,2,3,4,5,0
+Music,easy,Q2,1,2,3,4,5,0
+Music,easy,Q3,1,2,3,4,5,0
+Music,easy,Q4,1,2,3,4,5,0
+Music,easy,Q1,1,2,3,4,5,0
+Music,easy,Q2,1,2,3,4,5,0
+Music,easy,Q3,1,2,3,4,5,0
+Music,easy,Q4,1,2,3,4,5,0
+Music,easy,Q1,1,2,3,4,5,0
+Music,easy,Q2,1,2,3,4,5,0
+Music,easy,Q3,1,2,3,4,5,0
+Music,easy,Q4,1,2,3,4,5,0
+Music,easy,Q1,1,2,3,4,5,0
+Music,easy,Q2,1,2,3,4,5,0
+Music,easy,Q3,1,2,3,4,5,0
+Music,medium,Q4,1,2,3,4,5,0
+Music,medium,Q1,1,2,3,4,5,0
+Music,medium,Q2,1,2,3,4,5,0
+Music,medium,Q3,1,2,3,4,5,0
+Music,medium,Q4,1,2,3,4,5,0
+Music,medium,Q1,1,2,3,4,5,0
+Music,medium,Q2,1,2,3,4,5,0
+Music,medium,Q3,1,2,3,4,5,0
+Music,medium,Q4,1,2,3,4,5,0
+Music,medium,Q1,1,2,3,4,5,0
+Music,medium,Q2,1,2,3,4,5,0
+Music,medium,Q3,1,2,3,4,5,0
+Music,medium,Q4,1,2,3,4,5,0
+Music,medium,Q1,1,2,3,4,5,0
+Music,medium,Q2,1,2,3,4,5,0
+Music,hard,Q3,1,2,3,4,5,0
+Music,hard,Q4,1,2,3,4,5,0
+Music,hard,Q1,1,2,3,4,5,0
+Music,hard,Q2,1,2,3,4,5,0
+Music,hard,Q3,1,2,3,4,5,0
+Music,hard,Q4,1,2,3,4,5,0
+Music,hard,Q1,1,2,3,4,5,0
+Music,hard,Q2,1,2,3,4,5,0
+Music,hard,Q3,1,2,3,4,5,0
+Music,hard,Q4,1,2,3,4,5,0
+Music,hard,Q1,1,2,3,4,5,0
+Music,hard,Q2,1,2,3,4,5,0
+Music,hard,Q3,1,2,3,4,5,0
+Music,hard,Q4,1,2,3,4,5,0
+Music,hard,Q1,1,2,3,4,5,0
+Sci-Tech,easy,Which organelle is primarily responsible for producing ATP in eukaryotic cells?,Ribosome,Nucleus,Mitochondria,Golgi apparatus,Lysosome,2
+Sci-Tech,easy,Which type of electromagnetic radiation has the shortest wavelength?,Radio waves,Microwaves,Infrared,Ultraviolet,Gamma rays,4
+Sci-Tech,easy,"Which gas is produced when an acid reacts with a carbonate, such as calcium carbonate?",Hydrogen,Oxygen,Nitrogen,Carbon dioxide,Chlorine,3
+Sci-Tech,easy,Which is the hardest naturally occurring mineral?,Quartz,Topaz,Diamond,Corundum,Graphite,2
+Sci-Tech,easy,Which metal is extracted from bauxite ore?,Iron,Copper,Aluminium,Zinc,Lead,2
+Sci-Tech,easy,Which type of electromagnetic wave is most commonly used in radar systems?,Microwaves,Ultraviolet rays,X-rays,Gamma rays,Visible light,0
+Sci-Tech,easy,Which law states that the pressure of a gas is inversely proportional to its volume when temperature is constant?,Charles’s law,Boyle’s law,Ohm’s law,Faraday’s law,Hooke’s law,1
+Sci-Tech,easy,Which electromagnetic radiation is commonly used in remote controls and thermal imaging?,Ultraviolet,Infrared,X-rays,Gamma rays,Radio waves,1
+Sci-Tech,easy,"Which law of thermodynamics states that energy cannot be created or destroyed, only converted from one form to another?",Zeroth law,First law,Second law,Third law,Law of gravitation,1
+Sci-Tech,easy,Which molecule is primarily responsible for carrying oxygen in human blood?,Insuline,Creatine,Collagen,Keratin,Haemoglobin,4
+Sci-Tech,easy,The chemical symbol K represents which element?,Krypton,Calcium,Cobalt,Potassium,Copper,3
+Sci-Tech,easy,Electromagnetic induction—the principle behind electric generators and transformers—was discovered by:,Michael Faraday,André-Marie Ampère,Georg Ohm,Nikola Tesla,Alessandro Volta,0
+Sci-Tech,easy,What is a light-year a unit of?,Time,Luminosity,Distance,Energy,Speed,2
+Sci-Tech,easy,Which bond links amino acids together in a protein chain?,Glycosidic bond,Hydrogen bond,Peptide bond,Phosphodiester bond,Ionic bond,2
+Sci-Tech,easy,Which nutrient is primarily responsible for promoting leafy vegetative growth in plants?,Nitrogen,Phosphorus,Potassium,Calcium,Zinc,0
+Sci-Tech,medium,Which element has the chemical symbol W?,Tungsten,Tin,Titanium,Zinc,Silver,0
+Sci-Tech,medium,Which element has the highest melting point among the following?,Iron,Copper,Tungsten,Aluminium,Titanium,2
+Sci-Tech,medium,Which non-metal is liquid at room temperature?,Iodine,Bromine,Chlorine,Sulphur,Phosphorus,1
+Sci-Tech,medium,What is the SI unit of luminous intensity?,Lumen,Lux,Candela,Watt,Joule,2
+Sci-Tech,medium,Which blood group is known as the universal donor for red blood cells?,AB+,A+,B?,O?,O+,3
+Sci-Tech,medium,Which part of the human brain primarily coordinates balance and fine motor movements?,Cerebrum,Medulla oblongata,Hypothalamus,Cerebellum,Thalamus,3
+Sci-Tech,medium,Which scientist formulated the laws of planetary motion?,Galileo Galilei,Johannes Kepler,Nicolaus Copernicus,Isaac Newton,Edwin Hubble,1
+Sci-Tech,medium,Which animal was the first living creature to orbit Earth?,Ham the chimpanzee,Laika the dog,Albert the monkey,Belka the dog,Felix the cat,1
+Sci-Tech,medium,Which scientist discovered penicillin after observing that a mould inhibited bacterial growth?,Edward Jenner,Robert Koch,Alexander Fleming,Louis Pasteur,Joseph Lister,2
+Sci-Tech,medium,Which scientist developed the first successful polio vaccine?,Jonas Salk,Edward Jenner,Louis Pasteur,Albert Sabin,Maurice Hilleman,0
+Sci-Tech,medium,Which bacterium is commonly associated with nitrogen fixation in the root nodules of leguminous plants?,Lactobacillus,Rhizobium,Salmonella,Vibrio,Streptococcus,1
+Sci-Tech,medium,Which phenomenon explains why the sky appears blue?,Refraction,Diffraction,Rayleigh scattering,Total internal reflection,Dispersion,2
+Sci-Tech,medium,"In the Haber process, nitrogen and hydrogen combine to manufacture:",Methane,Ammonia,Nitric acid,Urea,Hydrogen peroxide,1
+Sci-Tech,medium,Which scientist discovered the electron through experiments using cathode rays?,Ernest Rutherford,J. J. Thomson,Niels Bohr,James Chadwick,Max Planck,1
+Sci-Tech,medium,What is believed to be at the center of the Milky Way?,A neutron star,A white dwarf,A supermassive black hole,A quasar,A massive planet,2
+Sci-Tech,hard,"What is the name of the boundary around a black hole beyond which nothing, including light, can escape?",Photon belt,Event horizon,Asteroid ring,Van Allen belt,Roche limit,1
+Sci-Tech,hard,What is the largest moon in the Solar System?,Titan,Europa,Ganymede,Callisto,Triton,2
+Sci-Tech,hard,What is the term for atoms of the same element that have different numbers of neutrons?,Ions,Isotopes,Molecules,Allotropes,Compounds,1
+Sci-Tech,hard,Which element has the atomic number 17?,Sulphur,Argon,Phosphorus,Chlorine,Potassium,3
+Sci-Tech,hard,"The gold-foil experiment that revealed a small, dense, positively charged atomic nucleus was led by:",J. J. Thomson,Ernest Rutherford,Niels Bohr,James Chadwick,Max Planck,1
+Sci-Tech,hard,Who invented the first successful X-ray imaging technique?,Marie Curie,Wilhelm Conrad Röntgen,Ernest Rutherford,Henri Becquerel,J. J. Thomson,1
+Sci-Tech,hard,Which reptile has a fully four-chambered heart?,Lizard,Snake,Turtle,Crocodile,Gecko,3
+Sci-Tech,hard,Which Indian space mission became the first to soft-land near the Moon's south polar region?,Chandrayaan-1,Chandrayaan-2,Chandrayaan-3,Mangalyaan,Aditya-L1,2
+Sci-Tech,hard,"In electrolysis, reduction always occurs at the:",Anode,Cathode,Electrolyte,Salt bridge,External wire,1
+Sci-Tech,hard,Which agricultural practice helps conserve soil moisture by covering the soil surface with organic or synthetic material?,Threshing,Mulching,Winnowing,Ploughing,Harrowing,1
+Sci-Tech,hard,Which animal has the highest blood pressure among known animals?,Elephant,Giraffee,Blue Whale,Hippopotamus,Horse,1
+Sci-Tech,hard,Which animal has fingerprints remarkably similar to those of humans?,Gorilla,Chimpanzee,Koala,Orangutan,Lemur,2
+Sci-Tech,hard,Which part of electro-magnetic spectrum has the highest photon energy?,Ultraviolet,X-Rays,Gamma Rays,Microwaves,Radio Waves,2
+Sci-Tech,hard,"According to Planck’s relation, the energy of a photon is directly proportional to its:",Wavelength,Frequency,Amplitude,Speed in vacuum,Direction of travel,1
+Sci-Tech,hard,Liquid water reaches its maximum density at approximately:,0°C,4°C,25°C,50°C,100°C,1
+Mythology,easy,What was the naam of the bow of Lord Ram?,Gandiv,Pinak,Sharang,Kodanda,Vijay,3
+Mythology,easy,What was the name of the mountain that Hanuman carried for Sanjivani?,Gandhmadan,Mahendra,Rhishyamukh,Chitrakoot,Dronagiri,4
+Mythology,easy,Shallya was the king of which kingdom?,Magadh,Vidarbha,Madra,Gaandhar,Mithila,2
+Mythology,easy,Which warrior was not present in chakravyuha?,Dronacharya,Bhishma,Karna,Krupacharya,Ashwathama,1
+Mythology,easy,Who is not a Chiranjeevi out of the following?,Krupacharya,Ashwathama,Vyaas,Satyaki,Parshuraam,3
+Mythology,easy,"Who was the wife of Lord Ram's brother, Lakshman?",Mandavi,Shruthakirti,Urmila,Sulochana,Tara,2
+Mythology,easy,What was the actual name of Bhishma Pitamah before he took his vow of celibacy?,Shantanu,Chitrangada,Parashara,Devavrata,Vichitravirya,3
+Mythology,easy,"Who built the golden city of Lanka originally for Lord Shiva and Parvati, before it was taken over by Kubera and later Ravan?",Maya Danava,Tvashtar,Vishwakarma,Ribhus,Nala,2
+Mythology,easy,How many Parv are there in Mahabharata?,16,18,20,22,24,1
+Mythology,easy,Who was the mother of the Pandavas Nakula and Sahadeva?,Kunti,Madri,Gandhari,Draupadi,Satyavati,1
+Mythology,easy,Which celestial weapon did Arjuna receive from Lord Shiva after fighting him in the form of a hunter?,Brahmastra,Narayanastra,Pashupatastra,Agneyastra,Varunastra,2
+Mythology,easy,Who was born to kill Dronacharya?,Dhrupad,Dhrushtadyumna,Shikhandi,Parshuram,Arjun,1
+Mythology,easy,Which of the following is not related to Ravaana?,Kuber,Indrajeet,Vibhishan,Kumbhakarna,Dhumraksha,4
+Mythology,easy,Who is the sister of Kaurava's?,Bhanumati,Sushila,Mayuri,Vrushali,Sumitra,1
+Mythology,easy,Who brought the river Ganga to earth?,Dasharath,Sagar,Harishchandra,Bhagirath,Raghu,3
+Mythology,medium,Which warrior killed Shallya in Kurukshtetra was?,Yudishtir,Arjun,Bhima,Nakul,Sahadev,0
+Mythology,medium,Who was the father of King Dasharatha and the grandfather of Lord Ram?,King Raghu,King Aja,King Dilip,King Ikshvaku,King Harishchandra,1
+Mythology,medium,"According to Valmiki Ramayana, who was the father of Jambuvant?",Indra,Agni,Brahma,Varun,Surya,2
+Mythology,medium,Which Mahabharata's Parv has Vishnu Sahastranaam?,Anushasan Parv,Bhishma Parv,Shanti Parv,Udyog Parv,Van Parv,0
+Mythology,medium,Who broke the axle of Dasharatha's chariot?,Raavan,Shambarasur,Vaali,Maarich,Indra,1
+Mythology,medium,Which of the following is not one of Arjuna's name?,Jishnu,Bibhatsu,Kiriti,Samihan,Savyasachi,3
+Mythology,medium,Who of the following is not Arjuna's son?,Babhruvahan,Shatanik,Abhimanyu,Iraavan,Shrutkarma,1
+Mythology,medium,"In the Ramayana, who was Bharata’s maternal grandfather and the king of Kekaya?",Janaka,Dasharatha,Ashwapati,Yudhajeet,Vibhishana,2
+Mythology,medium,Who was Shikhandi in previous birth?,Amba,Ambika,Ambalika,Matsyagandha,Chitrangada,0
+Mythology,medium,"In the Mahabharata, who was the father of Dronacharya?",Bharadwaja,Vishwamitra,Vashishta,Parashurama,Agastya,0
+Mythology,medium,"In the Ramayana, Ruma was the wife of which character?",Vali,Sugriva,Jambavan,Angada,Nal,1
+Mythology,medium,"Shakuni, the maternal uncle of the Kauravas, was the son of which king?",Drupada,Subala,Virata,Shalya,Bahlika,1
+Mythology,medium,Who was the only Kaurava to openly support the Pandavas during the Kurukshetra war?,Vikarna,Chitrasena,Somadatta,Yudhamanyu,Yuyutsu,4
+Mythology,medium,"In Hindu mythology, which sage is traditionally said to have fathered Ved Vyasa, the author/narrator associated with the Mahabharata?",Vashishtha,Parashara,Bharadwaja,Gautama,Atri,1
+Mythology,medium,"In the Mahabharata, what was the name of the lake where Yaksha questioned Yudhishthira?",Manasarovar,Bindusara,Dwaita Lake,Pushkara Lake,Kamyaka Lake,2
+Mythology,hard,Who was the maternal grandfather of Raavana?,Pulastya,Sumali,Vishrava,Maarich,Prahasta,1
+Mythology,hard,How many shlokas are present in Valmiki Ramayana?,1 Lakh,24 Thousand,10 Thousand,20 Thoushand,32 Thousand,1
+Mythology,hard,Who was the father of Krupacharya?,Bhaardwaj,Gautam,Vasishta,Sharadvaan,Parashar,3
+Mythology,hard,What was the name of Bhima's shankha?,Paanchajanya,Devdatta,Anantavijay,Sughosh,Poundra,4
+Mythology,hard,Who was the charatior of Krishna's chariot?,Darook,Satyaki,Sanjay,Adhirath,Matali,0
+Mythology,hard,Which of the following is not a name of Krishna's chariots horses?,Shaibya,Vaali,Sugriv,Meghpushpa,Balahak,1
+Mythology,hard,Who cursed Ravan that his head would burst into a hundred pieces if he ever forced himself upon a woman without her consent?,Goddess Lakshmi,Vedavati,Rambha,Sage Nalakubera,King Anaranya,3
+Mythology,hard,"Who was the actual biological father of Dhritarashtra and Pandu, who stepped in via Niyoga at the request of Queen Satyavati?",Parashar,Ved Vyas,Kripacharya,Bhishma,Kindama,1
+Mythology,hard,"Including Uttarkand, how many Kand are present in Ramayana?",5,6,7,8,9,2
+Mythology,hard,How many questions did Yaksha ask Yudhishtira?,64,3,50,125,100,3
+Mythology,hard,What was the name of King Dasharath's mother?,Indumati,Bhanumati,Madhumati,Taramati,Indravati,0
+Mythology,hard,Which king is said to have been cursed to become a serpent and later appears in the Mahabharata story involving Nala and Damayanti?,Nahusha,Nala,Ruru,Karkotaka,Yayati,3
+Mythology,hard,Who was the father of King Janaka according to traditional accounts?,Nimi,Hrasvaroma,Mithi,Devarata,Kushadhwaja,1
+Mythology,hard,Which sage gave King Dasharatha the sacred payasam that led to the birth of Rama and his brothers?,Vashishta,Vishwamitra,Rishyasringa,Agastya,Bharadwaja,2
+Mythology,hard,Which sage performed Sarpasatra for King Janmejaya?,Uttanka,Vaishampayana,Parashar,Souti,Bharadwaja,0
+Current affairs,easy,Q1,1,2,3,4,5,0
+Current affairs,easy,Q2,1,2,3,4,5,0
+Current affairs,easy,Q3,1,2,3,4,5,0
+Current affairs,easy,Q4,1,2,3,4,5,0
+Current affairs,easy,Q1,1,2,3,4,5,0
+Current affairs,easy,Q2,1,2,3,4,5,0
+Current affairs,easy,Q3,1,2,3,4,5,0
+Current affairs,easy,Q4,1,2,3,4,5,0
+Current affairs,easy,Q1,1,2,3,4,5,0
+Current affairs,easy,Q2,1,2,3,4,5,0
+Current affairs,easy,Q3,1,2,3,4,5,0
+Current affairs,easy,Q4,1,2,3,4,5,0
+Current affairs,easy,Q1,1,2,3,4,5,0
+Current affairs,easy,Q2,1,2,3,4,5,0
+Current affairs,easy,Q3,1,2,3,4,5,0
+Current affairs,medium,Q4,1,2,3,4,5,0
+Current affairs,medium,Q1,1,2,3,4,5,0
+Current affairs,medium,Q2,1,2,3,4,5,0
+Current affairs,medium,Q3,1,2,3,4,5,0
+Current affairs,medium,Q4,1,2,3,4,5,0
+Current affairs,medium,Q1,1,2,3,4,5,0
+Current affairs,medium,Q2,1,2,3,4,5,0
+Current affairs,medium,Q3,1,2,3,4,5,0
+Current affairs,medium,Q4,1,2,3,4,5,0
+Current affairs,medium,Q1,1,2,3,4,5,0
+Current affairs,medium,Q2,1,2,3,4,5,0
+Current affairs,medium,Q3,1,2,3,4,5,0
+Current affairs,medium,Q4,1,2,3,4,5,0
+Current affairs,medium,Q1,1,2,3,4,5,0
+Current affairs,medium,Q2,1,2,3,4,5,0
+Current affairs,hard,Q3,1,2,3,4,5,0
+Current affairs,hard,Q4,1,2,3,4,5,0
+Current affairs,hard,Q1,1,2,3,4,5,0
+Current affairs,hard,Q2,1,2,3,4,5,0
+Current affairs,hard,Q3,1,2,3,4,5,0
+Current affairs,hard,Q4,1,2,3,4,5,0
+Current affairs,hard,Q1,1,2,3,4,5,0
+Current affairs,hard,Q2,1,2,3,4,5,0
+Current affairs,hard,Q3,1,2,3,4,5,0
+Current affairs,hard,Q4,1,2,3,4,5,0
+Current affairs,hard,Q1,1,2,3,4,5,0
+Current affairs,hard,Q2,1,2,3,4,5,0
+Current affairs,hard,Q3,1,2,3,4,5,0
+Current affairs,hard,Q4,1,2,3,4,5,0
+Current affairs,hard,Q1,1,2,3,4,5,0
+Arts,easy,"Which ancient cave complex in Maharashtra is famous for its intricate rock-cut Buddhist murals, including depictions of Jataka tales?",Elephanta Caves,Bhimbetka Caves,Ajanta Caves,Udayagiri Caves,Badami Caves,2
+Arts,easy,"Madhubani painting, recognized by its vibrant colors and geometric patterns, originated in which state of India?",Bihar,Rajasthan,West Bengal,Kerala,Odisha,0
+Arts,easy,Which traditional art form from Odisha involves painting detailed mythological narratives on cloth or dried palm leaves?,Gond Painting,Warli Art,Pattachitra,Kalamkari,Pithora Painting,2
+Arts,easy,Ghoomar is traditionally associated with:,Assam,Rajasthan,Kerala,Tamilnadu,Orisa,1
+Arts,easy,Lavani is a popular folk performance tradition of:,Punjab,Gujarat,Maharashtra,Assam,Kerala,2
+Arts,easy,Which Indian scroll painting art form from West Bengal traditionally involves village bards singing stories while unrolling painted paper panels?,Pithora Painting,Mata ni Pachedi,Patachitra,Phad Painting,Cheriyal Scroll Painting,2
+Arts,easy,Rangoli is primarily created using:,Wood,Bronze,"Coloured powders, rice, flowers or similar materials ",Oil paints,Stones,2
+Arts,easy,"Which historic Maratha site in Maharashtra is famous for its surviving late 18th-century wall paintings demonstrating a blend of Maratha, Rajasthani, and European portraiture influences?",Panhala Fort,Sindhudurg Fort,Raigad Fort,Daulatabad Fort,Menavali Wada at Wai,4
+Arts,easy,"Which classical dance form of North India is famous for fast spins (chakkars), rhythmic footwork, and storytelling of Radha and Krishna?",Manipuri,Sattriya,Kuchipudi,Mohiniyattam,Kathak,4
+Arts,easy,"In classical Indian dance, what is the term used to describe expressive mimetic dance that communicates poetic narrative through facial expressions and mudras?",Abhinaya,Tandava,Natya,Nritta,Lasya,0
+Arts,easy,"Kathak tatkar In Kathak, the term tatkar refers to:",Hand gestures,Eye movements,Basic footwork ,Stage bowing,Costume arrangement,2
+Arts,easy,"Kathakali makeup In Kathakali, the color coding of facial makeup signifies:",Musical rhythm,Character’s nature ,Costume origin,Dance tempo,Stage lighting,1
+Arts,easy,The famous Nataraja sculpture represents which Hindu deity?,Vishnu,Brahma,Shiva,Ganesha,Indra,2
+Arts,easy,The Lion Capital of Ashoka is located at:,Sanchi,Bodhgaya,Nalanda,Sarnath,Ajantha,3
+Arts,easy,The famous Chola bronzes are particularly renowned for sculptures of:,Nataraja /Shiva,Buddha ,Ashoka,Guru Nanak,Mahavira,0
+Arts,medium,"Which historic palace complex in Kerala houses one of the largest continuous panels of 16th-century classical wall murals depicting scenes from the Ramayana, Bhagavata Purana, and Kumarasambhava?",Mattancherry (Dutch) Palace,Krishnapuram Palace,Koyikkal Palace,Padmanabhapuram Palace,Hill Palace,0
+Arts,medium,"Which ancient Sanskrit treatise, attributed to Sage Bharata Muni, serves as the foundational canon for Indian classical dance, drama, and music theory?",Natyashastra,Sangita Ratnakara,Kamasutra,Meghadoota,Arthashastra,0
+Arts,medium,"Which martial folk dance form from Eastern India (practiced in Jharkhand, Odisha, and West Bengal) features dancers wearing elaborate stylized masks representing gods and animals?",Kalaripayattu,Chhau,Kalarippayattu,Gatka,Thang-Ta,1
+Arts,medium,Which unique ritualistic floor-painting tradition from Kerala uses natural colored powders to depict deities inside sacred groves and temples?,Kalamezhuthu,Kalamkari,Aipan,Sanjhi,Mandana,0
+Arts,medium,The famous bronze sculpture of the 'Dancing Girl' discovered at Mohenjo-daro was constructed using which technique?,Sand casting,Lost-wax casting,Cold hammering,Electroplating,Repoussé technique,1
+Arts,medium,Tanjore painting originated in:,Tamilnadu,Gujarat,Bihar,Assam,Mizoram,0
+Arts,medium,The Great Stupa at Sanchi is primarily associated with:,Jainism,Hinduism,Sikhism,Buddhism,Zoroastrianism,3
+Arts,medium,The rock-cut sculptures of Elephanta Caves are primarily dedicated to:,Vishnu,Buddha ,Mahavira,Surya,Shiva,4
+Arts,medium,Alpana is a traditional floor-art form particularly associated with:,Bengal,Punjab,Maharashtra,Karnataka,Rajasthan,0
+Arts,medium,Kolam is a traditional decorative design commonly made at the entrances of homes in:,Punjab,Himachal Pradesh,Bihar,"Tamilnadu, Southern India",Orisa,3
+Arts,medium,"The Victoria Terminus (now Chhatrapati Shivaji Maharaj Terminus) in Mumbai, designed by Frederick William Stevens, is a premier example of which architectural style?",Neo-Classical Style  ,Venetian Gothic Revival combined with Indian Traditional Architecture  ,Art Deco Style  ,Edwardian Baroque Style  ,Rococo Revival Style  ,1
+Arts,medium,"The Great Trimurti (Three-headed Shiva) sculpture, representing Shiva as Creator, Preserver, and Destroyer, is housed inside which rock-cut cave system?",Ajanta Caves  ,Badami Caves  ,Elephanta Caves,Karla Caves,Bhaja Caves,2
+Arts,medium,"Cave 16 at Ellora contains the colossal Kailash Temple, carved out of a single volcanic basalt cliff face. What type of excavation technique was used?",Bottom-up construction  ,Top-down rock-cut excavation  ,Block-assembly masonry  ,Horizontal cave burrowing  ,Structural brickwork with lime casing  ,1
+Arts,medium,The City Palace of Udaipur sits along the bank of Lake Pichola. Which architectural element is widely used throughout its courtyards to allow women to observe court proceedings unseen?,Pietra Dura Inlays  ,Jaali (Lattice stone screens)  ,Chhatris  ,Squinch Arches  ,Terracotta Plaques  ,1
+Arts,medium,Golconda Fort in Hyderabad is famed for an ingenious acoustic system designed for military communication. Where does a handclap at the entrance gate resonate?,The Royal Durbar Hall  ,The Citadel at the top (Bala Hisar)  ,The Armoury Vault  ,The Queens Palace (Rani Mahal)  ,The Treasury Room  ,1
+Arts,hard,Which classical dance form evolved inside the Vaishnavite monasteries called Sattras in Assam?,Mohiniyattam,Kuchipudi,Sattriya,Manipuri,Katthak,2
+Arts,hard,Which traditional shadow puppetry performance belongs to the state of Andhra Pradesh?,Togalu Gombeyaata,Tholu Bommalata,Ravanachhaya,Kathputli,Chamadyache Bahulya,1
+Arts,hard,"In Kathakali, what does green face makeup (Pacca) represent in a character?",Evil and Demonism,Noble and Heroic Characters,Ascetics and Sages,Hunters and Forest Dwellers,Royalty with Flaws,1
+Arts,hard,"Pandavani is a folk performing art form dedicated to narrating stories from the Mahabharata, popular in which state?",Rajasthan,Chhattisgarh,West Bengal,Uttar Pradesh,Gujarat,1
+Arts,hard,"Which distinctive South Indian temple style features a towering entrance gateway called a ""Gopuram"" and a stepped pyramid-shaped tower called a ""Vimana""?",Nagara Style  ,Vesara Style  ,Dravidian Style  ,Kalinga Style  ,Hemadpanthi Style  ,2
+Arts,hard,"The Brihadisvara Temple in Thanjavur, built by Rajaraja Chola I, features an octagonal granite ""Shikhara"" capstone at its apex. What is the approximate weight of this single monolithic block?",20 Tons,150 Tons,40 Tons,80 Tons,120 Tons,3
+Arts,hard,Raja Ravi Varma is especially known for combining Indian subjects with which artistic tradition?,Cubism,European academic realism,Surrealism,Abstract Expressionism,Pop Art,1
+Arts,hard,The famous Gol Gumbaz in Vijayapura (Bijapur) features one of the largest unsupported domes in the world. What architectural feature supports this massive dome without central pillars?,Flying Buttresses  ,Intersecting Arches (Squinches)  ,Corbelled Vaulting  ,Cantilevered Steel Beams  ,Pendentives on Monolithic Columns  ,1
+Arts,hard,"The Umaid Bhawan Palace in Jodhpur, one of the world's largest private residences, was constructed primarily using which distinctive local stone?",Red Agra Sandstone  ,Makrana White Marble  ,Chittorgarh Granite  ,Chittar (Golden-Yellow) Sandstone  ,Kota Limestone  ,3
+Arts,hard,"Hawa Mahal in Jaipur, designed by Lal Chand Ustad, features a unique honeycomb facade with hundreds of small screened windows. How many *Jharokhas* (casements) are there in total?",535,753,953,1053,1125,2
+Arts,hard,Kumbhalgarh Fort in Rajasthan possesses the second-longest continuous wall in the world after the Great Wall of China. What is its total length?,18 kms,24 kms,48 kms,36 kms,52 kms,3
+Arts,hard,"Which Jain temple complex in Rajasthan, built between the 11th and 13th centuries, is celebrated worldwide for its extraordinarily delicate white marble carvings?",Ranakpur Jain Temple,"Dilwara Temples, Mount Abu",Palitana Temples,Girnar Temples,Sonagiri Temples,1
+Arts,hard,"In a traditional Hindu temple, the innermost sanctum sanctorum housing the main deity is called what?",Mandapa,Antarala,Garbhagriha,Jagati,Pradakshina Patha,2
+Arts,hard,The iconic rock relief sculpture titled 'Descent of the Ganges' (also known as Arjuna's Penance) is located at which UNESCO World Heritage Site?,Elephanta Caves,Badami Caves,Ellora Caves,Mahabalipuram (Mamallapuram),Hampi,3
+Arts,hard,"The Bani Thani painting, often referred to as the 'Mona Lisa of India', belongs to which sub-school of Rajasthani Miniature Painting?",Mewar School,Kishangarh School,Bundi School,Jaipur School,Bikaner School,1
+Economics,easy,Which organisation is primarily responsible for regulating India's securities market?,RBI,IRDAI,SEBI,SBI,NABARD,2
+Economics,easy,Which are the two most prominent stock exchanges in India?,NSE and BSE,RBI and SEBI,MCX and RBI,BSE and IRDAI,NSE and SBI,0
+Economics,easy,What does ATM stand for?,Automatic Transfer Money,Automated Teller Machine,Any Time Money,Automated Transfer Mechanism,Account Transfer Machine,1
+Economics,easy,"If the price of a ?100 item rises to ?110, the price has increased by",5%,50%,1%,10%,100%,3
+Economics,easy,GST in India is primarily a tax on:,Gold reserves,Goods and services,Government salaries,Bank deposits,Foreign currency only,1
+Economics,easy,What does UPI stand for?,Union of Payment Interface,Unidentified Payment Interface,Unified Payments Interface,Universal Payment Internet,Union Payments Interface,2
+Economics,easy,What does CRR stand for ?,Credit Run Rate,Cash Rider Rate,Credit Reserve Ratio,Cash Reserve Ratio,Cash Riser Rate,3
+Economics,easy,"Formula for Simple Interest is : where P = Principal , R = Rate of Interest, N = No. of Years money is kept",(P*N*R)/100,(P+N+R)/100,P(1+R/100)^N,P-(P/NR),(P*N*R)/1000,0
+Economics,easy,Which of these is a public sector bank?,Bank Of Baroda,HDFC Bank,ICICI Bank,Bandhan Bank,Saraswat Co-Operative Bank,0
+Economics,easy,Which one would normally happen when you put money in a bank fixed deposit?,You pay interest to the bank,The bank pays you interest on the money deposited,The government takes the Principal,Your money automatically becomes shares of the bank,Your money stops being legal,1
+Economics,easy,Which one would normally happen when you take a Loan from the bank ?,The bank pays you interest on the money owed,You pay interest to the bank on the money owed,"Nothing, nobody cares about the money",The bank gives you gifts every year,"You return only the money owed, no interest",1
+Economics,easy,"If demand for a product rises sharply while supply stays the same, what would normally happen to its price?",It always becomes zero,It remains fixed,It becomes negative,It tends to rise,It always doubles,3
+Economics,easy,Which Indian stock-market index is associated with the Bombay Stock Exchange?,Nifty50,Bank Nifty,Nifty IT,Sensex,Capex,3
+Economics,easy,Which of these is most closely associated with borrowing money to buy a house?,Demat Account,Hedge Funds,Equated Monthly Installments,GST Returns,Gross Domestic Product,2
+Economics,easy,Which of these is the current symobol of India's Currency ?,$,?,£,¥,€,1
+Economics,medium,What is the highest denomination of Indian banknote currently in regular active circulation?,? 100,? 500,"? 1,000","? 2,000",? 750,1
+Economics,medium,Which of the following would most directly increase India's GDP?,Buying an old house from another Indian family,Government spending on building a new highway,Selling an old bicycle to your neighbour,Transferring money between your own bank accounts,Giving your child pocket money,1
+Economics,medium,What does inflation measure?,Increase in bank branches,Increase in only gold prices,Increase in the stock market index,Increase in India's population,Increase in the general level of prices,4
+Economics,medium,"A shopkeeper buys an article for ?800 and sells it for ?1,000. What is the profit percentage on cost?",20%,23%,17%,30%,25%,4
+Economics,medium,Which of the following best describes a mutual fund?,A government tax,A pool of money invested on behalf of investors,A type of bank loan,A stock exchange,A currency note,1
+Economics,medium,Which Indian institution is primarily associated with agricultural and rural development finance?,SEBI,IRDAI,PFRDA,NABARD,CIDCO,3
+Economics,medium,What is the primary purpose of SEBI?,Approve school textbooks,Predict Weather in India,Regulate the Cash flow in the Country,Print all currency notes,Regulate the securities market,4
+Economics,medium,Which of these is the best example of a public good in the economic sense?,Govt spending on Free meals in Flights,Govt. spending for National Defence,Govt. spending on free fuel for all,Govt annoucing free movie tickets,Govt spending on making diamonds cheaper,1
+Economics,medium,Which of the following is generally considered a safe-haven asset during periods of economic uncertainty?,Gold,Cryptocurrency,Company shares of a single firm,Credit cards,Lottery tickets,0
+Economics,medium,What is the main purpose of an IPO?,To allow RBI to issue currency,To insure a company against losses,To allow a company to offer its shares to the public for the first time,To allow the government to collect GST,To provide personal loans,2
+Economics,medium,What does dividend generally mean?,A portion of a company's profit distributed to shareholders,Tax paid by consumers,A portion of a company's profit distributed to shareholders,Money borrowed by a company,Government subsidy,0
+Economics,medium,"A car is manufactured in Tamil Nadu but is ultimately purchased and consumed by a customer in Maharashtra. 
+Under the basic GST principle, which state gets the state component of the tax?",Tamil Nadu,Maharashtra,Gujarat,Karnataka,Where is the Car company is head-quartered,1
+Economics,medium,Which statement correctly distinguishes an IPO from an NFO?,PO launches a mutual fund; NFO launches company sharres,Both are forms of bank deposits,Both are government tax schemes,IPO launches company shares; NFO launches a new mutual-fund scheme,IPO is for insurance while NFO is for pensions,3
+Economics,medium,Which of the following best describes the NIFTY 50?,India's official inflation rate,An RBI interest rate for past 50 years,A government savings scheme for 50 years,A measure of India's foreign-exchange reserves,An index representing 50 major companies listed on the NSE,4
+Economics,medium,What does MICR on a cheque primarily help with?,Cheque processing,Online shopping,Tax calculation,Share trading,Insurance claims,0
+Economics,hard,"As decided at the August 2026 MPC review, what was the RBI's policy repo rate?",4.75%,5.00%,5.25%,5.50%,5.75%,2
+Economics,hard,An Indian company earns US$10 million from exporting software services. Which part of India's balance of payments does this primarily affect?,Current account,Capital account only,Fiscal account,Monetary base only,Public debt account,0
+Economics,hard,"If the rupee moves from ?80 per US$ to ?85 per US$, the rupee has",Appreciated by approximately 6.25%,Depreciated by approximately 6.25%,Appreciated by exactly 5%,Depreciated by exactly 5%,Remained unchanged,1
+Economics,hard,Which statement about the fiscal deficit is most accurate?,It is the difference between exports and imports,It measures the government's total debt,It broadly represents the gap between government expenditure and receipts excluding certain borrowings,It is the difference between bank deposits and loans,It measures inflation,2
+Economics,hard,Who presented the first budget of Independent India ?,Nirmala Sitharaman,Yashwant Sinha,Sir C. D Deshmukh,R. K. Shanmukham Chetty,Pt. Jawaharlal Nehru,3
+Economics,hard,"Who was Governor RBI, when India opened its economy in 1991 ?",Dr. Raghuram Rajan,Dr. Bimal Jalan,S Venkitaramanan,Dr. Manmohan Singh,Shri Shaktikanta Das,2
+Economics,hard,"The rupee falls from ?80 per US dollar to ?85 per US dollar. Which Indian group is most likely to benefit, all else equal?",An Indian company importing crude oil,An Indian student paying university fees in the US,An Indian software company earning in dollars from overseas clients,An Indian tourist travelling to Europe,An Indian company importing machinery from Japan,2
+Economics,hard,"You have ?1,000 and choose to spend it on a concert rather than buying a pair of shoes you also wanted. In economics, the opportunity cost of going to the concert is:","? 1,000",The ticket price only,The shoes you gave up buying,The amount of GST on the ticket,"Zero, because you enjoyed the concert",2
+Economics,hard,"An employee's salary rises from ?50,000 to ?55,000 per month, a 10% increase. During the same period, the general price level rises by approximately 10%. In real terms, the employee's purchasing power has:",Increased substantially,Remained approximately unchanged,Doubled,Become zero,Decreased substantially,1
+Economics,hard,Which of these is generally considered a measure of inflation faced by consumers in India?,GDP,PGD,GST,IIP,CPI,4
+Economics,hard,The symbol ? was officially adopted for the Indian rupee in which year?,2005,2007,2010,2012,2014,2
+Economics,hard,"A company announces profits of 20%, yet its share price falls 10% on the same day. Which is the best economic explanation?",Profits cannot affect share prices,SEBI automatically reduces share prices,The company must have stopped trading,Investors expected even better results,COmpany bought lot of shares from the market,3
+Economics,hard,A foreign company manufactures cars in India. The value of those cars is included in:,India's GNP only,Only the company's home country's GDP,India's imports,India's GDP,None of these,3
+Economics,hard,A farmer grows wheat worth ?1 lakh and sells it to a flour mill. The flour mill turns it into flour worth ?1.5 lakh and sells it to a bakery. The bakery makes bread worth ?2 lakh and sells it to consumers.,?1 lakh,?1.5 lakh,?2.5 lakh,No Contribution,?2 lakh,4
+Economics,hard,"In which year did NITI Ayog replace the older Policy Think Tank ""Planning Commission""",2010,2005,2015,2000,None of these,2
+Bollywood,easy,Q1,1,2,3,4,5,0
+Bollywood,easy,Q2,1,2,3,4,5,0
+Bollywood,easy,Q3,1,2,3,4,5,0
+Bollywood,easy,Q4,1,2,3,4,5,0
+Bollywood,easy,Q1,1,2,3,4,5,0
+Bollywood,easy,Q2,1,2,3,4,5,0
+Bollywood,easy,Q3,1,2,3,4,5,0
+Bollywood,easy,Q4,1,2,3,4,5,0
+Bollywood,easy,Q1,1,2,3,4,5,0
+Bollywood,easy,Q2,1,2,3,4,5,0
+Bollywood,easy,Q3,1,2,3,4,5,0
+Bollywood,easy,Q4,1,2,3,4,5,0
+Bollywood,easy,Q1,1,2,3,4,5,0
+Bollywood,easy,Q2,1,2,3,4,5,0
+Bollywood,easy,Q3,1,2,3,4,5,0
+Bollywood,medium,Q4,1,2,3,4,5,0
+Bollywood,medium,Q1,1,2,3,4,5,0
+Bollywood,medium,Q2,1,2,3,4,5,0
+Bollywood,medium,Q3,1,2,3,4,5,0
+Bollywood,medium,Q4,1,2,3,4,5,0
+Bollywood,medium,Q1,1,2,3,4,5,0
+Bollywood,medium,Q2,1,2,3,4,5,0
+Bollywood,medium,Q3,1,2,3,4,5,0
+Bollywood,medium,Q4,1,2,3,4,5,0
+Bollywood,medium,Q1,1,2,3,4,5,0
+Bollywood,medium,Q2,1,2,3,4,5,0
+Bollywood,medium,Q3,1,2,3,4,5,0
+Bollywood,medium,Q4,1,2,3,4,5,0
+Bollywood,medium,Q1,1,2,3,4,5,0
+Bollywood,medium,Q2,1,2,3,4,5,0
+Bollywood,hard,Q3,1,2,3,4,5,0
+Bollywood,hard,Q4,1,2,3,4,5,0
+Bollywood,hard,Q1,1,2,3,4,5,0
+Bollywood,hard,Q2,1,2,3,4,5,0
+Bollywood,hard,Q3,1,2,3,4,5,0
+Bollywood,hard,Q4,1,2,3,4,5,0
+Bollywood,hard,Q1,1,2,3,4,5,0
+Bollywood,hard,Q2,1,2,3,4,5,0
+Bollywood,hard,Q3,1,2,3,4,5,0
+Bollywood,hard,Q4,1,2,3,4,5,0
+Bollywood,hard,Q1,1,2,3,4,5,0
+Bollywood,hard,Q2,1,2,3,4,5,0
+Bollywood,hard,Q3,1,2,3,4,5,0
+Bollywood,hard,Q4,1,2,3,4,5,0
+Bollywood,hard,Q1,1,2,3,4,5,0
