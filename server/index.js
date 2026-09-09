@@ -48,8 +48,8 @@ const categoryDetails = [
     description: ""
   },
   {
-    name: "Music",
-    logo: "🎵",
+    name: "Technology",
+    logo: "💻",
     description: ""
   },
   {
@@ -58,7 +58,7 @@ const categoryDetails = [
     description: ""
   },
   {
-    name: "Sci-Tech",
+    name: "Science",
     logo: "🔬",
     description: ""
   },
@@ -209,7 +209,7 @@ const supplementalQuestionBank = {
       ["Which Indian poet wrote the epic Savitri?", ["Sri Aurobindo", "Kalidasa", "Tulsidas", "Harivansh Rai Bachchan"], 0]
     ]
   },
-  Music: {
+  Technology: {
     easy: [
       ["Which instrument is Pandit Ravi Shankar famous for playing?", ["Sitar", "Tabla", "Flute", "Sarod"], 0]
     ],
@@ -220,7 +220,7 @@ const supplementalQuestionBank = {
       ["Which musician is known for popularising the bansuri globally?", ["Hariprasad Chaurasia", "Zakir Hussain", "Bismillah Khan", "Shivkumar Sharma"], 0]
     ]
   },
-  "Sci-Tech": {
+  "Science": {
     easy: [
       ["What does CPU stand for?", ["Central Processing Unit", "Computer Power Utility", "Central Program User", "Control Processing Unit"], 0]
     ],

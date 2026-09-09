@@ -8,7 +8,7 @@ import {
   FlaskConical,
   Globe,
   Landmark,
-  Music2,
+  Cpu,
   Newspaper,
   Palette,
   Trophy,
@@ -129,9 +129,9 @@ const categoryIcons: Record<string, LucideIcon> = {
   Geography: Globe,
   Politics: Vote,
   Literature: BookOpen,
-  Music: Music2,
+  Technology: Cpu,
   Bollywood: Clapperboard,
-  "Sci-Tech": FlaskConical,
+  Science: FlaskConical,
   Mythology: Flame,
   "Current affairs": Newspaper,
   Arts: Palette,
@@ -1667,7 +1667,7 @@ function GameRules({ onClose }: { onClose: () => void }) {
           <article className="rules-teams"><h2>Teams & rounds</h2><p>Players are divided into 4 teams.</p><div className="rules-team-badges" aria-label="Teams"><span className="rules-team-raw">RAW</span><span className="rules-team-kgb">KGB</span><span className="rules-team-cia">CIA</span><span className="rules-team-mossad">Mossad</span></div><p>The game is conducted in 8 rounds. Each team plays 2 rounds, in the sequence shown by the host.</p></article>
           <article className="rules-rounds"><h2>Sequence of rounds</h2><div className="rules-round-strip"><span>1<br /><b>RAW</b></span><i>→</i><span>2<br /><b>KGB</b></span><i>→</i><span>3<br /><b>CIA</b></span><i>→</i><span>4<br /><b>Mossad</b></span></div><p>The order rotates in later sets so every team gets its turn.</p></article>
           <article><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span>🏆</span><span>📚</span><span>🌍</span><span>🎬</span><span>🎵</span><span>🔬</span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
-          <article className="rules-category-icons-lucide"><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span><CategoryIcon category="Sports" /></span><span><CategoryIcon category="Literature" /></span><span><CategoryIcon category="Geography" /></span><span><CategoryIcon category="Bollywood" /></span><span><CategoryIcon category="Music" /></span><span><CategoryIcon category="Sci-Tech" /></span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
+          <article className="rules-category-icons-lucide"><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span><CategoryIcon category="Sports" /></span><span><CategoryIcon category="Literature" /></span><span><CategoryIcon category="Geography" /></span><span><CategoryIcon category="Bollywood" /></span><span><CategoryIcon category="Technology" /></span><span><CategoryIcon category="Science" /></span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
           <article className="rules-points"><h2>Points & time</h2><div className="rules-score-table"><span>Easy <b>10</b><em>30s / 20s</em></span><span>Medium <b>20</b><em>60s / 40s</em></span><span>Difficult <b>30</b><em>90s / 60s</em></span></div><p>Time shown is first attempt / second attempt.</p></article>
           <article><h2>Attempts</h2><p>There is no negative marking on the first attempt.</p><p>On a wrong second attempt, 10 points are deducted. A team may decline the second attempt to avoid the penalty.</p><p>No first-attempt selection means the question is skipped, with no points gained or lost.</p></article>
           <article className="rules-lifelines"><h2>Lifelines</h2><div className="rules-lifeline-art"><span><i className="lifeline-sprite lifeline-sprite-removeTwo" /><b>Remove 2</b></span><span><i className="lifeline-sprite lifeline-sprite-flip" /><b>Flip</b></span></div><p>Each team has 2 lifelines, usable once each. Remove 2 removes two wrong answers; Flip replaces the question and restarts the first attempt. Both may be used on one question if required.</p></article>
