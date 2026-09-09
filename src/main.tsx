@@ -9,7 +9,7 @@ import {
   Globe,
   Landmark,
   Cpu,
-  Newspaper,
+  TvMinimalPlay,
   Palette,
   Trophy,
   Vote,
@@ -133,7 +133,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   Bollywood: Clapperboard,
   Science: FlaskConical,
   Mythology: Flame,
-  "Current affairs": Newspaper,
+  "Web Series": TvMinimalPlay,
   Arts: Palette,
   Economics: ChartNoAxesCombined,
 };

@@ -1,5 +1,5 @@
 category,difficulty,question,option_a,option_b,option_c,option_d,option_e,correct_option
-Sports,easy,Which nation won 1996 cricket ODI world cup?,Australia,West Indies,Sri Lanka,Pakistan,England,3
+Sports,easy,Which nation won 1996 cricket ODI world cup?,Australia,West Indies,Sri Lanka,Pakistan,England,2
 Sports,easy,Which nation has won the most men's FIFA World Cups?,Italy,France,Brazil,Germany,Argentina,2
 Sports,easy,Which athlete holds the men's 100-metre world record?,Yohan Blake,Justin Gatlin,Tyson Gay,Carl Lewis,Usain Bolt,4
 Sports,easy,"In tennis, what is the term for a score of zero?",Love,Nil,Duck,Nada,Blank,0
@@ -179,51 +179,51 @@ Politics,hard,Q2,1,2,3,4,5,0
 Politics,hard,Q3,1,2,3,4,5,0
 Politics,hard,Q4,1,2,3,4,5,0
 Politics,hard,Q1,1,2,3,4,5,0
-Literature,easy,Q1,1,2,3,4,5,0
-Literature,easy,Q2,1,2,3,4,5,0
-Literature,easy,Q3,1,2,3,4,5,0
-Literature,easy,Q4,1,2,3,4,5,0
-Literature,easy,Q1,1,2,3,4,5,0
-Literature,easy,Q2,1,2,3,4,5,0
-Literature,easy,Q3,1,2,3,4,5,0
-Literature,easy,Q4,1,2,3,4,5,0
-Literature,easy,Q1,1,2,3,4,5,0
-Literature,easy,Q2,1,2,3,4,5,0
-Literature,easy,Q3,1,2,3,4,5,0
-Literature,easy,Q4,1,2,3,4,5,0
-Literature,easy,Q1,1,2,3,4,5,0
-Literature,easy,Q2,1,2,3,4,5,0
-Literature,easy,Q3,1,2,3,4,5,0
-Literature,medium,Q4,1,2,3,4,5,0
-Literature,medium,Q1,1,2,3,4,5,0
-Literature,medium,Q2,1,2,3,4,5,0
-Literature,medium,Q3,1,2,3,4,5,0
-Literature,medium,Q4,1,2,3,4,5,0
-Literature,medium,Q1,1,2,3,4,5,0
-Literature,medium,Q2,1,2,3,4,5,0
-Literature,medium,Q3,1,2,3,4,5,0
-Literature,medium,Q4,1,2,3,4,5,0
-Literature,medium,Q1,1,2,3,4,5,0
-Literature,medium,Q2,1,2,3,4,5,0
-Literature,medium,Q3,1,2,3,4,5,0
-Literature,medium,Q4,1,2,3,4,5,0
-Literature,medium,Q1,1,2,3,4,5,0
-Literature,medium,Q2,1,2,3,4,5,0
-Literature,hard,Q3,1,2,3,4,5,0
-Literature,hard,Q4,1,2,3,4,5,0
-Literature,hard,Q1,1,2,3,4,5,0
-Literature,hard,Q2,1,2,3,4,5,0
-Literature,hard,Q3,1,2,3,4,5,0
-Literature,hard,Q4,1,2,3,4,5,0
-Literature,hard,Q1,1,2,3,4,5,0
-Literature,hard,Q2,1,2,3,4,5,0
-Literature,hard,Q3,1,2,3,4,5,0
-Literature,hard,Q4,1,2,3,4,5,0
-Literature,hard,Q1,1,2,3,4,5,0
-Literature,hard,Q2,1,2,3,4,5,0
-Literature,hard,Q3,1,2,3,4,5,0
-Literature,hard,Q4,1,2,3,4,5,0
-Literature,hard,Q1,1,2,3,4,5,0
+Literature,easy,"What is the name of the fictional South Indian town created by R. K. Narayan that serves as the setting for most of his stories, including Swami and Friends?",Malgudi,Kanthapura,Mysore,Mempi,Devanahalli,0
+Literature,easy,"Who wrote the groundbreaking Partition novel Train to Pakistan (1956), which depicts the human tragedy in the fictional border village of Mano Majra?",Khushwant Singh,Bhisham Sahni,Yashpal,Saadat Hasan Manto,Rajinder Singh Bedi,0
+Literature,easy,"Who is the author of The God of Small Things, which won the Booker Prize in 1997 and explores the rigid social hierarchy in Kerala?",Kiran Desai,Anita Desai,Arundhati Roy,Jhumpa Lahiri,Aravind Adiga,2
+Literature,easy,"Which titled epithet was bestowed upon Sarojini Naidu, the famous Indian poet and political activist who authored The Golden Threshold?",Nightingale of India,Bulbul-e-Hind,Poetic Voice of Freedom,Bharat Kokila,Lady of the Lotus,0
+Literature,easy,"Madhushala (1935), a famous book of 135 four-line verses, was composed by which legendary Hindi poet?",Sumitranandan Pant,Ramdhari Singh 'Dinkar',Maithili Sharan Gupt,Jaishankar Prasad,Harivansh Rai Bachchan,3
+Literature,easy,"In Kalidasa's famous Sanskrit poem Meghaduta, what is the central premise of the narrative?",A exiled Yaksha asks a passing cloud to convey a message of love to his wife.,A king forgets his royal bride due to a powerful sage's curse.,A grand battle takes place between celestial gods and demons in the heavens.,A young prince embarks on a spiritual journey to achieve ultimate enlightenment.,A merchant travels across the silk route in search of legendary lost treasures.,0
+Literature,easy,"What is the title of Mahatma Gandhi's autobiography, which covers his life from early childhood to 1921?",Hind Swaraj,My Experiments with Truth,The Story of My Experiments with Truth,India of My Dreams,Satyagraha in South Africa,1
+Literature,easy,Which prominent social reformer and architect of the Indian Constitution wrote Annihilation of Caste in 1936?,Jyotirao Phule,B. R. Ambedkar,Periyar E. V. Ramasamy,M. K. Gandhi,Ram Manohar Lohia,1
+Literature,easy,"The iconic 1965 film Guide, starring Dev Anand, was adapted from a novel by which famous Indian author?",Mulk Raj Anand,Raja Rao,R. K. Narayan,Khushwant Singh,Ruskin Bond,2
+Literature,easy,Vishal Bhardwaj's film Haider (2014) is a modern adaptation of Shakespeare's Hamlet set against the backdrop of which Indian state/region?,Punjab,Kashmir,Rajasthan,West Bengal,Kerala,1
+Literature,easy,The movie 3 Idiots (2009) is loosely based on which bestselling novel by Chetan Bhagat?,One Indian Girl,Half Girlfriend,Five Point Someone,2 States,Revolution 2020,2
+Literature,easy,"Which ancient university library in Bihar, destroyed in the late 12th century, was renowned across Asia as one of the greatest centers of learning in antiquity?",Vikramashila,Nalanda,Odantapuri,Takshashila,Vallabhi,1
+Literature,easy,Which saint-poet is most closely associated with the Marathi devotional tradition of Abhangs and the Varkari movement?,Sant Tukaram,Sant Ramdas,Sant Chokhamela,Sant Dnyaneshwar,Sant Eknath,0
+Literature,easy,Which Marathi poet wrote the famous poem Tutari?,Kusumagraj,Keshavsut,Narayan Surve,Vinda Karandikar,B. B. Borkar,1
+Literature,easy,Which novel by Bhalchandra Nemade is considered a landmark of modern Marathi literature?,Kosla,Mrityunjay,Swami,Rau,Yayati,0
+Literature,medium,Who became the first non-European and first Indian to win the Nobel Prize in Literature in 1913 for his poetry collection Gitanjali?,Sarojini Naidu,Arundhati Roy,Rabindranath Tagore,Sri Aurobindo,Premchand,2
+Literature,medium,Which 1935 novel by Mulk Raj Anand focuses on a single day in the life of a young latrine cleaner named Bakha?,Untouchable,Coolie,Two Leaves and a Bud,The Village,Across the Black Waters,0
+Literature,medium,"Which ancient Indian treatise on theatre, dance, and music, attributed to Sage Bharata, forms the foundational text for Indian classical drama?",Kamasutra,Natya Shastra,Arthashastra,Natyadarpana,Sangita Ratnakara,1
+Literature,medium,Which modern Marathi playwright wrote the controversial and acclaimed political satire Ghashiram Kotwal?,Mahesh Elkunchwar,Satish Alekar,P. L. Deshpande,Vijay Tendulkar,Vasant Kanetkar,3
+Literature,medium,Which famous play by Vijay Tendulkar explores social hypocrisy and institutionalized patriarchy through a simulated court trial involving a female school teacher?,Ghashiram Kotwal,Sakharam Binder,Silence! The Court Is in Session,Kamala,Mitrachi Goshta,2
+Literature,medium,"Written during his imprisonment at Ahmednagar Fort, The Discovery of India was penned by which modern Indian leader?",Mahatma Gandhi,Sardar Vallabhbhai Patel,Jawaharlal Nehru,Subhas Chandra Bose,Maulana Abul Kalam Azad,2
+Literature,medium,Which Indian writer and politician authored An Era of Darkness: The British Empire in India?,Jairam Ramesh,Ramachandra Guha,Arun Shourie,Pavan K. Varma,Shashi Tharoor,4
+Literature,medium,Satyajit Ray's acclaimed film Pather Panchali (1955) was adapted from a classic Bengali novel of the same name written by whom?,Sarat Chandra Chattopadhyay,Bibhutibhushan Bandyopadhyay,Tarashankar Bandyopadhyay,Manik Bandopadhyay,Bankim Chandra Chattopadhyay,1
+Literature,medium," The film The Namesake (2006), directed by Mira Nair, was adapted from the debut novel of which Pulitzer Prize-winning author?",Jhumpa Lahiri,Kiran Desai,Anita Desai,Arundhati Roy,Bharati Mukherjee,0
+Literature,medium,"Located in Kolkata and established in 1836, what is the largest library in India by volume and public record?",Asiatic Society Library,National Library of India,State Central Library,Connemara Public Library,Victoria Memorial Library,1
+Literature,medium,Who is traditionally regarded as the first poet of Marathi literature?,Sant Dnyaneshwar,Sant Namdev,Mukundraj,Sant Eknath,Sant Tukaram,2
+Literature,medium,"Which of the following literary works was NOT written by the eminent Marathi poet and playwright Vishnu Vaman Shirwadkar (popularly known by his pen name, Kusumagraj)?",Vishakha,Natsamrat,Yayati,Kaunteya,Veej Mhanali Dharatila,2
+Literature,medium,Which Bengali poet wrote the patriotic song 'Jana Gana Mana'?,Rabindranath Tagore,Kazi Nazrul Islam,Jibanananda Das,Michael Madhusudan Dutt,Bankim Chandra Chattopadhyay,0
+Literature,medium,Which of the following prominent literary figures is NOT a Marathi author?,V. P. Kale,Kiran Desai,V. S. Khandekar,V. V. Shirwadkar,Vijay Tendulkar,1
+Literature,medium,Which of the following best describes Saadat Hasan Manto's literary style?,Idealized portrayals of Indian mythology,Romantic descriptions of nature,Realistic and often provocative portrayals of society's marginalized people,Historical epics about ancient India,Religious poetry focused on devotion,2
+Literature,hard,Girish Karnad's famous Kannada play Tughlaq draws a parallel between the rule of the 14th-century Sultan Muhammad bin Tughlaq and which modern political era in India?,The Non-Cooperation Movement,The Green Revolution,The Emergency under Indira Gandhi,The Liberalisation era,The Quit India Movement,2
+Literature,hard,The traditional folk theatre form Jatra originates from which eastern Indian state?,Odisha,Bihar,Assam,Jharkhand,West Bengal,4
+Literature,hard,Which foundational political and economic treatise in Sanskrit was authored by Chanakya (Kautilya) during the Mauryan period?,Manusmriti,Arthashastra,Rajatarangini,Nitishataka,Panchatantra,1
+Literature,hard,The Hindi film Devdas (adapted into multiple screen versions) originated from a 1917 novella by which Bengali writer?,Bankim Chandra Chattopadhyay,Bibhutibhushan Bandyopadhyay,Rabindranath Tagore,Sarat Chandra Chattopadhyay,Tarashankar Bandyopadhyay,3
+Literature,hard,"Who wrote Leelacharitra, considered one of the earliest major works of Marathi prose?",Mhaimbhat,Mukundraj,Sant Namdev,Sant Eknath,Chakradhar Swami,0
+Literature,hard,What is the real name of Gulzar?,Sampooran Singh Kalra,Javed Hussain,Gulshan Kumar,Sampatlal Kalra,Harivansh Rai Bachchan,0
+Literature,hard,Which famous poetry collection was written by Javed Akhtar,Madhushala,Tarkash,Vishakha,Kosala,Dnyaneshwari,1
+Literature,hard,Which Marathi poet wrote the famous poem 'Mogara Phulala'?,Sant Tukaram,Sant Dnyaneshwar,Bahinabai Choudhary,Sant Namdev,Sant Eknath,1
+Literature,hard,"What major milestone or achievement do the following 5 Marathi literary figures'V. S. Khandekar, Vi. Va. Shirwadkar, Vinda Karandikar, Bhalchandra Nemade, and C. T. Khanolkar - all share in common?",All five were born in the Konkan region of Maharashtra.,All five are recipients of the prestigious Jnanpith Award.,All five wrote screenplay adaptations for Oscar-nominated Marathi films.,All five are recipients of the prestigious Sahitya Academi Award.,All five served as presidents of the Akhil Bharatiya Marathi Sahitya Sammelan.,3
+Literature,hard,"What is common between these poems?    Daffodils ' William Wordsworth, The Solitary Reaper ' William Wordsworth, Lines Written a Few Miles Above Tintern Abbey ' William Wordsworth",All are dramatic monologues,All are written in free verse,All explore nature and its effect on the human mind,All are about Indian festivals,All were written by John Keats,2
+Literature,hard,Which historical period is central to The Last Mughal by William Dalrymple?,The Mauryan Empire,The Gupta Empire,The Mughal Empire in the period surrounding the Revolt of 1857,The Chola Empire,The Maratha Empire under Peshwa rule,2
+Literature,hard,Which of the following books is most closely associated with Ramachandra Guha's detailed history of independent India?,India After Gandhi,The Last MughaL,Freedom at Midnight,The Great Indian Novel,The White Tiger,0
+Literature,hard,Which historical personality is the central figure in The Last Mughal?,Akbar the Great,Bahadur Shah Zafar,Aurangzeb,Shah Jahan,Humayun,1
+Literature,hard,Which of these poems is particularly associated with teaching children about kindness towards animals?,The Ant and the Cricket,The Road Not Taken,Ozymandias,The Second Coming,Kubla Khan,0
+Literature,hard,Which of the following is a central theme of Animal Farm by George Orwell?,The beauty of rural life,The dangers of political corruption and abuse of power,The importance of scientific discovery,The history of ancient civilizations,The adventures of a young farmer,1
 Technology,easy,"In Artificial Intelligence, what is the term used when a large language model generates false, illogical, or completely fabricated information presented as fact?",Overfitting,Hallucination,Catastrophic forgetting,Vanishing gradient,Quantization,1
 Technology,easy,Which protocol adds encryption to web traffic and is indicated by the padlock icon in a browser?,FTP,HTTP,HTTPS,SMTP,Telnet,2
 Technology,easy,What does CAPTCHA primarily help protect against?,Hardware overheating,Physical Access,Data compression,Network congestion,Automated bots,4
@@ -248,7 +248,7 @@ Technology,medium,"In smartphone cameras, OIS is primarily used to reduce:",Colo
 Technology,medium,Which technology allows an AI system to understand and generate human language?,Computer Vision,Natural Language Processing,Robotic Process Automation,Blockchain,Optical Character Recognition,1
 Technology,medium,What does MRI stand for in medical imaging?,Magnetic Resonance Imaging,Medical Radiation Instrument,Magnetic Radio Inspection,Molecular Resonance Investigation,Medical Response Indicator,0
 Technology,medium,"Installed in modern smart vehicles to enhance safety, what does the automotive acronym ADAS stand for?",Automated Driving and Automation Systems,Advanced Driver Assistance Systems,Active Driver Awareness Sensor,Automotive Data Analysis Software,Assisted Driving Allocation System,1
-Technology,medium,Which component uses exhaust gases to force more air into an engine’s cylinders?,Alternator,Turbocharger,Radiator,Differential,Fuel filter,1
+Technology,medium,Which component uses exhaust gases to force more air into an engine's cylinders?,Alternator,Turbocharger,Radiator,Differential,Fuel filter,1
 Technology,medium,Which device converts alternating current (AC) into direct current (DC)?,Oscillator,Amplifier,Rectifier,Modulator,Transducer,2
 Technology,medium,Which core NPCI payment system protocol handles the actual instant inter-bank settlement for UPI in the background?,NEFT,RTGS,IMPS,NACH,AEPS,2
 Technology,medium,Which graphics format is best suited for a logo that must be enlarged without losing sharpness?,JPEG,BMP,GIF,SVG,TIFF,3
@@ -256,16 +256,16 @@ Technology,medium,"Widely used in the DRS to adjudicate Leg Before Wicket (LBW) 
 Technology,medium,"Question: Used by the Android operating system to distribute, deliver, and install mobile applications and middleware, what does the file format abbreviation APK stand for?",Android Processing Kernel,Android Package Kit,Application Program Kit,Android Public Key,Automated Package Kit,1
 Technology,hard,Which image format is commonly preferred for logos and graphics needing transparent backgrounds because it supports lossless compression?,JPEG,PNG,SVG,MPEG,BMP,1
 Technology,hard,"Which transport-layer protocol is designed to provide reliable, ordered delivery of data over the Internet?",UDP,IP,TCP,DNS,ARP,2
-Technology,hard,"The name “Bluetooth” was inspired by Harald Bluetooth, who was a king of:",Denmark,Italy,France,Japan,Egypt,0
+Technology,hard,"The name 'Bluetooth' was inspired by Harald Bluetooth, who was a king of:",Denmark,Italy,France,Japan,Egypt,0
 Technology,hard,A diesel engine differs from a petrol engine chiefly because it uses:,Spark ignition,Compression ignition,Steam pressure,Battery-only propulsion,Solar heating,1
-Technology,hard,Who is widely regarded as the world’s first computer programmer for writing an algorithm for Charles Babbage’s Analytical Engine?,Grace Hopper,Ada Lovelace,Hedy Lamarr,Katherine Johnson,Margaret Hamilton,1
-Technology,hard,Which company’s Palo Alto Research Center (PARC) developed influential early graphical-user-interface technology?,IBM,Xerox,Intel,Apple,Microsoft,1
+Technology,hard,Who is widely regarded as the world's first computer programmer for writing an algorithm for Charles Babbage's Analytical Engine?,Grace Hopper,Ada Lovelace,Hedy Lamarr,Katherine Johnson,Margaret Hamilton,1
+Technology,hard,Which company's Palo Alto Research Center (PARC) developed influential early graphical-user-interface technology?,IBM,Xerox,Intel,Apple,Microsoft,1
 Technology,hard,"In data storage, what does RAID stand for?",Remote Access to Internet Data,Redundant Array of Independent Disks,Rapid Automated Information Database,Random Access Integrated Drive,Reliable Archive for Internal Data,1
 Technology,hard,"In mobile communications and device security, what does the hardware identification acronym IMEI stand for?",International Mobile Electronic Interface,Integrated Mobile Equipment Integration,International Mobile Equipment Identity,Internal Mobile Encryption Identifier,Inter-Network Mobile Entity Indicator,2
 Technology,hard,Which mobile-network technology lets a user access short interactive services through codes such as *123#?,NFC,USSD,GPS,MMS,VoLTE,1
 Technology,hard,Which of the following is NOT a valid version name or codename of the Android mobile OS?,Donut,Cadbury,Oreo,KitKat,Eclair,1
 Technology,hard,The highly popular gaming brand Republic of Gamers (ROG) is a dedicated hardware sub-brand owned by which multinational computer electronics company?,MSI,Gigabyte,Acer,ASUS,Lenovo,3
-Technology,hard,"What was the content of the world’s first SMS text message, sent in 1992?",Hello World,Happy New Year,Merry Christmas,Test Message,Call Me Back,2
+Technology,hard,"What was the content of the world's first SMS text message, sent in 1992?",Hello World,Happy New Year,Merry Christmas,Test Message,Call Me Back,2
 Technology,hard,"Before adopting its present name, Amazon was initially registered under which name?",BookRiver,Cadabra,JungleMart,EarthBooks,WebCart,1
 Technology,hard,What was the title of the first video uploaded to YouTube in 2005?,Hello Internet,Me at the zoo,First Vlog,My First Video,Welcome to YouTube,1
 Technology,hard,"Before becoming famous for mobile phones, Nokia began in Finland as a company associated primarily with:",Paper and pulp,Cars,Cameras,Watches,Television sets,0
@@ -359,51 +359,51 @@ Mythology,hard,Which king is said to have been cursed to become a serpent and la
 Mythology,hard,Who was the father of King Janaka according to traditional accounts?,Nimi,Hrasvaroma,Mithi,Devarata,Kushadhwaja,1
 Mythology,hard,Which sage gave King Dasharatha the sacred payasam that led to the birth of Rama and his brothers?,Vashishta,Vishwamitra,Rishyasringa,Agastya,Bharadwaja,2
 Mythology,hard,Which sage performed Sarpasatra for King Janmejaya?,Uttanka,Vaishampayana,Parashar,Souti,Bharadwaja,0
-Current affairs,easy,Q1,1,2,3,4,5,0
-Current affairs,easy,Q2,1,2,3,4,5,0
-Current affairs,easy,Q3,1,2,3,4,5,0
-Current affairs,easy,Q4,1,2,3,4,5,0
-Current affairs,easy,Q1,1,2,3,4,5,0
-Current affairs,easy,Q2,1,2,3,4,5,0
-Current affairs,easy,Q3,1,2,3,4,5,0
-Current affairs,easy,Q4,1,2,3,4,5,0
-Current affairs,easy,Q1,1,2,3,4,5,0
-Current affairs,easy,Q2,1,2,3,4,5,0
-Current affairs,easy,Q3,1,2,3,4,5,0
-Current affairs,easy,Q4,1,2,3,4,5,0
-Current affairs,easy,Q1,1,2,3,4,5,0
-Current affairs,easy,Q2,1,2,3,4,5,0
-Current affairs,easy,Q3,1,2,3,4,5,0
-Current affairs,medium,Q4,1,2,3,4,5,0
-Current affairs,medium,Q1,1,2,3,4,5,0
-Current affairs,medium,Q2,1,2,3,4,5,0
-Current affairs,medium,Q3,1,2,3,4,5,0
-Current affairs,medium,Q4,1,2,3,4,5,0
-Current affairs,medium,Q1,1,2,3,4,5,0
-Current affairs,medium,Q2,1,2,3,4,5,0
-Current affairs,medium,Q3,1,2,3,4,5,0
-Current affairs,medium,Q4,1,2,3,4,5,0
-Current affairs,medium,Q1,1,2,3,4,5,0
-Current affairs,medium,Q2,1,2,3,4,5,0
-Current affairs,medium,Q3,1,2,3,4,5,0
-Current affairs,medium,Q4,1,2,3,4,5,0
-Current affairs,medium,Q1,1,2,3,4,5,0
-Current affairs,medium,Q2,1,2,3,4,5,0
-Current affairs,hard,Q3,1,2,3,4,5,0
-Current affairs,hard,Q4,1,2,3,4,5,0
-Current affairs,hard,Q1,1,2,3,4,5,0
-Current affairs,hard,Q2,1,2,3,4,5,0
-Current affairs,hard,Q3,1,2,3,4,5,0
-Current affairs,hard,Q4,1,2,3,4,5,0
-Current affairs,hard,Q1,1,2,3,4,5,0
-Current affairs,hard,Q2,1,2,3,4,5,0
-Current affairs,hard,Q3,1,2,3,4,5,0
-Current affairs,hard,Q4,1,2,3,4,5,0
-Current affairs,hard,Q1,1,2,3,4,5,0
-Current affairs,hard,Q2,1,2,3,4,5,0
-Current affairs,hard,Q3,1,2,3,4,5,0
-Current affairs,hard,Q4,1,2,3,4,5,0
-Current affairs,hard,Q1,1,2,3,4,5,0
+Web Series,easy,Q1,1,2,3,4,5,0
+Web Series,easy,Q2,1,2,3,4,5,0
+Web Series,easy,Q3,1,2,3,4,5,0
+Web Series,easy,Q4,1,2,3,4,5,0
+Web Series,easy,Q1,1,2,3,4,5,0
+Web Series,easy,Q2,1,2,3,4,5,0
+Web Series,easy,Q3,1,2,3,4,5,0
+Web Series,easy,Q4,1,2,3,4,5,0
+Web Series,easy,Q1,1,2,3,4,5,0
+Web Series,easy,Q2,1,2,3,4,5,0
+Web Series,easy,Q3,1,2,3,4,5,0
+Web Series,easy,Q4,1,2,3,4,5,0
+Web Series,easy,Q1,1,2,3,4,5,0
+Web Series,easy,Q2,1,2,3,4,5,0
+Web Series,easy,Q3,1,2,3,4,5,0
+Web Series,medium,Q4,1,2,3,4,5,0
+Web Series,medium,Q1,1,2,3,4,5,0
+Web Series,medium,Q2,1,2,3,4,5,0
+Web Series,medium,Q3,1,2,3,4,5,0
+Web Series,medium,Q4,1,2,3,4,5,0
+Web Series,medium,Q1,1,2,3,4,5,0
+Web Series,medium,Q2,1,2,3,4,5,0
+Web Series,medium,Q3,1,2,3,4,5,0
+Web Series,medium,Q4,1,2,3,4,5,0
+Web Series,medium,Q1,1,2,3,4,5,0
+Web Series,medium,Q2,1,2,3,4,5,0
+Web Series,medium,Q3,1,2,3,4,5,0
+Web Series,medium,Q4,1,2,3,4,5,0
+Web Series,medium,Q1,1,2,3,4,5,0
+Web Series,medium,Q2,1,2,3,4,5,0
+Web Series,hard,Q3,1,2,3,4,5,0
+Web Series,hard,Q4,1,2,3,4,5,0
+Web Series,hard,Q1,1,2,3,4,5,0
+Web Series,hard,Q2,1,2,3,4,5,0
+Web Series,hard,Q3,1,2,3,4,5,0
+Web Series,hard,Q4,1,2,3,4,5,0
+Web Series,hard,Q1,1,2,3,4,5,0
+Web Series,hard,Q2,1,2,3,4,5,0
+Web Series,hard,Q3,1,2,3,4,5,0
+Web Series,hard,Q4,1,2,3,4,5,0
+Web Series,hard,Q1,1,2,3,4,5,0
+Web Series,hard,Q2,1,2,3,4,5,0
+Web Series,hard,Q3,1,2,3,4,5,0
+Web Series,hard,Q4,1,2,3,4,5,0
+Web Series,hard,Q1,1,2,3,4,5,0
 Arts,easy,"Which ancient cave complex in Maharashtra is famous for its intricate rock-cut Buddhist murals, including depictions of Jataka tales?",Elephanta Caves,Bhimbetka Caves,Ajanta Caves,Udayagiri Caves,Badami Caves,2
 Arts,easy,"Madhubani painting, recognized by its vibrant colors and geometric patterns, originated in which state of India?",Bihar,Rajasthan,West Bengal,Kerala,Odisha,0
 Arts,easy,Which traditional art form from Odisha involves painting detailed mythological narratives on cloth or dried palm leaves?,Gond Painting,Warli Art,Pattachitra,Kalamkari,Pithora Painting,2
@@ -494,51 +494,51 @@ Economics,hard,"A company announces profits of 20%, yet its share price falls 10
 Economics,hard,A foreign company manufactures cars in India. The value of those cars is included in:,India's GNP only,Only the company's home country's GDP,India's imports,India's GDP,None of these,3
 Economics,hard,A farmer grows wheat worth ?1 lakh and sells it to a flour mill. The flour mill turns it into flour worth ?1.5 lakh and sells it to a bakery. The bakery makes bread worth ?2 lakh and sells it to consumers.,?1 lakh,?1.5 lakh,?2.5 lakh,No Contribution,?2 lakh,4
 Economics,hard,"In which year did NITI Ayog replace the older Policy Think Tank ""Planning Commission""",2010,2005,2015,2000,None of these,2
-Bollywood,easy,Q1,1,2,3,4,5,0
-Bollywood,easy,Q2,1,2,3,4,5,0
-Bollywood,easy,Q3,1,2,3,4,5,0
-Bollywood,easy,Q4,1,2,3,4,5,0
-Bollywood,easy,Q1,1,2,3,4,5,0
-Bollywood,easy,Q2,1,2,3,4,5,0
-Bollywood,easy,Q3,1,2,3,4,5,0
-Bollywood,easy,Q4,1,2,3,4,5,0
-Bollywood,easy,Q1,1,2,3,4,5,0
-Bollywood,easy,Q2,1,2,3,4,5,0
-Bollywood,easy,Q3,1,2,3,4,5,0
-Bollywood,easy,Q4,1,2,3,4,5,0
-Bollywood,easy,Q1,1,2,3,4,5,0
-Bollywood,easy,Q2,1,2,3,4,5,0
-Bollywood,easy,Q3,1,2,3,4,5,0
-Bollywood,medium,Q4,1,2,3,4,5,0
-Bollywood,medium,Q1,1,2,3,4,5,0
-Bollywood,medium,Q2,1,2,3,4,5,0
-Bollywood,medium,Q3,1,2,3,4,5,0
-Bollywood,medium,Q4,1,2,3,4,5,0
-Bollywood,medium,Q1,1,2,3,4,5,0
-Bollywood,medium,Q2,1,2,3,4,5,0
-Bollywood,medium,Q3,1,2,3,4,5,0
-Bollywood,medium,Q4,1,2,3,4,5,0
-Bollywood,medium,Q1,1,2,3,4,5,0
-Bollywood,medium,Q2,1,2,3,4,5,0
-Bollywood,medium,Q3,1,2,3,4,5,0
-Bollywood,medium,Q4,1,2,3,4,5,0
-Bollywood,medium,Q1,1,2,3,4,5,0
-Bollywood,medium,Q2,1,2,3,4,5,0
-Bollywood,hard,Q3,1,2,3,4,5,0
-Bollywood,hard,Q4,1,2,3,4,5,0
-Bollywood,hard,Q1,1,2,3,4,5,0
-Bollywood,hard,Q2,1,2,3,4,5,0
-Bollywood,hard,Q3,1,2,3,4,5,0
-Bollywood,hard,Q4,1,2,3,4,5,0
-Bollywood,hard,Q1,1,2,3,4,5,0
-Bollywood,hard,Q2,1,2,3,4,5,0
-Bollywood,hard,Q3,1,2,3,4,5,0
-Bollywood,hard,Q4,1,2,3,4,5,0
-Bollywood,hard,Q1,1,2,3,4,5,0
-Bollywood,hard,Q2,1,2,3,4,5,0
-Bollywood,hard,Q3,1,2,3,4,5,0
-Bollywood,hard,Q4,1,2,3,4,5,0
-Bollywood,hard,Q1,1,2,3,4,5,0
+Bollywood,easy,Which film won the Filmfare Award for Best Film at the 1995 awards ceremony?,Dilwale Dulhania Le Jayenge,Mohra,Krantiveer,Hum Aapke Hain Koun..!,Andaz Apna Apna,3
+Bollywood,easy,In which film Amitabh Bachchan played triple role,Adalat,Mahan,Great Gambler,Amar Akbar Anthony,Trishul,1
+Bollywood,easy,Who composed music for Devdas movie in year 2002,A. R. Rahman,Nadeem-Shravan,Jatin-Lalit,Ismail Darbar,Vishal Bhardwaj,3
+Bollywood,easy,Which was the first film directed by Farhan Akhtar?,Lakshya,Don,Dil Chahta Hai,Rock On!!,Zindagi Na Milegi Dobara,2
+Bollywood,easy,Which film marked the Bollywood debut of Deepika Padukone?,Bachna Ae Haseeno,Om Shanti Om,Love Aaj Kal,Cocktail,Chandni Chowk to China,1
+Bollywood,easy,Who directed Zindagi Na Milegi Dobara?,Farhan Akhtar,Karan Johar,Zoya Akhtar,Anurag Kashyap,Imtiaz Ali,2
+Bollywood,easy,Which actor played 'Murlikant Petkar' in Chandu Champion?,Vicky Kaushal,Ranveer Singh,Varun Dhawan,Sidharth Malhotra,Kartik Aaryan,4
+Bollywood,easy,Which film marked the directorial debut of Karan Johar?,Kabhi Khushi Kabhie Gham,Kal Ho Naa Ho,Kuch Kuch Hota Hai,My Name Is Khan,Student of the Year,2
+Bollywood,easy,Who directed Rockstar?,Anurag Basu,Imtiaz Ali,Anurag Kashyap,Mohit Suri,Ayan Mukerji,1
+Bollywood,easy,Who directed Kaagaz Ke Phool (1959)?,Raj Kapoor,Bimal Roy,V. Shantaram,Guru Dutt,Chetan Anand,3
+Bollywood,easy,Which was the first film directed by Raj Kapoor?,Aag,Barsaat,Awaara,Mera Naam Joker,Shree 420,0
+Bollywood,easy,Which actor have given maximum consecutive silver jubliee hits,Amitabh Bachchan,Dilip Kumar,Rajendra Kumar,Rajesh Khanna,Vinod Khanna,3
+Bollywood,easy,Which Indian film became the first to receive an Academy Award nomination in the Best Foreign Language Film category?,Do Bigha Zamin,Mother India,Mughal-e-Azam,Pather Panchali,Guide,1
+Bollywood,easy,Vishal Bhardwaj's Omkara is based on Shakespeare's:,Romeo and Juliet,Othello,Macbeth,Julius Caesar,Hamlet,1
+Bollywood,easy,In which movie did Amitabh Bachchan play the iconic character 'Vijay' as a dock worker?,Sholay,Deewar,Don,Zanjeer,Amar Akbar Anthony,1
+Bollywood,medium,Which author wrote the novel on which the film Guide was based?,Khushwant Singh,Mulk Raj Anand,Ruskin Bond,Vikram Seth,R. K. Narayan,4
+Bollywood,medium,"Who composed the music for the 1981 film Umrao Jaan, including 'Dil Cheez Kya Hai' and 'In Aankhon Ki Masti'?",R. D. Burman,Laxmikant'Pyarelal,Khayyam,Naushad,Madan Mohan,2
+Bollywood,medium,Who directed the 1983 film Jaane Bhi Do Yaaro?,Kundan Shah,Sai Paranjpye,Govind Nihalani,Shyam Benegal,Basu Chatterjee,0
+Bollywood,medium,This is the only film in Bollywood where Aamir Khan & Shah Rukh Khan shared a frame. Name the film,Trimurti,Darr,Aashiq Awaara,Pehla Nasha,Andaz,3
+Bollywood,medium,Aishwarya Rai was crowned Miss World in which year,1992,1993,1994,1995,1996,2
+Bollywood,medium,On which famous actor is the song 'Ajeeb Dastan Hai Yeh' picturised?,Waheeda Rehman,Meena Kumari,Sadhana,Nargis,Mumtaz,1
+Bollywood,medium,Who wrote the lyrics of 'Kabhi Kabhi Mere Dil Mein'?,Gulzar,Anand Bakshi,Sahir Ludhianvi,Javed Akhtar,Majrooh Sultanpuri,2
+Bollywood,medium,Which was the first Indian talkie film?,Alam Ara,Ayodhyecha Raja,Kisan Kanya,Devdas,Kalidas,0
+Bollywood,medium,Which of these films did not receive India's official submission for the Academy Award for Best International Feature Film?,Mother India,Lagaan,Gully Boy,The Lunchbox,Court,3
+Bollywood,medium,Who composed the music for the film Pakeezah?,Naushad,Ghulam Mohammed,Roshan,Madan Mohan,S.D. Burman,1
+Bollywood,medium,Which lyricist wrote the songs for the 1965 film Guide?,Sahir Ludhianvi,Shailendra,Majrooh Sultanpuri,Anand Bakshi,Gulzar,1
+Bollywood,medium,"In Tumbbad (2018), which mythical entity is associated with the cursed treasure sought by Vinayak?",Vetala,Hastar,Kaal Bhairav,Yaksha,Narasimha,1
+Bollywood,medium,"In Khosla Ka Ghosla! (2006), which filmmaker made his feature-directing debut?",Dibakar Banerjee,Sriram Raghavan,Anurag Kashyap,Abhishek Kapoor,Rajkumar Hirani,0
+Bollywood,medium,"In the 2024 heist comedy Crew, the fictional airline that the three lead characters work for is named what?",Kohinoor Airlines,Kingfisher Airways,Mayflower Aviation,Skyline India,Pacific Blue,0
+Bollywood,medium,"In Kaminey (2009), what are the names of Shahid Kapoor's twin characters?",Raju and Raja,Charlie and Guddu,Aman and Armaan,Karan and Arjun,Rahul and Rohit,1
+Bollywood,hard,"In the 2013 masterpiece Bhaag Milkha Bhaag, Milkha Singh famously finishes fourth at the 1960 Summer Olympics due to a momentary distraction. In which city were these Olympic Games held?",Melbourne,Tokyo,Rome,Helsinki,Munich,2
+Bollywood,hard,Which Bollywood actor has been declared as the 'National Icon' of Election Commission of India (ECI) in 2022?,Pankaj Tripathi,Rajkummar Rao,Manoj Bajpayee,Nawazuddin Siddiqui,Naserudin Shah,0
+Bollywood,hard,Which Bollywood personality has launched an online platform called 'Pravasi Rojgar' to help migrants find job opportunities?,Nana Patekar,Nawazuddin Siddiqui,Sonu Sood,Amitabh Bachchan,Ravi Kishen,2
+Bollywood,hard,Who composed the music for Satyajit Ray's Pather Panchali?,Salil Chowdhury,Ravi Shankar,S. D. Burman,R. D. Burman,Hemant Kumar,1
+Bollywood,hard,Vishal Bhardwaj's Maqbool is an adaptation of which Shakespeare play?,Hamlet,Othello,Macbeth,King Lear,The Tempest,2
+Bollywood,hard,"The film Masaan, set largely in Varanasi, was directed by:",Neeraj Ghaywan,Vikramaditya Motwane,Dibakar Banerjee,Hansal Mehta,Anurag Kashyap,0
+Bollywood,hard,The film The Lunchbox was directed by:,Zoya Akhtar,Ritesh Batra,Shoojit Sircar,Homi Adajania,Imtiaz Ali,1
+Bollywood,hard,"Which director made the celebrated trilogy Mammo, Sardari Begum, and Zubeidaa?",Govind Nihalani,Shyam Benegal,Saeed Mirza,Ketan Mehta,Aparna Sen,1
+Bollywood,hard,Kiran Rao's critically acclaimed 2024 satirical comedy Laapataa Ladies was officially selected as India's entry for which category at the 97th Academy Awards?,Best Documentary Feature,Best International Feature Film,Best Original Screenplay,Best Live Action Short,Best Costume Design,1
+Bollywood,hard,The 2017 naval war film The Ghazi Attack depicts the sinking of the PNS Ghazi. Which Indian Navy submarine is featured as the primary vessel countering it?,INS S21,INS Kalvari,INS Vikrant,INS Sindhuraj,INS Shalki,0
+Bollywood,hard,The film 12th Fail (2023) is adapted from a book by which author?,Chetan Bhagat,Anurag Pathak,Ashwin Sanghi,Amish Tripathi,Ravinder Singh,1
+Bollywood,hard,"The 2023 sports drama Ghoomer, stars Saiyami Kher as a paraplegic athlete who learns to bowl with her left arm. Which former Indian legendary cricketer served as the official cricket consultant to ensure authentic bowling actions?",Bishan Singh Bedi,Kapil Dev,Anil Kumble,Dilip Vengsarkar,Ravi Shastri,0
+Bollywood,hard,"Before becoming a rebel, Paan Singh Tomar was a national champion in which athletics event?",Long jump,400-metre hurdles,Steeplechase,Shot put,Marathon,2
+Bollywood,hard,"In Photograph (2019), what is the name of Nawazuddin Siddiqui's struggling street-photographer character?",Rafi,Raju,Rizwan,Rahim,Ramesh,0
+Bollywood,hard,"In the 2021 war biopic Shershaah, Captain Vikram Batra adopts a specific radio code word to signal to his command that they have successfully captured Peak 5140. What was that viral phrase?",Bharat Mata Ki Jai,Mission Accomplished,Jai Mahakali,Yeh Dil Maange More,Vijay Bhava,3
 team_members,raw,Alisson Becker,,,,,,
 team_members,raw,Virgil van Dijk,,,,,,
 team_members,raw,Trent Alexander-Arnold,,,,,,

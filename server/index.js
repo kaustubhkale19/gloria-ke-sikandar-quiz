@@ -68,7 +68,7 @@ const categoryDetails = [
     description: ""
   },
   {
-    name: "Current affairs",
+    name: "Web Series",
     logo: "📰",
     description: ""
   },
@@ -242,7 +242,7 @@ const supplementalQuestionBank = {
       ["In the Ramayana, who was the king of Kishkindha before Sugriva?", ["Vali", "Jambavan", "Angada", "Nala"], 0]
     ]
   },
-  "Current affairs": {
+  "Web Series": {
     easy: [
       ["Which city hosted the 2024 Summer Olympic Games?", ["Paris", "Tokyo", "Los Angeles", "Rome"], 0]
     ],
