@@ -13,7 +13,7 @@ Sports,easy,What is the standard length of a cricket pitch between the two sets 
 Sports,easy,What is the highest individual score by a batsman in the history of Test match cricket?,365 not out,375,380,400 not out,405,3
 Sports,easy,"In Formula 1, what does the chequered flag signify?",A safety-car period,The fastest lap has been recorded,The session or race has ended,A driver has been disqualified,Rain is expected,2
 Sports,easy,What is a player called when they enter the opponent's half to score points in Kabaddi?,Defender,Raider,Striker,Chaser,Attacker,1
-Sports,easy,How many players from each team are on the court at the start of a Kabaddi match?,5,6,7,8,9,1
+Sports,easy,How many players from each team are on the court at the start of a Kabaddi match?,5,6,7,8,9,2
 Sports,medium,In which sport is the Ryder Cup contested?,Rowing,Golf,Polo,Badminton,Tennis,1
 Sports,medium,"Instead of a round ball, what object is used to play ice hockey?",Puck,Shuttlecock,Ring,Sphere,Disc,0
 Sports,medium,Which country has won the most men's field hockey Olympic gold medals in history?,Australia,Germany,Netherlands,Pakistan,India,4
@@ -64,7 +64,7 @@ History,medium,Which event prompted the withdrawal of the Non-Cooperation Moveme
 History,medium,What was the original name of the Maratha commander Hambirrao Mohite?,Hansaaji Mohite,Prataprao Mohite,Netaji Mohite,Sambhaji Mohite,Santaji Mohite,0
 History,medium,The Swadeshi Movement began in response to the Partition of Bengal in 1905 by:,Lord Ripon,Lord Curzon,Lord Lytton,Lord Minto,Lord Hardinge,1
 History,medium,"Who was the first Governor-General of India under the Government of India Act, 1833?",Warren Hastings,Lord Cornwallis,Lord William Bentinck,Lord Canning,Lord Dalhousie,2
-History,medium,Who was appointed as one of the first chief Admirals (Darya Sarang) of Chhatrapati Shivaji Maharaj's navy?,Surendranath Banerjee,Satyendranath Tagore,Romesh Chandra Dutt,Dadabhai Naoroji,Womesh Chandra Bonnerjee,1
+History,medium,Who was appointed as one of the first chief Admirals (Darya Sarang) of Chhatrapati Shivaji Maharaj's navy?,Kanhoji Angre,Laya Patil,Maynak Bhandari,Sidhoji Gujar,Tukaji Sankpal,2
 History,medium,"Ahmed Shah Abdali utilized unique light, mobile artillery pieces mounted on camels that could pivot and fire quickly. What were these weapons called?",Ban (Rockets),Zamburaka,Rahkala,Malik-i-Maidan,Top-e-Hawa,1
 History,medium,The Home Rule League movement in India was launched by Bal Gangadhar Tilak and:,Sarojini Naidu,Annie Besant,Madam Bhikaji Cama,Aruna Asaf Ali,Sucheta Kripalani,1
 History,medium,The All-India Muslim League was founded in 1906 at:,Aligarh,Lahore,Lucknow,Dhaka,Karachi,3
@@ -72,7 +72,7 @@ History,medium,"The Provisional Government of Free India, also called the Azad H
 History,medium,Which sea fort served as the primary headquarters and naval shipbuilding hub for Shivaji Maharaj's coastal fleet?,Murud-Janjira,Sindhudurg,Vijaydurg,Padmadurg,Suvarnadurg,1
 History,medium,Which fort was captured by Shivaji Maharaj in 1645 and later renamed Torna?,Kondhana,Prachandagad,Purandar,Panhala,Vishalgad,1
 History,medium,Who founded the Azad Hind Fauj?,Bhagat Singh,Rash Bihari Bose,Chandra Shekhar Azad,V. D. Savarkar,Subhash Chandra Bose,2
-History,medium,Which military commander served as the first Sarnobat of Shivaji's infantry before the formal organization of the cavalry-heavy Ashta Pradhan forces?,Mankoji Dahatonde,Yesaji Kank,Baji Pasalkar,Tanaji Malusare,Kanhoji Jedhe,2
+History,medium,Which military commander served as the first Sarnobat of Shivaji's infantry before the formal organization of the Ashta Pradhan forces?,Mankoji Dahatonde,Yesaji Kank,Baji Pasalkar,Tanaji Malusare,Kanhoji Jedhe,2
 History,medium,Who founded the Prarthana Samaj in Bombay in 1867 along with other reformers?,Atmaram Pandurang,Mahadev Govind Ranade,Jyotirao Phule,Gopal Hari Deshmukh,Vishnushastri Chiplunkar,0
 History,hard,The Peshwa rule effectively ended after the Third Anglo-Maratha War in:,1761,1775,1782,1802,1818,4
 History,hard,"Megasthenes, author of Indica, was an ambassador at the court of which ruler?",Chandragupta Maurya,Ashoka,Samudragupta,Kanishka,Bindusara,0
@@ -120,11 +120,11 @@ Geography,medium,Which of these states does not share an international border wi
 Geography,medium,Which Indian state was known as the North-East Frontier Agency (NEFA) before becoming a Union Territory and later a state?,Nagaland,Mizoram,Arunachal Pradesh,Meghalaya,Manipur,2
 Geography,medium,Which Indian state shares borders with both Bhutan and Myanmar?,Assam,Arunachal Pradesh,Nagaland,Manipur,Mizoram,1
 Geography,hard,Which river is known as the 'Sorrow of Bihar' because of its frequent floods?,Son,Gandak,Damodar,Kosi,Mahananda,3
-Geography,hard,Which is the only active volcano in India?,Narcondam,Barren Island,Deccan Traps,Dhinodhar Hills,Dhosi Hill,2
+Geography,hard,Which is the only active volcano in India?,Narcondam,Barren Island,Deccan Traps,Dhinodhar Hills,Dhosi Hill,1
 Geography,hard,Which river flows through a rift valley between the Vindhya and Satpura ranges?,Godavari,Krishna,Mahanadi,Kaveri,Narmada,4
 Geography,hard,"Which city in Bihar is especially famous for its Shahi litchi, a geographical-indication fruit?",Patna,Gaya,Bhagalpur,Muzaffarpur,Darbhanga,3
 Geography,hard,The Khajuraho Group of Monuments is located in which district of Madhya Pradesh?,Panna,Chhatarpur,Satna,Rewa,Tikamgarh,1
-Geography,hard,Which port was developed as an alternative to Karachi Port after Partition and became a major port of independent India?,Mumbai Port,Kandla Port,Chennai Port,Visakhapatnam Port,Paradip Port,2
+Geography,hard,Which port was developed as an alternative to Karachi Port after Partition and became a major port of independent India?,Mumbai Port,Kandla Port,Chennai Port,Visakhapatnam Port,Paradip Port,1
 Geography,hard,"Which national park is famous for the endangered Hangul, or Kashmir stag?",Dachigam National Park,Hemis National Park,Great Himalayan National Park,Nanda Devi National Park,Valley of Flowers National Park,0
 Geography,hard,"Which national park is famous for the barasingha, or swamp deer?",Kanha National Park,Gir National Park,Ranthambore National Park,Mudumalai National Park,Rajaji National Park,0
 Geography,hard,"Hirakud Dam, one of India's longest earthen dams, is built across which river?",Godavari,Mahanadi,Krishna,Brahmani,Subarnarekha,1
@@ -183,7 +183,7 @@ Literature,easy,"What is the name of the fictional South Indian town created by 
 Literature,easy,"Who wrote the groundbreaking Partition novel Train to Pakistan (1956), which depicts the human tragedy in the fictional border village of Mano Majra?",Khushwant Singh,Bhisham Sahni,Yashpal,Saadat Hasan Manto,Rajinder Singh Bedi,0
 Literature,easy,"Who is the author of The God of Small Things, which won the Booker Prize in 1997 and explores the rigid social hierarchy in Kerala?",Kiran Desai,Anita Desai,Arundhati Roy,Jhumpa Lahiri,Aravind Adiga,2
 Literature,easy,"Which titled epithet was bestowed upon Sarojini Naidu, the famous Indian poet and political activist who authored The Golden Threshold?",Nightingale of India,Bulbul-e-Hind,Poetic Voice of Freedom,Bharat Kokila,Lady of the Lotus,0
-Literature,easy,"Madhushala (1935), a famous book of 135 four-line verses, was composed by which legendary Hindi poet?",Sumitranandan Pant,Ramdhari Singh 'Dinkar',Maithili Sharan Gupt,Jaishankar Prasad,Harivansh Rai Bachchan,3
+Literature,easy,"Madhushala (1935), a famous book of 135 four-line verses, was composed by which legendary Hindi poet?",Sumitranandan Pant,Ramdhari Singh 'Dinkar',Maithili Sharan Gupt,Jaishankar Prasad,Harivansh Rai Bachchan,4
 Literature,easy,"In Kalidasa's famous Sanskrit poem Meghaduta, what is the central premise of the narrative?",A exiled Yaksha asks a passing cloud to convey a message of love to his wife.,A king forgets his royal bride due to a powerful sage's curse.,A grand battle takes place between celestial gods and demons in the heavens.,A young prince embarks on a spiritual journey to achieve ultimate enlightenment.,A merchant travels across the silk route in search of legendary lost treasures.,0
 Literature,easy,"What is the title of Mahatma Gandhi's autobiography, which covers his life from early childhood to 1921?",Hind Swaraj,My Experiments with Truth,The Story of My Experiments with Truth,India of My Dreams,Satyagraha in South Africa,1
 Literature,easy,Which prominent social reformer and architect of the Indian Constitution wrote Annihilation of Caste in 1936?,Jyotirao Phule,B. R. Ambedkar,Periyar E. V. Ramasamy,M. K. Gandhi,Ram Manohar Lohia,1
@@ -227,12 +227,12 @@ Literature,hard,Which of the following is a central theme of Animal Farm by Geor
 Technology,easy,"In Artificial Intelligence, what is the term used when a large language model generates false, illogical, or completely fabricated information presented as fact?",Overfitting,Hallucination,Catastrophic forgetting,Vanishing gradient,Quantization,1
 Technology,easy,Which protocol adds encryption to web traffic and is indicated by the padlock icon in a browser?,FTP,HTTP,HTTPS,SMTP,Telnet,2
 Technology,easy,What does CAPTCHA primarily help protect against?,Hardware overheating,Physical Access,Data compression,Network congestion,Automated bots,4
-Technology,easy,"In a 4 stroke petrol engine, during which stroke is the air-fuel mixture ignited?",Intake,Compression,Power,Exhaust,Scavanging,2
+Technology,easy,"In a 4 stroke petrol engine, during which stroke is the air-fuel mixture ignited?",Intake,Compression,Power,Exhaust,Scavanging,1
 Technology,easy,Which of the following is NOT a programming language?,Python,Kotlin,Swift,Docker,Java,3
 Technology,easy,"Which component of a computer is volatile, meaning its contents are lost when power is switched off?",SSD,ROM,RAM,Flash drive,Hard disk,2
 Technology,easy,What is the smallest unit of digital information?,Byte,Bit,Nibble,Word,Pixel,1
 Technology,easy,Which software layer manages computer hardware resources and provides services for applications?,Operating System,Arithmatic & Logic Unit,Memory Unit,I/O Unit,Motherboard,0
-Technology,easy,Which technology enables two devices to exchange data when they are brought very close together?,RADAR,GPS,LiDAR,NFC,SONAR,0
+Technology,easy,Which technology enables two devices to exchange data when they are brought very close together?,RADAR,GPS,LiDAR,NFC,SONAR,3
 Technology,easy,How many large square finder patterns are present in a standard QR code?,2,3,4,5,6,1
 Technology,easy,Which unit is commonly used to measure the processing speed of a CPU?,Pixels,Hertz,Bytes,Lumens,Volts,1
 Technology,easy,Which technology is most closely associated with self-driving cars detecting their surroundings using laser pulses?,RADAR,LiDAR,SONAR,NFC,RFID,1
