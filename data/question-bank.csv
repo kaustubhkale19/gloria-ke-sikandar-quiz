@@ -134,51 +134,51 @@ Geography,hard,"The Siachen Glacier, the largest glacier in the Indian Himalayas
 Geography,hard,"The Nilgiri Biosphere Reserve spans parts of Tamil Nadu, Kerala, and:",Andhra Pradesh,Telangana,Karnataka,Goa,Maharashtra,2
 Geography,hard,Which is the largest freshwater lake in India by surface area?,Dal Lake,Wular Lake,Loktak Lake,Vembanad Lake,Kolleru Lake,1
 Geography,hard,The Bhabar region is located along the foothills of which mountain system?,Aravallis,Western Ghats,Himalayas,Eastern Ghats,Satpuras,2
-Politics,easy,Q1,1,2,3,4,5,0
-Politics,easy,Q2,1,2,3,4,5,0
-Politics,easy,Q3,1,2,3,4,5,0
-Politics,easy,Q4,1,2,3,4,5,0
-Politics,easy,Q1,1,2,3,4,5,0
-Politics,easy,Q2,1,2,3,4,5,0
-Politics,easy,Q3,1,2,3,4,5,0
-Politics,easy,Q4,1,2,3,4,5,0
-Politics,easy,Q1,1,2,3,4,5,0
-Politics,easy,Q2,1,2,3,4,5,0
-Politics,easy,Q3,1,2,3,4,5,0
-Politics,easy,Q4,1,2,3,4,5,0
-Politics,easy,Q1,1,2,3,4,5,0
-Politics,easy,Q2,1,2,3,4,5,0
-Politics,easy,Q3,1,2,3,4,5,0
-Politics,medium,Q4,1,2,3,4,5,0
-Politics,medium,Q1,1,2,3,4,5,0
-Politics,medium,Q2,1,2,3,4,5,0
-Politics,medium,Q3,1,2,3,4,5,0
-Politics,medium,Q4,1,2,3,4,5,0
-Politics,medium,Q1,1,2,3,4,5,0
-Politics,medium,Q2,1,2,3,4,5,0
-Politics,medium,Q3,1,2,3,4,5,0
-Politics,medium,Q4,1,2,3,4,5,0
-Politics,medium,Q1,1,2,3,4,5,0
-Politics,medium,Q2,1,2,3,4,5,0
-Politics,medium,Q3,1,2,3,4,5,0
-Politics,medium,Q4,1,2,3,4,5,0
-Politics,medium,Q1,1,2,3,4,5,0
-Politics,medium,Q2,1,2,3,4,5,0
-Politics,hard,Q3,1,2,3,4,5,0
-Politics,hard,Q4,1,2,3,4,5,0
-Politics,hard,Q1,1,2,3,4,5,0
-Politics,hard,Q2,1,2,3,4,5,0
-Politics,hard,Q3,1,2,3,4,5,0
-Politics,hard,Q4,1,2,3,4,5,0
-Politics,hard,Q1,1,2,3,4,5,0
-Politics,hard,Q2,1,2,3,4,5,0
-Politics,hard,Q3,1,2,3,4,5,0
-Politics,hard,Q4,1,2,3,4,5,0
-Politics,hard,Q1,1,2,3,4,5,0
-Politics,hard,Q2,1,2,3,4,5,0
-Politics,hard,Q3,1,2,3,4,5,0
-Politics,hard,Q4,1,2,3,4,5,0
-Politics,hard,Q1,1,2,3,4,5,0
+Politics,easy,Who is the constitutional head of a state in India?,Chief Minister,Governor,Prime Minister,Chief Justice of High Court,Speak of Assembly,1
+Politics,easy,Which body conducts elections to the Lok Sabha?,Parliament,Supreme Court,Election Commission of India,Ministry of Home Affairs,President's Office,2
+Politics,easy,What is the minimum age for an Indian citizen to vote in an election?,16,20,22,25,18,4
+Politics,easy,Which of these is the lower house of India's Parliament?,Vidhan Sabha,Vidhan Parishad,Lok Sabha,Rajya Sabha,Raj Bhawan,2
+Politics,easy,Who presides over the Rajya Sabha?,President of India,Prime Minister of India,Speaker of Lok Sabha,Vice-President of India,Chief Justice of India,3
+Politics,easy,Which of these respresentatives is elected directly by voters ?,President of India,Governor of a State,Member of Parliament,Prime Minister,Chief Justice of India,2
+Politics,easy,What does NOTA stand for on an Indian EVM?,None of The Applicants,Not Of The Available,No One To Accept,None of The Above,National Option To Abstain,3
+Politics,easy,Which of these is a permanent House of Parliament?,Lok Sabha,Rajya Sabha,Both,Neither,Legislative Assembly,1
+Politics,easy,Who was the youngest Prime Minister of independent India?,Rajiv Gandhi,Lal Bahadur Shastri,V. P. Singh,Narendra Modi,Ata Bihari Vajpayee,0
+Politics,easy,"During an election, which code lays down rules for the conduct of political parties and candidates?",National Election Code,Political Conduct Act,Voter Code of Acting,Parliamentary Code of Ethics,Model Code of Conduct,4
+Politics,easy,A person has no Voter ID card. Which of these can still be used as an accepted identity document at a polling station?,Credit card,Passport,Library card,Gym membership card,Bank Passbook,1
+Politics,easy,Who was the first woman President of India?,Indira Gandhi,Meira Kumar,Sarojini Naidu,Pratibha Patil,Droupadi Murmu,3
+Politics,easy,Which institution is responsible for interpreting the Constitution in India?,Parliament,Election Commission of India,Judiciary,Cabinet of Ministers,Media,2
+Politics,easy,What is the term used for a temporary halt in the normal functioning of Parliament?,Dissolution,Suspension,Prorogation,Recession,Adjournment,4
+Politics,easy,Which of these is primarily responsible for implementing laws?,Executive,Election Commission,Media,Judiciary,Media,0
+Politics,medium,What is the minimum age to contest a Lok Sabha election in India?,21,18,30,35,25,4
+Politics,medium,How many elected seats are there in the current Lok Sabha?,543,542,552,545,550,0
+Politics,medium,Which of these elections is not conducted by the Election Commission of India?,Lok Sabha,Municipal Corporation,Rajya Sabha,State Legislative Assembly,President of India,1
+Politics,medium,How often is approximately one-third of the Rajya Sabha retired?,Every year,Every 3 years,Every 5 years,Every 2 years,Every 6 years,3
+Politics,medium,Which of the following is NOT commonly considered one of the four pillars of democracy?,Legislature,Executive,Judiciary,,Media,3
+Politics,medium,Which Prime Minister became the first non-Congress Prime Minister to complete a full five-year term?,Chaudhari Charan Singh,Morarji Desai,Atal Bihari Vajpayee,V. P. Singh,H. D. Deve Gowda,2
+Politics,medium,Who was the first woman to become Speaker of the Lok Sabha?,Sushma Swaraj,Meira Kumar,Sumitra Mahajan,Sonia Gandhi,Pratibha Patil,1
+Politics,medium,Who was the first Indian to become President of the United Nations General Assembly?,V. K. Krishna Menon,Rameshwari Nehru,Vijayalakshmi Pandit,Hansa Mehta,Sarojini Naidu,2
+Politics,medium,Which Indian politician has served as both President of the Indian National Congress & Prime Minister of India ?,Manmohan Singh,P. V. Narasimha Rao,Lal Bahadur Shastri,Morarji Desai,Chaudhari Charan Singh,1
+Politics,medium,"Which political party was formed in 1980, following the break-up of the Janata Party?",Samajwadi Party,Bharatiya Janata Party,Shiv Sena,Bahujan Samaj Party,Janata Dal,1
+Politics,medium,The CPI(M) came into existence following a split in which party?,Janata Party,Socialist Party,Communist Party of India,Congress,Bharatiya Jana Sangh,2
+Politics,medium,In which year was the RSS founded?,1916,1919,1922,1925,1928,3
+Politics,medium,Who succeeded K. B. Hedgewar as the second Sarsanghchalak of the RSS?,Deendayal Upadhyaya,Morarji Desai,K. B. Limaye,Syama Prasad Mukherjee,M. S. Golwalkar,4
+Politics,medium,In which year was the Shiv Sena founded?,1966,1960,1964,1962,1958,0
+Politics,medium,Who was the first Shiv Sena leader to become Chief Minister of Maharashtra?,Uddhav Thackeray,Eknath Shinde,Manohar Joshi,Narayan Rane,Balasaheb Thackeray,2
+Politics,hard,Who was India's first Chief Election Commissioner?,Sukumar Sen,T. N. Seshan,S. Y. Quraishi,Gyanesh Kumar,K. V. K. Sundaram,0
+Politics,hard,President Droupadi Murmu belongs to which tribal community?,Bhil,Gond,Santhal,Munda,Oraon,2
+Politics,hard,Who was the first woman to serve as a Chief Minister of an Indian state?,Indira Gandhi,Sucheta Kriplani,Sarojini Naidu,Vijaya Lakshmi Pandit,Rajkumari Amrit Kaur,1
+Politics,hard,Which of these Indian Prime Ministers had NOT served as a Chief Minister before becoming PM?,P. V. Narasimha Rao,H. D. Deve Gowda,V. P. Singh,Rajiv Gandhi,Narendra Modi,3
+Politics,hard,Who holds the record for the longest tenure as a Union Cabinet Minister in India?,Babu Jagjivan Ram,Sardar Swaran Singh,Lal Krishna Advani,Morarji Desai,Pranab Mukherjee,0
+Politics,hard,Who holds the record for the longest tenure as Chief Minister of an Indian state?,Jyoti Basu,Naveen Patnaik,Narendra Modi,Pawan Kumar Chamling,Manik Sarkar,3
+Politics,hard,Who was the first Prime Minister of India who was not a member of either House of Parliament when they took office ?,Morarji Desai,Rajiv Gandhi,Indira Gandhi,P. V. Narasimha Rao,Lal Bahadur Shastri,3
+Politics,hard,Who was the oldest person to assume the office of President of India?,R. Venkataraman,Pranab Mukherjee,Shankar Dayal Sharma,V. V. Giri,K. R. Narayanan,4
+Politics,hard,What is the election symbol of the Biju Janata Dal (BJD)?,Two Leaves,Bicycle,Fan,Rising Sun,Conch,4
+Politics,hard,Who presided over the first session of the Indian National Congress in 1885?,Dadabhai Naoroji,W. C. Bonnerjee,Badruddin Tyabji,Surendranath Banerjee,A. O. Hume,1
+Politics,hard,"When two or more recognised political parties join together to form a new political party, who decides matters such as its recognition and election symbol under the Election Symbols Order?",the Parliament,Supreme Court of India,Union Cabinet,Hon. President of India,Election Commission of India,4
+Politics,hard,"Before founding AIADMK, M G. Ramchandran was a prominent member of which political party?",Indian National Congress,TDP,Janata Party,DMK,AAP,3
+Politics,hard,"MGR's political career was closely associated with which leader, whose name was incorporated into the party he founded?",C. Rajagopalachari,C. N. Annadurai,Periyar E. V. Ramasamy,Jawaharlal Nehru,K. Kamaraj,1
+Politics,hard,Sharad Pawar became Chief Minister of Maharashtra for the first time as the leader of which political formation?,Congress (U),Congress (I),Nationalist Congress Party,National Democratic Alliance,Progressive Democratic Front,4
+Politics,hard,Who became the youngest woman CM of an Indian State ?,Sucheta Kriplani,Sheila Dikshit,Mayawati,J. Jayalalitha,Vasundhara Raje,2
 Literature,easy,"What is the name of the fictional South Indian town created by R. K. Narayan that serves as the setting for most of his stories, including Swami and Friends?",Malgudi,Kanthapura,Mysore,Mempi,Devanahalli,0
 Literature,easy,"Who wrote the groundbreaking Partition novel Train to Pakistan (1956), which depicts the human tragedy in the fictional border village of Mano Majra?",Khushwant Singh,Bhisham Sahni,Yashpal,Saadat Hasan Manto,Rajinder Singh Bedi,0
 Literature,easy,"Who is the author of The God of Small Things, which won the Booker Prize in 1997 and explores the rigid social hierarchy in Kerala?",Kiran Desai,Anita Desai,Arundhati Roy,Jhumpa Lahiri,Aravind Adiga,2
