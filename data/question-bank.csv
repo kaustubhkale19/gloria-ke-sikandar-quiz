@@ -55,7 +55,7 @@ History,easy,Who was the only woman ruler of the Delhi Sultanate?,Nur Jahan,Chan
 History,easy,Who served as the commander-in-chief of the Maratha field army during the Third Battle of Panipat in 1761?,Malhar Roa Holkar,Sadhashivrao Bhau,Vishwasrao,Raghunathrao,Nanasaheb Peshwa,1
 History,easy,Which prominent Rohilla Afghan chief played a vital role in convincing Shuja-ud-Daula (the Nawab of Awadh) to join Ahmed Shah Abdali?,Hafiz Rahmat Khan,Ali Muhammad Khan,Sadullah Khan,Dundi Khan,Najib-ud-Daula,4
 History,easy,Which battle established British supremacy in Bengal?,Battle of Buxar,Battle of Plassey,Battle of Panipat,Battle of Haldighati,Battle of Talikota,1
-History,easy,Who commissioned the construction of the Red Fort in Delhi?,Akbar,Humayun,Shah Jahan,Aurangajeb,Bahadur Shah Zafar,2
+History,easy,Who commissioned the construction of the Red Fort in Delhi?,Akbar,Humayun,Shah Jahan,Aurangazeb,Bahadur Shah Zafar,2
 History,easy,"Following the passing of Shivaji Maharaj, Sambhaji Maharaj had to overcome internal court factions backing which of his half-brothers for the throne?",Rajaram,Shahu,Shivaji II,Sambhaji II,Vyankoji,0
 History,easy,"Under the reign of Sambhaji Maharaj, which Maratha fort near Nashik famously resisted a massive Mughal siege for over five years with a tiny garrison?",Salher,Mulher,Ramshej,Trimbakgad,Harihar,2
 History,easy,Which major battle in 1728 saw Peshwa Baji Rao I decisively outmanoeuvred the Nizam-ul-Mulk of Hyderabad using rapid cavalry movements?,Battle of Palkhed,Battle of Bhopal,Battle of Vasai,Battle of Amjhera,Battle of Dabhoi,0
@@ -142,7 +142,7 @@ Politics,easy,Who presides over the Rajya Sabha?,President of India,Prime Minist
 Politics,easy,Which of these respresentatives is elected directly by voters ?,President of India,Governor of a State,Member of Parliament,Prime Minister,Chief Justice of India,2
 Politics,easy,What does NOTA stand for on an Indian EVM?,None of The Applicants,Not Of The Available,No One To Accept,None of The Above,National Option To Abstain,3
 Politics,easy,Which of these is a permanent House of Parliament?,Lok Sabha,Rajya Sabha,Both,Neither,Legislative Assembly,1
-Politics,easy,Who was the youngest Prime Minister of independent India?,Rajiv Gandhi,Lal Bahadur Shastri,V. P. Singh,Narendra Modi,Ata Bihari Vajpayee,0
+Politics,easy,Who was the youngest Prime Minister of independent India?,Rajiv Gandhi,Lal Bahadur Shastri,V. P. Singh,Narendra Modi,Atal Bihari Vajpayee,0
 Politics,easy,"During an election, which code lays down rules for the conduct of political parties and candidates?",National Election Code,Political Conduct Act,Voter Code of Acting,Parliamentary Code of Ethics,Model Code of Conduct,4
 Politics,easy,A person has no Voter ID card. Which of these can still be used as an accepted identity document at a polling station?,Credit card,Passport,Library card,Gym membership card,Bank Passbook,1
 Politics,easy,Who was the first woman President of India?,Indira Gandhi,Meira Kumar,Sarojini Naidu,Pratibha Patil,Droupadi Murmu,3
@@ -253,7 +253,7 @@ Technology,medium,Which device converts alternating current (AC) into direct cur
 Technology,medium,Which core NPCI payment system protocol handles the actual instant inter-bank settlement for UPI in the background?,NEFT,RTGS,IMPS,NACH,AEPS,2
 Technology,medium,Which graphics format is best suited for a logo that must be enlarged without losing sharpness?,JPEG,BMP,GIF,SVG,TIFF,3
 Technology,medium,"Widely used in the DRS to adjudicate Leg Before Wicket (LBW) appeals, which technology utilizes a high-speed multi-camera array to track the ball's path and predict its trajectory?",Snickometer,Hawk-Eye,Hot Spot,CricViz,Radar Gun,1
-Technology,medium,"Question: Used by the Android operating system to distribute, deliver, and install mobile applications and middleware, what does the file format abbreviation APK stand for?",Android Processing Kernel,Android Package Kit,Application Program Kit,Android Public Key,Automated Package Kit,1
+Technology,medium,"Used by the Android operating system to distribute, deliver, and install mobile applications and middleware, what does the file format abbreviation APK stand for?",Android Processing Kernel,Android Package Kit,Application Program Kit,Android Public Key,Automated Package Kit,1
 Technology,hard,Which image format is commonly preferred for logos and graphics needing transparent backgrounds because it supports lossless compression?,JPEG,PNG,SVG,MPEG,BMP,1
 Technology,hard,"Which transport-layer protocol is designed to provide reliable, ordered delivery of data over the Internet?",UDP,IP,TCP,DNS,ARP,2
 Technology,hard,"The name 'Bluetooth' was inspired by Harald Bluetooth, who was a king of:",Denmark,Italy,France,Japan,Egypt,0
@@ -368,7 +368,7 @@ Web Series,easy,The hit crime-drama series Mirzapur is an original show of which
 Web Series,easy,"In Suits, what is the original name of the law firm where Harvey Specter works?",Zane Specter Litt,Darby International,Gordon Schmidt Van Dyke,Pearson Hardman,Pearson Specter Litt,3
 Web Series,easy,Which Netflix drama series follows the journey of Beth Harmon as she rises to become a world-champion chess player?,Checkmate,The Queen's Gambit,The Grandmaster,Pawn Stars,The Crown,1
 Web Series,easy,"In television sitcom 'Friends', what is Ross Geller’s profession?",Architect,Chef,Paleontologist,Advertising executive,Professor of literature,2
-Web Series,easy,"In Jamtara – Sabka Number Ayega, what type of cybercrime is at the centre of the story?",Identity theft through phishing calls,Cryptocurrency theft,Bank robbery,Credit-card cloning,Computer-virus attacks,0
+Web Series,easy,"In Jamtara Sabka Number Ayega, what type of cybercrime is at the centre of the story?",Identity theft through phishing calls,Cryptocurrency theft,Bank robbery,Credit-card cloning,Computer-virus attacks,0
 Web Series,easy,"In Scam 2003: The Telgi Story, what specific financial commodity did Abdul Karim Telgi counterfeit to pull off his multi-crore fraud?",Fake Currency Notes,Gold Biscuits,Stock Certificates,Stamp Papers,Lottery Tickets,3
 Web Series,easy,"In Special OPs, What is the name of the primary RAW research analyst and mastermind officer played by Kay Kay Menon?",Himmat Singh,Sartaj Singh,Srikant Tiwari,Kabir Khan,Vikram Joshi,0
 Web Series,easy,"In Prison Break, what is the name of Michael's older brother, who is falsely accused of murdering the Vice President's brother and placed on death row?",Fernando Sucre,Theodore Bagwell,Lincoln Burrows,Paul Kellerman,John Abruzzi,2
@@ -539,43 +539,63 @@ Bollywood,hard,"The 2023 sports drama Ghoomer, stars Saiyami Kher as a paraplegi
 Bollywood,hard,"Before becoming a rebel, Paan Singh Tomar was a national champion in which athletics event?",Long jump,400-metre hurdles,Steeplechase,Shot put,Marathon,2
 Bollywood,hard,"In Photograph (2019), what is the name of Nawazuddin Siddiqui's struggling street-photographer character?",Rafi,Raju,Rizwan,Rahim,Ramesh,0
 Bollywood,hard,"In the 2021 war biopic Shershaah, Captain Vikram Batra adopts a specific radio code word to signal to his command that they have successfully captured Peak 5140. What was that viral phrase?",Bharat Mata Ki Jai,Mission Accomplished,Jai Mahakali,Yeh Dil Maange More,Vijay Bhava,3
-team_members,raw,Alisson Becker,,,,,,
-team_members,raw,Virgil van Dijk,,,,,,
-team_members,raw,Trent Alexander-Arnold,,,,,,
-team_members,raw,Andy Robertson,,,,,,
-team_members,raw,Alexis Mac Allister,,,,,,
-team_members,raw,Dominik Szoboszlai,,,,,,
-team_members,raw,Mohamed Salah,,,,,,
-team_members,raw,Cody Gakpo,,,,,,
-team_members,raw,Darwin Nunez,,,,,,
-team_members,raw,Luis Diaz,,,,,,
-team_members,kgb,David Raya,,,,,,
-team_members,kgb,William Saliba,,,,,,
-team_members,kgb,Gabriel Magalhaes,,,,,,
-team_members,kgb,Jurrien Timber,,,,,,
-team_members,kgb,Declan Rice,,,,,,
-team_members,kgb,Martin Odegaard,,,,,,
-team_members,kgb,Bukayo Saka,,,,,,
-team_members,kgb,Kai Havertz,,,,,,
-team_members,kgb,Gabriel Martinelli,,,,,,
-team_members,kgb,Leandro Trossard,,,,,,
-team_members,cia,Thibaut Courtois,,,,,,
-team_members,cia,Dani Carvajal,,,,,,
-team_members,cia,Antonio Rudiger,,,,,,
-team_members,cia,Eder Militao,,,,,,
-team_members,cia,Federico Valverde,,,,,,
-team_members,cia,Jude Bellingham,,,,,,
-team_members,cia,Eduardo Camavinga,,,,,,
-team_members,cia,Vinicius Junior,,,,,,
-team_members,cia,Rodrygo,,,,,,
-team_members,cia,Kylian Mbappe,,,,,,
-team_members,mossad,Marc-Andre ter Stegen,,,,,,
-team_members,mossad,Jules Kounde,,,,,,
-team_members,mossad,Ronald Araujo,,,,,,
-team_members,mossad,Alejandro Balde,,,,,,
-team_members,mossad,Frenkie de Jong,,,,,,
-team_members,mossad,Pedri,,,,,,
-team_members,mossad,Gavi,,,,,,
-team_members,mossad,Lamine Yamal,,,,,,
-team_members,mossad,Raphinha,,,,,,
-team_members,mossad,Ferran Torres,,,,,,
+team_members,CIA,Tejal Kortikar,,,,,,
+team_members,CIA,Avantika Deopurkar,,,,,,
+team_members,CIA,Vibha Marathe,,,,,,
+team_members,CIA,Mandar Ghayal,,,,,,
+team_members,CIA,Anil Machina,,,,,,
+team_members,CIA,Neha shahu,,,,,,
+team_members,CIA,Subodh Mahant,,,,,,
+team_members,CIA,Tushar Patil,,,,,,
+team_members,CIA,Amiya Sharma,,,,,,
+team_members,CIA,Nikita Palshikar,,,,,,
+team_members,CIA,Anvesha shahu,,,,,,
+team_members,CIA,Rahul Sane,,,,,,
+team_members,CIA,Arya Mahant,,,,,,
+team_members,CIA,Mrunal Roy,,,,,,
+team_members,CIA,Udip Kherwal,,,,,,
+team_members,KGB,Rutuja soman,,,,,,
+team_members,KGB,Isha Joshi,,,,,,
+team_members,KGB,Dipali Nalle,,,,,,
+team_members,KGB,Siddhi Machina,,,,,,
+team_members,KGB,Rashmi Kulkarni,,,,,,
+team_members,KGB,Takshiv Kherwal,,,,,,
+team_members,KGB,Amit Marathe,,,,,,
+team_members,KGB,Chimnay,,,,,,
+team_members,KGB,Renu Yadav,,,,,,
+team_members,KGB,Hrushikesh Pendharkar,,,,,,
+team_members,KGB,Abhir Tikekar,,,,,,
+team_members,KGB,Anusha Joshi,,,,,,
+team_members,KGB,Pradeep shahu,,,,,,
+team_members,KGB,Vrushali Sarang,,,,,,
+team_members,KGB,Siddhi Kabara,,,,,,
+team_members,Mossad,Bhagyashree Mahant,,,,,,
+team_members,Mossad,Ravi Tighare,,,,,,
+team_members,Mossad,Sharayu Deshpande,,,,,,
+team_members,Mossad,Sourabh Birje,,,,,,
+team_members,Mossad,Sayali Kulkarni,,,,,,
+team_members,Mossad,Himani Bhat,,,,,,
+team_members,Mossad,Prathamesh Sarang,,,,,,
+team_members,Mossad,Ankit Kulkarni,,,,,,
+team_members,Mossad,Shreya Padhye,,,,,,
+team_members,Mossad,Swara Patekar,,,,,,
+team_members,Mossad,Aabha Padhye,,,,,,
+team_members,Mossad,Neha Sharma,,,,,,
+team_members,Mossad,Sohan Kulkarni,,,,,,
+team_members,Mossad,Nikhil More,,,,,,
+team_members,Mossad,Mrunal Kenjale,,,,,,
+team_members,RAW,Tanvi Mahant,,,,,,
+team_members,RAW,Madhura Ghayal,,,,,,
+team_members,RAW,Advait Matekar,,,,,,
+team_members,RAW,Manvi Kunturkar,,,,,,
+team_members,RAW,Neha Limaje,,,,,,
+team_members,RAW,Sanjay Padhye,,,,,,
+team_members,RAW,Nupura Lad,,,,,,
+team_members,RAW,Advaita pawar,,,,,,
+team_members,RAW,Shivanshu Desai,,,,,,
+team_members,RAW,Bhagyashree Deshmukh,,,,,,
+team_members,RAW,Abhishek Pawar,,,,,,
+team_members,RAW,Sanvi Galgali,,,,,,
+team_members,RAW,Swapnil Kortikar,,,,,,
+team_members,RAW,Sunil Roy,,,,,,
+team_members,RAW,Deepika,,,,,,

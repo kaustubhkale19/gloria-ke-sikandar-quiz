@@ -102,8 +102,11 @@ type Game = {
   rulesOpen: boolean;
 };
 
-const API = "http://localhost:3000/api/game";
-const ASSETS = "http://localhost:3000/assets";
+// Use the host serving the page so phones on the same network reach this
+// laptop's API rather than their own localhost.
+const SERVER = `${window.location.protocol}//${window.location.hostname}:3000`;
+const API = `${SERVER}/api/game`;
+const ASSETS = `${SERVER}/assets`;
 const gameshowStage = `${ASSETS}/gameshow-stage.png`;
 const dhurandharTitle = `${ASSETS}/dhurandhar-title-transparent.png`;
 const tvColourBars = `${ASSETS}/tv-colour-bars.png`;
@@ -265,7 +268,7 @@ function useGame() {
     fetch(API)
       .then((r) => r.json())
       .then(setGame);
-    const socket = io("http://localhost:3000");
+    const socket = io(SERVER);
     socket.on("game-state", setGame);
     return () => {
       socket.disconnect();
@@ -854,7 +857,7 @@ function Display({ game }: { game: Game }) {
         <section className="question-reveal mx-auto grid min-h-[65vh] max-w-6xl place-items-center text-center">
           <div>
             <DisplayCategoryHeading category={question.category} detail={difficultyIcon} />
-            <h2 className="text-5xl font-black leading-tight">
+            <h2 className="text-4xl font-black leading-tight">
               {question.text}
             </h2>
           </div>
@@ -874,7 +877,7 @@ function Display({ game }: { game: Game }) {
             detail={difficultyIcon}
             timer={!result && !pendingReveal ? <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} /> : undefined}
           />
-          <h2 className="mb-10 text-center text-5xl font-black leading-tight">
+          <h2 className="mb-10 text-center text-4xl font-black leading-tight">
             {question.text}
           </h2>
           {game.questionNotice && (
@@ -928,7 +931,7 @@ function Display({ game }: { game: Game }) {
           detail={difficultyIcon}
           timer={!result && !pendingReveal ? <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} /> : undefined}
         />
-        <h2 className="mb-10 text-center text-5xl font-black leading-tight">
+        <h2 className="mb-10 text-center text-4xl font-black leading-tight">
           {question.text}
         </h2>
         <div className="grid grid-cols-2 gap-5">

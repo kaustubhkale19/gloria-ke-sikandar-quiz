@@ -647,7 +647,8 @@ app.use("/assets", express.static("src/assets"));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:1234"
+    // Allow the host console to be opened through this laptop's LAN address.
+    origin: true
   }
 });
 app.get("/api/game", (_req, res) => res.json(getState()));

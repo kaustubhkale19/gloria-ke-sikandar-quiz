@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scale the host console and projector UI down consistently.  Most interface
+   typography uses rem units, so this keeps their visual hierarchy intact. */
+html {
+    font-size: 87.5%;
+}
+
 body {
     @apply m-0 min-h-screen bg-ink font-sans text-slate-100;
 }
@@ -47,15 +53,16 @@ button {
 }
 
 .screen-content.has-scoreboard.has-lifelines>main {
-    /* Reserve both side lanes plus a visible breathing gap before the cards. */
+    /* Reserve both side lanes and a generous safety gutter before the score
+       cards. Long questions and answer tiles must never run beneath them. */
     padding-left: 10vw !important;
-    padding-right: calc(20vw + clamp(1.5rem, 2vw, 3rem)) !important;
+    padding-right: calc(20vw + clamp(4rem, 5vw, 7rem)) !important;
 }
 
 .screen-content.has-scoreboard:not(.has-lifelines)>main {
-    /* The score lane begins at 80vw.  Keep the centre panel away from it,
-       rather than having answer tiles finish on the lane boundary. */
-    padding-right: calc(20vw + clamp(1.5rem, 2vw, 3rem)) !important;
+    /* The score lane begins at 80vw. Keep the centre panel clear of it even
+       when a question or option text wraps onto several lines. */
+    padding-right: calc(20vw + clamp(4rem, 5vw, 7rem)) !important;
 }
 
 .screen-content.has-lifelines:not(.has-scoreboard)>main {
