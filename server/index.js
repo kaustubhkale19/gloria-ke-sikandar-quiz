@@ -871,11 +871,14 @@ app.post("/api/game/select-option", (req, res) => update((state) => {
   if (!state.currentQuestion || !["question", "answer-review"].includes(state.phase) || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= state.currentQuestion.options.length || state.removedOptionIndexes?.includes(optionIndex) || state.disabledOptionIndexes?.includes(optionIndex)) return "Select a valid option.";
   if (state.phase === "question" && (!state.timerEndsAt || state.timerEndsAt <= Date.now()) && !state.fullPointsOverride) return "The clock has expired.";
   state.selectedOption = optionIndex;
+  // Freeze the time at the moment the host selects an answer for review.
+  // The projector stays on its normal question layout during this state.
+  if (!state.timerPaused) pauseClock(state);
   state.phase = "answer-review";
 }, res));
 app.post("/api/game/mark-answer", (req, res) => update((state) => {
   if (!state.currentQuestion || state.selectedOption === null) return "Select an answer before marking it.";
-  if ((!state.timerEndsAt || state.timerEndsAt <= Date.now()) && !state.fullPointsOverride) return "The clock has expired.";
+  if (!state.timerPaused && (!state.timerEndsAt || state.timerEndsAt <= Date.now()) && !state.fullPointsOverride) return "The clock has expired.";
   const team = state.teams.find((item) => item.id === state.activeTeamId);
   if (!team) return "No active team.";
   const correct = state.selectedOption === state.currentQuestion.correctOption;

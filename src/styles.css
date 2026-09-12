@@ -42,6 +42,24 @@ button {
     right: 4rem;
 }
 
+.brand-banner--in-game {
+    inset: .6rem 1.5rem auto 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.brand-arch-logo {
+    width: clamp(4.5rem, 7vw, 6.5rem);
+    height: auto;
+    filter: drop-shadow(0 .16rem .3rem rgba(0, 0, 0, .55));
+}
+
+.brand-banner--in-game .brand-lion-title {
+    /* Match the right score rail exactly and remain inside its outer edge. */
+    width: calc(20vw - 3rem);
+    max-height: 7.125rem;
+}
+
 .brand-lion-title { width: clamp(16rem, 38vw, 34rem); max-height: 8.25rem; object-fit: contain; filter: drop-shadow(0 .2rem .35rem rgba(0, 0, 0, .8)); }
 
 .screen-content>main {
@@ -52,16 +70,30 @@ button {
     padding: 10rem 10rem 0 10rem!important;
 }
 
+/* In-game branding occupies only the upper corners, so content can begin
+   near the top of the projector rather than below a centred title banner. */
+.screen-content.screen-content--in-game>main {
+    padding-top: clamp(1.5rem, 2vw, 2.25rem) !important;
+}
+
 .screen-content.has-scoreboard.has-lifelines>main {
     /* Reserve both side lanes and a generous safety gutter before the score
-       cards. Long questions and answer tiles must never run beneath them. */
-    padding-left: 10vw !important;
+       cards. Centre the content inside the space between those rails. */
+    padding-left: calc(10vw + clamp(4rem, 5vw, 7rem)) !important;
     padding-right: calc(20vw + clamp(4rem, 5vw, 7rem)) !important;
 }
 
 .screen-content.has-scoreboard:not(.has-lifelines)>main {
     /* The score lane begins at 80vw. Keep the centre panel clear of it even
        when a question or option text wraps onto several lines. */
+    padding-left: calc(10vw + clamp(4rem, 5vw, 7rem)) !important;
+    padding-right: calc(20vw + clamp(4rem, 5vw, 7rem)) !important;
+}
+
+/* The side rails can temporarily hide while the host confirms or reveals an
+   answer. Keep their footprint so the question does not jump horizontally. */
+.screen-content.has-question-stage-layout>main {
+    padding-left: calc(10vw + clamp(4rem, 5vw, 7rem)) !important;
     padding-right: calc(20vw + clamp(4rem, 5vw, 7rem)) !important;
 }
 
@@ -136,7 +168,7 @@ button {
 }
 
 .team-members-reveal {
-    padding: clamp(1.5rem, 5vw, 4rem);
+    padding: clamp(.5rem, 1vw, 1rem) clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
 }
 
 .team-members-grid {
@@ -150,6 +182,18 @@ button {
 .team-members-grid-host {
     width: 100%;
     margin: 0;
+}
+
+/* Keep the projector's twelve category choices compact, with enough open
+   space around the grid for the side rails and game branding. */
+.projector-category-grid {
+    width: min(100%, 48rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.projector-category-card {
+    min-height: 0;
 }
 
 .team-member-card {
@@ -216,6 +260,25 @@ button {
     padding: .45rem .6rem;
     border-radius: .5rem;
     background: rgba(30, 41, 59, .75);
+}
+
+/* Make the all-teams roster easier to read without increasing its footprint.
+   Its additional top clearance keeps the heading below the corner branding. */
+.screen-content .projector-all-team-members {
+    padding-top: clamp(5rem, 7vw, 6.5rem) !important;
+}
+
+.projector-all-team-members .team-roster-card {
+    padding: .8rem;
+}
+
+.projector-all-team-members .team-roster-members {
+    gap: .3rem;
+    font-size: clamp(1rem, 1.35vw, 1.3rem);
+}
+
+.projector-all-team-members .team-roster-members div {
+    padding: .35rem .45rem;
 }
 
 @media (max-width: 1100px) {
@@ -320,6 +383,12 @@ button {
     background-size: cover;
 }
 
+/* The finale has its own compact stage layout; it should not inherit the
+   large top reserve used by ordinary projector screens. */
+.screen-content > main.finale-screen {
+    padding: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 6vw, 6rem) !important;
+}
+
 .finale-screen::before {
     position: fixed;
     inset: 0;
@@ -329,8 +398,18 @@ button {
 }
 
 .finale-content {
-    width: min(92vw, 70rem);
-    padding-top: 5rem;
+    width: min(100%, 78rem);
+}
+
+.finale-heading {
+    margin-bottom: clamp(1rem, 2vw, 1.75rem);
+}
+
+.finale-layout {
+    display: grid;
+    grid-template-columns: minmax(16rem, .9fr) minmax(24rem, 1.1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
 }
 
 .finale-kicker,
@@ -351,7 +430,7 @@ button {
 }
 
 .finale-winner {
-    margin: 1.2rem auto 2.5rem;
+    margin: 0 auto;
     animation: finaleWinner 1s .25s cubic-bezier(.2, .8, .2, 1) both;
 }
 
@@ -366,7 +445,7 @@ button {
     margin: .5rem 0;
     color: #f8d66d;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-size: clamp(3.5rem, 6vw, 5.75rem);
     font-weight: 700;
     letter-spacing: .06em;
     line-height: .95;
@@ -387,6 +466,16 @@ button {
     background: rgba(7, 12, 24, .8);
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, .5);
     text-align: left;
+}
+
+@media (max-width: 760px) {
+    .finale-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .finale-winner {
+        margin-bottom: 1.5rem;
+    }
 }
 
 .final-standings h2 {
@@ -485,7 +574,7 @@ button {
 
 .scoreboard {
     position: fixed;
-    top: 13rem;
+    top: 10rem;
     right: 1.5rem;
     z-index: 12;
     display: flex;
@@ -1113,7 +1202,7 @@ button {
     }
 
     .scoreboard {
-        top: 10.5rem;
+        top: 10rem;
         right: 1rem;
         width: calc(20vw - 2rem);
     }
@@ -1197,6 +1286,11 @@ button {
         padding-right: 2.5rem !important;
     }
 
+    .screen-content.has-question-stage-layout>main {
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+    }
+
     .screen-content.has-lifelines>main {
         padding-left: 2.5rem !important;
     }
@@ -1232,6 +1326,26 @@ button {
 
 .option-reveal {
     animation: optionReveal .38s ease-out both;
+}
+
+/* The prompt sits lower while it is shown on its own. When choices arrive,
+   carry the question to its compact position instead of snapping upward. */
+.question-heading--with-options {
+    animation: questionShiftUp 1.1s cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.option-grid--after-question > .option-reveal {
+    animation-delay: .45s;
+}
+
+@keyframes questionShiftUp {
+    from {
+        transform: translateY(5rem);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .cinematic-correct-reveal {

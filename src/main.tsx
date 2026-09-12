@@ -113,6 +113,7 @@ const tvColourBars = `${ASSETS}/tv-colour-bars.png`;
 const rewardCoin = `${ASSETS}/reward-coin.png`;
 const mysteryBox = `${ASSETS}/mystery-box.png`;
 const lionTitleBanner = `${ASSETS}/gloria-ke-sikandar-lion-banner.png`;
+const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const letters = ["A", "B", "C", "D", "E"];
 const teamBackdrops: Record<string, string> = {
   raw: `${ASSETS}/team-raw.png`,
@@ -566,14 +567,17 @@ function BrandBanner({
   showGameTitle = true,
   showDhurandhar = true,
   positionClassName = "",
+  inGame = false,
 }: {
   showGameTitle?: boolean;
   showDhurandhar?: boolean;
   positionClassName?: string;
+  inGame?: boolean;
 }) {
   const showBanner = showGameTitle || showDhurandhar;
   return (
-    <header className={`brand-banner ${positionClassName}`} aria-label="Gloria Ke Sikandar branding">
+    <header className={`brand-banner ${positionClassName} ${inGame ? "brand-banner--in-game" : ""}`} aria-label="Gloria Ke Sikandar branding">
+      {inGame && <img className="brand-arch-logo" src={archLogo} alt="Gloria ARCH" />}
       {showBanner && <img className="brand-lion-title" src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />}
     </header>
   );
@@ -608,24 +612,28 @@ function Display({ game }: { game: Game }) {
     return (
       <main className="finale-screen min-h-screen overflow-auto p-12 text-center" style={displayBackgroundStyle(winner)}>
         <section className="finale-content mx-auto">
-          <p className="finale-kicker">The final scores are in</p>
-          <p className="finale-announcement">And the winner is</p>
-          <div className="finale-winner">
-            <TeamIcon team={winner} className="finale-winner-logo" />
-            <h1>{winner.name}</h1>
-            <p>{winner.score} points</p>
+          <header className="finale-heading">
+            <p className="finale-kicker">The final scores are in</p>
+            <p className="finale-announcement">And the winner is</p>
+          </header>
+          <div className="finale-layout">
+            <div className="finale-winner">
+              <TeamIcon team={winner} className="finale-winner-logo" />
+              <h1>{winner.name}</h1>
+              <p>{winner.score} points</p>
+            </div>
+            <section className="final-standings" aria-label="Final points table">
+              <h2>Final standings</h2>
+              {finalStandings.map((item, index) => (
+                <div key={item.id} className={`final-standing ${index === 0 ? "is-winner" : ""}`}>
+                  <span className="final-standing-rank">{index + 1}</span>
+                  <TeamIcon team={item} className="final-standing-logo" />
+                  <span className="final-standing-team">{item.name}</span>
+                  <strong>{item.score} <small>pts</small></strong>
+                </div>
+              ))}
+            </section>
           </div>
-          <section className="final-standings" aria-label="Final points table">
-            <h2>Final standings</h2>
-            {finalStandings.map((item, index) => (
-              <div key={item.id} className={`final-standing ${index === 0 ? "is-winner" : ""}`}>
-                <span className="final-standing-rank">{index + 1}</span>
-                <TeamIcon team={item} className="final-standing-logo" />
-                <span className="final-standing-team">{item.name}</span>
-                <strong>{item.score} <small>pts</small></strong>
-              </div>
-            ))}
-          </section>
         </section>
       </main>
     );
@@ -687,7 +695,7 @@ function Display({ game }: { game: Game }) {
       <main className="landing min-h-screen p-12" style={displayBackgroundStyle(rosterTeam)}>
         <DisplayHeader game={game} />
         <section className="team-members-reveal mx-auto max-w-6xl text-center">
-          <p className="mb-3 text-xl font-bold uppercase tracking-[.3em] text-gold">Meet the team</p>
+          <p className="mb-3 text-3xl font-bold uppercase tracking-[.3em] text-gold">Meet the team</p>
           <div className="mb-9 flex items-center justify-center gap-4">
             <TeamIcon team={rosterTeam} className="h-16 w-16" />
             <h2 className="text-6xl font-black">{rosterTeam.name}</h2>
@@ -708,7 +716,7 @@ function Display({ game }: { game: Game }) {
   if (game.phase === "all-team-members")
     return (
       <main
-        className="landing min-h-screen overflow-auto p-12 text-center"
+        className="landing projector-all-team-members min-h-screen overflow-auto p-12 text-center"
         style={{
           backgroundImage: `linear-gradient(rgba(3, 8, 18, 0.38), rgba(3, 8, 18, 0.7)), url(${gameshowStage})`,
           backgroundPosition: "center",
@@ -716,8 +724,7 @@ function Display({ game }: { game: Game }) {
         }}
       >
         <section className="all-teams-reveal mx-auto">
-          <p className="mb-2 text-xl font-bold uppercase tracking-[.3em] text-gold">Meet the teams</p>
-          <h2 className="mb-9 text-6xl font-black">All teams and members</h2>
+          <p className="mb-9 text-xl font-bold uppercase tracking-[.3em] text-gold">Meet the teams</p>
           <div className="team-rosters-column">
             {game.teams.map((item) => (
               <article key={item.id} className="team-roster-card">
@@ -786,7 +793,7 @@ function Display({ game }: { game: Game }) {
               ))}
             </div>
           ) : (
-            <div className={`grid gap-5 ${matrixGrid(cards.length)}`}>
+            <div className={`grid ${game.phase === "category-selection" ? "projector-category-grid gap-3" : "gap-5"} ${matrixGrid(cards.length)}`}>
               {cards.map((card) => {
                 const locked =
                   game.phase === "category-selection" &&
@@ -819,18 +826,20 @@ function Display({ game }: { game: Game }) {
                           }
                           : undefined
                     }
-                    className={`rounded-2xl border p-7 ${locked
+                    className={`rounded-2xl border ${game.phase === "category-selection" ? "projector-category-card p-4" : "p-7"} ${locked
                         ? "border-slate-800 bg-slate-950 text-slate-600"
                         : "border-slate-600 bg-panel"
                       } ${game.phase === "team-selection" ? "projector-team-card" : ""}`}
                   >
-                    <div className={`mb-3 ${game.phase === "team-selection" ? "h-24" : game.phase === "category-selection" ? "h-16" : "text-5xl"}`}>
+                    <div className={`mb-3 ${game.phase === "team-selection" ? "h-24" : game.phase === "category-selection" ? "h-12" : "text-5xl"}`}>
                       {teamCard ? <TeamIcon team={teamCard} className="h-full w-full" /> : game.phase === "category-selection" ? <CategoryIcon category={card.name} className="h-full w-full text-gold" /> : card.logo}
                     </div>
                     <h3 className={game.phase === "team-selection" ? "text-4xl font-black" : "text-2xl font-black"}>{card.name}</h3>
-                    <p className={`mt-2 text-slate-300 ${game.phase === "team-selection" ? "text-xl" : ""}`}>
-                      {locked ? "Completed by this team" : card.description}
-                    </p>
+                    {!(game.phase === "category-selection" && locked) && (
+                      <p className={`mt-2 text-slate-300 ${game.phase === "team-selection" ? "text-xl" : ""}`}>
+                        {card.description}
+                      </p>
+                    )}
                     {game.phase === "difficulty-selection" && card.id && (
                       <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold/70 bg-amber-400/15 px-4 py-1 text-gold shadow-lg">
                         <span className="reward-coin" aria-label={`${game.rules.pointsByDifficulty[card.id as Difficulty]} points`}>
@@ -877,7 +886,7 @@ function Display({ game }: { game: Game }) {
             detail={difficultyIcon}
             timer={!result && !pendingReveal ? <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} /> : undefined}
           />
-          <h2 className="mb-10 text-center text-4xl font-black leading-tight">
+          <h2 className="question-heading--with-options mb-10 text-center text-4xl font-black leading-tight">
             {question.text}
           </h2>
           {game.questionNotice && (
@@ -885,7 +894,7 @@ function Display({ game }: { game: Game }) {
               {game.questionNotice}
             </p>
           )}
-          <div className="grid grid-cols-2 gap-5">
+          <div className="option-grid--after-question grid grid-cols-2 gap-5">
             {question.options.map((option, index) => {
               const removed =
                 game.removedOptionIndexes.includes(index) ||
@@ -931,10 +940,10 @@ function Display({ game }: { game: Game }) {
           detail={difficultyIcon}
           timer={!result && !pendingReveal ? <Timer until={game.timerEndsAt} paused={game.timerPaused} remainingSeconds={game.timerRemainingSeconds} totalSeconds={questionTimerSeconds(game)} /> : undefined}
         />
-        <h2 className="mb-10 text-center text-4xl font-black leading-tight">
+        <h2 className="question-heading--with-options mb-10 text-center text-4xl font-black leading-tight">
           {question.text}
         </h2>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="option-grid--after-question grid grid-cols-2 gap-5">
           {question.options.map((option, index) => {
             if (game.removedOptionIndexes.includes(index)) return null;
             const correct = result && question.correctOption === index;
@@ -953,7 +962,7 @@ function Display({ game }: { game: Game }) {
                         ? "border-gold bg-amber-500/20"
                         : "border-slate-700 bg-panel"
                   }`}
-                style={{ animationDelay: `${index * 120}ms` }}
+                style={{ animationDelay: `${450 + index * 120}ms` }}
               >
                 <span className="mr-4 text-gold">{letters[index]}</span>
                 {option}
@@ -1699,8 +1708,9 @@ function App() {
   const isDisplay =
     new URLSearchParams(location.search).get("screen") === "display";
   const isLandingDisplay = isDisplay && game.phase === "landing";
+  const isInGameDisplay = isDisplay && !isLandingDisplay && game.phase !== "game-over";
   const showScoreboardLane =
-    isDisplay && !isLandingDisplay && !game.timerPaused && !["all-team-members", "game-over"].includes(game.phase);
+    isDisplay && !isLandingDisplay && !["all-team-members", "game-over"].includes(game.phase);
   const showDisplayLifelines =
     isDisplay && [
       "question-selection",
@@ -1710,13 +1720,26 @@ function App() {
       "answer-review",
       "answer-pending-reveal",
       "answer-result",
-    ].includes(game.phase) && !game.timerPaused;
+    ].includes(game.phase);
+  // Keep the question stage in the same position while the clock is paused
+  // for answer confirmation and result reveals.
+  const hasQuestionStageLayout =
+    isDisplay && [
+      "question-selection",
+      "question-transition",
+      "question-prompt",
+      "question",
+      "answer-review",
+      "answer-pending-reveal",
+      "answer-result",
+    ].includes(game.phase);
   const screen = isDisplay ? <Display game={game} /> : <Host game={game} />;
   return (
     <>
       <BrandBanner
         showGameTitle={!isLandingDisplay}
         showDhurandhar={!isLandingDisplay}
+        inGame={isDisplay && !isLandingDisplay}
         positionClassName={
           showScoreboardLane && showDisplayLifelines
             ? "brand-banner--scoreboard-lifelines"
@@ -1735,7 +1758,7 @@ function App() {
       {showDisplayLifelines && <DisplayLifelines team={activeTeam(game)} doubleTroubleActive={game.doubleTroubleActive} safeguardActive={game.safeguardActive} />}
       <div
         className={`screen-content ${showScoreboardLane ? "has-scoreboard" : ""
-          } ${showDisplayLifelines ? "has-lifelines" : ""}`}
+          } ${showDisplayLifelines ? "has-lifelines" : ""} ${hasQuestionStageLayout ? "has-question-stage-layout" : ""} ${isInGameDisplay ? "screen-content--in-game" : ""}`}
       >
         {screen}
       </div>
