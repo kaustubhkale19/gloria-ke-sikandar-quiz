@@ -100,6 +100,7 @@ type Game = {
   lifelineConfirmation: LifelineConfirmation | null;
   questionNotice: string | null;
   rulesOpen: boolean;
+  serverNow?: number;
 };
 
 // Use the host serving the page so phones on the same network reach this
@@ -114,6 +115,7 @@ const rewardCoin = `${ASSETS}/reward-coin.png`;
 const mysteryBox = `${ASSETS}/mystery-box.png`;
 const lionTitleBanner = `${ASSETS}/gloria-ke-sikandar-lion-banner.png`;
 const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
+const lifelineSpriteStyle = { backgroundImage: `url(${ASSETS}/lifeline-icons.png)` };
 const letters = ["A", "B", "C", "D", "E"];
 const teamBackdrops: Record<string, string> = {
   raw: `${ASSETS}/team-raw.png`,
@@ -231,6 +233,11 @@ function displayBackgroundStyle(team?: Team) {
 let audioContext: AudioContext | null = null;
 let suspenseInterval: number | null = null;
 let soundsMuted = false;
+let serverClockOffsetMs = 0;
+
+function syncedNow() {
+  return Date.now() + serverClockOffsetMs;
+}
 
 function context() {
   audioContext ??= new AudioContext();
@@ -265,12 +272,16 @@ async function action(path: string, body?: object) {
 
 function useGame() {
   const [game, setGame] = useState<Game | null>(null);
+  const applyGameState = (next: Game) => {
+    if (typeof next.serverNow === "number") serverClockOffsetMs = next.serverNow - Date.now();
+    setGame(next);
+  };
   useEffect(() => {
     fetch(API)
       .then((r) => r.json())
-      .then(setGame);
+      .then(applyGameState);
     const socket = io(SERVER);
-    socket.on("game-state", setGame);
+    socket.on("game-state", applyGameState);
     return () => {
       socket.disconnect();
     };
@@ -321,7 +332,7 @@ function Timer({
         paused
           ? remainingSeconds ?? 0
           : until
-            ? Math.max(0, Math.ceil((until - Date.now()) / 1000))
+            ? Math.max(0, Math.ceil((until - syncedNow()) / 1000))
             : 0
       );
     update();
@@ -364,11 +375,11 @@ function Timer({
 }
 
 function useTimerExpired(until: number | null) {
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(syncedNow());
   useEffect(() => {
-    setNow(Date.now());
+    setNow(syncedNow());
     if (!until) return;
-    const timeout = window.setTimeout(() => setNow(Date.now()), Math.max(0, until - Date.now()) + 50);
+    const timeout = window.setTimeout(() => setNow(syncedNow()), Math.max(0, until - syncedNow()) + 50);
     return () => clearTimeout(timeout);
   }, [until]);
   return Boolean(until && now >= until);
@@ -511,7 +522,7 @@ function LifelineBar({
           aria-label={item.label}
           aria-pressed={item.type === "doubleTrouble" ? doubleTroubleActive : undefined}
         >
-          <span className={`lifeline-sprite lifeline-sprite-${item.type}`} aria-hidden="true" />
+          <span className={`lifeline-sprite lifeline-sprite-${item.type}`} style={lifelineSpriteStyle} aria-hidden="true" />
         </button>
       ))}
     </div>
@@ -541,7 +552,7 @@ function DisplayLifelines({ team, doubleTroubleActive, safeguardActive }: { team
                   title={item.label}
                   className={`lifeline-circle ${item.type === "doubleTrouble" || item.type === "safeguard" ? `trump-card trump-card-${item.type}` : ""} ${item.type === "doubleTrouble" && doubleTroubleActive ? "is-active" : ""} ${item.type === "safeguard" && safeguardActive ? "is-safeguard-active" : ""}`}
                 >
-                  <span className={`lifeline-sprite lifeline-sprite-${item.type}`} aria-hidden="true" />
+                  <span className={`lifeline-sprite lifeline-sprite-${item.type}`} style={lifelineSpriteStyle} aria-hidden="true" />
                 </div>
               );
             })}
@@ -599,7 +610,7 @@ function Display({ game }: { game: Game }) {
       return (
         <main className="lifeline-activation-screen min-h-screen" style={displayBackgroundStyle(team)}>
           <section className="lifeline-activation" aria-live="assertive">
-            <span className={`lifeline-activation-icon lifeline-sprite lifeline-sprite-${lifeline.type}`} aria-hidden="true" />
+            <span className={`lifeline-activation-icon lifeline-sprite lifeline-sprite-${lifeline.type}`} style={lifelineSpriteStyle} aria-hidden="true" />
             <p>{lifeline.label}</p>
             <h1>Activated</h1>
           </section>
@@ -1369,7 +1380,7 @@ function Host({ game }: { game: Game }) {
                     onClick={() => setTrumpCardToConfirm(item.type as "doubleTrouble" | "safeguard")}
                     className={`flex items-center gap-2 ${item.type === "doubleTrouble" ? "bg-red-900" : "bg-cyan-900"}`}
                   >
-                    <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${item.type}`} aria-hidden="true" />
+                    <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${item.type}`} style={lifelineSpriteStyle} aria-hidden="true" />
                     {item.label}
                   </button>
                 ))}
@@ -1382,7 +1393,7 @@ function Host({ game }: { game: Game }) {
                 <div className="mt-3 flex justify-center gap-3">
                   <button onClick={() => setTrumpCardToConfirm(null)} className="bg-slate-700">Cancel</button>
                   <button onClick={() => { action("select-trump-card", { type: trumpCardToConfirm }); setTrumpCardToConfirm(null); }} className="inline-flex items-center gap-2 bg-gold text-ink">
-                    {trumpCardToConfirm !== "none" && <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${trumpCardToConfirm}`} aria-hidden="true" />}
+                    {trumpCardToConfirm !== "none" && <span className={`lifeline-sprite host-trump-card-icon lifeline-sprite-${trumpCardToConfirm}`} style={lifelineSpriteStyle} aria-hidden="true" />}
                     Confirm
                   </button>
                 </div>
@@ -1682,8 +1693,8 @@ function GameRules({ onClose }: { onClose: () => void }) {
           <article className="rules-category-icons-lucide"><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span><CategoryIcon category="Sports" /></span><span><CategoryIcon category="Literature" /></span><span><CategoryIcon category="Geography" /></span><span><CategoryIcon category="Bollywood" /></span><span><CategoryIcon category="Technology" /></span><span><CategoryIcon category="Science" /></span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
           <article className="rules-points"><h2>Points & time</h2><div className="rules-score-table"><span>Easy <b>10</b><em>30s / 20s</em></span><span>Medium <b>20</b><em>60s / 40s</em></span><span>Difficult <b>30</b><em>90s / 60s</em></span></div><p>Time shown is first attempt / second attempt.</p></article>
           <article><h2>Attempts</h2><p>There is no negative marking on the first attempt.</p><p>On a wrong second attempt, 10 points are deducted. A team may decline the second attempt to avoid the penalty.</p><p>No first-attempt selection means the question is skipped, with no points gained or lost.</p></article>
-          <article className="rules-lifelines"><h2>Lifelines</h2><div className="rules-lifeline-art"><span><i className="lifeline-sprite lifeline-sprite-removeTwo" /><b>Remove 2</b></span><span><i className="lifeline-sprite lifeline-sprite-flip" /><b>Flip</b></span></div><p>Each team has 2 lifelines, usable once each. Remove 2 removes two wrong answers; Flip replaces the question and restarts the first attempt. Both may be used on one question if required.</p></article>
-          <article className="rules-trumps"><h2>Trump cards</h2><div className="rules-trump-art"><span><i className="lifeline-sprite lifeline-sprite-doubleTrouble" /><b>Double Trouble</b></span><span><i className="lifeline-sprite lifeline-sprite-safeguard" /><b>Safeguard</b></span></div><p>Declare a trump card before choosing a question. Double Trouble doubles points and penalties; Safeguard prevents negative marking, even on the second attempt.</p></article>
+          <article className="rules-lifelines"><h2>Lifelines</h2><div className="rules-lifeline-art"><span><i className="lifeline-sprite lifeline-sprite-removeTwo" style={lifelineSpriteStyle} /><b>Remove 2</b></span><span><i className="lifeline-sprite lifeline-sprite-flip" style={lifelineSpriteStyle} /><b>Flip</b></span></div><p>Each team has 2 lifelines, usable once each. Remove 2 removes two wrong answers; Flip replaces the question and restarts the first attempt. Both may be used on one question if required.</p></article>
+          <article className="rules-trumps"><h2>Trump cards</h2><div className="rules-trump-art"><span><i className="lifeline-sprite lifeline-sprite-doubleTrouble" style={lifelineSpriteStyle} /><b>Double Trouble</b></span><span><i className="lifeline-sprite lifeline-sprite-safeguard" style={lifelineSpriteStyle} /><b>Safeguard</b></span></div><p>Declare a trump card before choosing a question. Double Trouble doubles points and penalties; Safeguard prevents negative marking, even on the second attempt.</p></article>
           <article><h2>Winning</h2><p>The team with the highest score at the end of the game is declared the winner.</p></article>
         </div>
         <p className="rules-dismiss">Click outside, press Esc, or use × to return to the game.</p>

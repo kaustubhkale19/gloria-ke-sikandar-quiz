@@ -626,7 +626,10 @@ function triggerLifelineAnimation(state, type) {
 }
 
 function publish() {
-  io.emit("game-state", getState());
+  io.emit("game-state", {
+    ...getState(),
+    serverNow: Date.now()
+  });
 }
 
 function update(mutator, res) {
@@ -651,7 +654,10 @@ const io = new Server(httpServer, {
     origin: true
   }
 });
-app.get("/api/game", (_req, res) => res.json(getState()));
+app.get("/api/game", (_req, res) => res.json({
+  ...getState(),
+  serverNow: Date.now()
+}));
 app.post("/api/game/start", (_req, res) => update((state) => {
   state.phase = "team-selection";
 }, res));
