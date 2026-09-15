@@ -498,7 +498,7 @@ function LifelineBar({
   const canUse = Boolean(onUse);
   const questionLifelines = lifelineItems.filter((item) => item.type === "removeTwo" || item.type === "flip");
   return (
-    <div className="mt-7 flex flex-wrap justify-center gap-5">
+    <div className="host-lifeline-bar mt-7 flex flex-wrap justify-center gap-5">
       {questionLifelines.map((item) => (
         <button
           key={item.type}
@@ -1129,11 +1129,11 @@ function Host({ game }: { game: Game }) {
     sounds.setMuted(next);
   };
   const title = (
-    <header className="mb-8 flex items-center justify-between">
+    <header className="host-header mb-8 flex items-center justify-between">
       <p className="text-gold text-sm font-bold uppercase tracking-[.2em]">
         Host console
       </p>
-      <div className="flex gap-3">
+      <div className="host-actions flex gap-3">
         {canGoBack && (
           <button onClick={() => action("back")} className="bg-slate-700">
             ← Back
@@ -1211,7 +1211,7 @@ function Host({ game }: { game: Game }) {
               Show all teams and members
             </button>
           </div>
-          <div className={`grid gap-3 ${matrixGrid(game.teams.length)}`}>
+          <div className={`host-team-grid grid gap-3 ${matrixGrid(game.teams.length)}`}>
             {game.teams.map((item) => {
               const done =
                 game.attempts.filter((a) => a.teamId === item.id).length ===
@@ -1277,7 +1277,7 @@ function Host({ game }: { game: Game }) {
         {title}
         <Panel title={`${team?.name}: select a category`}>
           <div
-            className={`grid gap-4 ${matrixGrid(
+            className={`host-category-grid grid gap-4 ${matrixGrid(
               game.rules.categoryDetails.length
             )}`}
           >
@@ -1313,7 +1313,7 @@ function Host({ game }: { game: Game }) {
             Choose any difficulty for this question. Difficulty levels can be
             selected again.
           </p>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="host-difficulty-grid grid gap-4 md:grid-cols-3">
             {game.rules.difficultyDetails.map((difficulty) => (
               <button
                 key={difficulty.id}
@@ -1390,7 +1390,7 @@ function Host({ game }: { game: Game }) {
             )}
             </>}
           </section>
-          <div className="grid grid-cols-5 gap-3 mx-auto max-w-3xl">
+          <div className="host-question-grid grid grid-cols-5 gap-3 mx-auto max-w-3xl">
             {choices.map((question) => (
               <button
                 key={question.id}
@@ -1454,7 +1454,7 @@ function Host({ game }: { game: Game }) {
             {game.rules.pointsByDifficulty[q.difficulty]} points{" "}
             {game.answerAttempt === 2 && "· second attempt: half points"}
           </p>
-          <div className="mb-5 flex items-center justify-between gap-4">
+          <div className="host-timer-controls mb-5 flex items-center justify-between gap-4">
             <Timer
               until={game.timerEndsAt}
               paused={game.timerPaused}
@@ -1480,7 +1480,7 @@ function Host({ game }: { game: Game }) {
               {game.questionNotice}
             </p>
           )}
-          <div className="grid gap-3">
+          <div className="host-options grid gap-3">
             {q.options.map((option, index) => {
               const removed =
                 game.removedOptionIndexes.includes(index) ||
@@ -1564,7 +1564,7 @@ function Host({ game }: { game: Game }) {
             </button>
           </div>
         )}
-        <div className="grid gap-3">
+        <div className="host-options grid gap-3">
           {q.options.map((option, index) => (
             <button
               key={option}
@@ -1591,7 +1591,7 @@ function Host({ game }: { game: Game }) {
           ))}
         </div>
         {game.phase === "answer-review" && (
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="host-answer-actions mt-6 flex flex-wrap gap-3">
             <button
               onClick={() => action("toggle-full-points-override")}
               className={game.fullPointsOverride ? "bg-emerald-500 text-ink" : "bg-slate-700"}
@@ -1644,7 +1644,7 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl bg-panel p-7">
+    <section className="host-panel rounded-2xl bg-panel p-7">
       <h2 className="mb-6 text-2xl font-black">{title}</h2>
       {children}
     </section>
