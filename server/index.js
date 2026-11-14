@@ -21,7 +21,9 @@ const db = new Database("data/quiz-show.db");
 db.pragma("journal_mode = WAL");
 db.exec("CREATE TABLE IF NOT EXISTS game_state (id INTEGER PRIMARY KEY CHECK (id = 1), state_json TEXT NOT NULL)");
 
-const categoryDetails = [
+// Retained only as historical seed data. Runtime categories now come from the
+// supplied question-bank CSV below.
+const legacyCategoryDetails = [
   {
     name: "Sports",
     logo: "🏆",
@@ -103,7 +105,7 @@ const difficultyDetails = [
     description: "For the quiz masters"
   }
 ];
-const categories = categoryDetails.map((item) => item.name);
+const legacyCategories = legacyCategoryDetails.map((item) => item.name);
 const difficulties = difficultyDetails.map((item) => item.id);
 const pointsByDifficulty = {
   easy: 10,
@@ -318,6 +320,47 @@ function parseCsvLine(line) {
   return values;
 }
 
+function loadQuestionBankSource() {
+  if (!existsSync(questionBankPath)) throw new Error(`Question bank not found: ${questionBankPath}`);
+  const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
+  const categoryNames = [];
+  const questionRows = [];
+  const membersByTeam = {};
+  const teamNamesById = {};
+
+  rows.forEach((row) => {
+    const [category, difficulty, text] = row;
+    const recordType = category?.trim().toLowerCase();
+    if (recordType === "team_members") {
+      const teamName = difficulty?.trim();
+      const teamId = teamName?.toLowerCase();
+      const memberName = text?.trim();
+      if (teamId && memberName) {
+        teamNamesById[teamId] ??= teamName;
+        (membersByTeam[teamId] ??= []).push(memberName);
+      }
+      return;
+    }
+    if (!category?.trim() || !difficulties.includes(difficulty?.trim())) return;
+    const categoryName = category.trim();
+    if (!categoryNames.includes(categoryName)) categoryNames.push(categoryName);
+    questionRows.push(row);
+  });
+
+  if (!questionRows.length) throw new Error("The question bank contains no valid question rows.");
+  if (!Object.keys(membersByTeam).length) throw new Error("The question bank contains no team_members rows.");
+  return { categoryNames, questionRows, membersByTeam, teamNamesById };
+}
+
+const questionBankSource = loadQuestionBankSource();
+const categories = questionBankSource.categoryNames;
+const categoryDetails = categories.map((name) => ({ name, logo: "", description: "" }));
+const sourceTeams = Object.entries(questionBankSource.membersByTeam).map(([id, members]) => ({
+  id,
+  name: questionBankSource.teamNamesById[id],
+  members
+}));
+
 function questionHint(category, answer) {
   return `Hint: This is a ${category} question.`;
 }
@@ -349,10 +392,8 @@ const fallbackExtraOptions = {
 };
 
 function loadQuestionSets() {
-  ensureStarterQuestionBank();
-  const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
   const sets = Object.fromEntries(categories.map((category) => [category, Object.fromEntries(difficulties.map((difficulty) => [difficulty, []]))]));
-  rows.forEach(([category, difficulty, text, a, b, c, d, e, correct]) => {
+  questionBankSource.questionRows.forEach(([category, difficulty, text, a, b, c, d, e, correct]) => {
     if (sets[category]?.[difficulty]) {
       const list = sets[category][difficulty];
       const options = [a, b, c, d, e];
@@ -369,47 +410,38 @@ function loadQuestionSets() {
       });
     }
   });
-  for (const category of categories)
-    for (const difficulty of difficulties)
-      if (!sets[category][difficulty].length) {
-        const source = supplementalQuestionBank[category]?.[difficulty] ?? questionBank[category][difficulty];
-        for (let index = 0; index < 15; index += 1) {
-          const [text, options, correctOption] = source[index % source.length];
-          const questionOptions = [...options, fallbackExtraOptions[text]];
-          sets[category][difficulty].push({
-            id: `${category}-${difficulty}-${index + 1}`,
-            number: index + 1,
-            category,
-            difficulty,
-            text,
-            options: questionOptions,
-            correctOption,
-            hint: questionHint(category, questionOptions[correctOption])
-          });
-        }
-      }
   return sets;
 }
 const questionSets = loadQuestionSets();
 
-// Team rosters live alongside questions in question-bank.csv. Add one row per
-// member using: team_members,<team id>,<member name>,,,,,,
+// Team rosters live alongside questions in the supplied question-bank CSV.
 function loadTeamMembers() {
-  ensureStarterQuestionBank();
-  const membersByTeam = {};
-  const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
-  rows.forEach(([recordType, teamId, memberName]) => {
-    if (recordType.trim().toLowerCase() !== "team_members") return;
-    const id = teamId.trim().toLowerCase();
-    const name = memberName.trim();
-    if (!id || !name) return;
-    (membersByTeam[id] ??= []).push(name);
+  return Object.fromEntries(Object.entries(questionBankSource.membersByTeam).map(([id, members]) => [id, [...members]]));
+}
+
+function createTeamsFromSource(savedTeams = new Map()) {
+  return sourceTeams.map((sourceTeam) => {
+    const savedTeam = savedTeams.get(sourceTeam.id);
+    return {
+      id: sourceTeam.id,
+      name: sourceTeam.name,
+      logo: "",
+      description: "",
+      theme: "",
+      members: [...sourceTeam.members],
+      score: savedTeam?.score ?? 0,
+      lifelines: savedTeam?.lifelines ?? {
+        removeTwo: true,
+        flip: true,
+        doubleTrouble: true,
+        safeguard: true
+      }
+    };
   });
-  return membersByTeam;
 }
 
 function createState() {
-  const teams = [{
+  const legacyTeams = [{
     id: "raw",
     name: "RAW",
     logo: "🕵️",
@@ -446,6 +478,7 @@ function createState() {
     score: 0
   }
   ];
+  const teams = createTeamsFromSource();
   teams.forEach((team) => {
     team.lifelines = {
       removeTwo: true,
@@ -506,6 +539,7 @@ function getState() {
     const state = JSON.parse(record.state_json);
     state.rules = {
       ...state.rules,
+      teams: sourceTeams.map((team) => team.name),
       categories,
       categoryDetails,
       difficulties,
@@ -515,10 +549,9 @@ function getState() {
       timerSecondsByDifficulty
     };
     state.questionSets = questionSets;
-    const membersByTeam = loadTeamMembers();
-    state.teams.forEach((team) => {
-      team.members = membersByTeam[team.id] ?? [];
-    });
+    // Team selection and rosters are always refreshed from the question-bank
+    // CSV; only in-progress scores and lifeline state come from SQLite.
+    state.teams = createTeamsFromSource(new Map(state.teams.map((team) => [team.id, team])));
     if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion;
     state.teams.forEach((team) => {
       team.lifelines = {
