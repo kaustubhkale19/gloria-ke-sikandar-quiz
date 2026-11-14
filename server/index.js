@@ -7,12 +7,11 @@ import {
 import {
   existsSync,
   mkdirSync,
-  readFileSync,
-  writeFileSync
 } from "node:fs";
 import {
   Server
 } from "socket.io";
+import XLSX from "xlsx";
 
 mkdirSync("data", {
   recursive: true
@@ -22,7 +21,7 @@ db.pragma("journal_mode = WAL");
 db.exec("CREATE TABLE IF NOT EXISTS game_state (id INTEGER PRIMARY KEY CHECK (id = 1), state_json TEXT NOT NULL)");
 
 // Retained only as historical seed data. Runtime categories now come from the
-// supplied question-bank CSV below.
+// supplied question-bank workbook below.
 const legacyCategoryDetails = [
   {
     name: "Sports",
@@ -278,88 +277,51 @@ const supplementalQuestionBank = {
     ]
   }
 };
-const questionBankPath = "data/question-bank.csv";
-const csvEscape = (value) => `"${String(value).replaceAll('"', '""')}"`;
-
-function ensureStarterQuestionBank() {
-  const header = "category,difficulty,question,option_a,option_b,option_c,option_d,option_e,correct_option";
-  if (existsSync(questionBankPath)) {
-    const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).map(parseCsvLine);
-    if (rows[0]?.length === 8) writeFileSync(questionBankPath, [header, ...rows.slice(1).map(([category, difficulty, question, a, b, c, d, correct]) => [category, difficulty, question, a, b, c, d, "None of the above", correct].map(csvEscape).join(","))].join("\n"));
-    return;
-  }
-  const rows = [header];
-  for (const category of categories)
-    for (const difficulty of difficulties) {
-      const source = questionBank[category]?.[difficulty] ?? supplementalQuestionBank[category][difficulty];
-      for (let index = 0; index < 15; index += 1) {
-        const [question, options, correctOption] = source[index % source.length];
-        const wording = question;
-        rows.push([category, difficulty, wording, ...options, "None of the above", correctOption].map(csvEscape).join(","));
-      }
-    }
-  writeFileSync(questionBankPath, rows.join("\n"));
-}
-
-function parseCsvLine(line) {
-  const values = [];
-  let value = "";
-  let quoted = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    if (char === '"' && line[i + 1] === '"') {
-      value += '"';
-      i += 1;
-    } else if (char === '"') quoted = !quoted;
-    else if (char === "," && !quoted) {
-      values.push(value);
-      value = "";
-    } else value += char;
-  }
-  values.push(value);
-  return values;
-}
+const questionBankPath = "data/question-bank-i18n.xlsx";
+const difficultyIdsBySourceName = {
+  "सोपे": "easy",
+  "मध्यम": "medium",
+  "कठीण": "hard"
+};
 
 function loadQuestionBankSource() {
   if (!existsSync(questionBankPath)) throw new Error(`Question bank not found: ${questionBankPath}`);
-  const rows = readFileSync(questionBankPath, "utf8").trim().split(/\r?\n/).slice(1).map(parseCsvLine);
+  const workbook = XLSX.readFile(questionBankPath);
+  const sheetName = workbook.SheetNames[0];
+  if (!sheetName) throw new Error("The question bank workbook has no worksheets.");
+  const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: "", raw: false });
   const categoryNames = [];
   const questionRows = [];
-  const membersByTeam = {};
-  const teamNamesById = {};
 
   rows.forEach((row) => {
-    const [category, difficulty, text] = row;
-    const recordType = category?.trim().toLowerCase();
-    if (recordType === "team_members") {
-      const teamName = difficulty?.trim();
-      const teamId = teamName?.toLowerCase();
-      const memberName = text?.trim();
-      if (teamId && memberName) {
-        teamNamesById[teamId] ??= teamName;
-        (membersByTeam[teamId] ??= []).push(memberName);
-      }
-      return;
-    }
-    if (!category?.trim() || !difficulties.includes(difficulty?.trim())) return;
+    const [category, sourceDifficulty, text, a, b, c, d, e, correct] = row.map((value) => String(value).trim());
+    const difficulty = difficultyIdsBySourceName[sourceDifficulty];
+    if (!category || !difficulty || !text) return;
     const categoryName = category.trim();
     if (!categoryNames.includes(categoryName)) categoryNames.push(categoryName);
-    questionRows.push(row);
+    questionRows.push([categoryName, difficulty, text, a, b, c, d, e, correct]);
   });
 
   if (!questionRows.length) throw new Error("The question bank contains no valid question rows.");
-  if (!Object.keys(membersByTeam).length) throw new Error("The question bank contains no team_members rows.");
-  return { categoryNames, questionRows, membersByTeam, teamNamesById };
+  return { categoryNames, questionRows };
+}
+
+function loadSavedTeamRoster() {
+  const record = db.prepare("SELECT state_json FROM game_state WHERE id = 1").get();
+  const teams = record ? JSON.parse(record.state_json).teams : [];
+  const validTeams = Array.isArray(teams) ? teams.filter((team) => team?.id && team?.name) : [];
+  if (!validTeams.length) throw new Error("The workbook has no team roster and no saved team roster is available.");
+  return validTeams.map((team) => ({
+    id: team.id,
+    name: team.name,
+    members: Array.isArray(team.members) ? team.members : []
+  }));
 }
 
 const questionBankSource = loadQuestionBankSource();
 const categories = questionBankSource.categoryNames;
 const categoryDetails = categories.map((name) => ({ name, logo: "", description: "" }));
-const sourceTeams = Object.entries(questionBankSource.membersByTeam).map(([id, members]) => ({
-  id,
-  name: questionBankSource.teamNamesById[id],
-  members
-}));
+const sourceTeams = loadSavedTeamRoster();
 
 function questionHint(category, answer) {
   return `Hint: This is a ${category} question.`;
@@ -413,11 +375,6 @@ function loadQuestionSets() {
   return sets;
 }
 const questionSets = loadQuestionSets();
-
-// Team rosters live alongside questions in the supplied question-bank CSV.
-function loadTeamMembers() {
-  return Object.fromEntries(Object.entries(questionBankSource.membersByTeam).map(([id, members]) => [id, [...members]]));
-}
 
 function createTeamsFromSource(savedTeams = new Map()) {
   return sourceTeams.map((sourceTeam) => {
@@ -549,9 +506,26 @@ function getState() {
       timerSecondsByDifficulty
     };
     state.questionSets = questionSets;
-    // Team selection and rosters are always refreshed from the question-bank
-    // CSV; only in-progress scores and lifeline state come from SQLite.
+    // Questions and categories always come from the workbook. The workbook has
+    // no team-roster sheet, so the saved roster is retained with game state.
     state.teams = createTeamsFromSource(new Map(state.teams.map((team) => [team.id, team])));
+    const hasInvalidCategory = state.selectedCategory && !categories.includes(state.selectedCategory);
+    const hasInvalidDifficulty = state.selectedDifficulty && !difficulties.includes(state.selectedDifficulty);
+    if (hasInvalidCategory || hasInvalidDifficulty) {
+      state.selectedCategory = null;
+      state.selectedDifficulty = null;
+      state.currentQuestion = null;
+      state.selectedOption = null;
+      state.answerRevealed = false;
+      state.pendingAnswer = null;
+      state.timerEndsAt = null;
+      state.timerPaused = false;
+      state.timerRemainingSeconds = null;
+      state.removedOptionIndexes = [];
+      state.disabledOptionIndexes = [];
+      state.answerAttempt = 1;
+      state.phase = state.activeTeamId ? "category-selection" : "team-selection";
+    }
     if (state.currentQuestion) state.currentQuestion = questionSets[state.currentQuestion.category]?.[state.currentQuestion.difficulty]?.find((question) => question.id === state.currentQuestion.id) ?? state.currentQuestion;
     state.teams.forEach((team) => {
       team.lifelines = {
@@ -579,10 +553,6 @@ function getState() {
     return state;
   }
   const state = createState();
-  const membersByTeam = loadTeamMembers();
-  state.teams.forEach((team) => {
-    team.members = membersByTeam[team.id] ?? [];
-  });
   saveState(state);
   return state;
 }

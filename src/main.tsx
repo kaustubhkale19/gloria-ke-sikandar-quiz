@@ -791,9 +791,9 @@ function Display({ game }: { game: Game }) {
           )}
           {game.phase === "question-selection" ? (
             <div className="mx-auto grid max-w-3xl grid-cols-5 gap-4">
-              {game.questionSets[game.selectedCategory!][
+              {(game.questionSets[game.selectedCategory!]?.[
                 game.selectedDifficulty!
-              ].map((question) => (
+              ] ?? []).map((question) => (
                 <div
                   key={question.id}
                   className={`mystery-question-tile ${game.usedQuestionIds.includes(question.id) ? "is-used" : ""}`}
@@ -1099,7 +1099,7 @@ function Host({ game }: { game: Game }) {
   const timerExpired = useTimerExpired(game.timerEndsAt);
   const choices =
     game.selectedCategory && game.selectedDifficulty
-      ? game.questionSets[game.selectedCategory][game.selectedDifficulty]
+      ? game.questionSets[game.selectedCategory]?.[game.selectedDifficulty] ?? []
       : [];
   const selectedDifficultyIcon = game.rules.difficultyDetails.find(
     (item) => item.id === game.selectedDifficulty
