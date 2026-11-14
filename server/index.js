@@ -888,7 +888,9 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
   const team = state.teams.find((item) => item.id === state.activeTeamId);
   if (!team) return "No active team.";
   const correct = state.selectedOption === state.currentQuestion.correctOption;
-  if (!correct && state.answerAttempt === 1 && !state.doubleTroubleActive) {
+  // Double Trouble changes the points/penalty, not the team's entitlement to
+  // its normal second attempt after an incorrect first answer.
+  if (!correct && state.answerAttempt === 1) {
     state.disabledOptionIndexes = [...new Set([...state.disabledOptionIndexes, state.selectedOption])];
     state.selectedOption = null;
     state.answerAttempt = 2;
@@ -902,17 +904,10 @@ app.post("/api/game/mark-answer", (req, res) => update((state) => {
   const remainingSeconds = state.timerEndsAt
     ? Math.max(0, Math.ceil((state.timerEndsAt - Date.now()) / 1000))
     : state.timerRemainingSeconds ?? 0;
-  const answeredInFirstHalf = remainingSeconds > questionTimerSeconds(state) / 2;
-  const timingMultiplier = answeredInFirstHalf ? 1 : .5;
-  // The superadmin override restores full points for a late first attempt only.
-  // A correct second attempt must always be worth half of its difficulty level.
-  const scoreMultiplier = state.answerAttempt === 2
-    ? .5
-    : state.flippedQuestionActive
-      ? 1
-    : state.fullPointsOverride
-      ? 1
-      : timingMultiplier;
+  // A correct first attempt always earns the full difficulty value. Time left
+  // affects only whether an answer is still eligible, never its point value.
+  // A correct second attempt remains worth half of the difficulty value.
+  const scoreMultiplier = state.answerAttempt === 2 ? .5 : 1;
   const difficultyPoints = state.rules.pointsByDifficulty[state.currentQuestion.difficulty];
   const points = correct
     ? difficultyPoints * (state.doubleTroubleActive ? 2 : scoreMultiplier)
