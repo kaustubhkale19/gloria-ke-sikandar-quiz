@@ -1481,3 +1481,199 @@ button {
 .rules-dismiss { margin: 1.15rem 0 0; color: #cbd5e1; font-size: .8rem; font-style: italic; text-align: center; }
 @media (max-width: 700px) { .rules-grid { grid-template-columns: 1fr; } .rules-trigger { right: .75rem; bottom: .75rem; } }
 .projector-lion-title { width: min(92vw, 76rem); filter: drop-shadow(0 .45rem .8rem rgba(0, 0, 0, .85)); }
+
+/* Host console layout ---------------------------------------------------- */
+.host {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.host-header {
+    gap: 1rem;
+}
+
+.host-actions {
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.host-actions > button,
+.host-actions > a {
+    min-height: 2.75rem;
+    white-space: normal;
+}
+
+.host-panel {
+    min-width: 0;
+}
+
+.host-team-grid,
+.host-category-grid,
+.host-difficulty-grid,
+.host-question-grid,
+.host-options {
+    min-width: 0;
+}
+
+.host-options > button {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-align: left;
+}
+
+@media (max-width: 700px) {
+    .screen-content > main.host {
+        padding: 5rem .75rem .75rem !important;
+    }
+
+    .host-header {
+        align-items: stretch;
+        flex-direction: column;
+        margin-bottom: 1rem !important;
+    }
+
+    .host-header > p {
+        margin: 0;
+        text-align: center;
+    }
+
+    .host-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .5rem;
+        width: 100%;
+    }
+
+    .host-actions > button,
+    .host-actions > a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 44px;
+        padding: .7rem .55rem;
+        font-size: .82rem;
+        line-height: 1.15;
+        text-align: center;
+    }
+
+    .host-panel {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+    }
+
+    .host-panel > h2 {
+        margin-bottom: 1rem;
+        font-size: 1.35rem;
+        line-height: 1.15;
+    }
+
+    .host-team-grid,
+    .host-category-grid,
+    .host-difficulty-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .team-selection-host-card {
+        min-height: 0;
+    }
+
+    .team-selection-host-main {
+        min-height: 6rem;
+        padding: .85rem;
+    }
+
+    .team-selection-host-main .team-icon {
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .team-selection-host-main span {
+        overflow-wrap: anywhere;
+    }
+
+    .team-selection-host-main span:nth-child(2) {
+        font-size: 1.35rem;
+        line-height: 1.1;
+    }
+
+    .team-selection-host-main small {
+        font-size: .78rem;
+    }
+
+    .team-selection-host-main span:last-child {
+        font-size: .9rem;
+        text-align: right;
+    }
+
+    .team-members-trigger {
+        min-height: 44px;
+        padding: .65rem .75rem;
+    }
+
+    .host-category-grid > button,
+    .host-difficulty-grid > button {
+        min-height: 4.25rem;
+        padding: .85rem 1rem;
+    }
+
+    .host-category-grid > button strong,
+    .host-difficulty-grid > button strong {
+        font-size: 1.1rem;
+    }
+
+    .host-question-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: .5rem;
+    }
+
+    .host-timer-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .host-timer-controls > button,
+    .host-answer-actions > button,
+    .host-options > button,
+    .host-panel button {
+        min-height: 44px;
+    }
+
+    .host-timer-controls > button {
+        width: 100%;
+    }
+
+    .host-answer-actions {
+        flex-direction: column;
+    }
+
+    .host-answer-actions > button {
+        width: 100%;
+    }
+
+    .host-lifeline-bar {
+        gap: .75rem;
+    }
+
+    .host-lifeline-bar .lifeline-circle {
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+
+    .host-panel h2.text-3xl {
+        font-size: 1.45rem;
+        line-height: 1.2;
+    }
+}
+
+@media (max-width: 380px) {
+    .host-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .host-question-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        max-width: 14rem;
+    }
+}
