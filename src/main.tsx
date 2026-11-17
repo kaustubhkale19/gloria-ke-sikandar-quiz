@@ -113,7 +113,7 @@ const dhurandharTitle = `${ASSETS}/dhurandhar-title-transparent.png`;
 const tvColourBars = `${ASSETS}/tv-colour-bars.png`;
 const rewardCoin = `${ASSETS}/reward-coin.png`;
 const mysteryBox = `${ASSETS}/mystery-box.png`;
-const lionTitleBanner = `${ASSETS}/gloria-ke-sikandar-lion-banner.png`;
+const lionTitleBanner = `${ASSETS}/gloria-sahitya-katta-logo.png`;
 const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const lifelineSpriteStyle = { backgroundImage: `url(${ASSETS}/lifeline-icons.png)` };
 const letters = ["A", "B", "C", "D", "E"];
@@ -589,7 +589,7 @@ function BrandBanner({
   return (
     <header className={`brand-banner ${positionClassName} ${inGame ? "brand-banner--in-game" : ""}`} aria-label="Gloria Ke Sikandar branding">
       {inGame && <img className="brand-arch-logo" src={archLogo} alt="Gloria ARCH" />}
-      {showBanner && <img className="brand-lion-title" src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />}
+      {showBanner && <img className="brand-lion-title" src={lionTitleBanner} alt="ग्लोरिया साहित्य कट्टा" />}
     </header>
   );
 }
@@ -678,7 +678,7 @@ function Display({ game }: { game: Game }) {
           backgroundSize: "cover",
         }}
       >
-        <img className="projector-lion-title" src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />
+        <img className="projector-lion-title" src={lionTitleBanner} alt="ग्लोरिया साहित्य कट्टा" />
       </main>
     );
   if (game.phase === "question-transition" && question)
@@ -1682,7 +1682,7 @@ function GameRules({ onClose }: { onClose: () => void }) {
       >
         <button className="rules-close" type="button" onClick={onClose} aria-label="Close game rules">×</button>
         <header className="rules-poster-heading">
-          <img src={lionTitleBanner} alt="Gloria Ke Sikandar — Season 2: Dhurandhar" />
+          <img src={lionTitleBanner} alt="ग्लोरिया साहित्य कट्टा" />
           <h1 id="rules-title">Game Rules</h1>
           <span>Rules · scoring · lifelines · trump cards</span>
         </header>
