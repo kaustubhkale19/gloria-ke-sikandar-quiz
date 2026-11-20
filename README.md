@@ -14,13 +14,13 @@ The Express/Socket.IO server runs at port 3000 and saves its data locally in `da
 
 ## Team rosters
 
-Team members are maintained in the same editable [`data/question-bank.csv`](data/question-bank.csv) file as the questions. Add one row per member using the existing columns:
+Team names and members are maintained in the `teams` worksheet of [`data/question-bank-i18n.xlsx`](data/question-bank-i18n.xlsx). Keep one row per team using these columns:
 
-```csv
-"team_members","raw","Aarav Sharma","","","","","",""
-```
+- `team_id`: stable internal ID used for the team logo and saved score.
+- `team_name`: team display name. Marathi and other Unicode names can be entered directly in this column.
+- `member_1`, `member_2`, and later `member_n` columns: team-member display names.
 
-Use one of `raw`, `kgb`, `cia`, or `mossad` in column two and place the member's display name in column three. On the host console's team-selection screen, select **Reveal members** to show that roster on the projector; select **Back to teams** when finished.
+The workbook supports Unicode text, so team names and member names can be entered directly in Marathi. Do not change an existing `team_id` after a game has begun. While the quiz server is running, saved changes to the workbook are detected and refreshed automatically on the host and projector screens. On the host console's team-selection screen, select **Reveal members** to show that roster on the projector; select **Back to teams** when finished.
 
 ## Game flow and rules
 

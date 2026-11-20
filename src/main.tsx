@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useState, type ReactNode } from "react";
+import { Fragment, StrictMode, useEffect, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import {
   BookOpen,
@@ -118,12 +118,20 @@ const archLogo = `${ASSETS}/gloria-arch-logo-transparent.png`;
 const lifelineSpriteStyle = { backgroundImage: `url(${ASSETS}/lifeline-icons.png)` };
 const letters = ["A", "B", "C", "D", "E"];
 const teamBackdrops: Record<string, string> = {
+  "1": `${ASSETS}/team-cia.png`,
+  "2": `${ASSETS}/team-kgb.png`,
+  "3": `${ASSETS}/team-mossad.png`,
+  "4": `${ASSETS}/team-raw.png`,
   raw: `${ASSETS}/team-raw.png`,
   kgb: `${ASSETS}/team-kgb.png`,
   cia: `${ASSETS}/team-cia.png`,
   mossad: `${ASSETS}/team-mossad.png`,
 };
 const teamIcons: Record<string, string> = {
+  "1": `${ASSETS}/team-icons/cia-owl.png`,
+  "2": `${ASSETS}/team-icons/kgb-raven.png`,
+  "3": `${ASSETS}/team-icons/mossad-lion.png`,
+  "4": `${ASSETS}/team-icons/raw-eagle.png`,
   raw: `${ASSETS}/team-icons/raw-eagle.png`,
   kgb: `${ASSETS}/team-icons/kgb-raven.png`,
   cia: `${ASSETS}/team-icons/cia-owl.png`,
@@ -406,6 +414,10 @@ function rankedTeams(game: Game) {
     .map(({ team }) => team);
 }
 
+function teamNameLanguage(name: string) {
+  return /[\u0900-\u097F]/.test(name) ? "mr" : undefined;
+}
+
 function questionTimerSeconds(game: Game) {
   const difficulty = game.currentQuestion?.difficulty;
   if (!difficulty) return game.rules.timerSeconds;
@@ -438,7 +450,7 @@ function Scoreboard({ game }: { game: Game }) {
             >
             <div className="score-card-heading">
               <TeamIcon team={team} className="score-team-icon" />
-              <span className="score-team-name" title={team.name}>{team.name}</span>
+              <span className="score-team-name team-display-name" lang={teamNameLanguage(team.name)} title={team.name}>{team.name}</span>
               <span className={`score-team-points ${team.id === game.activeTeamId ? "text-gold" : "text-slate-200"}`}>
                 {team.score}
               </span>
@@ -630,7 +642,7 @@ function Display({ game }: { game: Game }) {
           <div className="finale-layout">
             <div className="finale-winner">
               <TeamIcon team={winner} className="finale-winner-logo" />
-              <h1>{winner.name}</h1>
+              <h1 className="team-display-name" lang={teamNameLanguage(winner.name)}>{winner.name}</h1>
               <p>{winner.score} points</p>
             </div>
             <section className="final-standings" aria-label="Final points table">
@@ -639,7 +651,7 @@ function Display({ game }: { game: Game }) {
                 <div key={item.id} className={`final-standing ${index === 0 ? "is-winner" : ""}`}>
                   <span className="final-standing-rank">{index + 1}</span>
                   <TeamIcon team={item} className="final-standing-logo" />
-                  <span className="final-standing-team">{item.name}</span>
+                  <span className="final-standing-team team-display-name" lang={teamNameLanguage(item.name)}>{item.name}</span>
                   <strong>{item.score} <small>pts</small></strong>
                 </div>
               ))}
@@ -709,7 +721,7 @@ function Display({ game }: { game: Game }) {
           <p className="mb-3 text-3xl font-bold uppercase tracking-[.3em] text-gold">Meet the team</p>
           <div className="mb-9 flex items-center justify-center gap-4">
             <TeamIcon team={rosterTeam} className="h-16 w-16" />
-            <h2 className="text-6xl font-black">{rosterTeam.name}</h2>
+            <h2 className="team-display-name text-6xl font-black" lang={teamNameLanguage(rosterTeam.name)}>{rosterTeam.name}</h2>
           </div>
           {rosterTeam.members.length ? (
             <div className="team-members-grid" aria-label={`${rosterTeam.name} team members`}>
@@ -739,7 +751,7 @@ function Display({ game }: { game: Game }) {
           <div className="team-rosters-column">
             {game.teams.map((item) => (
               <article key={item.id} className="team-roster-card">
-                <h3><TeamIcon team={item} className="team-roster-logo" />{item.name}</h3>
+                <h3 className="team-display-name" lang={teamNameLanguage(item.name)}><TeamIcon team={item} className="team-roster-logo" />{item.name}</h3>
                 {item.members.length ? (
                   <div className="team-roster-members">
                     {item.members.map((member) => <div key={member}>{member}</div>)}
@@ -1195,14 +1207,14 @@ function Host({ game }: { game: Game }) {
         <Panel title="Finale is live on the projector">
           <p className="mb-6 text-xl text-gold">
             <TeamIcon team={winner} className="mr-2 h-7 w-7 align-middle" />
-            {winner.name} wins with {winner.score} points.
+            <span className="team-display-name" lang={teamNameLanguage(winner.name)}>{winner.name}</span> wins with {winner.score} points.
           </p>
           <div className="grid gap-3">
             {finalStandings.map((item, index) => (
               <div key={item.id} className="flex items-center gap-4 rounded-xl bg-slate-800/80 px-5 py-4">
                 <strong className="w-7 text-gold">{index + 1}</strong>
                 <TeamIcon team={item} className="h-9 w-9" />
-                <span className="flex-1 text-xl font-bold">{item.name}</span>
+                <span className="team-display-name flex-1 text-xl font-bold" lang={teamNameLanguage(item.name)}>{item.name}</span>
                 <strong className="text-gold">{item.score} pts</strong>
               </div>
             ))}
@@ -1240,7 +1252,7 @@ function Host({ game }: { game: Game }) {
                 >
                   <button disabled={done} onClick={() => action("select-team", { teamId: item.id })} className="team-selection-host-main">
                     <TeamIcon team={item} className="h-14 w-14 shrink-0" />
-                    <span className="min-w-0 flex-1 text-3xl font-black">
+                    <span className="team-display-name min-w-0 flex-1 text-3xl font-black" lang={teamNameLanguage(item.name)}>
                       {item.name}
                       <small className="mt-2 block text-lg font-medium text-slate-200">{item.description}</small>
                     </span>
@@ -1662,7 +1674,7 @@ function Panel({
   );
 }
 
-function GameRules({ onClose }: { onClose: () => void }) {
+function GameRules({ game, onClose }: { game: Game; onClose: () => void }) {
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -1687,8 +1699,8 @@ function GameRules({ onClose }: { onClose: () => void }) {
           <span>Rules · scoring · lifelines · trump cards</span>
         </header>
         <div className="rules-grid">
-          <article className="rules-teams"><h2>Teams & rounds</h2><p>Players are divided into 4 teams.</p><div className="rules-team-badges" aria-label="Teams"><span className="rules-team-raw">RAW</span><span className="rules-team-kgb">KGB</span><span className="rules-team-cia">CIA</span><span className="rules-team-mossad">Mossad</span></div><p>The game is conducted in 8 rounds. Each team plays 2 rounds, in the sequence shown by the host.</p></article>
-          <article className="rules-rounds"><h2>Sequence of rounds</h2><div className="rules-round-strip"><span>1<br /><b>RAW</b></span><i>→</i><span>2<br /><b>KGB</b></span><i>→</i><span>3<br /><b>CIA</b></span><i>→</i><span>4<br /><b>Mossad</b></span></div><p>The order rotates in later sets so every team gets its turn.</p></article>
+          <article className="rules-teams"><h2>Teams & rounds</h2><p>Players are divided into {game.teams.length} teams.</p><div className="rules-team-badges" aria-label="Teams">{game.teams.map((team) => <span key={team.id} className={`rules-team-${team.id} team-display-name`} lang={teamNameLanguage(team.name)}>{team.name}</span>)}</div><p>The game is conducted in {game.teams.length * 2} rounds. Each team plays 2 rounds, in the sequence shown by the host.</p></article>
+          <article className="rules-rounds"><h2>Sequence of rounds</h2><div className="rules-round-strip">{game.teams.map((team, index) => <Fragment key={team.id}>{index > 0 && <i>→</i>}<span>{index + 1}<br /><b className="team-display-name" lang={teamNameLanguage(team.name)}>{team.name}</b></span></Fragment>)}</div><p>The order rotates in later sets so every team gets its turn.</p></article>
           <article><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span>🏆</span><span>📚</span><span>🌍</span><span>🎬</span><span>🎵</span><span>🔬</span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
           <article className="rules-category-icons-lucide"><h2>Categories</h2><div className="rules-category-icons" aria-hidden="true"><span><CategoryIcon category="Sports" /></span><span><CategoryIcon category="Literature" /></span><span><CategoryIcon category="Geography" /></span><span><CategoryIcon category="Bollywood" /></span><span><CategoryIcon category="Technology" /></span><span><CategoryIcon category="Science" /></span></div><p>There are 12 categories. A team plays 8 categories and can choose its category in each round. The same category may be selected twice.</p></article>
           <article className="rules-points"><h2>Points & time</h2><div className="rules-score-table"><span>Easy <b>10</b><em>30s / 20s</em></span><span>Medium <b>20</b><em>60s / 40s</em></span><span>Difficult <b>30</b><em>90s / 60s</em></span></div><p>Time shown is first attempt / second attempt.</p></article>
@@ -1773,7 +1785,7 @@ function App() {
       >
         {screen}
       </div>
-      {game.rulesOpen && <GameRules onClose={() => action("set-rules-open", { open: false })} />}
+      {game.rulesOpen && <GameRules game={game} onClose={() => action("set-rules-open", { open: false })} />}
     </>
   );
 }

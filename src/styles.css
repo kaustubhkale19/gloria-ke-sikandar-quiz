@@ -12,6 +12,11 @@ body {
     @apply m-0 min-h-screen bg-ink font-sans text-slate-100;
 }
 
+.team-display-name {
+    font-family: "Nirmala UI", "Noto Sans Devanagari", Arial, sans-serif;
+    text-transform: none;
+}
+
 button {
     @apply rounded-lg px-4 py-3 font-bold transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50;
 }
@@ -194,6 +199,12 @@ button {
 
 .projector-category-card {
     min-height: 0;
+    text-align: center;
+}
+
+.projector-category-card h3 {
+    width: 100%;
+    text-align: center;
 }
 
 .team-member-card {

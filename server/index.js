@@ -7,6 +7,7 @@ import {
 import {
   existsSync,
   mkdirSync,
+  watchFile,
 } from "node:fs";
 import {
   Server
@@ -279,6 +280,9 @@ const supplementalQuestionBank = {
 };
 const questionBankPath = "data/question-bank-i18n.xlsx";
 const difficultyIdsBySourceName = {
+  "easy": "easy",
+  "medium": "medium",
+  "hard": "hard",
   "सोपे": "easy",
   "मध्यम": "medium",
   "कठीण": "hard"
@@ -287,15 +291,15 @@ const difficultyIdsBySourceName = {
 function loadQuestionBankSource() {
   if (!existsSync(questionBankPath)) throw new Error(`Question bank not found: ${questionBankPath}`);
   const workbook = XLSX.readFile(questionBankPath);
-  const sheetName = workbook.SheetNames[0];
-  if (!sheetName) throw new Error("The question bank workbook has no worksheets.");
-  const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: "", raw: false });
+  const questionSheetName = workbook.SheetNames.find((name) => name.toLowerCase() === "question-bank") ?? workbook.SheetNames[0];
+  if (!questionSheetName) throw new Error("The question bank workbook has no worksheets.");
+  const rows = XLSX.utils.sheet_to_json(workbook.Sheets[questionSheetName], { header: 1, defval: "", raw: false });
   const categoryNames = [];
   const questionRows = [];
 
-  rows.forEach((row) => {
+  rows.slice(1).forEach((row) => {
     const [category, sourceDifficulty, text, a, b, c, d, e, correct] = row.map((value) => String(value).trim());
-    const difficulty = difficultyIdsBySourceName[sourceDifficulty];
+    const difficulty = difficultyIdsBySourceName[sourceDifficulty.toLowerCase()];
     if (!category || !difficulty || !text) return;
     const categoryName = category.trim();
     if (!categoryNames.includes(categoryName)) categoryNames.push(categoryName);
@@ -303,25 +307,44 @@ function loadQuestionBankSource() {
   });
 
   if (!questionRows.length) throw new Error("The question bank contains no valid question rows.");
-  return { categoryNames, questionRows };
-}
 
-function loadSavedTeamRoster() {
-  const record = db.prepare("SELECT state_json FROM game_state WHERE id = 1").get();
-  const teams = record ? JSON.parse(record.state_json).teams : [];
-  const validTeams = Array.isArray(teams) ? teams.filter((team) => team?.id && team?.name) : [];
-  if (!validTeams.length) throw new Error("The workbook has no team roster and no saved team roster is available.");
-  return validTeams.map((team) => ({
-    id: team.id,
-    name: team.name,
-    members: Array.isArray(team.members) ? team.members : []
-  }));
+  const teamSheetName = workbook.SheetNames.find((name) => name.toLowerCase() === "teams");
+  if (!teamSheetName) throw new Error('The question bank workbook must contain a worksheet named "teams".');
+  const teamRows = XLSX.utils.sheet_to_json(workbook.Sheets[teamSheetName], { header: 1, defval: "", raw: false });
+  const headers = (teamRows[0] ?? []).map((value) => String(value).trim().toLowerCase());
+  const teamIdIndex = headers.indexOf("team_id");
+  const teamNameIndex = headers.indexOf("team_name");
+  const memberIndexes = headers
+    .map((header, index) => (/^member_\d+$/.test(header) ? index : -1))
+    .filter((index) => index >= 0);
+  if (teamIdIndex < 0 || teamNameIndex < 0 || !memberIndexes.length) {
+    throw new Error('The "teams" worksheet must contain team_id, team_name, and member_1 (or later member_n) columns.');
+  }
+
+  const seenTeamIds = new Set();
+  const teams = teamRows.slice(1).flatMap((row) => {
+    const values = row.map((value) => String(value).trim());
+    const id = values[teamIdIndex];
+    const name = values[teamNameIndex];
+    if (!id && !name) return [];
+    if (!id || !name) throw new Error('Every team row in the "teams" worksheet must have a team_id and a team name.');
+    if (seenTeamIds.has(id)) throw new Error(`Duplicate team_id in the "teams" worksheet: ${id}`);
+    seenTeamIds.add(id);
+    return [{
+      id,
+      name,
+      members: memberIndexes.map((index) => values[index]).filter(Boolean)
+    }];
+  });
+  if (!teams.length) throw new Error('The "teams" worksheet contains no valid team rows.');
+
+  return { categoryNames, questionRows, teams };
 }
 
 const questionBankSource = loadQuestionBankSource();
 const categories = questionBankSource.categoryNames;
 const categoryDetails = categories.map((name) => ({ name, logo: "", description: "" }));
-const sourceTeams = loadSavedTeamRoster();
+let sourceTeams = questionBankSource.teams;
 
 function questionHint(category, answer) {
   return `Hint: This is a ${category} question.`;
@@ -506,8 +529,8 @@ function getState() {
       timerSecondsByDifficulty
     };
     state.questionSets = questionSets;
-    // Questions and categories always come from the workbook. The workbook has
-    // no team-roster sheet, so the saved roster is retained with game state.
+    // Questions, categories, team names, and team members always come from the
+    // workbook. Scores and used lifelines remain in the saved game state.
     state.teams = createTeamsFromSource(new Map(state.teams.map((team) => [team.id, team])));
     const hasInvalidCategory = state.selectedCategory && !categories.includes(state.selectedCategory);
     const hasInvalidDifficulty = state.selectedDifficulty && !difficulties.includes(state.selectedDifficulty);
@@ -1031,4 +1054,18 @@ app.post("/api/game/reset", (_req, res) => {
   res.json(state);
 });
 io.on("connection", (socket) => socket.emit("game-state", getState()));
+let workbookReloadTimer = null;
+watchFile(questionBankPath, { interval: 500 }, (current, previous) => {
+  if (current.mtimeMs === previous.mtimeMs) return;
+  clearTimeout(workbookReloadTimer);
+  workbookReloadTimer = setTimeout(() => {
+    try {
+      sourceTeams = loadQuestionBankSource().teams;
+      publish();
+      console.log("Team names and members refreshed from the question-bank workbook.");
+    } catch (error) {
+      console.error("Could not refresh teams from the question-bank workbook:", error);
+    }
+  }, 300);
+});
 httpServer.listen(3000, () => console.log("Quiz server running at http://localhost:3000"));
